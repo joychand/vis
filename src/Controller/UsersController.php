@@ -25,7 +25,7 @@ class UsersController extends AppController
     parent::initialize();
    // $this->disableCache();
     // Add the 'add' action to the allowed actions list.
-    $this->Auth->allow(['logout','changepassword']);
+    //$this->Auth->allow(['logout','changepassword']);
 
 
 }
@@ -68,11 +68,11 @@ public function isAuthorized($user)
     {
         Cache::disable();
 
-        if($this->Auth->user()){
-            $this->Flash->error(__('You are already logged in!'));
-            //dump($this->getRequest()->getSession()->read('homecontroller'));
-            return $this->redirect(['controller'=>$this->getRequest()->getSession()->read('homecontroller'), 'action' => 'home']);
-        }
+        // if($this->Auth->user()){
+        //     $this->Flash->error(__('You are already logged in!'));
+        //     //dump($this->getRequest()->getSession()->read('homecontroller'));
+        //     return $this->redirect(['controller'=>$this->getRequest()->getSession()->read('homecontroller'), 'action' => 'home']);
+        // }
        // Cache::disable();
         if ($this->request->is('post')) 
         {
