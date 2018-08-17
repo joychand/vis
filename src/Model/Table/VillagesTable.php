@@ -34,6 +34,9 @@ class VillagesTable extends Table
         $this->setTable('villages');
         $this->setDisplayField('village_code');
         $this->setPrimaryKey('village_code');
+        $this->hasOne('Villageinfos')
+            ->setForeignKey('village_code')
+            ->setDependent(true);
     }
 
     /**

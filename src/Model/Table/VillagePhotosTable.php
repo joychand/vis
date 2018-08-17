@@ -52,7 +52,7 @@ class VillagePhotosTable extends Table
                 'pathProcessor' => 'App\Core\Upload\PathProcessor',
                 'path'=>'webroot{DS}img{DS}{model}{DS}{field}{DS}',
                 'nameCallback'=>function(array $data, array $settings,  $entity) {
-                    dump($entity);
+                   // dump($entity);
                     $ext = pathinfo($data['name'], PATHINFO_EXTENSION);
                     $filename = pathinfo($data['name'], PATHINFO_FILENAME );
                     return $entity->village_code.'-'.uniqid().'.'.$ext;
@@ -77,7 +77,19 @@ class VillagePhotosTable extends Table
         $validator
             
             ->maxLength('photo', 255)
-            ->allowEmpty('photo');
+            ->allowEmpty('photo')
+            ->add('photo',[
+                'mimeType' => [
+                    'rule' => array('mimeType', array('image/gif', 'image/png', 'image/jpg', 'image/jpeg')),
+                    'message' => 'Please only upload images (gif, png, jpg).',
+                    'last' => TRUE,
+                ],
+                'fileSize' => [
+                    'rule' => array('fileSize', '<=', '1MB'),
+                    'message' => 'Image/Photo must be less than 1MB.',
+                    'last' => TRUE,
+                ],
+            ]);
 
         $validator
             ->scalar('photo_dir')

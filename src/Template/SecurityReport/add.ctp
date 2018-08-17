@@ -12,6 +12,7 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('List  Village Security Report Data'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Add Village Photos and Intl Border Distance'), ['controller'=>'VillagePhotos','action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="educationInfras form large-9 medium-8 columns content" >

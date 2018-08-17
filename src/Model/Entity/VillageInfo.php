@@ -4,16 +4,16 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Village Entity
+ * VillageInfo Entity
  *
- * @property int $village_version
+ * @property int $village_info_id
+ * @property string|resource $village_photo1
+ * @property string|resource $village_photo2
+ * @property string|resource $village_photo3
+ * @property float $distance_from_ib
  * @property string $village_code
- * @property string $village_name
- * @property string $sub_district_code
- * @property string $census_2001_code
- * @property string $census_2011_code
  */
-class Village extends Entity
+class VillageInfo extends Entity
 {
 
     /**
@@ -26,11 +26,10 @@ class Village extends Entity
      * @var array
      */
     protected $_accessible = [
-        'village_version' => true,
-        'village_name' => true,
-        'sub_district_code' => true,
-        'census_2001_code' => true,
-        'census_2011_code' => true,
-        '*'=>true
+        'village_photo1' => true,
+        'village_photo2' => true,
+        'village_photo3' => true,
+        'distance_from_ib' => true,
+        'village_code' => true
     ];
 }

@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * VillagePhotos Controller
@@ -49,11 +50,16 @@ class VillagePhotosController extends AppController
     
         public function add()
     {
-        $villagePhoto = $this->VillagePhotos->newEntity();
-       // $villagePhoto = $this->VillagePhotos->newEntities();
 
+        $this->subdistricts = TableRegistry::get('Subdistricts');
+       
+        $villagePhoto = $this->VillagePhotos->newEntity(['associated'=>[
+            'Villages.VillageInfos'
+        ]]);
+       // $villagePhoto = $this->VillagePhotos->newEntities();
+        
         if ($this->request->is('post')) {
-           // dump($this->request->getData());
+           //dump($this->request->getData());
             $photos=$this->request->getData('villagePhoto');
             for ($x = 0; $x <= 2; $x++) {
                
@@ -73,26 +79,39 @@ class VillagePhotosController extends AppController
            // 
            // dump($villagePhoto);
            // foreach ($villagePhoto as $photo){
-             // dump($villagePhoto);
+              //dump($villagePhoto);
               if( !$this->VillagePhotos->saveMany($villagePhoto)){
 
-                $this->Flash->error(__('The village photo could not be saved. Please, try again.'));
+                $this->Flash->error(__('The village photo  and info could not be saved Plz check the file size <= 1mb and file formats (jpeg,png,gif). Please, try again.'));
                 return $this->redirect(['action' => 'add']);
+              }
+
+              else 
+              {
+                  $villageInfos=TableRegistry::get('villageInfos');
+                  $villageInfo=$villageInfos->newEntity();
+                  $villageInfo=$villageInfos->patchEntity($villageInfo,$this->request->getData('Villages.VillageInfos'));
+                  $villageInfo->village_code=$this->request->getData('village_code');
+                  if(!$villageInfos->save($villageInfo))
+                     $this->Flash->error(__('The village photo  & info could not be saved. Please, try again.'));
+                     return $this->redirect(['action' => 'add']);
+
               }
 
               
 
            // }
                      
-            $this->Flash->success(__('The village photo has been saved.'));
+            $this->Flash->success(__('The village photo & Info has been saved.'));
 
             return $this->redirect(['action' => 'add']);     
           
             
             
         }
+        $subdistricts=$this->subdistricts->find('list');
       //  $fileuploads = $this->VillagePhotos->Fileuploads->find('list', ['limit' => 200]);
-       $this->set(compact('villagePhoto'));
+       $this->set(compact('villagePhoto','subdistricts'));
     }
     // }
 
@@ -139,4 +158,26 @@ class VillagePhotosController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    public function getvillage()
+    {
+        
+        $this->villages=TableRegistry::get('Villages');
+        
+        if ($this->request->is(['ajax', 'post'])) 
+        {
+            
+            $subdist_code = $this->request->getData('subdistrict_code');
+            $villages=$this->villages->find('list',[
+                'keyField'=>'village_code',
+                'valueField'=>'village_name'
+            ])->where(['sub_district_code'=>$subdist_code]);
+
+          
+             header('Content-Type: application/json');
+             echo json_encode($villages);
+             exit();
+        }
+    }
+
 }
