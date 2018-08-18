@@ -20,8 +20,8 @@
     <fieldset>
         <legend><?= __('Add Village Electoral') ?></legend>
         <?php $targetUrl = $this->Url->build(['action' => 'getvillage']); ?>
-        <?= $this->Form->control('subdistrict',['type'=>'select','label'=>'Sub-Division:','options'=>$subdistricts,'empty'=>'Select SubDivision','id'=>'subdistrict','rel'=>$targetUrl,'required'=>true]) ?>
-         <?= $this->Form->control('village_code',['type'=>'select','label'=>'Village:','empty'=>'Select Village','id'=>'village','required'=>true]) ?>
+        <?= $this->Form->control('subdistrict',['type'=>'select','label'=>'Sub-Division:','options'=>$subdistricts,'empty'=>'Select SubDivision','id'=>'subdistrict','rel'=>$targetUrl,'required'=>true,'value'=>$selected]) ?>
+         <?= $this->Form->control('village_code',['type'=>'select','label'=>'Village:','empty'=>'Select Village','id'=>'village','required'=>true,'options'=>$villages]) ?>
         <div id ="electionForm">
         <?php
             echo $this->Form->control('reference_year',['type'=>'select','label'=>'Ref.Yr','options'=>
@@ -32,9 +32,9 @@
             '2015'=>'2015',
             '2016'=>'2016',
             '2017'=>'2017',
-            '2018'=>'2018'],'required'=>true,'empty'=>'Select Ref. Yr.']);
-            echo $this->Form->control('electoral_total_household',['required'=>true,'min'=>0]);
-            echo $this->Form->control('electoral_total_voter',['required'=>true,'min'=>0]);
+            '2018'=>'2018'],'required'=>true,'empty'=>'Select Ref. Yr.','class'=>'ref_yr','value'=>$selected_ref_yr]);
+            echo $this->Form->control('electoral_total_household',['required'=>true,'min'=>0,'label'=>'1. Total Household']);
+            echo $this->Form->control('electoral_total_voter',['required'=>true,'min'=>0, 'label'=>'2. Total Voter']);
            // echo $this->Form->control('village_code');
         ?>
         </div>

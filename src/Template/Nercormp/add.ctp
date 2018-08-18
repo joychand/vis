@@ -21,8 +21,8 @@
         <legend><?= __('Add NERCORMP Village Data') ?></legend>
        
         <?php $targetUrl = $this->Url->build(['action' => 'getvillage']); ?>
-         <?= $this->Form->control('subdistrict',['type'=>'select','label'=>'Sub-Division','id'=>'subdistrict','rel'=>$targetUrl,'options'=>$subdistricts,'empty'=>'Select SubDivision','required'=>true])  ?>
-        <?= $this->Form->control('village_code',['type'=>'select','label'=>'Village:','empty'=>'Select Village','id'=>'village','required'=>true])  ?>
+         <?= $this->Form->control('subdistrict',['type'=>'select','label'=>'Sub-Division','id'=>'subdistrict','rel'=>$targetUrl,'options'=>$subdistricts,'empty'=>'Select SubDivision','required'=>true,'value'=>$selected])  ?>
+        <?= $this->Form->control('village_code',['type'=>'select','label'=>'Village:','empty'=>'Select Village','id'=>'village','required'=>true,'options'=>$villages])  ?>
         <div id="nercormpForm">
         <?php
             echo $this->Form->control('reference_year',['type'=>'select','label'=>'Ref.Yr','options'=> ['2011'=>'2011',
@@ -32,9 +32,9 @@
             '2015'=>'2015',
             '2016'=>'2016',
             '2017'=>'2017',
-            '2018'=>'2018'],'empty'=>'Select Ref. Yr','required'=>true]) ;
-            echo $this->Form->control('total_household',['label'=>'Total Household No.','required'=>true,'min'=>0]);
-            echo $this->Form->control('total_population',['label'=>'Total Population','required'=>true,'min'=>0]);
+            '2018'=>'2018'],'empty'=>'Select Ref. Yr','required'=>true,'class'=>'ref_yr','value'=>$selected_ref_yr]) ;
+            echo $this->Form->control('total_household',['label'=>'1. Total Household No.','required'=>true,'min'=>0]);
+            echo $this->Form->control('total_population',['label'=>'2. Total Population','required'=>true,'min'=>0]);
            
            // echo $this->Form->control('village_code');
         ?>

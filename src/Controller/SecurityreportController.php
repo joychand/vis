@@ -69,30 +69,25 @@ class SecurityreportController extends AppController
      */
     public function add()
     {
-       // $securityreport = $this->Securityreport->newEntity();
-        $this->subdistricts = TableRegistry::get('Subdistricts');
-        $this->populations=TableRegistry::get('populations');
-       // $this->villages=TableRegistry::get('Villages');
-      //  $this->agencies=TableRegistry::get('agencies');
-       // $session = $this->request->session();
-        //$village_name=$this->populations->villages->()
-        //$subdist_code= $session->read('subdist');
-       // $villages=$this->villages->find('list',[
-           // 'keyField'=>'village_code',
-           // 'valueField'=>'village_name'
-        //])->where(['sub_district_code'=>$subdist_code]);
-        //$this->subdistricts = TableRegistry::get('Subdistricts');
+        $session = $this->request->session();
       
-        $subdistricts=$this->subdistricts->find('list');
+        $this->populations=TableRegistry::get('populations');
+      
+      
+       
         $securityreport  = $this->populations->newEntity();
+       
         
-
+        
         if ($this->request->is('post')) {
-            $session = $this->request->session();
+            $session->write('selected',$this->request->getData('subdistrict'));
+            $session->write('selected_ref_yr',$this->request->getData('reference_year'));  
+           // $session = $this->request->session();
             $agency_id= $session->read('agency');
             $recordExist=$this->populations->checkRecord($this->request->getData('reference_year'),$this->request->getData('village_code'),$agency_id);
             $securityreport  = $this->populations->patchEntity($securityreport, $this->request->getData());         
-            $securityreport->counting_agency=$agency_id;   
+            $securityreport->counting_agency=2;  
+              
             if($recordExist){
                 $this->Flash->error(__('This Village Security Report data already exist. Please go to update view if for any changes'));
             }
@@ -100,6 +95,7 @@ class SecurityreportController extends AppController
             else if ($this->populations->save($securityreport ,['validate'=>true])) 
             {
                     $this->Flash->success(__('The Village Security Report data has been saved.'));
+                   
                    // $this->set(compact('subdist_name'));
                     return $this->redirect(['action' => 'add']);
     
@@ -110,9 +106,32 @@ class SecurityreportController extends AppController
 
              
         }
+        $this->subdistricts = TableRegistry::get('Subdistricts');
+        $subdistricts=$this->subdistricts->find('list');
+       
+
+      if(!$session->check('selected') && $session->check('selected_ref_yr') )
+        {
+            $selected=null;
+            $selected_ref_yr=null;
+            $villages=null;
+        }
+        else
+        {
+            $selected=$session->consume('selected');
+            $this->villages=TableRegistry::get('Villages');
+            $villages=$this->villages->find('list',[
+                'keyField'=>'village_code',
+                'valueField'=>'village_name'
+            ])->where(['sub_district_code'=>$selected])
+            ->order(['villages.village_code'=>'ASC']);
+             // dump ($villages);
+            $selected_ref_yr=$session->consume('selected_ref_yr');
+           // dump($selected);
+        }
         $this->set(compact('securityreport'));
-       // $this->set(compact('villages'));
         $this->set(compact('subdistricts'));
+        $this->set(compact('selected','selected_ref_yr','villages'));
     }
 
     /**
@@ -174,8 +193,9 @@ class SecurityreportController extends AppController
             $villages=$this->villages->find('list',[
                 'keyField'=>'village_code',
                 'valueField'=>'village_name'
-            ])->where(['sub_district_code'=>$subdist_code]);
-
+            ])->where(['sub_district_code'=>$subdist_code])
+              ->order(['village_name'=>'ASC']);
+           // dump ($villages);
           
              header('Content-Type: application/json');
              echo json_encode($villages);

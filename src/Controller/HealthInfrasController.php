@@ -63,11 +63,13 @@ class HealthInfrasController extends AppController
      */
     public function add()
     {
-        $this->subdistricts = TableRegistry::get('Subdistricts');
-        $subdistricts=$this->subdistricts->find('list');
-        
+       
+        $session = $this->request->session();
         $healthInfra = $this->HealthInfras->newEntity();
         if ($this->request->is('post')) {
+           
+            $session->write('selected',$this->request->getData('subdistrict'));
+            $session->write('selected_ref_yr',$this->request->getData('health_reference_year'));  
             $recordexist=$this->HealthInfras->checkRecord($this->request->getData('health_reference_year'),$this->request->getData('village_code'));
            if($recordexist)
            {
@@ -87,7 +89,28 @@ class HealthInfrasController extends AppController
            }
            
         }
-        $this->set(compact('healthInfra'));
+        $this->subdistricts = TableRegistry::get('Subdistricts');
+        $subdistricts=$this->subdistricts->find('list');
+        if(!$session->check('selected') && $session->check('selected_ref_yr') )
+        {
+            $selected=null;
+            $selected_ref_yr=null;
+            $villages=null;
+        }
+        else
+        {
+            $selected=$session->consume('selected');
+            $this->villages=TableRegistry::get('Villages');
+            $villages=$this->villages->find('list',[
+                'keyField'=>'village_code',
+                'valueField'=>'village_name'
+            ])->where(['sub_district_code'=>$selected])
+            ->order(['villages.village_code'=>'ASC']);
+             // dump ($villages);
+            $selected_ref_yr=$session->consume('selected_ref_yr');
+           // dump($selected);
+        }
+        $this->set(compact('healthInfra','selected','selected_ref_yr','villages'));
         $this->set(compact('subdistricts'));
        
     }

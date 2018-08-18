@@ -81,9 +81,11 @@ class AnganwadisController extends AppController
     public function add()
     {
 
-       
+        $session = $this->request->session();
         $anganwadi = $this->Anganwadis->newEntity();
         if ($this->request->is('post')) {
+            $session->write('selected',$this->request->getData('subdistrict'));
+            $session->write('selected_ref_yr',$this->request->getData('anganwadi_reference_year')); 
             $recordexist=$this->Anganwadis->checkRecord($this->request->getData('anganwadi_reference_year'),$this->request->getData('village_code'));
             if($recordexist)
             {
@@ -94,18 +96,35 @@ class AnganwadisController extends AppController
             if ($this->Anganwadis->save($anganwadi)) {
                 $this->Flash->success(__('The Village Anganwadi has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'add']);
             }
             $this->Flash->error(__('The Village anganwadi could not be saved. Please, try again.'));
         }
         $this->subdistricts = TableRegistry::get('Subdistricts');
       
         $subdistricts=$this->subdistricts->find('list');
-  
-       //$villages=array('Phung','Abbung','japhou');
-       //$this->set(compact('vill'));
+        if(!$session->check('selected') && $session->check('selected_ref_yr') )
+        {
+            $selected=null;
+            $selected_ref_yr=null;
+            $villages=null;
+        }
+        else
+        {
+            $selected=$session->consume('selected');
+            $this->villages=TableRegistry::get('Villages');
+            $villages=$this->villages->find('list',[
+                'keyField'=>'village_code',
+                'valueField'=>'village_name'
+            ])->where(['sub_district_code'=>$selected])
+            ->order(['villages.village_code'=>'ASC']);
+             // dump ($villages);
+            $selected_ref_yr=$session->consume('selected_ref_yr');
+           // dump($selected);
+        }
+      
        $this->set(compact('subdistricts'));
-        $this->set(compact('anganwadi'));
+        $this->set(compact('anganwadi','selected','selected_ref_yr','villages'));
     }
 
     /**

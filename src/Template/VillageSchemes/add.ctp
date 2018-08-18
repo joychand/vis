@@ -20,17 +20,17 @@
     <fieldset>
         <legend><?= __('Add Village Scheme') ?></legend>
         <?php $targetUrl = $this->Url->build(['action' => 'getvillage']); ?>
-         <?= $this->Form->control('subdistrict',['type'=>'select','label'=>'Sub-Division','id'=>'subdistrict','rel'=>$targetUrl,'options'=>$subdistricts,'empty'=>'Select SubDivision','required'=>true]) ?>
-        <?= $this->Form->control('village_code',['type'=>'select','label'=>'Village:','empty'=>'Select Village','id'=>'village','required'=>true]) ?>
+         <?= $this->Form->control('subdistrict',['type'=>'select','label'=>'Sub-Division','id'=>'subdistrict','rel'=>$targetUrl,'options'=>$subdistricts,'empty'=>'Select SubDivision','required'=>true,'value'=>$selected]) ?>
+        <?= $this->Form->control('village_code',['type'=>'select','label'=>'Village:','empty'=>'Select Village','id'=>'village','required'=>true,'options'=>$villages]) ?>
         <div id="schemeForm">
         <?php
-            echo $this->Form->control('scheme_code',['type'=>'select','label'=>'Scheme:','empty'=>'Select scheme','id'=>'scheme','options'=>$schemes,'required'=>true]);
+            echo $this->Form->control('scheme_code',['type'=>'select','label'=>'1. Scheme:','empty'=>'Select scheme','id'=>'scheme','options'=>$schemes,'required'=>true,'id'=>'schemes']);
             //echo $this->Form->control('village_code');
-            echo $this->Form->control('scheme_financial_year',['label'=>'Scheme Financial Year:','required'=>true]);
-            echo $this->Form->control('sanction_amount',['label'=>'Sanctioned Amount (Rs):','required'=>true]);
-            echo $this->Form->control('location_latitude',['required'=>true]);
-            echo $this->Form->control('location_longitude',['required'=>true]);
-            echo $this->Form->control('scheme_status',['type'=>'select','empty'=>'Select Status', 'options'=>['Ongoing'=>'Ongoing','Completed'=>'Completed'],'required'=>true]);
+            echo $this->Form->control('scheme_financial_year',['label'=>'2. Scheme Financial Year:','required'=>true]);
+            echo $this->Form->control('sanction_amount',['label'=>'3. Sanctioned Amount (Rs):','required'=>true]);
+            echo $this->Form->control('location_latitude',['required'=>true,'label'=>'4. Latitude:']);
+            echo $this->Form->control('location_longitude',['required'=>true,'label'=>'5. Longitude:']);
+            echo $this->Form->control('scheme_status',['label'=>'6. Scheme Status:','type'=>'select','empty'=>'Select Status', 'options'=>['Ongoing'=>'Ongoing','Completed'=>'Completed'],'required'=>true,'id'=>'status']);
            
         ?>
         </div>

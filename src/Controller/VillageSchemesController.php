@@ -62,18 +62,15 @@ class VillageSchemesController extends AppController
     public function add()
 
     {
+        $session = $this->request->session();
         $this->subdistricts = TableRegistry::get('Subdistricts');
        
-        $subdistricts=$this->subdistricts->find('list');
-        $schemes= $this->VillageSchemes->schemes->find('list',[
-            'keyField'=>'scheme_code',
-          'valueField'=>'scheme_name'
-        ]);
-                  //->select (['scheme_code','scheme_name']);
-          //$schemes=$query->toList() ;
-       //debug($schemes);
+        
+                  
         $villageScheme = $this->VillageSchemes->newEntity();
         if ($this->request->is('post')) {
+            $session->write('selected',$this->request->getData('subdistrict'));
+           
             $villageScheme = $this->VillageSchemes->patchEntity($villageScheme, $this->request->getData());
             if ($this->VillageSchemes->save($villageScheme)) {
                 $this->Flash->success(__('The village scheme has been saved.'));
@@ -82,9 +79,33 @@ class VillageSchemesController extends AppController
             }
             $this->Flash->error(__('The village scheme could not be saved. Please, try again.'));
         }
+       
+        if(!$session->check('selected'))
+        {
+            $selected=null;
+             $villages=null;
+        }
+        else
+        {
+            $selected=$session->consume('selected');
+            $this->villages=TableRegistry::get('Villages');
+            $villages=$this->villages->find('list',[
+                'keyField'=>'village_code',
+                'valueField'=>'village_name'
+            ])->where(['sub_district_code'=>$selected])
+            ->order(['villages.village_code'=>'ASC']);
+             // dump ($villages);
+           
+           // dump($selected);
+        }
+        $subdistricts=$this->subdistricts->find('list');
+        $schemes= $this->VillageSchemes->schemes->find('list',[
+            'keyField'=>'scheme_code',
+          'valueField'=>'scheme_name'
+        ]);
         $this->set(compact('villageScheme'));
         $this->set(compact('subdistricts'));
-        $this->set(compact('schemes'));
+        $this->set(compact('schemes','selected','villages'));
     }
 
     /**

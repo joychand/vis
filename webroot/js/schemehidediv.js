@@ -18,7 +18,13 @@ $(document).ready(function()
                 case 'radio':
                     this.checked = false;
                     break;
+                
             } });
+            $(':input','#schemeForm')
+            .not(':button, :submit, :reset, :hidden')
+            .val('')
+            .prop('checked', false)
+            .prop('selected', false);    
         
         if($(this).val() ) {
             $('#schemeForm').show(); 
@@ -28,6 +34,12 @@ $(document).ready(function()
     });
     $('#subdistrict').change(function(){
         $('#schemeForm').hide(); 
+    });
+    $(".ref_yr").change(function(){
+        if($(this).val()){
+            alert ("Do you want to set/change this Year " + $(this).val() + " as Reference Year for this session");
+        }
+
     });
     
 });

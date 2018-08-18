@@ -22,8 +22,8 @@
         <legend><?= __('Add Nrega Village Data') ?></legend>
         
         <?php $targetUrl = $this->Url->build(['action' => 'getvillage']); ?>
-         <?= $this->Form->control('subdistrict',['type'=>'select','label'=>'Sub-Division:','id'=>'subdistrict','rel'=>$targetUrl,'options'=>$subdistricts,'empty'=>'Select SubDivision','required'=>true]) ?>
-        <?= $this->Form->control('village_code',['type'=>'select','label'=>'Village:','empty'=>'select Village:','id'=>'village','required'=>true]) ?>
+         <?= $this->Form->control('subdistrict',['type'=>'select','label'=>'Sub-Division:','id'=>'subdistrict','rel'=>$targetUrl,'options'=>$subdistricts,'empty'=>'Select SubDivision','required'=>true,'value'=>$selected]) ?>
+        <?= $this->Form->control('village_code',['type'=>'select','label'=>'Village:','empty'=>'select Village:','id'=>'village','required'=>true,'options'=>$villages]) ?>
         <div id="nregaForm">
         <?php
             echo $this->Form->control('nrega_reference_year',['type'=>'select','label'=>'Ref.Yr','options'=>['2011'=>'2011',
@@ -33,9 +33,9 @@
             '2015'=>'2015',
             '2016'=>'2016',
             '2017'=>'2017',
-            '2018'=>'2018'],'empty'=>'Select Ref. Yr','required'=>true]);
+            '2018'=>'2018'],'empty'=>'Select Ref. Yr','required'=>true,'class'=>'ref_yr','value'=>$selected_ref_yr]);
             //echo $this->Form->control('nrega_reference_year');
-            echo $this->Form->control('total_job_card',['Label'=>'Total Job Card:','required'=>true,'min'=>0]);
+            echo $this->Form->control('total_job_card',['Label'=>'1. Total Job Card:','required'=>true,'min'=>0]);
             //echo $this->Form->control('village_code');
         ?>
         </div>

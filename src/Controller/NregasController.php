@@ -63,12 +63,14 @@ class NregasController extends AppController
     public function add()
 
     {
-        $this->subdistricts = TableRegistry::get('Subdistricts');
-        $subdistricts=$this->subdistricts->find('list');
+        $session = $this->request->session();
+       
       
         
         $nrega = $this->Nregas->newEntity();
         if ($this->request->is('post')) {
+            $session->write('selected',$this->request->getData('subdistrict'));
+            $session->write('selected_ref_yr',$this->request->getData('nrega_reference_year'));  
             $recordExist=$this->Nregas->checkRecord($this->request->getData('nrega_reference_year'),$this->request->getData('village_code'));
             if($recordExist)
            {
@@ -80,14 +82,35 @@ class NregasController extends AppController
             if ($this->Nregas->save($nrega)) {
                 $this->Flash->success(__('The nrega has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'add']);
             }
             $this->Flash->error(__('The nrega could not be saved. Please, try again.'));
 
            }
             
         }
-        $this->set(compact('nrega'));
+        $this->subdistricts = TableRegistry::get('Subdistricts');
+        $subdistricts=$this->subdistricts->find('list');
+        if(!$session->check('selected') && $session->check('selected_ref_yr') )
+        {
+            $selected=null;
+            $selected_ref_yr=null;
+            $villages=null;
+        }
+        else
+        {
+            $selected=$session->consume('selected');
+            $this->villages=TableRegistry::get('Villages');
+            $villages=$this->villages->find('list',[
+                'keyField'=>'village_code',
+                'valueField'=>'village_name'
+            ])->where(['sub_district_code'=>$selected])
+            ->order(['villages.village_code'=>'ASC']);
+             // dump ($villages);
+            $selected_ref_yr=$session->consume('selected_ref_yr');
+           // dump($selected);
+        }
+        $this->set(compact('nrega','selected','selected_ref_yr','villages'));
         $this->set(compact('subdistricts'));
     }
 

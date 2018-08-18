@@ -29,5 +29,10 @@ $(document).ready(function()
     $('#subdistrict').change(function(){
         $('#sdoForm').hide(); 
     });
-    
+    $(".ref_yr").change(function(){
+        if($(this).val()){
+            alert ("Do you want to set/change this Year " + $(this).val() + " as Reference Year for this session");
+        }
+
+    });
 });

@@ -20,14 +20,14 @@
     <fieldset>
         <legend><?= __('Add Village Nsap') ?></legend>
         <?php $targetUrl = $this->Url->build(['action' => 'getvillage']); ?>
-        <?= $this->Form->control('subdistrict',['type'=>'select','label'=>'Sub-Division:','options'=>$subdistricts,'empty'=>'Select SubDivision','id'=>'subdistrict','rel'=>$targetUrl,'required'=>true]) ?>
-         <?= $this->Form->control('village_code',['type'=>'select','label'=>'Village:','empty'=>'Select Village','id'=>'village','required'=>true]) ?>
+        <?= $this->Form->control('subdistrict',['type'=>'select','label'=>'Sub-Division:','options'=>$subdistricts,'empty'=>'Select SubDivision','id'=>'subdistrict','rel'=>$targetUrl,'required'=>true,'value'=>$selected]) ?>
+         <?= $this->Form->control('village_code',['type'=>'select','label'=>'Village:','empty'=>'Select Village','id'=>'village','required'=>true,'options'=>$villages]) ?>
         <div id="nsapsForm">
         <?php
-            echo $this->Form->control('reference_year',['type'=>'select','label'=>'Ref.Yr:','options'=>['2011'=>'2011','2012'=>'2012','2013'=>'2013','2014'=>'2014','2015'=>'2015','2016'=>'2016','2017'=>'2017','2018'=>'2018'],'empty'=>'Select Yr.','required'=>true]);
-            echo $this->Form->control('total_widows_beneficiary',['required'=>true,'min'=>0]);
-            echo $this->Form->control('total_handicap_beneficiary',['required'=>true,'min'=>0]);
-            echo $this->Form->control('total_ignoaps_beneficiary',['label'=>'Total IGNOAPS Beneficiary','required'=>true,'min'=>0]);
+            echo $this->Form->control('reference_year',['type'=>'select','label'=>'Ref.Yr:','options'=>['2011'=>'2011','2012'=>'2012','2013'=>'2013','2014'=>'2014','2015'=>'2015','2016'=>'2016','2017'=>'2017','2018'=>'2018'],'empty'=>'Select Yr.','required'=>true,'class'=>'ref_yr','value'=>$selected_ref_yr]);
+            echo $this->Form->control('total_widows_beneficiary',['required'=>true,'min'=>0,'label'=>'1. Total Widow Beneficiaries:']);
+            echo $this->Form->control('total_handicap_beneficiary',['required'=>true,'min'=>0,'label'=>'2. Total Handicaped Beneficiaries:']);
+            echo $this->Form->control('total_ignoaps_beneficiary',['label'=>'3. Total IGNOAPS Beneficiary','required'=>true,'min'=>0]);
            // echo $this->Form->control('village_code');
         ?>
         </div>
