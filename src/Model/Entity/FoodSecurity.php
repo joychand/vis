@@ -26,11 +26,14 @@ class FoodSecurity extends Entity
      * @var array
      */
     protected $_accessible = [
+       
         'total_aay_members' => true,
         'total_phh_members' => true,
         'total_aadhaar_seeded_card' => true,
         'total_fair_price_shop' => true,
         'village_code' => true,
-        'reference_year'=>true
+        'reference_year'=>true,
+        'total_aay_card'=>true,
+        'total_phh_card'=>true
     ];
 }

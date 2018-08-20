@@ -41,7 +41,7 @@ $cakeDescription = 'VIS:  Village Information System';
 <header class="row">
     <div class="header-image"><?= $this->Html->image('Logo_kanglasha.png') ?></div>
     <div class="header-title">
-        <h1>VILLAGE INFORMATION SYSTEM (VIS) OF CHANDEL DISTRICT, MANIPUR</h1>
+        <h1>Village Information System (VIS) of Chandel District, Manipur</h1>
 
     </div>
 </header>

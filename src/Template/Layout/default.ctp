@@ -71,14 +71,15 @@ $cakeDescription = 'CVIS';
         </div>
     </nav>
     <?= $this->Flash->render() ?>
-    <div class="container clearfix">
+    <div class="container clearfix" style="padding:10px;
+   padding-bottom:60px; ">
     
         <?= $this->fetch('content') ?>
     </div>
     
-<div style=" width:100%;position:fixed;left:0;bottom: 0;background-color: #116d76;color: white;font-style: italic; font-size: .9em !important;">
-        <p style="float:left;margin-left:5px;"> Designed and Developed by NIC Manipur &copy; Copyright 2018 NIC Manipur</p>
-        <p style="float:right;margin-right:5px;">Village Information System of Chandel District, Manipur</p>
+<div style=" width:100%;position:fixed;left:0;bottom: 0;background-color: #116d76;color: white;font-style: italic; font-size: 5px !important;">
+        <p style="float:left;margin-left:5px;font-size: 13px !important;"> Designed and Developed by NIC Manipur &copy; Copyright 2018 NIC Manipur</p>
+        <p style="float:right;margin-right:5px;font-size: 13px !important;">Village Information System of Chandel District, Manipur</p>
         <!-- <div style="clear: both;"></div> -->
 </div>
 
