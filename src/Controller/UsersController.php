@@ -110,7 +110,9 @@ public function isAuthorized($user)
                     case 12: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Villageinfos','action'=>'home']));
                              break;
                     case 13: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Dataentry','action'=>'home']));
-                             break;         
+                             break;
+                    case 14: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Manager','action'=>'home']));
+                             break;           
 
 
                 }

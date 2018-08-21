@@ -48,8 +48,8 @@ $cakeDescription = 'VIS:  Village Information System';
 <?= $this->Flash->render() ?>
     <div class=" large-5 medium-4 " style="margin: auto !important ;border: 3px !important; padding: 10px!important;">
         <h3 align="center">Login</h3>
-        <?= $this->Form->create() ?>
-        <?= $this->Form->control('user_name',['required'=>true]) ?>
+        <?= $this->Form->create( ) ?>
+        <?= $this->Form->control('user_name',['required'=>true,'autocomplete' => 'off']) ?>
         <?= $this->Form->control('password',['type'=>'password','required'=>true]) ?>
         
         <?= $this->Form->button('Login') ?>
