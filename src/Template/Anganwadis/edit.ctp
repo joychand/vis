@@ -7,8 +7,8 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Change Password'), ['controller'=>'Users','action' => 'changePassword']) ?></li>
-        <li><?= $this->Html->link(__('Home'), ['action' => 'home']) ?></li>
+        
+        <li><?= $this->Html->link(__('Dept/Scheme Home'), ['action' => 'home']) ?></li>
         <li><?= $this->Form->postLink(
                 __('Delete'),
                 ['action' => 'delete', $anganwadi->anganwadi_id],

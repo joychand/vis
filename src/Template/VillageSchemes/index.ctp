@@ -4,10 +4,11 @@
  * @var \App\Model\Entity\VillageScheme[]|\Cake\Collection\CollectionInterface $villageSchemes
  */
 ?>
+<?php $this->layout = 'scheme';?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Home'), ['action' => 'home']) ?></li>
+        <li><?= $this->Html->link(__('Dept/Scheme Home'), ['action' => 'home']) ?></li>
         <li><?= $this->Html->link(__('New Village Scheme'), ['action' => 'add']) ?></li>
     </ul>
 </nav>
@@ -19,7 +20,7 @@
                 <th scope="col"><?= $this->Paginator->sort('Scheme') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('Village') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('Fin. Yr.') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('sanction_amount') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('sanction_amount (in Lakhs)') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('latitude') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('longitude') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('scheme_status') ?></th>
@@ -33,7 +34,7 @@
                 
                 <td><?= h($villageScheme->scheme->scheme_name) ?></td>
                 <td><?= h($villageScheme->village->village_name) ?></td>
-                <td><?= $this->Number->format($villageScheme->scheme_financial_year,['pattern'=>'####']) ?></td>
+                <td><?= h(strval($this->Number->format($villageScheme->scheme_financial_year,['pattern'=>'####'])).'-'.strval($this->Number->format(($villageScheme->scheme_financial_year+1),['pattern'=>'####']))) ?></td>
                 <td><?= $this->Number->format($villageScheme->sanction_amount) ?></td>
                 <td><?= $this->Number->format($villageScheme->location_latitude) ?></td>
                 <td><?= $this->Number->format($villageScheme->location_longitude) ?></td>

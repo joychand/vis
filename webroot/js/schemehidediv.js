@@ -1,8 +1,8 @@
 $(document).ready(function() 
 {
-    $('#schemeForm').hide(); 
+    $('.data').hide(); 
     $('#village').change(function(){
-        $('#schemeForm').find(':input').each(function () {
+        $('.data').find(':input').each(function () {
             switch (this.type) {
                 case 'button':
                 case 'text':
@@ -20,26 +20,21 @@ $(document).ready(function()
                     break;
                 
             } });
-            $(':input','#schemeForm')
+            $(':input','.data')
             .not(':button, :submit, :reset, :hidden')
             .val('')
             .prop('checked', false)
             .prop('selected', false);    
         
         if($(this).val() ) {
-            $('#schemeForm').show(); 
+            $('.data').show(); 
         } else {
-            $('#schemeForm').hide(); 
+            $('.data').hide(); 
         } 
     });
     $('#subdistrict').change(function(){
-        $('#schemeForm').hide(); 
+        $('.data').hide(); 
     });
-    $(".ref_yr").change(function(){
-        if($(this).val()){
-            alert ("Do you want to set/change this Year " + $(this).val() + " as Reference Year for this session");
-        }
-
-    });
+   
     
 });

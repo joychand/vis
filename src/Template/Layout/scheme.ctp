@@ -25,12 +25,16 @@ $cakeDescription = 'CVIS';
 <!DOCTYPE html>
 <html>
 <head>
-<?php  $this->Html->script('jquery-3.3.1.min.js',['block'=>true]);?>
-<?php $this->Html->script('dropdown.js', ['block'=>true]);?>
-<?php $this->Html->script('hidediv.js', ['block'=>true]);?>
-<?php $this->Html->script('js.cookie.js', ['block'=>true]);?>
+<!-- <script type="text/javascript" >
+   function preventBack(){window.history.forward();}
+    setTimeout("preventBack()", 0);
+    window.onunload=function(){null};
+</script> -->
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php  $this->Html->script('jquery-3.3.1.min.js',['block'=>true]);?>
+    <?php $this->Html->script('dropdown.js', ['block'=>true]);?>
+    <?php $this->Html->script('schemehidediv.js', ['block'=>true]);?>
     <title>
         <?= $cakeDescription ?>:
         <?= $this->fetch('title') ?>
@@ -70,8 +74,7 @@ $cakeDescription = 'CVIS';
         </div>
     </nav>
     <?= $this->Flash->render() ?>
-    <div class="container clearfix" style="padding:10px;
-   padding-bottom:60px; ">
+    <div class="container "style="padding:10px; padding-bottom:60px; ">
     
         <?= $this->fetch('content') ?>
     </div>

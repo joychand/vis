@@ -16,7 +16,7 @@
     </ul>
 </nav>
 <div class="CAF form large-9 medium-8 columns content">
-    <?= $this->Form->create($foodSecurity) ?>
+    <?= $this->Form->create($foodSecurity,['autocomplete'=>'off']) ?>
     <fieldset>
     
         <legend><?= __('Add Village CAF & PD data') ?></legend>
@@ -40,7 +40,7 @@
         ?>
         </legend>
         </div>
-        
+       </fieldset> 
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
