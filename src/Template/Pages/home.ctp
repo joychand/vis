@@ -44,6 +44,9 @@ $cakeDescription = 'CVIS: Chandel Village Information System';
     <?= $this->Html->css('style.css') ?>
     <?= $this->Html->css('home.css') ?> 
     <?= $this->Html->css('dashboard.css')?>
+    <?= $this->Html->script('jquery-3.3.1.min.js')?>
+    <?= $this->Html->script('count.js')?>
+
      <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet"> 
     
                         
@@ -57,122 +60,6 @@ $cakeDescription = 'CVIS: Chandel Village Information System';
 
     </div>
 </header>
-<!-- <div> -->
-<!-- <div class="large-3 medium-4 columns">
-<ul class="stats-list">
-  <li>
-    135 <span class="stats-list-label">Commits</span>
-  </li>
-  <li class="stats-list-positive">
-    17,678 <span class="stats-list-label">Additions</span>
-  </li>
-  <li class="stats-list-negative">
-    2,390 <span class="stats-list-label">Deletions</span>
-  </li>
-</ul>
-</div>
-
-<div class="large-3 medium-4 columns">
-<ul class="stats-list">
-  <li>
-    135 <span class="stats-list-label">Commits</span>
-  </li>
-  <li class="stats-list-positive">
-    17,678 <span class="stats-list-label">Additions</span>
-  </li>
-  <li class="stats-list-negative">
-    2,390 <span class="stats-list-label">Deletions</span>
-  </li>
-</ul>
-</div>
-
-<div class="large-3 medium-4 columns">
-<ul class="stats-list">
-  <li>
-    135 <span class="stats-list-label">Commits</span>
-  </li>
-  <li class="stats-list-positive">
-    17,678 <span class="stats-list-label">Additions</span>
-  </li>
-  <li class="stats-list-negative">
-    2,390 <span class="stats-list-label">Deletions</span>
-  </li>
-</ul>
-</div>
-<div class="large-3 medium-4 columns">
-<ul class="stats-list">
-  <li>
-    135 <span class="stats-list-label">Commits</span>
-  </li>
-  <li class="stats-list-positive">
-    17,678 <span class="stats-list-label">Additions</span>
-  </li>
-  <li class="stats-list-negative">
-    2,390 <span class="stats-list-label">Deletions</span>
-  </li>
-</ul>
-</div> -->
-
-<!-- <div class="dashboard-number-card{{#if positive}} positive{{/if}}{{#if negative}} negative{{/if}}">
-  <h5 class="dashboard-number-value">$20,000</h5>
-  <div>
-    <p class="dashboard-number-area">Category</p>
-    <p class="dashboard-number-delta">
-    {{#if positive}}
-      <i class="fa fa-arrow-up" aria-hidden="true"></i>
-    {{else}}
-      {{#if negative}}
-      <i class="fa fa-arrow-down" aria-hidden="true"></i>
-      {{/if}}
-    {{/if}}
-    $3000(10%)
-    </p>
-  </div>
-</div>
-
-<div class="dashboard-number-card{{#if positive}} positive{{/if}}{{#if negative}} negative{{/if}}">
-  <h5 class="dashboard-number-value">$20,000</h5>
-  <div>
-    <p class="dashboard-number-area">Category</p>
-    <p class="dashboard-number-delta">
-    {{#if positive}}
-      <i class="fa fa-arrow-up" aria-hidden="true"></i>
-    {{else}}
-      {{#if negative}}
-      <i class="fa fa-arrow-down" aria-hidden="true"></i>
-      {{/if}}
-    {{/if}}
-    $3000(10%)
-    </p>
-  </div>
-</div>
-<div class="dashboard-number-card{{#if positive}} positive{{/if}}{{#if negative}} negative{{/if}}">
-  <h5 class="dashboard-number-value">$20,000</h5>
-  <div>
-    <p class="dashboard-number-area">Category</p>
-    <p class="dashboard-number-delta">
-    {{#if positive}}
-      <i class="fa fa-arrow-up" aria-hidden="true"></i>
-    {{else}}
-      {{#if negative}}
-      <i class="fa fa-arrow-down" aria-hidden="true"></i>
-      {{/if}}
-    {{/if}}
-    $3000(10%)
-    </p>
-  </div>
-</div> -->
-
-
-
-
-
-
-
-
-
-
-<!-- </div> -->
 
 <div class="large-4 medium-5 columns">
 <?php  $cell = $this->cell('Anganwadis'); ?>
@@ -191,14 +78,14 @@ $cakeDescription = 'CVIS: Chandel Village Information System';
   </div>
   <div class="card-info-content">
   <h3 class="lead">Anganwadi</h3>
-    <p>Target Village: 356</p>
+    <div><span class="count">356</span></div>
     <p>Data Entered Village: 21</p>
     <p>Remaining Village: 21</p>
   </div>
 </div>
 </div>
 <div class="large-4 medium-5 columns">
-<div class="card-info secondary">
+<div class="card-info primary">
   <div class="card-info-label">
     <div class="card-info-label-text">
       Elec
@@ -213,7 +100,7 @@ $cakeDescription = 'CVIS: Chandel Village Information System';
 </div>
 </div>
 <div class="large-4 medium-5 columns">
-<div class="card-info info">
+<div class="card-info primary">
   <div class="card-info-label">
     <div class="card-info-label-text">
      NER
@@ -229,7 +116,7 @@ $cakeDescription = 'CVIS: Chandel Village Information System';
 </div>
 
 <div class="large-4 medium-5 columns">
-<div class="card-info warning">
+<div class="card-info primary">
   <div class="card-info-label">
     <div class="card-info-label-text">
       NSAP
@@ -245,7 +132,7 @@ $cakeDescription = 'CVIS: Chandel Village Information System';
 </div>
 
 <div class="large-4 medium-5 columns">
-<div class="card-info alert">
+<div class="card-info primary">
   <div class="card-info-label">
     <div class="card-info-label-text">
       SDO
@@ -261,7 +148,7 @@ $cakeDescription = 'CVIS: Chandel Village Information System';
 </div>
 
 <div class="large-4 medium-5 columns">
-<div class="card-info alert">
+<div class="card-info primary">
   <div class="card-info-label">
     <div class="card-info-label-text">
      Secu
