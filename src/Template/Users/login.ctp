@@ -38,13 +38,23 @@ $cakeDescription = 'VIS:  Village Information System';
 </head>
 <body class="home">
 
-<header class="row">
+<header class="row " style:"width:100% !important">
+    <div class="small-2 medium-2 columns" style="padding:10px !important;"><?= $this->Html->image('Logo_kanglasha.png') ?></div>
+       <div class="small-10 medium-10 columns" style="text-align:right">
+        <h1 style=" font-weight:300;font-size:1.1em;padding-bottom:0;">Village Information System (VIS)  </h1>
+        <h1 style="font-size:.9em;padding-top:0;">Chandel District, Manipur  </h1>
+       </div>  
+
+  
+    
+</header>
+<!-- <header class="row">
     <div class="header-image"><?= $this->Html->image('Logo_kanglasha.png') ?></div>
     <div class="header-title">
         <h1>Village Information System (VIS) of Chandel District, Manipur</h1>
 
     </div>
-</header>
+</header> -->
 <?= $this->Flash->render() ?>
     <div class=" large-5 medium-4 " style="margin: auto !important ;border: 3px !important; padding: 10px!important;">
         <h3 align="center">Login</h3>
