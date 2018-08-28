@@ -16,17 +16,32 @@ $(document).ready(function()
                     beforeSend: function(xhr){
                         xhr.setRequestHeader('X-CSRF-Token', csrfToken);
                         console.log($('input[name^="_csrfToken"]').val());
-                       //console.log(<?php echo json_encode($this->request->getParam('_csrfToken')); ?>);
+                       
                         },
                     success:function(response){
-                                $("#village").empty();
-                                $('<option>').val('').text('Select a Village').appendTo($("#village"));
-                            console.log(response);
-                                    $.each(response, function(key, value) {
-                                        
-                                
-                                    $('<option>').val(key).text(value).appendTo($("#village"));
-                                    });
+                        var sortedVillage=[];             
+                        $("#village").empty();
+                         $.each(response, function(key, value) {                                                                  
+                            $('<option>').val(key).text(value).appendTo($("#village"));
+                        });
+
+                        
+                        sortedVillage=$("#village option");
+                        sortedVillage.sort(function(a,b) 
+                        {
+                            if (a.text.toLowerCase() > b.text.toLowerCase()) return 1;
+                            if (a.text.toLowerCase() < b.text.toLowerCase()) return -1;
+                               return 0
+                         })
+                         $('#village')
+                            .find('option')
+                            .remove()
+                            .end();
+                        
+                         $('<option>').val('').text('Select a Village').appendTo($("#village"));
+                         $("#village").append( sortedVillage );
+                         $("#village").val('');
+                                                  
                         },
                             
                     

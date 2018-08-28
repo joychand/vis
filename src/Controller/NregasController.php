@@ -105,7 +105,7 @@ class NregasController extends AppController
                 'keyField'=>'village_code',
                 'valueField'=>'village_name'
             ])->where(['sub_district_code'=>$selected])
-            ->order(['villages.village_code'=>'ASC']);
+            ->order(['villages.village_name'=>'ASC']);
              // dump ($villages);
             $selected_ref_yr=$session->consume('selected_ref_yr');
            // dump($selected);

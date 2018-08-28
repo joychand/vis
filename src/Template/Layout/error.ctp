@@ -40,7 +40,8 @@
             <?= $this->fetch('content') ?>
         </div>
         <div id="footer">
-            <?= $this->Html->link(__('Home'), array('controller' => 'users', 'action' => 'logout')) ?>
+        <?php if ($this->Session->read('Auth')) { echo $this->Html->link('Home', array('controller' => 'users', 'action' => 'logout')); } else {
+            echo $this->Html->link(__('Home'), array('controller' => 'Dashboard', 'action' => 'display'));} ?>
         </div>
     </div>
 </body>

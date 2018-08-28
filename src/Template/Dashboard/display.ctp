@@ -33,7 +33,7 @@ $cakeDescription = 'CVIS: Chandel Village Information System';
                         
 </head>
 <body >
-<div class="container">
+<div class="container" style="padding:10px; padding-bottom:80px; ">
 <header class="row " style:"width:100% !important">
     <div class="small-2 medium-2 columns" style="padding:10px !important;"><?= $this->Html->image('Logo_kanglasha.png') ?></div>
        <div class="small-10 medium-10 columns" style="text-align:right">
@@ -46,12 +46,12 @@ $cakeDescription = 'CVIS: Chandel Village Information System';
     
 </header>
 <div class="row">
-  <div class=" tiny-12 small-8 small-centered columns ">
+  <div class=" small-centered columns ">
       
-          <ul class=" small button-group even-3">
-            <li><a class="hollow button primary" href="<?=$loginUrl?>" target="_blank" >LogIn <i class="fi-torso large" style="font-size: 1.2rem;"></i></a></li>
+          <ul class=" stack-for-small button-group even-3 round">
+            <li><a class="hollow button primary" href="<?=$loginUrl?>" target="_blank" >LogIn <i class="fi-torso large" style="font-size: .9rem;"></i></a></li>
             <li><a class=" hollow button info" href="#">Report(Demo)</a></li>
-            <li><a class="hollow button warning" href="#">Secondary</a></li>
+            <li><a class="hollow button warning" href="#">Help</a></li>
           </ul>    
         
        
@@ -169,11 +169,11 @@ $cakeDescription = 'CVIS: Chandel Village Information System';
         </div>
       </div>
       <div class="card-info-content">
-        <h3 class="lead dash-title" style=" color:red"> Election</h3>
+        <h3 class="lead dash-title" style=" color:orange"> Election</h3>
         <hr class="dash-hr"> 
         <p  class="dash-target">Target Village: <span class="count dash-span"><?= $total_village?></span></p>
-        <p class="dash-entered">Data Entered Village:<span class="count dash-span"> <?= $nsap_village_entered?></span></p>
-        <p class="dash-remain">Remaining Village: <span class="count dash-span"><?= $total_village - $nsap_village_entered ?></span></p>
+        <p class="dash-entered">Data Entered Village:<span class="count dash-span"> <?= $election_entered_village?></span></p>
+        <p class="dash-remain">Remaining Village: <span class="count dash-span"><?= $total_village - $election_entered_village ?></span></p>
       </div>
     </div> 
 </div>
@@ -207,7 +207,7 @@ $cakeDescription = 'CVIS: Chandel Village Information System';
                 </div>
               </div>
               <div class="card-info-content">
-                <h3 class="lead dash-title" style=" color:purple"> NERCORMP(Demography)</h3>
+                <h3 class="lead dash-title" style=" color:purple"> NERCORMP<span style="font-size:.5em !important">(Demography)</span></h3>
                 <hr class="dash-hr"> 
                 <p  class="dash-target">Target Village: <span class="count dash-span"><?= $total_village?></span></p>
                 <p class="dash-entered">Data Entered Village:<span class="count dash-span"> <?= $nercormp_entered?></span></p>
@@ -224,7 +224,7 @@ $cakeDescription = 'CVIS: Chandel Village Information System';
                 </div>
               </div>
               <div class="card-info-content">
-                <h3 class="lead dash-title" style=" color:red"> Security(Demography)</h3>
+                <h3 class="lead dash-title" style=" color:red"> Security<span style="font-size:.5em !important">(Demography)</span></h3>
                 <hr class="dash-hr"> 
                 <p  class="dash-target">Target Village: <span class="count dash-span"><?= $total_village?></span></p>
                 <p class="dash-entered">Data Entered Village:<span class="count dash-span"> <?= $security_entered?></span></p>
@@ -241,7 +241,7 @@ $cakeDescription = 'CVIS: Chandel Village Information System';
                 </div>
               </div>
               <div class="card-info-content">
-                <h3 class="lead dash-title" style=" color:green"> SDOReport(Demography)</h3>
+                <h3 class="lead dash-title" style=" color:green"> SDOReport<span style="font-size:.5em !important">(Demography)</span></h3>
                 <hr class="dash-hr"> 
                 <p  class="dash-target">Target Village: <span class="count dash-span"><?= $total_village?></span></p>
                 <p class="dash-entered">Data Entered Village:<span class="count dash-span"> <?= $sdo_entered?></span></p>
@@ -257,11 +257,11 @@ $cakeDescription = 'CVIS: Chandel Village Information System';
                 </div>
               </div>
               <div class="card-info-content">
-                <h3 class="lead dash-title" style=" color:green"> SDOReport(Demography)</h3>
+                <h3 class="lead dash-title" style=" color:purple"> VillagePhotos</h3>
                 <hr class="dash-hr"> 
                 <p  class="dash-target">Target Village: <span class="count dash-span"><?= $total_village?></span></p>
-                <p class="dash-entered">Data Entered Village:<span class="count dash-span"> <?= $sdo_entered?></span></p>
-                <p class="dash-remain">Remaining Village: <span class="count dash-span"><?= $total_village - $sdo_entered ?></span></p>
+                <p class="dash-entered">Data Entered Village:<span class="count dash-span"> <?= $village_photos_entered?></span></p>
+                <p class="dash-remain">Remaining Village: <span class="count dash-span"><?= $total_village - $village_photos_entered ?></span></p>
               </div>
             </div> 
         </div>  
@@ -271,8 +271,12 @@ $cakeDescription = 'CVIS: Chandel Village Information System';
        
 </div>
 
-
-    
+<div style=" width:100%;position:fixed;left:0;bottom: 0;background-color: #116d76;color: white;font-style: italic; font-size: 5px !important;">
+        <p style="float:left;margin-left:5px;font-size: 13px !important;"> Designed and Developed by NIC Manipur &copy; Copyright 2018 NIC Manipur</p>
+        <p style="float:right;margin-right:5px;font-size: 13px !important;">Village Information System of Chandel District, Manipur</p>
+      
+</div>
+     
 
 
 

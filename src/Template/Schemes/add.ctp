@@ -18,8 +18,8 @@
     <fieldset>
         <legend><?= __('Add Scheme') ?></legend>
         <?php
-            echo $this->Form->control('scheme_name');
-            echo $this->Form->control('department_id', ['options' => $departments, 'empty' => true]);
+            echo $this->Form->control('scheme_name',['required'=>true]);
+            echo $this->Form->control('department_id', ['type'=>'select','options' => $departments, 'empty' => 'Select a Department','required'=>true]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

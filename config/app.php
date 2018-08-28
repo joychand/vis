@@ -80,7 +80,7 @@ return [
      * enable timestamping regardless of debug value.
      */
     'Asset' => [
-        //'timestamp' => true,
+        'timestamp' => 'force',
     ],
 
     /**
@@ -168,7 +168,7 @@ return [
      *   breathing room to complete logging or error handling.
      */
     'Error' => [
-        'errorLevel' => E_ALL & ~E_NOTICE,
+        'errorLevel' => E_ALL ^ E_NOTICE ^ E_WARNING ^ E_DEPRECATED,
         'exceptionRenderer' => 'Cake\Error\ExceptionRenderer',
         'skipLog' => [],
         'log' => true,
@@ -255,7 +255,7 @@ return [
              */
             //'port' => 'non_standard_port_number',
             'username' => 'postgres',
-            'password' => 'nic',
+            'password' => 'postgres',
             'database' => 'vis',
             /*
              * You do not need to set this flag to use full utf-8 encoding (internal default since CakePHP 3.6).

@@ -129,7 +129,8 @@ public function isAuthorized($user)
           // $this->Flash->success('You are now logged out.');
           $this->getRequest()->getSession()->destroy();
           //$session->destroy();
-            return $this->redirect($this->Auth->logout());
+          return $this->redirect($this->Auth->logout());
+           // return $this->redirect(['controller'=>'Dashboard','action'=>'display']);
         }
             
     /**

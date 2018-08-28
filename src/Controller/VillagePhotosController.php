@@ -85,14 +85,11 @@ class VillagePhotosController extends AppController
                 
                
             }
-         // dump($photos);
+         
             $villagePhoto    = $this->VillagePhotos->patchEntities( $villagePhoto,$photos);
-           // dump($villagePhoto);
-           // 
-           // dump($villagePhoto);
-           // foreach ($villagePhoto as $photo){
-              //dump($villagePhoto);
-              if( !$this->VillagePhotos->saveMany($villagePhoto)){
+          
+              if( !$this->VillagePhotos->saveMany($villagePhoto))
+              {
 
                 $this->Flash->error(__('The village photo  and info could not be saved Plz check the file size <= 1mb and file formats (jpeg,png,gif). Please, try again.'));
                 return $this->redirect(['action' => 'add']);
@@ -105,14 +102,14 @@ class VillagePhotosController extends AppController
                   $villageInfo=$villageInfos->patchEntity($villageInfo,$this->request->getData('Villages.VillageInfos'));
                   $villageInfo->village_code=$this->request->getData('village_code');
                   if(!$villageInfos->save($villageInfo))
-                     $this->Flash->error(__('The village photo  & info could not be saved. Please, try again.'));
-                     return $this->redirect(['action' => 'add']);
+                  {
+                    $this->Flash->error(__('The village photo  & info could not be saved. Please, try again.'));
+                    return $this->redirect(['action' => 'add']);
+                  }
+                     
 
               }
-
-              
-
-           // }
+                    
                      
             $this->Flash->success(__('The village photo & Info has been saved.'));
 

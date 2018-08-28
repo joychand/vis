@@ -93,7 +93,7 @@ class VillageSchemesController extends AppController
                 'keyField'=>'village_code',
                 'valueField'=>'village_name'
             ])->where(['sub_district_code'=>$selected])
-            ->order(['villages.village_code'=>'ASC']);
+            ->order(['villages.village_name'=>'ASC']);
              // dump ($villages);
            
            // dump($selected);

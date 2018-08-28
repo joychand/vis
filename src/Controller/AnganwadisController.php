@@ -21,12 +21,12 @@ class AnganwadisController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
-   // public function initialize()
-    //{
-       // parent::initialize();
-       // $this->loadComponent('RequestHandler');
-       // $this->loadComponent('Security');
-   // }
+   public function initialize()
+    {
+       parent::initialize();
+       $this->loadComponent('RequestHandler');
+      // $this->loadComponent('Security');
+   }
     public function beforeFilter(Event $event)
     {
        if( $this->request->is('ajax')){
@@ -117,7 +117,7 @@ class AnganwadisController extends AppController
                 'keyField'=>'village_code',
                 'valueField'=>'village_name'
             ])->where(['sub_district_code'=>$selected])
-            ->order(['villages.village_code'=>'ASC']);
+            ->order(['villages.village_name'=>'ASC']);
              // dump ($villages);
             $selected_ref_yr=$session->consume('selected_ref_yr');
            // dump($selected);
@@ -180,12 +180,23 @@ class AnganwadisController extends AppController
         {
             
             $subdist_code = $this->request->getData('subdistrict_code');
-            $villages=$this->villages->find('list',[
+            $query=$this->villages->find('list',[
                 'keyField'=>'village_code',
                 'valueField'=>'village_name'
-            ])->where(['sub_district_code'=>$subdist_code]);
+            ])->where(['sub_district_code'=>$subdist_code])
+            ->order(['villages.village_name'=>'ASC']);
+            $villages=$query->toArray();
+            // $collection = new Collection($villages);
 
-          
+            // $new = $collection->map(function ($value, $key) {
+            //     return ''.$key;
+            //     });
+            //     $result = $new->toArray();
+           // debug ($villages);
+            //$this->set('_serialize', 'villages');
+            // return $this->response
+            // ->withType('application/json')
+            // ->withStringBody($villages);
              header('Content-Type: application/json');
              echo json_encode($villages);
              exit();

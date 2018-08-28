@@ -74,7 +74,7 @@ class SchemesController extends AppController
             }
             $this->Flash->error(__('The scheme could not be saved. Please, try again.'));
         }
-        $departments = $this->Schemes->Departments->find('list', ['limit' => 200]);
+        $departments = $this->Schemes->Departments->find('list', ['limit' => 200])->order(['name'=>'ASC']);
         $this->set(compact('scheme', 'departments'));
     }
 

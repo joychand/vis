@@ -70,8 +70,7 @@ $cakeDescription = 'CVIS';
         </div>
     </nav>
     <?= $this->Flash->render() ?>
-    <div class="container clearfix" style="padding:10px;
-   padding-bottom:60px; ">
+    <div class="container clearfix" style="padding:10px; padding-bottom:60px; ">
     
         <?= $this->fetch('content') ?>
     </div>
