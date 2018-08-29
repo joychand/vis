@@ -9,7 +9,7 @@ return [
      * Development Mode:
      * true: Errors and warnings shown.
      */
-    'debug' => filter_var(env('DEBUG', false), FILTER_VALIDATE_BOOLEAN),
+    'debug' => filter_var(env('DEBUG', true), FILTER_VALIDATE_BOOLEAN),
 
     /**
      * Configure basic information about the application.
@@ -168,9 +168,9 @@ return [
      *   breathing room to complete logging or error handling.
      */
     'Error' => [
-        'errorLevel' => E_ALL ^ E_NOTICE ^ E_WARNING ^ E_DEPRECATED,
+        'errorLevel' => E_ALL & ~E_WARNING & ~E_DEPRECATED & ~E_USER_DEPRECATED,
         'exceptionRenderer' => 'Cake\Error\ExceptionRenderer',
-        'skipLog' => [],
+        'skipLog' => ['Cake\Network\Exception\NotFoundException', 'Cake\Network\Exception\UnauthorizedException'],
         'log' => true,
         'trace' => true,
     ],
@@ -255,7 +255,7 @@ return [
              */
             //'port' => 'non_standard_port_number',
             'username' => 'postgres',
-            'password' => 'postgres',
+            'password' => 'nic',
             'database' => 'vis',
             /*
              * You do not need to set this flag to use full utf-8 encoding (internal default since CakePHP 3.6).
@@ -320,7 +320,7 @@ return [
             'file' => 'debug',
             'url' => env('LOG_DEBUG_URL', null),
             'scopes' => false,
-            'levels' => ['notice', 'info', 'debug'],
+            'levels' => ['notice'],
         ],
         'error' => [
             'className' => 'Cake\Log\Engine\FileLog',
@@ -328,7 +328,7 @@ return [
             'file' => 'error',
             'url' => env('LOG_ERROR_URL', null),
             'scopes' => false,
-            'levels' => ['warning', 'error', 'critical', 'alert', 'emergency'],
+            'levels' => [ 'error', 'critical', 'alert', 'emergency'],
         ],
         // To enable this dedicated query log, you need set your datasource's log flag to true
         'queries' => [

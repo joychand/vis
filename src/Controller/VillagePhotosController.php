@@ -33,7 +33,8 @@ class VillagePhotosController extends AppController
      */
     public function index()
     {
-        $villagePhotos = $this->paginate($this->VillagePhotos);
+        $query=$this->VillagePhotos->find('all')->contain(['Villages'=>['Subdistricts']])->order(['Villages.village_name'=>'ASC']);
+        $villagePhotos = $this->paginate( $query);
 
         $this->set(compact('villagePhotos'));
     }

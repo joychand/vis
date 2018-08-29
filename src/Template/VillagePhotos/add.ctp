@@ -10,7 +10,7 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Dept/Scheme Home'), ['controller'=>'Securityreport','action' => 'home']) ?></li>
-        <li><?= $this->Html->link(__('List  Village Security Report Data'), ['controller'=>'Securityreport','action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List  Village Photos'), ['controller'=>'VillagePhotos','action' => 'index']) ?></li>
        
     </ul>
 </nav>

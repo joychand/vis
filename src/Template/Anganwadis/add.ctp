@@ -31,7 +31,7 @@
             echo $this->Form->control('total_anganwadi_centre',['label'=>'1.Total Anganwadi Centre:','required'=>true,'min'=>0]);
             echo $this->Form->control('total_anganwadi_worker',['label'=>'2.Total Anganwadi Workers:','required'=>true,'min'=>0]);
             echo $this->Form->control('total_enrolled_children',['label'=>'3.Total Enrolled Children:','required'=>true,'min'=>0]);
-            echo $this->Form->control('worker_mobile',['label'=>'4.Anganwadi Worker Mobile:','required'=>true]);
+            echo $this->Form->control('worker_mobile',['label'=>'4.Anganwadi Worker Mobile:','required'=>true,'maxlength'=>'10',"pattern"=>'^[789]\d{9}$','oninvalid'=>'setCustomValidity(\'Plz enter a valid mobile\')', 'oninput'=>'setCustomValidity(\'\')']);
            // echo $this->Form->control('village_code');
         ?>
        
