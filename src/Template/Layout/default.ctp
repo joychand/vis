@@ -26,6 +26,7 @@ $cakeDescription = 'CVIS';
 <html>
 <head>
 <?php  $this->Html->script('jquery-3.3.1.min.js',['block'=>true]);?>
+<?php  $this->Html->script('foundation.min.js',['block'=>true]);?> 
 <?php $this->Html->script('dropdown.js', ['block'=>true]);?>
 <?php $this->Html->script('hidediv.js', ['block'=>true]);?>
 <?php $this->Html->script('js.cookie.js', ['block'=>true]);?>
@@ -38,6 +39,7 @@ $cakeDescription = 'CVIS';
     <?= $this->Html->meta('icon') ?>
 
     <?= $this->Html->css('base.css') ?>
+    <!-- <?= $this->Html->css('foundation.min.css') ?> -->
     <?= $this->Html->css('style.css') ?>
 
     <?= $this->fetch('meta') ?>
@@ -70,10 +72,12 @@ $cakeDescription = 'CVIS';
         </div>
     </nav>
     <?= $this->Flash->render() ?>
+    
     <div class="container clearfix" style="padding:10px; padding-bottom:60px; ">
     
         <?= $this->fetch('content') ?>
     </div>
+   
     
 <div style=" width:100%;position:fixed;left:0;bottom: 0;background-color: #116d76;color: white;font-style: italic; font-size: 5px !important;">
         <p style="float:left;margin-left:5px;font-size: 13px !important;"> Designed and Developed by NIC Manipur &copy; Copyright 2018 NIC Manipur</p>
@@ -82,9 +86,11 @@ $cakeDescription = 'CVIS';
 </div>
 
 
+ <script>
+    $(document).foundation();
 
-
-    
+  </script>
+ 
    
     
 </body>

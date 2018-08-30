@@ -8,7 +8,7 @@
     </ul>
 </nav>
 <div  class=" large-9 medium-8 " style="margin: auto !important ;border: 3px !important; padding: 10px!important;">
-    <h3 style="text-align: center">Welcome to  Village Infromation System of Chandel District, Manipur</h3>
+    <h3 style="text-align: center">Welcome to  Village Information System of Chandel District, Manipur</h3>
  
  <fieldset>
 <?= $this->Form->create() ?>

@@ -10,7 +10,7 @@ $this->layout = false;
 $cakeDescription = 'CVIS: Chandel Village Information System';
 ?>
 <!DOCTYPE html>
-<html>
+<html >
 <head>
     <?= $this->Html->charset() ?>
     
@@ -21,11 +21,13 @@ $cakeDescription = 'CVIS: Chandel Village Information System';
 
     <?= $this->Html->meta('icon') ?>
     <?= $this->Html->css('base.css') ?>
+   
     <?= $this->Html->css('style.css') ?>
     <?= $this->Html->css('home.css') ?> 
-    <!-- <?= $this->Html->css('dashboard.css')?> --> 
+    
     <?= $this->Html->css('foundation-icons/foundation-icons.css')?>
     <?= $this->Html->script('jquery-3.3.1.min.js')?>
+   
     <?= $this->Html->script('count.js')?>
 
      <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet"> 
@@ -49,14 +51,17 @@ $cakeDescription = 'CVIS: Chandel Village Information System';
   <div class=" small-centered columns ">
       
           <ul class=" stack-for-small button-group even-3 round">
-            <li><a class="hollow button primary" href="<?=$loginUrl?>" target="_blank" >LogIn <i class="fi-torso large" style="font-size: .9rem;"></i></a></li>
-            <li><a class=" hollow button info" href="#">Report(Demo)</a></li>
-            <li><a class="hollow button warning" href="#">Help</a></li>
+            <li><a class="button primary" href="<?=$loginUrl?>" target="_blank" >LogIn <i class="fi-torso large" style="font-size: .9rem;"></i></a></li>
+            <li><a class=" button info" href="#">Report(Demo)</a></li>
+            <li><a class=" button warning" href="#">Help</a></li>
           </ul>    
         
        
   </div>
 </div>
+
+
+
 <div class="row fullWidth" >
     <div class="large-3 medium-4 columns">
         <div class="card-info primary">
@@ -282,8 +287,11 @@ $cakeDescription = 'CVIS: Chandel Village Information System';
 
 
 
+ <script>
+ 
+  </script>
+ 
 
-    
     
 
 </body>
