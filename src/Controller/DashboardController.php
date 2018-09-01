@@ -51,5 +51,31 @@ class DashboardController extends AppController
 
        
     }
+
+    public function getEmptyVillage()
+    {
+        $this->loadModel('HealthInfras');
+        $this->loadModel('Villages');
+        // $query=$this->Villages->find()
+               
+        //        ->contain('Subdistricts')
+        //        ->select(['village_code','village_name','Subdistricts.subdistrict_name'])
+        //        ->notMatching('HealthInfras',function($q) 
+        //        {
+        //            return $q;
+        //        });
+         $query=$this->Villages->find()
+               
+               ->contain('Subdistricts')
+               ->select(['village_code','village_name','Subdistricts.subdistrict_name'])
+               ->distinct('Villages.village_code')
+               ->matching('HealthInfras',function($q) 
+               {
+                   return $q;
+               });
+         //$data=$query->select('village_code','village')      
+          // sql($query); 
+           debug($query->toList());       
+    }
 }
     
