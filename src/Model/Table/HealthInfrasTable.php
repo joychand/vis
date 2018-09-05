@@ -55,18 +55,24 @@ class HealthInfrasTable extends Table
         $validator
             ->integer('health_reference_year')
             ->allowEmpty('health_reference_year');
-
+        
+        
         $validator
-            ->integer('no_of_chc')
-            ->allowEmpty('no_of_chc');
+            ->scalar('name_of_health_centre')
+            ->maxLength('name_of_health_centre', 200)
+            ->allowEmpty('name_of_health_centre');
 
-        $validator
-            ->integer('no_of_phc')
-            ->allowEmpty('no_of_phc');
+        // $validator
+        //     ->integer('no_of_chc')
+        //     ->allowEmpty('no_of_chc');
 
-        $validator
-            ->integer('no_of_phsc')
-            ->allowEmpty('no_of_phsc');
+        // $validator
+        //     ->integer('no_of_phc')
+        //     ->allowEmpty('no_of_phc');
+
+        // $validator
+        //     ->integer('no_of_phsc')
+        //     ->allowEmpty('no_of_phsc');
 
         $validator
             ->integer('no_of_doctors')

@@ -23,9 +23,9 @@
         <legend><?= __('Edit Village Nsap') ?></legend>
         <h6>Village Name:<strong><?= $villageNsap->village->village_name?></strong> Ref. Yr. : <strong><?= $villageNsap->reference_year?></strong> </h6>
         <?php
-            echo $this->Form->control('total_widows_beneficiary',['required'=>true,'min'=>0]);
-            echo $this->Form->control('total_handicap_beneficiary',['required'=>true,'min'=>0]);
-            echo $this->Form->control('total_ignoaps_beneficiary',['label'=>'Total IGNOAPS Beneficiary','required'=>true,'min'=>0]);
+            echo $this->Form->control('total_widows_beneficiary',['required'=>true,'min'=>0,'label'=>'1. Total Widow Beneficiaries:']);
+            echo $this->Form->control('total_handicap_beneficiary',['required'=>true,'min'=>0,'label'=>'2. Total Differently Abled Beneficiaries:']);
+            echo $this->Form->control('total_ignoaps_beneficiary',['label'=>'3.Total IGNOAPS Beneficiary','required'=>true,'min'=>0]);
            // echo $this->Form->control('village_code');
         ?>
     </fieldset>

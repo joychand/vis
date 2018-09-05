@@ -27,13 +27,40 @@
        <div id="anganwadiForm" class="dataForm">
        <fieldset class = "fieldset" style="border: 1px solid #cacaca;  padding: 1.25rem;  margin: 1.125rem 0;">
        <legend>Anganwadi Form</legend>
+       
+          
+      
+       
        <?php
             echo $this->Form->control('total_anganwadi_centre',['label'=>'1.Total Anganwadi Centre:','required'=>true,'min'=>0]);
-            echo $this->Form->control('total_anganwadi_worker',['label'=>'2.Total Anganwadi Workers:','required'=>true,'min'=>0]);
-            echo $this->Form->control('total_enrolled_children',['label'=>'3.Total Enrolled Children:','required'=>true,'min'=>0]);
-            echo $this->Form->control('worker_mobile',['label'=>'4.Anganwadi Worker Mobile:','required'=>true,'maxlength'=>'10',"pattern"=>'^[789]\d{9}$','oninvalid'=>'setCustomValidity(\'Plz enter a valid mobile\')', 'oninput'=>'setCustomValidity(\'\')']);
+            echo $this->Form->control('total_enrolled_children',['label'=>'2.Total Enrolled Children:','required'=>true,'min'=>0]);?>
+              
+
+           <?php echo $this->Form->control('total_anganwadi_worker',['label'=>'3.Total Anganwadi Workers:','required'=>true,'min'=>0]);
+            echo $this->Form->control('anganwadi_worker_name',['label'=>'4.Anganwadi Worker Name:','required'=>true]);
+            echo $this->Form->control('worker_mobile',['label'=>'5.Anganwadi Worker Mobile:','required'=>true,'maxlength'=>'10',"pattern"=>'^[789]\d{9}$','oninvalid'=>'setCustomValidity(\'Plz enter a valid mobile\')', 'oninput'=>'setCustomValidity(\'\')']);
            // echo $this->Form->control('village_code');
         ?>
+        <p style="font-weight:bold; font-size:.9em">6.Total no. of Pregnant Women:</p>
+       
+       <div class="medium-1 small-12 columns cell">
+            <label for="middle-label" class="text-right middle">1st Qtr:</label>
+       </div>
+       <div class="medium-3 small-12 columns cell">
+      <?php echo $this->Form->control('first_qtr_pregnant',['label'=>false,'required'=>true,'min'=>0]);?>   
+       </div>
+       <div class="medium-1 small-12 columns cell">
+            <label for="middle-label" class="text-right middle">2nd Qtr:</label>
+       </div>
+       <div class="medium-3 small-12 columns cell">
+       <?php echo $this->Form->control('second_qtr_pregnant',['label'=>false,'required'=>true,'min'=>0]);?>   
+       </div>
+        <div class="medium-1 small-12 columns cell">
+         <label for="middle-label" class="text-right middle">3rd Qtr:</label>
+        </div>
+        <div class="medium-3 small-12 columns cell">
+        <?php echo $this->Form->control('third_qtr_pregnant',['label'=>false,'required'=>true,'min'=>0]);?>   
+         </div>
        
        </fieldset>
       

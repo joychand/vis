@@ -32,6 +32,11 @@ class Anganwadi extends Entity
         'total_anganwadi_worker' => true,
         'total_enrolled_children' => true,
         'worker_mobile' => true,
-        'village_code' => true
+        'village_code' => true,
+        'first_qtr_pregnant'=>true,
+        'second_qtr_pregnant'=>true,
+        'third_qtr_pregnant'=>true,
+        'anganwadi_worker_name'=>true
+
     ];
 }

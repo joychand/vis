@@ -32,9 +32,7 @@ class HealthInfra extends Entity
      */
     protected $_accessible = [
         'health_reference_year' => true,
-        'no_of_chc' => true,
-        'no_of_phc' => true,
-        'no_of_phsc' => true,
+        'name_of_health_centre' => true,
         'no_of_doctors' => true,
         'no_of_anm' => true,
         'no_of_staff_nurse' => true,

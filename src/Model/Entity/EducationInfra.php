@@ -44,16 +44,16 @@ class EducationInfra extends Entity
         'total_private_school' => true,
         'total_primary_school' => true,
         'total_primary_student' => true,
+        'total_primary_teacher' => true,
         'total_jhs' => true,
         'total_jhs_student' => true,
+        'total_jhs_teacher' => true,
         'total_secondary_school' => true,
         'total_secondary_student' => true,
+        'total_secondary_teacher' => true,
         'total_hrsec_school' => true,
         'total_hrsec_student' => true,
-        'total_college' => true,
-        'total_college_professor' => true,
-        'total_college_assoc_prof' => true,
-        'total_college_asstt_prof' => true,
+        'total_hrsec_teacher' => true,
         'village_code' => true
     ];
 }

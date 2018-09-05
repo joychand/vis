@@ -32,14 +32,15 @@
         <legend>HealthInfras Form</legend>
         <?php
            
-            echo $this->Form->control('no_of_chc',['label'=>'1. No. of CHC','required'=>true,'min'=>0]);
-            echo $this->Form->control('no_of_phc',['label'=>'2. No. of PHC','required'=>true,'min'=>0]);
-            echo $this->Form->control('no_of_phsc',['label'=>'3. No. of PHSC','required'=>true,'min'=>0]);
-            echo $this->Form->control('no_of_doctors',['label'=>'4. No. of Doctors','required'=>true,'min'=>0]);
-            echo $this->Form->control('no_of_anm',['label'=>'5. No. of ANM','required'=>true,'min'=>0]);
-            echo $this->Form->control('no_of_staff_nurse',['label'=>'6. No. of Staff Nurse','required'=>true,'min'=>0]);
-            echo $this->Form->control('no_of_asha',['label'=>'7. No. of ASHA Worker','required'=>true,'min'=>0]);
-            echo $this->Form->control('asha_mobile',['label'=>'8. ASHA Worker Mobile No.','required'=>true]);
+           echo $this->Form->control('name_of_health_centre',['label'=>'1. Name of CHC/PHC/PHSC:','required'=>true]);
+            // echo $this->Form->control('no_of_chc',['label'=>'1. No. of CHC','required'=>true,'min'=>0]);
+            // echo $this->Form->control('no_of_phc',['label'=>'2. No. of PHC','required'=>true,'min'=>0]);
+            // echo $this->Form->control('no_of_phsc',['label'=>'3. No. of PHSC','required'=>true,'min'=>0]);
+            echo $this->Form->control('no_of_doctors',['label'=>'2. No. of Doctors','required'=>true,'min'=>0]);
+            echo $this->Form->control('no_of_anm',['label'=>'3. No. of ANM','required'=>true,'min'=>0]);
+            echo $this->Form->control('no_of_staff_nurse',['label'=>'4. No. of Staff Nurse','required'=>true,'min'=>0]);
+            echo $this->Form->control('no_of_asha',['label'=>'5. No. of ASHA Worker','required'=>true,'min'=>0]);
+            echo $this->Form->control('asha_mobile',['label'=>'6. ASHA Worker Mobile No.','required'=>true,'maxlength'=>'10',"pattern"=>'^[789]\d{9}$','oninvalid'=>'setCustomValidity(\'Plz enter a valid mobile\')', 'oninput'=>'setCustomValidity(\'\')']);
             //echo $this->Form->control('village_code');
         ?>
         </fieldset>

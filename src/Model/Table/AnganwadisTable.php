@@ -59,7 +59,15 @@ class AnganwadisTable extends Table
         $validator
             ->integer('total_anganwadi_centre')
             ->allowEmpty('total_anganwadi_centre');
-
+        $validator
+            ->integer('first_qtr_pregnant')
+            ->allowEmpty('first_qtr_pregnant');
+        $validator
+            ->integer('second_qtr_pregnant')
+            ->allowEmpty('second_qtr_pregnant'); 
+        $validator
+            ->integer('third_qtr_pregnant')
+            ->allowEmpty('third_qtr_pregnant');            
         $validator
             ->integer('total_anganwadi_worker')
             ->allowEmpty('total_anganwadi_worker');
@@ -67,7 +75,11 @@ class AnganwadisTable extends Table
         $validator
             ->integer('total_enrolled_children')
             ->allowEmpty('total_enrolled_children');
-
+        
+        $validator
+            ->scalar('anganwadi_worker_name')
+            ->maxLength('anganwadi_worker_name', 150)
+            ->allowEmpty('anganwadi_worker_name');    
         $validator
             ->scalar('worker_mobile')
             ->maxLength('worker_mobile', 10)

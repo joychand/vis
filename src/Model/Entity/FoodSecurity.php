@@ -34,6 +34,7 @@ class FoodSecurity extends Entity
         'village_code' => true,
         'reference_year'=>true,
         'total_aay_card'=>true,
-        'total_phh_card'=>true
+        'total_phh_card'=>true,
+        'fair_price_shop_name'=> true
     ];
 }

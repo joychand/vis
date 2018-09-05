@@ -80,7 +80,11 @@ class FoodSecuritiesTable extends Table
             ->scalar('village_code')
             ->maxLength('village_code', 6)
             ->allowEmpty('village_code');
-
+         $validator
+            ->scalar('fair_price_shop_name')
+            ->maxLength('fair_price_shop_name', 200)
+            ->allowEmpty('fair_price_shop_name');    
+            
         return $validator;
     }
 

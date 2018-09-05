@@ -19,7 +19,7 @@
                 <th scope="col"><?= $this->Paginator->sort('village') ?></th>
                
                 <th scope="col"><?= $this->Paginator->sort('widows_beneficiary') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('handicap_beneficiary') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('differently abled beneficiary') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('ignoaps_beneficiary') ?></th>
                
                 <th scope="col" class="actions"><?= __('Actions') ?></th>

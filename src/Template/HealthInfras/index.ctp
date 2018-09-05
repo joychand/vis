@@ -18,9 +18,8 @@
             <tr>
                  <th scope="col"><?= $this->Paginator->sort('village') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('Ref.Yr.') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('CHC') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('PHC') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('PHSC') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Name of CHC/PHC/PHSC') ?></th>
+               
                 <th scope="col"><?= $this->Paginator->sort('Doctors') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('ANM') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('Staff_nurse') ?></th>
@@ -35,9 +34,8 @@
             <tr>
                  <td><?= h($healthInfra->village->village_name) ?></td>
                 <td><?= $this->Number->format($healthInfra->health_reference_year,['pattern'=>'####']) ?></td>
-                <td><?= $this->Number->format($healthInfra->no_of_chc) ?></td>
-                <td><?= $this->Number->format($healthInfra->no_of_phc) ?></td>
-                <td><?= $this->Number->format($healthInfra->no_of_phsc) ?></td>
+                <td><?= h($healthInfra->name_of_health_centre) ?></td>
+               
                 <td><?= $this->Number->format($healthInfra->no_of_doctors) ?></td>
                 <td><?= $this->Number->format($healthInfra->no_of_anm) ?></td>
                 <td><?= $this->Number->format($healthInfra->no_of_staff_nurse) ?></td>

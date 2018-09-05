@@ -34,6 +34,7 @@
             echo $this->Form->control('total_phh_members',['label'=>'4.Total PHH Members:','required'=>true,'min'=>0]);
             echo $this->Form->control('total_aadhaar_seeded_card',['label'=>'5.Total Aadhaar Seeded Card','required'=>true,'min'=>0]);
             echo $this->Form->control('total_fair_price_shop',['label'=>'6.Total Fair Price Shop','required'=>true,'min'=>0]);
+            echo $this->Form->control('fair_price_shop_name',['label'=>'7. Fair Price Shop Name','required'=>true]);
             //echo $this->Form->control('village_code');
         ?>
         </legend>

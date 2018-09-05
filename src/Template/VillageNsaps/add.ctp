@@ -26,7 +26,7 @@
         <?php
             
             echo $this->Form->control('total_widows_beneficiary',['required'=>true,'min'=>0,'label'=>'1. Total Widow Beneficiaries:']);
-            echo $this->Form->control('total_handicap_beneficiary',['required'=>true,'min'=>0,'label'=>'2. Total Handicaped Beneficiaries:']);
+            echo $this->Form->control('total_handicap_beneficiary',['required'=>true,'min'=>0,'label'=>'2. Total Differently Abled Beneficiaries:']);
             echo $this->Form->control('total_ignoaps_beneficiary',['label'=>'3. Total IGNOAPS Beneficiary','required'=>true,'min'=>0]);
            // echo $this->Form->control('village_code');
         ?>

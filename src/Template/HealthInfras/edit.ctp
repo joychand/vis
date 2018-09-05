@@ -24,14 +24,13 @@
         <legend><?= __('Edit Health Infra') ?></legend>
         <?php
             
-            echo $this->Form->control('no_of_chc',['label'=>'No. of CHC','required'=>true,'min'=>0]);
-            echo $this->Form->control('no_of_phc',['label'=>'No. of PHC','required'=>true,'min'=>0]);
-            echo $this->Form->control('no_of_phsc',['label'=>'No. of PHSC','required'=>true,'min'=>0]);
+            echo $this->Form->control('name_of_health_centre',['label'=>'Name of CHC/PHC/PHSC','required'=>true]);
+          
             echo $this->Form->control('no_of_doctors',['label'=>'No. of Doctors','required'=>true,'min'=>0]);
             echo $this->Form->control('no_of_anm',['label'=>'No. of ANM','required'=>true,'min'=>0]);
             echo $this->Form->control('no_of_staff_nurse',['label'=>'No. of Staff Nurse','required'=>true,'min'=>0]);
             echo $this->Form->control('no_of_asha',['label'=>'No. of ASHA Worker','required'=>true,'min'=>0]);
-            echo $this->Form->control('asha_mobile',['label'=>'ASHA Worker Mobile No.','required'=>true]);
+            echo $this->Form->control('asha_mobile',['label'=>'ASHA Worker Mobile No.','required'=>true,"pattern"=>'^[789]\d{9}$','oninvalid'=>'setCustomValidity(\'Plz enter a valid mobile\')', 'oninput'=>'setCustomValidity(\'\')']);
             
         ?>
     </fieldset>

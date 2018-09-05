@@ -75,6 +75,18 @@ class EducationInfrasTable extends Table
         $validator
             ->integer('total_primary_student')
             ->allowEmpty('total_primary_student');
+         $validator
+            ->integer('total_primary_teacher')
+            ->allowEmpty('total_primary_teacher');
+         $validator
+            ->integer('total_jhs_teacher')
+            ->allowEmpty('total_jhs_teacher');
+        $validator
+            ->integer('total_secondary_teacher')
+            ->allowEmpty('total_secondary_teacher');
+        $validator
+            ->integer('total_hrsec_teacher')
+            ->allowEmpty('total_hrsec_teacher');
 
         $validator
             ->integer('total_jhs')
