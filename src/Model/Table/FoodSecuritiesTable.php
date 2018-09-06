@@ -54,7 +54,7 @@ class FoodSecuritiesTable extends Table
 
        $validator
             ->integer('reference_year')
-            ->allowEmpty('total_aay_members');
+            ->allowEmpty('reference_year');
         $validator
             ->integer('total_aay_card')
             ->allowEmpty('total_aay_card');

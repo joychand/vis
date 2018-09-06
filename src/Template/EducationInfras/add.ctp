@@ -52,7 +52,7 @@
             <?php
             echo $this->Form->control('total_secondary_school',['label'=>'8.Total Secondary School:','required'=>true,'min'=>0]);
             echo $this->Form->control('total_secondary_student',['label'=>'9.Total Secondary Student:','required'=>true,'min'=>0]);
-            echo $this->Form->control('total_secondary_teacher',['label'=>'10.Total Sec Teacher:','required'=>true,'min'=>0]);?>?>
+            echo $this->Form->control('total_secondary_teacher',['label'=>'10.Total Sec Teacher:','required'=>true,'min'=>0]);?>
             </fieldset>
             <fieldset class = "fieldset" style="border: 1px solid #cacaca;  padding: 1.25rem;  margin: 1.125rem 0;">
             <legend>Hr. Sec. School:</legend>

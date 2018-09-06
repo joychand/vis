@@ -12,7 +12,7 @@
  
  <fieldset>
 <?= $this->Form->create() ?>
-<?= $this->Form->control('category',['type'=>'select','required'=>true,'label'=>'Department/Schemes:','options'=>['Anganwadi','CAF&PD','Education(Infra)','Election','Health(Infra)','NERCORMP(Demography)','NREGA','NSAP','SDO Report (Demography)','VillageSchemes','Security Report(Demography)'],'empty'=>'Select Dept/Schemes']) ?> 
+<?= $this->Form->control('category',['type'=>'select','required'=>true,'label'=>'Department/Schemes:','options'=>['Anganwadi','CAF&PD','Education(Infra)','Election','Health(Infra)','NERCORMP(Demography)','NREGA','NSAP','GTV Report (Demography)','VillageSchemes','Security Report(Demography)'],'empty'=>'Select Dept/Schemes']) ?> 
 
  <?= $this->Form->button('Next>>')?>
  <?= $this->Form->end()?>

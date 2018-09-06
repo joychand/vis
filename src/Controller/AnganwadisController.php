@@ -186,17 +186,7 @@ class AnganwadisController extends AppController
             ])->where(['sub_district_code'=>$subdist_code])
             ->order(['villages.village_name'=>'ASC']);
             $villages=$query->toArray();
-            // $collection = new Collection($villages);
-
-            // $new = $collection->map(function ($value, $key) {
-            //     return ''.$key;
-            //     });
-            //     $result = $new->toArray();
-           // debug ($villages);
-            //$this->set('_serialize', 'villages');
-            // return $this->response
-            // ->withType('application/json')
-            // ->withStringBody($villages);
+           
              header('Content-Type: application/json');
              echo json_encode($villages);
              exit();

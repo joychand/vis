@@ -6,6 +6,7 @@ use Cake\Core\Plugin;
 
 $this->layout = false;
  $loginUrl = $this->Url->build(['controller'=>'users','action' => 'login']); 
+ $reportUrl = $this->Url->build(['controller'=>'Villageprofile','action'=>'index']);
 
 $cakeDescription = 'CVIS: Chandel Village Information System';
 ?>
@@ -52,7 +53,7 @@ $cakeDescription = 'CVIS: Chandel Village Information System';
       
           <ul class=" stack-for-small button-group even-3 round">
             <li><a class="button primary" href="<?=$loginUrl?>" target="_blank" >LogIn <i class="fi-torso large" style="font-size: .9rem;"></i></a></li>
-            <li><a class=" button info" href="#">Report(Demo)</a></li>
+            <li><a class=" button info" href="<?=$reportUrl?>">Report(Demo)</a></li>
             <li><a class=" button warning" href="#">Help</a></li>
           </ul>    
         
@@ -246,7 +247,7 @@ $cakeDescription = 'CVIS: Chandel Village Information System';
                 </div>
               </div>
               <div class="card-info-content">
-                <h3 class="lead dash-title" style=" color:green"> SDOReport<span style="font-size:.5em !important">(Demography)</span></h3>
+                <h3 class="lead dash-title" style=" color:green"> GTVReport<span style="font-size:.5em !important">(Demography)</span></h3>
                 <hr class="dash-hr"> 
                 <p  class="dash-target">Target Village: <span class="count dash-span"><?= $total_village?></span></p>
                 <p class="dash-entered">Data Entered Village:<span class="count dash-span"> <?= $sdo_entered?></span></p>

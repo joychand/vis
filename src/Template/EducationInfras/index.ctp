@@ -24,16 +24,17 @@
                 <th scope="col"><?= $this->Paginator->sort('private_school') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('primary_school') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('primary_student') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('JHSS') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('JHSS student') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('teacher') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('JHS') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('JHS student') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('teacher') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('Sec school') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('Sec student') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('teacher') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('HrSec school') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('HrSec student') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('College') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Professor') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Assoc_Prof') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Asstt_prof') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Teacher') ?></th>
+               
                
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -49,16 +50,17 @@
                 <td><?= $this->Number->format($educationInfra->total_private_school) ?></td>
                 <td><?= $this->Number->format($educationInfra->total_primary_school) ?></td>
                 <td><?= $this->Number->format($educationInfra->total_primary_student) ?></td>
+                <td><?= $this->Number->format($educationInfra->total_primary_teacher) ?></td>
                 <td><?= $this->Number->format($educationInfra->total_jhs) ?></td>
                 <td><?= $this->Number->format($educationInfra->total_jhs_student) ?></td>
+                <td><?= $this->Number->format($educationInfra->total_jhs_teacher) ?></td>
                 <td><?= $this->Number->format($educationInfra->total_secondary_school) ?></td>
                 <td><?= $this->Number->format($educationInfra->total_secondary_student) ?></td>
+                <td><?= $this->Number->format($educationInfra->total_secondary_teacher) ?></td>
                 <td><?= $this->Number->format($educationInfra->total_hrsec_school) ?></td>
                 <td><?= $this->Number->format($educationInfra->total_hrsec_student) ?></td>
-                <td><?= $this->Number->format($educationInfra->total_college) ?></td>
-                <td><?= $this->Number->format($educationInfra->total_college_professor) ?></td>
-                <td><?= $this->Number->format($educationInfra->total_college_assoc_prof) ?></td>
-                <td><?= $this->Number->format($educationInfra->total_college_asstt_prof) ?></td>
+                <td><?= $this->Number->format($educationInfra->total_hrsec_teacher) ?></td>
+                
                 
                 <td class="actions">
                   
