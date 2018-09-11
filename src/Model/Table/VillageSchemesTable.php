@@ -66,24 +66,13 @@ class VillageSchemesTable extends Table
             ->allowEmpty('village_code');
 
         $validator
-            ->scalar('scheme_financial_year')
-            ->allowEmpty('scheme_financial_year');
+            ->scalar('village_scheme_start_fin_yr')
+            ->allowEmpty('village_scheme_start_fin_yr');
 
+        
         $validator
-            ->integer('sanction_amount')
-            ->allowEmpty('sanction_amount');
-
-        $validator
-            ->decimal('location_latitude')
-            ->allowEmpty('location_latitude');
-
-        $validator
-            ->decimal('location_longitude')
-            ->allowEmpty('location_longitude');
-
-        $validator
-            ->scalar('scheme_status')
-            ->allowEmpty('scheme_status');
+            ->scalar('village_scheme_description')
+            ->allowEmpty('village_scheme_description');
 
         $validator
             ->integer('scheme_code')

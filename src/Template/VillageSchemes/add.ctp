@@ -26,7 +26,7 @@
         <?php
             echo $this->Form->control('scheme_code',['type'=>'select','label'=>'1. Scheme:','empty'=>'Select scheme','id'=>'scheme','options'=>$schemes,'required'=>true,'id'=>'schemes']);
             //echo $this->Form->control('village_code');
-            echo $this->Form->control('scheme_financial_year',['type'=>'select',
+            echo $this->Form->control('village_scheme_start_fin_yr',['type'=>'select',
             'options'=>['2010'=>'2010-2011',
                         '2011'=>'2011-2012',
                         '2012'=>'2012-2013',
@@ -35,11 +35,12 @@
                         '2015'=>'2015-2016',
                         '2016'=>'2016-2017',
                         '2017'=>'2017-2018',
-                        '2018'=>'2011-2019'], 'empty'=>'select Fin Yr','label'=>'2. Scheme Financial Year:','required'=>true]);
-            echo $this->Form->control('sanction_amount',['label'=>'3. Sanctioned Amount (Rs in Lakhs):','required'=>true]);
-            echo $this->Form->control('location_latitude',['required'=>true,'label'=>'4. Latitude:']);
-            echo $this->Form->control('location_longitude',['required'=>true,'label'=>'5. Longitude:']);
-            echo $this->Form->control('scheme_status',['label'=>'6. Scheme Status:','type'=>'select','empty'=>'Select Status', 'options'=>['Ongoing'=>'Ongoing','Completed'=>'Completed'],'required'=>true,'id'=>'status']);
+                        '2018'=>'2018-2019'], 'empty'=>'select Fin Yr','label'=>'2. Scheme Start Financial Year:','required'=>true]);
+            // echo $this->Form->control('sanction_amount',['label'=>'3. Sanctioned Amount (Rs in Lakhs):','required'=>true]);
+            // echo $this->Form->control('location_latitude',['required'=>true,'label'=>'4. Latitude:']);
+            // echo $this->Form->control('location_longitude',['required'=>true,'label'=>'5. Longitude:']);
+            // echo $this->Form->control('scheme_status',['label'=>'6. Scheme Status:','type'=>'select','empty'=>'Select Status', 'options'=>['Ongoing'=>'Ongoing','Completed'=>'Completed'],'required'=>true,'id'=>'status']);
+            echo $this->Form->control('village_scheme_description',['label'=>'3. Scheme Description:','type'=>'textarea','default'=>'Enter the Scheme Descrition....','required'=>true,'id'=>'village_scheme']);
            
         ?>
         </fieldset>

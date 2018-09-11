@@ -6,9 +6,12 @@ use Cake\ORM\Entity;
 /**
  * Scheme Entity
  *
- * @property string $scheme_code
  * @property string $scheme_name
  * @property int $department_id
+ * @property int $scheme_code
+ * @property int $scheme_financial_year
+ * @property string $scheme_status
+ * @property float $sanction_amount
  *
  * @property \App\Model\Entity\Department $department
  */
@@ -27,6 +30,9 @@ class Scheme extends Entity
     protected $_accessible = [
         'scheme_name' => true,
         'department_id' => true,
-        '*' => true
+        'scheme_financial_year' => true,
+        'scheme_status' => true,
+        'sanction_amount' => true,
+        'department' => true
     ];
 }

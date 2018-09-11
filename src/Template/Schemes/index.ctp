@@ -19,7 +19,8 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('scheme_name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('department_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('scheme_code') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('SanctionedAmount(Lakhs)') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('scheme_status') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -28,7 +29,8 @@
             <tr>
                 <td><?= h($scheme->scheme_name) ?></td>
                 <td><?= $scheme->has('department') ? $this->Html->link($scheme->department->name, ['controller' => 'Departments', 'action' => 'view', $scheme->department->id]) : '' ?></td>
-                <td><?= $this->Number->format($scheme->scheme_code) ?></td>
+                <td><?= $this->Number->precision($scheme->sanction_amount,2) ?></td>
+                <td><?= h($scheme->scheme_status) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $scheme->scheme_code]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $scheme->scheme_code]) ?>

@@ -41,7 +41,10 @@ class VillagesTable extends Table
              ->setForeignKey('sub_district_code');
         $this->hasOne('HealthInfras')
              ->setForeignKey('village_code')
-             ->setDependent(true);       
+             ->setDependent(true); 
+        $this->hasOne('Populations')
+             ->setForeignKey('village_code')
+             ->setDependent(true);      
     }
 
     /**

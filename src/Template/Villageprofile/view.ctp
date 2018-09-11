@@ -275,16 +275,16 @@
   </thead>
   <tbody>
     <tr>
-      <td data-label="Ref.Yr."><?= $vill_edn->education_reference_year?></td>
-      <td data-label="AAY Card(nos)"><?= $vill_edn->total_govt_school?></td>
-      <td data-label="AAY Members(nos)"><?= $vill_edn->total_adc_school ?></td>
-      <td data-label="PHH Card (nos)"><?= $vill_edn->total_private_school ?></td>
-      <td data-label="Student (Primary)"><?= $vill_edn->total_primary_student ?></td>
-      <td data-label="Teacher (Primary)"><?= $vill_edn->total_primary_teacher ?></td>
-      <td data-label="Student (JHS)"><?= $vill_edn->total_jhs_student?></td>
-      <td data-label="Teacher (JHS)"><?= $vill_edn->total_jhs_teacher?></td>
-      <td data-label="Student (Sec)"><?= $vill_edn->total_secondary_student ?></td>
-      <td data-label="Teacher (Sec)"><?= $vill_edn->total_secondary_teacher ?></td>
+      <td data-label="Ref.Yr."><?= isset($vill_edn->education_reference_year)  ?  $vill_edn->education_reference_year : '-No Data-'  ?></td>
+      <td data-label="AAY Card(nos)"><?= isset($vill_edn->total_govt_school) ?  $vill_edn->total_govt_school : '0'?></td>
+      <td data-label="AAY Members(nos)"><?= isset($vill_edn->total_adc_school) ?  $vill_edn->total_adc_school : '0' ?></td>
+      <td data-label="PHH Card (nos)"><?= isset($vill_edn->total_private_school) ? $vill_edn->total_private_school :'0'?></td>
+      <td data-label="Student (Primary)"><?= isset($vill_edn->total_primary_student) ? $vill_edn->total_primary_student :'0' ?></td>
+      <td data-label="Teacher (Primary)"><?= isset($vill_edn->total_primary_teacher) ? $vill_edn->total_primary_teacher :'0'  ?></td>
+      <td data-label="Student (JHS)"><?= isset($vill_edn->total_jhs_student) ? $vill_edn->total_jhs_student :'0' ?></td>
+      <td data-label="Teacher (JHS)"><?= isset($vill_edn->total_jhs_teacher) ? $vill_edn->total_jhs_teacher :'0' ?></td>
+      <td data-label="Student (Sec)"><?=  isset($vill_edn->total_secondary_student) ?$vill_edn->total_secondary_student :'0'  ?></td>
+      <td data-label="Teacher (Sec)"><?= isset($vill_edn->total_secondary_teacher) ? $vill_edn->total_secondary_teacher :'0'  ?></td>
       
       
     </tr>

@@ -29,11 +29,8 @@ class VillageScheme extends Entity
      */
     protected $_accessible = [
         'village_code' => true,
-        'scheme_financial_year' => true,
-        'sanction_amount' => true,
-        'location_latitude' => true,
-        'location_longitude' => true,
-        'scheme_status' => true,
+        'village_scheme_start_fin_yr' => true,
+        'village_scheme_description' => true,
         'scheme_code' => true
     ];
 }

@@ -40,6 +40,7 @@ class SchemesTable extends Table
         $this->belongsTo('Departments', [
             'foreignKey' => 'department_id'
         ]);
+        
     }
 
     /**
@@ -51,13 +52,26 @@ class SchemesTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
+            ->scalar('scheme_name')
+            ->maxLength('scheme_name', 100)
+            ->allowEmpty('scheme_name');
+
+        $validator
             ->integer('scheme_code')
             ->allowEmpty('scheme_code', 'create');
 
         $validator
-            ->scalar('scheme_name')
-            ->maxLength('scheme_name', 100)
-            ->allowEmpty('scheme_name');
+            ->integer('scheme_financial_year')
+            ->allowEmpty('scheme_financial_year');
+
+        $validator
+            ->scalar('scheme_status')
+            ->maxLength('scheme_status', 20)
+            ->allowEmpty('scheme_status');
+
+        $validator
+            ->decimal('sanction_amount')
+            ->allowEmpty('sanction_amount');
 
         return $validator;
     }

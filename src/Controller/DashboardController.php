@@ -11,7 +11,7 @@ use App\Controller\AppController;
  */
 class DashboardController extends AppController
 {
-
+    
     /**
      * Index method
      *
@@ -31,7 +31,7 @@ class DashboardController extends AppController
         $this->loadModel('VillageElectorals');
         $this->loadModel('VillagePhotos');
         $total_village=$this->Villages->find()->select('village_code')->distinct()->count('village_code');
-        $health_village_entered= $this->HealthInfras->find()->count(' village_code');
+        $health_village_entered= $this->HealthInfras->find()->select('HealthInfras.village_code')->distinct()->count('HealthInfras.village_code');
         $anganwadi_village_entered= $this->Anganwadis->find()->select('Anganwadis.village_code')->distinct()->count('Anganwadis.village_code');
         $education_village_entered= $this->EducationInfras->find()->select('village_code')->distinct()->count('village_code');
         $election_entered_village= $this->VillageElectorals->find()->select('village_code')->distinct()->count('village_code');
@@ -52,30 +52,84 @@ class DashboardController extends AppController
        
     }
 
-    public function getEmptyVillage()
+    public function getEmptyVillage($modelToload=null,$agency=null)
     {
-        $this->loadModel('HealthInfras');
-        $this->loadModel('Villages');
-        // $query=$this->Villages->find()
-               
-        //        ->contain('Subdistricts')
-        //        ->select(['village_code','village_name','Subdistricts.subdistrict_name'])
-        //        ->notMatching('HealthInfras',function($q) 
-        //        {
-        //            return $q;
-        //        });
-         $query=$this->Villages->find()
+       // dump($modelToload);
+      //  dump($agency);
+        if(isset($modelToload) && !isset($agency))
+        {
+            
+          $this->loadModel($modelToload);
+          $this->loadModel('Villages');         
+       //** for Chakpikarong Subdivision ==1895 *** */
+            $chakpikarong=$this->Villages->find()
                
                ->contain('Subdistricts')
                ->select(['village_code','village_name','Subdistricts.subdistrict_name'])
                ->distinct('Villages.village_code')
-               ->matching('HealthInfras',function($q) 
+               ->notMatching($modelToload,function($q) 
                {
                    return $q;
+               })->where(['Villages.subdistrict_code'=>'1895']);
+
+        /** for Chandel Subdivision ==1894 */
+            $chandel=$this->Villages->find()               
+                             ->contain('Subdistricts')
+                             ->select(['village_code','village_name','Subdistricts.subdistrict_name'])
+                             ->distinct('Villages.village_code')
+                             ->notMatching($modelToload,function($q) 
+                             {
+                                    return $q;
+                             })->where(['Villages.subdistrict_code'=>'1894']);  
+        /*** for Khengjoy Subdivision === 6496***/                     
+            $khengjoy=$this->Villages->find()               
+                             ->contain('Subdistricts')
+                             ->select(['village_code','village_name','Subdistricts.subdistrict_name'])
+                             ->distinct('Villages.village_code')
+                             ->notMatching($modelToload,function($q) 
+                             {
+                                    return $q;
+                             })->where(['Villages.subdistrict_code'=>'6496']);   
+        }
+        else if (isset($modelToload) && isset($agency))
+        {
+            $this->loadModel($modelToload);
+            $this->loadModel('Villages');         
+        //     $subquery=$this->$modelToload->find('all')->where(['counting_agency'=>2]);
+        //    sql($subquery);
+            $query=$this->Villages->find()
+               
+               ->contain('Subdistricts')
+               ->select(['village_code','village_name','Subdistricts.subdistrict_name'])
+              
+               ->distinct('Villages.village_code')
+               ->notMatching($modelToload,function($q) use($agency)
+               {
+                   return $q->where(['counting_agency'=>$agency]);
                });
+
+
+               //$query->orderAsc('Subdistricts.subdistrict_name');
+           // sql($query); 
+
+        }
+        
+        //  $query=$this->Villages->find()
+               
+        //        ->contain('Subdistricts')
+        //        ->select(['village_code','village_name','Subdistricts.subdistrict_name'])
+        //        ->distinct('Villages.village_code')
+        //        ->matching($modelToload,function($q) 
+        //        {
+        //            return $q;
+        //        });
          //$data=$query->select('village_code','village')      
           // sql($query); 
-           debug($query->toList());       
+          // $data=$query->toList(); 
+          // $this->paginate = ['order'=>['Subdistricts.subdistrict_name'=>'ASC']];
+           $remaining_village=$this->paginate($query,['order'=>['Subdistricts.subdistrict_name']]);
+           $this->set(compact('remaining_village'));
+            
     }
 }
     
