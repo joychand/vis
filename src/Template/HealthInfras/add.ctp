@@ -40,7 +40,7 @@
             echo $this->Form->control('no_of_anm',['label'=>'3. No. of ANM','required'=>true,'min'=>0]);
             echo $this->Form->control('no_of_staff_nurse',['label'=>'4. No. of Staff Nurse','required'=>true,'min'=>0]);
             echo $this->Form->control('no_of_asha',['label'=>'5. No. of ASHA Worker','required'=>true,'min'=>0]);
-            echo $this->Form->control('asha_mobile',['label'=>'6. ASHA Worker Mobile No.','required'=>true,'maxlength'=>'10',"pattern"=>'^[789]\d{9}$','oninvalid'=>'setCustomValidity(\'Plz enter a valid mobile\')', 'oninput'=>'setCustomValidity(\'\')']);
+            echo $this->Form->control('asha_mobile',['label'=>'6. ASHA Worker Mobile No.(One of Worker)','required'=>true,'maxlength'=>'10',"pattern"=>'^[789]\d{9}$','oninvalid'=>'setCustomValidity(\'Plz enter a valid mobile\')', 'oninput'=>'setCustomValidity(\'\')']);
             //echo $this->Form->control('village_code');
         ?>
         </fieldset>

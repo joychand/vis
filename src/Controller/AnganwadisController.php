@@ -91,7 +91,8 @@ class AnganwadisController extends AppController
             {
              $this->Flash->error(__('The village Anganwadis Data already exist. Please goto edit to update data.'));
             }
-
+          else
+          {
             $anganwadi = $this->Anganwadis->patchEntity($anganwadi, $this->request->getData());
             if ($this->Anganwadis->save($anganwadi)) {
                 $this->Flash->success(__('The Village Anganwadi has been saved.'));
@@ -99,6 +100,9 @@ class AnganwadisController extends AppController
                 return $this->redirect(['action' => 'add']);
             }
             $this->Flash->error(__('The Village anganwadi could not be saved. Please, try again.'));
+
+          }
+            
         }
         $this->subdistricts = TableRegistry::get('Subdistricts');
       

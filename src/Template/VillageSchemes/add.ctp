@@ -40,7 +40,7 @@
             // echo $this->Form->control('location_latitude',['required'=>true,'label'=>'4. Latitude:']);
             // echo $this->Form->control('location_longitude',['required'=>true,'label'=>'5. Longitude:']);
             // echo $this->Form->control('scheme_status',['label'=>'6. Scheme Status:','type'=>'select','empty'=>'Select Status', 'options'=>['Ongoing'=>'Ongoing','Completed'=>'Completed'],'required'=>true,'id'=>'status']);
-            echo $this->Form->control('village_scheme_description',['label'=>'3. Scheme Description:','type'=>'textarea','default'=>'Enter the Scheme Descrition....','required'=>true,'id'=>'village_scheme']);
+            echo $this->Form->control('village_scheme_description',['label'=>'3. Scheme Description:','type'=>'textarea','Placeholder'=>'Enter the Scheme Description(50 words Max)....','required'=>true,'id'=>'village_scheme']);
            
         ?>
         </fieldset>
@@ -48,5 +48,6 @@
         
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
+    <!-- <?= $this->Form->button(__('Add More'),['class' => 'button secondary','id'=>'more']) ?> -->
     <?= $this->Form->end() ?>
 </div>

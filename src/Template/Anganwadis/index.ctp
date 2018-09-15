@@ -19,9 +19,10 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('village') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('Ref.Yr.') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('total_anganwadi_centre') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('total_anganwadi_worker') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('total_enrolled_children') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('anganwadi_centre(nos)') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('anganwadi_worker(nos)') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('enrolled_children') ?></th>
+                <th scope="col"><?=  $this->Paginator->sort('Worker Name')?></th>
                 <th scope="col"><?= $this->Paginator->sort('worker_mobile') ?></th>
                
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -35,6 +36,7 @@
                 <td><?= $this->Number->format($anganwadi->total_anganwadi_centre) ?></td>
                 <td><?= $this->Number->format($anganwadi->total_anganwadi_worker) ?></td>
                 <td><?= $this->Number->format($anganwadi->total_enrolled_children) ?></td>
+                <td><?= h($anganwadi->anganwadi_worker_name) ?></td>
                 <td><?= h($anganwadi->worker_mobile) ?></td>
                
                 <td class="actions">

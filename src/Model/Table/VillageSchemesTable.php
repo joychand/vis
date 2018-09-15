@@ -42,6 +42,7 @@ class VillageSchemesTable extends Table
 
         $this->belongsTo('schemes',[
             'className'=>'schemes'
+           
         ])
         ->setForeignKey('scheme_code');
 

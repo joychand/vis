@@ -16,11 +16,18 @@ $cakeDescription = 'VIS: Chandel Village Information System';
    
     <?= $this->Html->css('style.css') ?>
     <?= $this->Html->css('home.css') ?> 
-    
+    <?= $this->Html->css('DataTables/datatables.min.css') ?> 
+    <?= $this->Html->css('DataTables/jquery.dataTables.min.css') ?> 
+    <?= $this->Html->css('DataTables/dataTables.jqueryui.min.css') ?> 
+    <?= $this->Html->css('DataTables/dataTables.semanticui.min.css') ?> 
+     
     <?= $this->Html->css('foundation-icons/foundation-icons.css')?>
     <?= $this->Html->script('jquery-3.3.1.min.js')?>
    
-    <?= $this->Html->script('count.js')?>
+   
+    <?= $this->Html->script('DataTables/DataTables.min.js')?>
+    <?= $this->Html->script('DataTables/jquery.dataTables.min.js')?>
+    <?= $this->Html->script('DataTables/visdatatable.js')?>
 
      <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet"> 
     
@@ -28,29 +35,32 @@ $cakeDescription = 'VIS: Chandel Village Information System';
 </head>
 <body >
 <div class="empyvillage index large-9 medium-8 columns content large-centered medium-centered small-centered">
+<?= $this->Form->create()?>
+<?= $this->Form->control('subdivision',['label'=>'Filter by Subdivision:','type'=>'select','options'=>$subDivs,'empty'=>'All Villages','id'=>'subdivision'])?>
     <h3><?= __('Village data not Entered:') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+    <h4>Chakpikarong Subdivision</h4>
+  
+    <table id="village" class="display">
         <thead>
             <tr>
-              <th scope="col"><?= $this->Paginator->sort('Village:') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Subdivision:') ?></th>
-               
+              <th >Village name:</th>
+                       
                 
                
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($remaining_village as $village): ?>
+            <?php foreach ($chakpikarong_village as $village): ?>
             <tr>
                  <td><?= h($village->village_name) ?></td>
-                 <td><?= h($village->subdistrict->subdistrict_name) ?></td>
+                
                               
                 
             </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
-    <div class="paginator">
+    <!-- <div class="paginator">
         <ul class="pagination">
             <?= $this->Paginator->first('<< ' . __('first')) ?>
             <?= $this->Paginator->prev('< ' . __('previous')) ?>
@@ -59,6 +69,7 @@ $cakeDescription = 'VIS: Chandel Village Information System';
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
-    </div>
+    </div> -->
+   
 </body>
 </html>

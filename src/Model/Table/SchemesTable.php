@@ -40,6 +40,12 @@ class SchemesTable extends Table
         $this->belongsTo('Departments', [
             'foreignKey' => 'department_id'
         ]);
+
+        $this->hasMany('VillageSchemes',[
+            'foreignKey'=>'scheme_code',
+            'dependent'=>true
+
+        ]);
         
     }
 

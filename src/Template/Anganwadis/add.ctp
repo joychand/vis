@@ -37,8 +37,8 @@
               
 
            <?php echo $this->Form->control('total_anganwadi_worker',['label'=>'3.Total Anganwadi Workers:','required'=>true,'min'=>0]);
-            echo $this->Form->control('anganwadi_worker_name',['label'=>'4.Anganwadi Worker Name:','required'=>true]);
-            echo $this->Form->control('worker_mobile',['label'=>'5.Anganwadi Worker Mobile:','required'=>true,'maxlength'=>'10',"pattern"=>'^[789]\d{9}$','oninvalid'=>'setCustomValidity(\'Plz enter a valid mobile\')', 'oninput'=>'setCustomValidity(\'\')']);
+            echo $this->Form->control('anganwadi_worker_name',['label'=>'4.Anganwadi Worker Name (One Worker):','required'=>true]);
+            echo $this->Form->control('worker_mobile',['label'=>'5.Anganwadi Worker Mobile(One Worker):','required'=>true,'maxlength'=>'10',"pattern"=>'^[789]\d{9}$','oninvalid'=>'setCustomValidity(\'Plz enter a valid mobile\')', 'oninput'=>'setCustomValidity(\'\')']);
            // echo $this->Form->control('village_code');
         ?>
         <p style="font-weight:bold; font-size:.9em">6.Total no. of Pregnant Women:</p>

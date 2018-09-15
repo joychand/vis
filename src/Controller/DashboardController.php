@@ -12,6 +12,19 @@ use App\Controller\AppController;
 class DashboardController extends AppController
 {
     
+    /**Initialize mehtod 
+     *  
+     * 
+     * 
+      */
+
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('RequestHandler');
+
+    }
+
     /**
      * Index method
      *
@@ -54,13 +67,14 @@ class DashboardController extends AppController
 
     public function getEmptyVillage($modelToload=null,$agency=null)
     {
-       // dump($modelToload);
-      //  dump($agency);
+       
         if(isset($modelToload) && !isset($agency))
         {
             
           $this->loadModel($modelToload);
-          $this->loadModel('Villages');         
+          $this->loadModel('Villages');
+          $this->loadModel('Subdistricts');
+          $subDivs=$this->Subdistricts->find('list');         
        //** for Chakpikarong Subdivision ==1895 *** */
             $chakpikarong=$this->Villages->find()
                
@@ -70,7 +84,7 @@ class DashboardController extends AppController
                ->notMatching($modelToload,function($q) 
                {
                    return $q;
-               })->where(['Villages.subdistrict_code'=>'1895']);
+               })->where(['Villages.sub_district_code'=>'1895']);
 
         /** for Chandel Subdivision ==1894 */
             $chandel=$this->Villages->find()               
@@ -80,7 +94,7 @@ class DashboardController extends AppController
                              ->notMatching($modelToload,function($q) 
                              {
                                     return $q;
-                             })->where(['Villages.subdistrict_code'=>'1894']);  
+                             })->where(['Villages.sub_district_code'=>'1894']);  
         /*** for Khengjoy Subdivision === 6496***/                     
             $khengjoy=$this->Villages->find()               
                              ->contain('Subdistricts')
@@ -89,15 +103,14 @@ class DashboardController extends AppController
                              ->notMatching($modelToload,function($q) 
                              {
                                     return $q;
-                             })->where(['Villages.subdistrict_code'=>'6496']);   
+                             })->where(['Villages.sub_district_code'=>'6496']);   
         }
         else if (isset($modelToload) && isset($agency))
         {
             $this->loadModel($modelToload);
             $this->loadModel('Villages');         
-        //     $subquery=$this->$modelToload->find('all')->where(['counting_agency'=>2]);
-        //    sql($subquery);
-            $query=$this->Villages->find()
+        //** for CHAKPIKARONG SUB DIVISION 1895 */
+            $chakpikarong=$this->Villages->find()
                
                ->contain('Subdistricts')
                ->select(['village_code','village_name','Subdistricts.subdistrict_name'])
@@ -106,11 +119,31 @@ class DashboardController extends AppController
                ->notMatching($modelToload,function($q) use($agency)
                {
                    return $q->where(['counting_agency'=>$agency]);
-               });
+               })->where(['Villages.sub_district_code'=>'1895']);
+            //** for CHANDEL SUB DIVISION  1894*/
+            $chandel=$this->Villages->find()
+               
+               ->contain('Subdistricts')
+               ->select(['village_code','village_name','Subdistricts.subdistrict_name'])
+              
+               ->distinct('Villages.village_code')
+               ->notMatching($modelToload,function($q) use($agency)
+               {
+                   return $q->where(['counting_agency'=>$agency]);
+               })->where(['Villages.sub_district_code'=>'6496']);
 
-
-               //$query->orderAsc('Subdistricts.subdistrict_name');
-           // sql($query); 
+            /** for KHENGKOY SUBDIVISION */
+             $khengjoy=$this->Villages->find()
+               
+               ->contain('Subdistricts')
+               ->select(['village_code','village_name','Subdistricts.subdistrict_name'])
+              
+               ->distinct('Villages.village_code')
+               ->notMatching($modelToload,function($q) use($agency)
+               {
+                   return $q->where(['counting_agency'=>$agency]);
+               })->where(['Villages.sub_district_code'=>'1894']);
+               
 
         }
         
@@ -127,9 +160,36 @@ class DashboardController extends AppController
           // sql($query); 
           // $data=$query->toList(); 
           // $this->paginate = ['order'=>['Subdistricts.subdistrict_name'=>'ASC']];
-           $remaining_village=$this->paginate($query,['order'=>['Subdistricts.subdistrict_name']]);
-           $this->set(compact('remaining_village'));
+           //$chakpikarong_village=$this->paginate($chakpikarong);
+           $chakpikarong_village=$chakpikarong;
+        //    $chandel_village=$this->paginate($chandel);
+        //    $khengjoy_village=$this->paginate($khengjoy,['scope'=>$khengjoy]);
+           $this->set(compact('chakpikarong_village','chandel_village','khengjoy_village','subDivs'));
             
+    }
+
+    public function ajaxGetvillage($modelToload=null)
+    {
+        //dump($modelToload);
+        if(isset($modelToload) )
+        {
+            
+          $this->loadModel($modelToload);
+          $this->loadModel('Villages');         
+       //** for Chakpikarong Subdivision ==1895 *** */
+            $chakpikarong=$this->Villages->find()
+               
+               ->contain('Subdistricts')
+               ->select(['village_code','village_name','Subdistricts.subdistrict_name'])
+               ->distinct('Villages.village_code')
+               ->notMatching($modelToload,function($q) 
+               {
+                   return $q;
+               });
+              // header('Content-Type: application/json');
+          $this->set('chakpikarong', $this->paginate($chakpikarong));
+          $this->set('_serialize', 'chakpikarong');
+        }
     }
 }
     

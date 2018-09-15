@@ -24,7 +24,7 @@
                 <th scope="col"><?= $this->Paginator->sort('ANM') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('Staff_nurse') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('ASHA') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('asha_mobile') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('ASHA Mobile') ?></th>
                 
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>

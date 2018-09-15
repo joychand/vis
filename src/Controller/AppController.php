@@ -42,9 +42,9 @@ class AppController extends Controller
         parent::initialize();
         
 
-        $this->loadComponent('RequestHandler', [
-            'enableBeforeRedirect' => false,
-        ]);
+        // $this->loadComponent('RequestHandler', [
+        //     'enableBeforeRedirect' => false,
+        // ]);
         $this->loadComponent('Flash');
 		//If (!$this->request->is('ajax')) {
    // $this->loadComponent('Security');
@@ -78,7 +78,7 @@ class AppController extends Controller
 
         // Allow the display action so our PagesController
         // continues to work. Also enable the read only actions.
-        $this->Auth->allow(['display', 'view', 'getVillage','getEmptyVillage','index']);
+        $this->Auth->allow(['display', 'view', 'getVillage','getEmptyVillage','index','ajaxGetvillage']);
     }
         
     }
