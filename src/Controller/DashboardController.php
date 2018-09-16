@@ -84,7 +84,7 @@ class DashboardController extends AppController
                ->notMatching($modelToload,function($q) 
                {
                    return $q;
-               })->where(['Villages.sub_district_code'=>'1895']);
+               });
 
         /** for Chandel Subdivision ==1894 */
             $chandel=$this->Villages->find()               
@@ -119,7 +119,7 @@ class DashboardController extends AppController
                ->notMatching($modelToload,function($q) use($agency)
                {
                    return $q->where(['counting_agency'=>$agency]);
-               })->where(['Villages.sub_district_code'=>'1895']);
+               });
             //** for CHANDEL SUB DIVISION  1894*/
             $chandel=$this->Villages->find()
                

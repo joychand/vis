@@ -43,7 +43,9 @@ $cakeDescription = 'VIS: Chandel Village Information System';
     <table id="village" class="display">
         <thead>
             <tr>
+            <th></th>
               <th >Village name:</th>
+              <th >SubDivision:</th>
                        
                 
                
@@ -52,8 +54,9 @@ $cakeDescription = 'VIS: Chandel Village Information System';
         <tbody>
             <?php foreach ($chakpikarong_village as $village): ?>
             <tr>
+                <td></td>
                  <td><?= h($village->village_name) ?></td>
-                
+                 <td><?= h($village->subdistrict->subdistrict_name) ?></td>
                               
                 
             </tr>
