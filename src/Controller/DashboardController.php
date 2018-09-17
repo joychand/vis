@@ -187,7 +187,7 @@ class DashboardController extends AppController
                    return $q;
                });
               // header('Content-Type: application/json');
-          $this->set('chakpikarong', $this->paginate($chakpikarong));
+          $this->set('chakpikarong',$chakpikarong);
           $this->set('_serialize', 'chakpikarong');
         }
     }
