@@ -1,18 +1,19 @@
 
 $(document).ready(function(){
+    var csrfToken=$('input[name^="_csrfToken"]').val();
 var t =$('#village').DataTable( {
 
     paging: true,
     scrollY: 400,
     //"pageLength": 20,
     "pagingType": "full_numbers",
-    "columnDefs": [ {
-         "width": "20%", 
-        "searchable": false,
-        "orderable": false,
-        "targets": 0
-    } ],
-    "order": [[ 1, 'asc' ]],
+    // "columnDefs": [ {
+    //      "width": "20%", 
+    //     "searchable": false,
+    //     "orderable": false,
+    //     "targets": 0
+    // } ],
+  //  "order": [[ 1, 'asc' ]],
     dom: '<"row"B>lfrtip',
     buttons: [
         'copyHtml5', 'excelHtml5', 'pdfHtml5', 'csvHtml5','print'
@@ -42,13 +43,13 @@ var t =$('#village').DataTable( {
 
 
 } );
-var info=t.page.info();
-$('#villageno').html(info.recordsDisplay);
-t.on( 'order.dt search.dt', function () {
-    t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-        cell.innerHTML = i+1;
-    } );
-} ).draw();
+//var info=t.page.info();
+//$('#villageno').html(info.recordsDisplay);
+// t.on( 'order.dt search.dt', function () {
+//     t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+//         cell.innerHTML = i+1;
+//     } );
+// } ).draw();
 
 // t.columns([2]).every( function () {
 //     $('#subdivision').on('change', function () {
@@ -68,20 +69,47 @@ t.on( 'order.dt search.dt', function () {
 $('#subdivision').on('change', function(){
  alert("inside function");
 
-    var Id = $(this).val(); // gets selected value of dropdown
+ 
  
     var myTable = $('#village').DataTable({
                      "serverSide": true,
-                     //"processing": true,
+                    // "processing": true,
+                     "destroy": true,
+                     
                      "ajax": {
-                         "url": "dashboard/ajaxGetvillage/HealthInfras.json",
-                         "data": {modelToload: 'HealthInfras' }
-                     }
+                         "type":"post",
+                         "url": "http://localhost:8765/dashboard/ajaxGetvillage/HealthInfras.json",
+                         beforeSend: function(xhr){
+                            xhr.setRequestHeader('X-CSRF-Token', csrfToken);
+                            console.log($('input[name^="_csrfToken"]').val());
+                           
+                            },
+                            dataSrc: ''
+                        },
+                       
+                           
+                           paging: true,
+                            scrollY: 400,
+                            //"pageLength": 20,
+                            "pagingType": "full_numbers",
+                            // "columnDefs": [ {
+                            //                 "width": "20%", 
+                            //                  "searchable": false,
+                            //                  "orderable": false,
+                            //                  "targets": 0
+                            //                 } ],
+                           "order": [[ 1, 'asc' ]],
+                            dom: '<"row"B>rtp',
+                            buttons: [
+                                    'copyHtml5', 'excelHtml5', 'pdfHtml5', 'csvHtml5','print'
+                                    ],
+                         
+                     
                  });
  
-    myTable.ajax.reload();
+    //myTable.ajax.reload();
  
-    myTable.ajax.draw();
+   //myTable.ajax.draw();
  });
 
 

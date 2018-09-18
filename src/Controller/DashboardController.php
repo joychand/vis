@@ -180,13 +180,14 @@ class DashboardController extends AppController
             $chakpikarong=$this->Villages->find()
                
                ->contain('Subdistricts')
-               ->select(['village_code','village_name','Subdistricts.subdistrict_name'])
+               ->select(['village_name'])
                ->distinct('Villages.village_code')
                ->notMatching($modelToload,function($q) 
                {
                    return $q;
                });
               // header('Content-Type: application/json');
+          
           $this->set('chakpikarong',$chakpikarong);
           $this->set('_serialize', 'chakpikarong');
         }
