@@ -180,7 +180,7 @@ class DashboardController extends AppController
             $chakpikarong=$this->Villages->find()
                
                ->contain('Subdistricts')
-               ->select(['village_name'])
+               ->select(['village_name','Subdistricts.subdistrict_name'])
                ->distinct('Villages.village_code')
                ->notMatching($modelToload,function($q) 
                {

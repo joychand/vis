@@ -7,13 +7,13 @@ var t =$('#village').DataTable( {
     scrollY: 400,
     //"pageLength": 20,
     "pagingType": "full_numbers",
-    // "columnDefs": [ {
-    //      "width": "20%", 
-    //     "searchable": false,
-    //     "orderable": false,
-    //     "targets": 0
-    // } ],
-  //  "order": [[ 1, 'asc' ]],
+    "columnDefs": [ {
+         "width": "20%", 
+        "searchable": false,
+        "orderable": false,
+        "targets": 0
+    } ],
+   "order": [[ 1, 'asc' ]],
     dom: '<"row"B>lfrtip',
     buttons: [
         'copyHtml5', 'excelHtml5', 'pdfHtml5', 'csvHtml5','print'
@@ -45,11 +45,11 @@ var t =$('#village').DataTable( {
 } );
 //var info=t.page.info();
 //$('#villageno').html(info.recordsDisplay);
-// t.on( 'order.dt search.dt', function () {
-//     t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-//         cell.innerHTML = i+1;
-//     } );
-// } ).draw();
+t.on( 'order.dt search.dt', function () {
+    t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+        cell.innerHTML = i+1;
+    } );
+} ).draw();
 
 // t.columns([2]).every( function () {
 //     $('#subdivision').on('change', function () {
@@ -72,10 +72,11 @@ $('#subdivision').on('change', function(){
  
  
     var myTable = $('#village').DataTable({
-                     "serverSide": true,
+                    // "serverSide": true,
                     // "processing": true,
                      "destroy": true,
-                     
+                     //retrieve: true,
+                   //  "deferRender": true,
                      "ajax": {
                          "type":"post",
                          "url": "http://localhost:8765/dashboard/ajaxGetvillage/HealthInfras.json",
@@ -86,23 +87,27 @@ $('#subdivision').on('change', function(){
                             },
                             dataSrc: ''
                         },
-                       
+                       columns:[
+                           {data:null},
+                           {data:'village_name'},
+                           {data:'subdistrict.subdistrict_name'}
+                    ],
                            
-                           paging: true,
+                          paging: true,
                             scrollY: 400,
                             //"pageLength": 20,
                             "pagingType": "full_numbers",
-                            // "columnDefs": [ {
-                            //                 "width": "20%", 
-                            //                  "searchable": false,
-                            //                  "orderable": false,
-                            //                  "targets": 0
-                            //                 } ],
-                           "order": [[ 1, 'asc' ]],
-                            dom: '<"row"B>rtp',
-                            buttons: [
-                                    'copyHtml5', 'excelHtml5', 'pdfHtml5', 'csvHtml5','print'
-                                    ],
+                            "columnDefs": [ {
+                                            "width": "20%", 
+                                             "searchable": false,
+                                             "orderable": false,
+                                             "targets": 0
+                                            } ],
+                          "order": [[ 1, 'asc' ]],
+                          dom: '<"row"B>lfrtip',
+                            // buttons: [
+                            //         'copyHtml5', 'excelHtml5', 'pdfHtml5', 'csvHtml5','print'
+                            //         ],
                          
                      
                  });
@@ -110,6 +115,11 @@ $('#subdivision').on('change', function(){
     //myTable.ajax.reload();
  
    //myTable.ajax.draw();
+   myTable.on( 'order.dt search.dt', function () {
+        myTable.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+        cell.innerHTML = i+1;
+        } );
+    } ).draw();
  });
 
 
