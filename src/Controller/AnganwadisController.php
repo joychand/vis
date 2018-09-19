@@ -51,10 +51,14 @@ class AnganwadisController extends AppController
 
     public function index()
     {
-        $anganwadis = $this->paginate($this->Anganwadis->find('all')
-                      ->contain(['Villages']));
+        $this->loadModel('Subdistricts');
+        $subDivs=$this->Subdistricts->find('list'); 
+        $anganwadis = $this->Anganwadis->find('all')
+                      ->contain(['Villages'=>[
+                          'fields'=>['Villages.village_name']
+                      ]]);
 
-        $this->set(compact('anganwadis'));
+        $this->set(compact('anganwadis','subDivs'));
     }
 
     /**
@@ -204,6 +208,39 @@ class AnganwadisController extends AppController
         $session->write('homecontroller', $this->request->params['controller']);
        
 
+    }
+
+    public function ajaxFilterSubdivision()
+    {
+        $this->loadModel('Subdistricts');
+        $this->loadModel('Villages');
+      
+      if($this->request->getData('subdistrict_code')){
+        $subdist_code = $this->request->getData('subdistrict_code');
+        $villages=$this->Villages->find()
+             ->select(['village_code'])
+             ->distinct()
+             ->where(['sub_district_code'=> $subdist_code]);
+      }
+       
+      else{
+        $villages=$this->Villages->find()
+        ->select(['village_code'])
+        ->distinct();
+      }
+                  
+        $query=$this->Anganwadis
+               ->find()
+               ->select(['anganwadi_reference_year','total_anganwadi_centre','total_anganwadi_worker','total_enrolled_children','anganwadi_worker_name',
+                        'worker_mobile'])
+               ->contain(['Villages'=>[
+                   'fields'=>['Villages.village_name']]
+                   ])->where(['Anganwadis.village_code IN'=>$villages]);
+       // debug($query);
+        $this->set('query',$query);
+        $this->set('_serialize', 'query');
+      
+        
     }
 
     

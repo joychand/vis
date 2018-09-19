@@ -94,4 +94,5 @@ $cakeDescription = 'CVIS';
    
     
 </body>
+<?= $this->fetch('scriptBottom') ?>
 </html>
