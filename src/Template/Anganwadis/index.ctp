@@ -25,12 +25,13 @@
 <div class="anganwadis index large-9 medium-8 columns content">
     <div><h3><?= __('Anganwadis Village Data') ?></h3></div><hr>
 
-    <?= $this->Form->create()?>
+    <!-- <?= $this->Form->create()?> -->
     <?= $this->Form->control('subdivision',['label'=>'Filter by Subdivision:','type'=>'select','options'=>$subDivs,'empty'=>'All Villages','id'=>'subdivision'])?>
     <table  id="indexTable" class="display compact" style="width:100%">
         <thead>
             <tr>
                 <th></th>
+                <th>rowid</th>
                 <th>Village</th>
                 <th>Ref<br>Yr.</th>
                 <th>Angwandi<br>Center</th>
@@ -47,6 +48,7 @@
             <?php foreach ($anganwadis as $anganwadi): ?>
             <tr>
                  <td></td>
+                <td><?=  $anganwadi->anganwadi_id ?></td>
                  <td><?= h($anganwadi->village->village_name) ?></td>
                 <td><?= $this->Number->format($anganwadi->anganwadi_reference_year,['pattern'=>'####']) ?></td>
                 <td><?= $this->Number->format($anganwadi->total_anganwadi_centre) ?></td>
@@ -66,6 +68,7 @@
         <tfoot>
         <tr>
                 <td></td>
+               <td>rowid</td>
                 <td>Village</td>
                 <td >Ref<br>Yr.</td>
                 <td>Anganwadi<br>centre</td>

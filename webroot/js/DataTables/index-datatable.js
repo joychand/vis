@@ -14,7 +14,11 @@ var t =$('#indexTable').DataTable( {
         "orderable": false,
         "targets": 0
          },
-         {"width":"5%","targets":2},
+         {"width":"5%","targets":3},
+         {
+             visible:false,
+             targets:1
+         }
         //  {
         //     "targets": -1,
         //     "data": null,
@@ -83,13 +87,14 @@ $('#subdivision').on('change', function(){
                          data: {"subdistrict_code":$(this).val()},
                          beforeSend: function(xhr){
                             xhr.setRequestHeader('X-CSRF-Token', csrfToken);
-                            console.log($('input[name^="_csrfToken"]').val());
+                            //console.log($('input[name^="_csrfToken"]').val());
                            
                             },
                             dataSrc: ''
                         },
                        columns:[
                            {data:null},
+                           {data:'anganwadi_id'},
                            {data:'village.village_name'},
                            {data:'anganwadi_reference_year'},
                            {data:'total_anganwadi_centre'},
@@ -107,21 +112,27 @@ $('#subdivision').on('change', function(){
                           //  scrollY: 400,
                             //"pageLength": 20,
                            // "pagingType": "full_numbers",
-                            "columnDefs": [ {
+                            "columnDefs": [ 
+                                {
+                                    visible:false,
+                                    targets:1
+                                },
+                                            {
                                             "width": "5%", 
                                              "searchable": false,
                                              "orderable": false,
                                              "targets": 0
                                             },
-                                            {"width":"5%","targets":2},
+                                            {"width":"5%","targets":3},
                                          {
                                              "targets": -1,
                                              "data": null,
                                              orderable: false,
                                              searchable: false,
                                              render:function (data, type, row) {
-                                                var id = row.anganwadi_reference_year;
-                                                return '<a href="anganwadis/edit/"+ id + ">EDIT</a>';
+                                                var id = row.anganwadi_id;
+                                                var hello="<?=hello?>";
+                                                return '<a href="anganwadis/edit/'+ id +'">Edit</a>|<a class="delete" id="'+ id +'" href="#">Delete</a>';
                                                      }
                                                  
                                             // "defaultContent": "<div class=\"row\">"+ editbutton +"</div>"
@@ -169,6 +180,35 @@ $('#subdivision').on('change', function(){
         cell.innerHTML = i+1;
         } );
     } ).draw();
+
+    $('#indexTable tbody').on('click', '.delete', function(){
+        var rowid = $(this).attr('id');
+        if(confirm("Are you sure you want to Delete record id = " + rowid + "this data?"))
+        {
+            $.ajax({
+                url:"http://localhost:8765/anganwadis/ajaxDelete.json",
+                type:"post",
+                data:{"id":rowid},
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                   beforeSend: function(xhr){
+                   xhr.setRequestHeader('X-CSRF-Token', csrfToken);
+                              
+                    },
+                success:function(data)
+                {
+                    alert(data);
+                    myTable.ajax.reload();
+                },
+                error: function(error) {
+                    alert(error.message());
+                }
+            })
+        }
+        else
+        {
+            return false;
+        }
+    }); 
  });
 
 

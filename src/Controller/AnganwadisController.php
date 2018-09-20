@@ -42,7 +42,7 @@ class AnganwadisController extends AppController
             //dump($user);
             $action = $this->request->getParam('action');
             // The add and tags actions are always allowed to logged in users.
-            if (in_array($action, ['home','add', 'edit','delete','index','getvillage']) && in_array($user['role_id'],[1,13,14])) {
+            if (in_array($action, ['home','add', 'edit','delete','index','getvillage','ajaxDelete']) && in_array($user['role_id'],[1,13,14])) {
                 return true;
             }
 
@@ -231,7 +231,7 @@ class AnganwadisController extends AppController
                   
         $query=$this->Anganwadis
                ->find()
-               ->select(['anganwadi_reference_year','total_anganwadi_centre','total_anganwadi_worker','total_enrolled_children','anganwadi_worker_name',
+               ->select(['anganwadi_id','anganwadi_reference_year','total_anganwadi_centre','total_anganwadi_worker','total_enrolled_children','anganwadi_worker_name',
                         'worker_mobile'])
                ->contain(['Villages'=>[
                    'fields'=>['Villages.village_name']]
@@ -243,5 +243,26 @@ class AnganwadisController extends AppController
         
     }
 
-    
+    public function ajaxDelete()
+    {
+        $mesg="Delete Fail";
+
+       // $this->request->allowMethod(['post', 'delete']);
+        if ($this->request->is(['ajax', 'post'])) 
+        {
+
+            $anganwadi = $this->Anganwadis->get($this->request->getData('id'));
+            if ($this->Anganwadis->delete($anganwadi)) {
+               $mesg="Delete Success";
+            } 
+            else 
+            {
+               $mesg="Delete Fail";
+            }
+        }
+        $this->set('mesg',$mesg);
+        $this->set('_serialize', 'mesg');
+
+       
+    }
 }
