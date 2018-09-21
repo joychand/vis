@@ -54,7 +54,7 @@ $cakeDescription = 'VIS: Chandel Village Information System';
           <ul class=" stack-for-small button-group even-3 round">
             <li><a class="button primary" href="<?=$loginUrl?>" target="_blank" >LogIn <i class="fi-torso large" style="font-size: .9rem;"></i></a></li>
             
-            <li><a class=" button info" href="#">Report(Demo)</a></li>
+            <li><a class=" button info" href="<?=$reportUrl?>">Report(Demo)</a></li>
             <li><a class=" button warning" href="#">Help</a></li>
           </ul>    
         

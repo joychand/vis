@@ -4,7 +4,7 @@ $(document).ready(function(){
 var t =$('#indexTable').DataTable( {
 
     paging: true,
-    scrollY: 400,
+   // scrollY: 400,
     bScrollCollapse: false,
     //"pageLength": 20,
     "pagingType": "full_numbers",
@@ -14,17 +14,12 @@ var t =$('#indexTable').DataTable( {
         "orderable": false,
         "targets": 0
          },
-         {"width":"5%","targets":3},
+       
          {
              visible:false,
              targets:1
          }
-        //  {
-        //     "targets": -1,
-        //     "data": null,
-        //     "defaultContent": "<button class=\"button small\" style=\"padding:0\">Edit!</button>"
-        // } ,
-        // { orderable: false, searchable: false, targets: -1 }
+      
         
         
       ],
@@ -85,9 +80,10 @@ $('#subdivision').on('change', function(){
                          "type":"post",
                          "url": "http://localhost:8765/anganwadis/ajaxFilterSubdivision.json",
                          data: {"subdistrict_code":$(this).val()},
+                        
                          beforeSend: function(xhr){
                             xhr.setRequestHeader('X-CSRF-Token', csrfToken);
-                            //console.log($('input[name^="_csrfToken"]').val());
+                            console.log($('input[name^="_csrfToken"]').val());
                            
                             },
                             dataSrc: ''
@@ -180,9 +176,11 @@ $('#subdivision').on('change', function(){
         cell.innerHTML = i+1;
         } );
     } ).draw();
+    console.log("setup");
+    $('#indexTable tbody').off('click', 'a.delete').on('click', 'a.delete', function(){
 
-    $('#indexTable tbody').on('click', '.delete', function(){
         var rowid = $(this).attr('id');
+        console.log(rowid);
         if(confirm("Are you sure you want to Delete record id = " + rowid + "this data?"))
         {
             $.ajax({
@@ -200,7 +198,8 @@ $('#subdivision').on('change', function(){
                     myTable.ajax.reload();
                 },
                 error: function(error) {
-                    alert(error.message());
+                    alert(error);
+                    myTable.ajax.reload();
                 }
             })
         }

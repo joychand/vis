@@ -25,7 +25,7 @@ class AnganwadisController extends AppController
     {
        parent::initialize();
        $this->loadComponent('RequestHandler');
-      // $this->loadComponent('Security');
+       //$this->loadComponent('Security');
    }
     public function beforeFilter(Event $event)
     {
