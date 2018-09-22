@@ -230,9 +230,7 @@ class AnganwadisController extends AppController
       }
                   
         $query=$this->Anganwadis
-               ->find()
-               ->select(['anganwadi_id','anganwadi_reference_year','total_anganwadi_centre','total_anganwadi_worker','total_enrolled_children','anganwadi_worker_name',
-                        'worker_mobile'])
+               ->find('all')               
                ->contain(['Villages'=>[
                    'fields'=>['Villages.village_name']]
                    ])->where(['Anganwadis.village_code IN'=>$villages]);

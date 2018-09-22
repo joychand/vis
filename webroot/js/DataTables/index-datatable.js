@@ -8,47 +8,69 @@ var t =$('#indexTable').DataTable( {
     bScrollCollapse: false,
     //"pageLength": 20,
     "pagingType": "full_numbers",
-    "columnDefs": [ {
-         "width": "5%", 
-        "searchable": false,
-        "orderable": false,
-        "targets": 0
-         },
-       
-         {
-             visible:false,
-             targets:1
-         }
-      
+    "columnDefs": [
+        {
+            "width": "3%", 
+           "searchable": false,
+           "orderable": false,
+           "targets": 0
+        },
+        {
+            visible:false,
+            targets:1
+        },
+     
+        {
+            targets:[3,4,5,6,7,8,9,-1,10,11,12],
+            orderable: false
+        },
+        {
+            targets:[8,9,10],
+            width:"2%"
+        },
+        {
+            targets:[2,7],
+            width:"13%"
+        },
+        {
+            targets:3,
+            width:"5%"
+        },
+        {
+            targets:[6],
+            width:"7%"
+        }   
+        
+             
         
         
       ],
-   "order": [[1, 'asc' ]],
+   "order": [[2, 'asc' ]],
     dom: '<"row"B>lfrtip',
     buttons: [
         {
             extend: 'copyHtml5',
             exportOptions: {
-                columns: [1,2,3,4,5,6,7]
+                columns: [0,2,3,4,5,6,7,8]
             }
         },
         {
             extend: 'excelHtml5',
             exportOptions: {
-                columns: [1,2,3,4,5,6,7]
+                columns: [0,2,3,4,5,6,7,8]
             }
         },
         {
             extend: 'pdfHtml5',
             exportOptions: {
-                columns: [1,2,3,4,5,6,7]
+                columns: [0,2,3,4,5,6,7,8]
             }
         } ,
         
         {
             extend: 'print',
             exportOptions: {
-                columns: [1,2,3,4,5,6,7]
+                columns: [0,2,3,4,5,6,7,8]
             }
         }   
     ],
@@ -98,6 +120,9 @@ $('#subdivision').on('change', function(){
                            {data:'total_enrolled_children'},
                            {data:'anganwadi_worker_name'},
                            {data:'worker_mobile'},
+                           {data:'first_qtr_pregnant'},
+                           {data:'second_qtr_pregnant'},
+                           {data:'third_qtr_pregnant'},
                            {data:null}
                     ],
                     language: {
@@ -109,61 +134,80 @@ $('#subdivision').on('change', function(){
                             //"pageLength": 20,
                            // "pagingType": "full_numbers",
                             "columnDefs": [ 
-                                {
-                                    visible:false,
-                                    targets:1
-                                },
-                                            {
-                                            "width": "5%", 
-                                             "searchable": false,
-                                             "orderable": false,
-                                             "targets": 0
-                                            },
-                                            {"width":"5%","targets":3},
-                                         {
-                                             "targets": -1,
-                                             "data": null,
-                                             orderable: false,
-                                             searchable: false,
-                                             render:function (data, type, row) {
-                                                var id = row.anganwadi_id;
-                                                var hello="<?=hello?>";
-                                                return '<a href="anganwadis/edit/'+ id +'">Edit</a>|<a class="delete" id="'+ id +'" href="#">Delete</a>';
-                                                     }
+                                                // {
+                                                //      "width": "3%", 
+                                                //      "searchable": false,
+                                                //      "orderable": false,
+                                                //      "targets": 0
+                                                //  },
+                                                 {
+                                                     visible:false,
+                                                     targets:1
+                                                 },
+                             
+                                                 {
+                                                    targets:[3,4,5,6,7,8,9,-1,10,11,12],
+                                                    orderable: false
+                                                },
+                                                //  {
+                                                //      targets:[8,9,10],
+                                                //     width:"2%"
+                                                // },
+                                                // {
+                                                //      targets:[2,7],
+                                                //     width:"13%"
+                                                // },
+                                                //  {
+                                                //     targets:3,
+                                                //     width:"5%"
+                                                // },
+                                                //  {
+                                                //      targets:[6],
+                                                //      width:"7%"
+                                                //  },      
+                                                 {
+                                                     "targets": -1,
+                                                     "data": null,
+                                                     orderable: false,
+                                                    searchable: false,
+                                                    render:function (data, type, row) {
+                                                         var id = row.anganwadi_id;
+                                               
+                                                            return '<a href="anganwadis/edit/'+ id +'">Edit</a>|<a class="delete" id="'+ id +'" href="#">Delete</a>';
+                                                             }
                                                  
-                                            // "defaultContent": "<div class=\"row\">"+ editbutton +"</div>"
-                                            // "defaultContent": "<div class=\"row\"><a href=\"#\">Edit!</a><a href=\"#\">Delete!</a></div>"
-                                             } ,
+                                            
+                                                 } 
                                              ],
-                         // "order": [[ 1, 'asc' ]],
+                          "order": [[ 2, 'asc' ]],
                           dom: '<"row"B>lfrtip',
-                          buttons: [
-                            {
-                                extend: 'copyHtml5',
-                                exportOptions: {
-                                    columns: [1,2,3,4,5,6,7]
-                                }
-                            },
-                            {
-                                extend: 'excelHtml5',
-                                exportOptions: {
-                                    columns: [1,2,3,4,5,6,7]
-                                }
-                            },
-                            {
-                                extend: 'pdfHtml5',
-                                exportOptions: {
-                                    columns: [1,2,3,4,5,6,7]
-                                }
-                            } ,
+                        //   buttons: [
+                        //     {
+                        //         extend: 'copyHtml5',
+                        //         exportOptions: {
+                        //             columns: [1,2,3,4,5,6,7]
+                        //         }
+                        //     },
+                        //     {
+                        //         extend: 'excelHtml5',
+                        //         exportOptions: {
+                        //             columns: [1,2,3,4,5,6,7]
+                        //         }
+                        //     },
+                        //     {
+                        //         extend: 'pdfHtml5',
+                        //         exportOptions: {
+                        //             columns: [1,2,3,4,5,6,7]
+                        //         }
+                        //     } ,
                             
-                            {
-                                extend: 'print',
-                                exportOptions: {
-                                    columns: [1,2,3,4,5,6,7]
-                                }
-                            }   
-                        ],
+                        //     {
+                        //         extend: 'print',
+                        //         exportOptions: {
+                        //             columns: [1,2,3,4,5,6,7]
+                        //         }
+                        //     }   
+                       // ],
                          
                      
                  });
