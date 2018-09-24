@@ -18,6 +18,7 @@ class FoodSecuritiesController extends AppController
     public function initialize()
     {
         parent::initialize();
+        $this->loadComponent('RequestHandler');
         //$this->set('title','CAF&PD');
     }
 
@@ -27,7 +28,7 @@ class FoodSecuritiesController extends AppController
         //dump($user);
         $action = $this->request->getParam('action');
         // The add and tags actions are always allowed to logged in users.
-        if (in_array($action, ['add', 'edit','delete','home','index']) &&  in_array($user['role_id'],[2,13,14]) ) {
+        if (in_array($action, ['add', 'edit','delete','home','index','ajaxFilterSubdivision','ajaxDelete']) &&  in_array($user['role_id'],[2,13,14]) ) {
             return true;
         }
         
@@ -41,9 +42,16 @@ class FoodSecuritiesController extends AppController
      */
     public function index()
     {
-        $foodSecurities = $this->paginate($this->FoodSecurities->find('all')->contain(['Villages']));
+        $this->loadModel('Subdistricts');
+        $subDivs=$this->Subdistricts->find('list'); 
+        $foodSecurities = $this->FoodSecurities->find('all')
+                      ->contain(['Villages'=>[
+                          'fields'=>['Villages.village_name']
+                      ]]);
 
-        $this->set(compact('foodSecurities'));
+        $this->set(compact('foodSecurities','subDivs'));
+
+       // $this->set(compact(''));
     }
 
     /**
@@ -192,5 +200,69 @@ class FoodSecuritiesController extends AppController
              echo json_encode($villages);
              exit();
         }
+    }
+
+    public function ajaxFilterSubdivision()
+    {
+       
+        if ($this->request->is(['ajax', 'post'])) 
+        {
+           // $this->autoRender = false;
+            $this->loadModel('Subdistricts');
+            $this->loadModel('Villages');
+          
+          if($this->request->getData('subdistrict_code')){
+            $subdist_code = $this->request->getData('subdistrict_code');
+            $villages=$this->Villages->find()
+                 ->select(['village_code'])
+                 ->distinct()
+                 ->where(['sub_district_code'=> $subdist_code]);
+          }
+           
+          else{
+            $villages=$this->Villages->find()
+            ->select(['village_code'])
+            ->distinct();
+          }
+                      
+            $query=$this->FoodSecurities
+                   ->find('all')               
+                   ->contain(['Villages'=>[
+                       'fields'=>['Villages.village_name']]
+                       ])->where(['FoodSecurities.village_code IN'=>$villages]);
+           // debug($query);
+            $this->set('query',$query);
+            $this->set('_serialize', 'query');
+
+        }
+       
+       
+      
+        
+    }
+
+    public function ajaxDelete()
+    {
+       // $this->autoRender = false;
+       // $this->layout='ajax';
+        $mesg="Delete Fail";
+        
+       // $this->request->allowMethod(['post', 'delete']);
+        if ($this->request->is(['ajax', 'post'])) 
+        {
+
+            $foodsecurity = $this->FoodSecurities->get($this->request->getData('id'));
+            if ($this->FoodSecurities->delete($foodsecurity)) {
+               $mesg="Delete Success";
+            } 
+            else 
+            {
+               $mesg="Delete Fail";
+            }
+        }
+        $this->set('mesg',$mesg);
+        $this->set('_serialize', 'mesg');
+
+       
     }
 }

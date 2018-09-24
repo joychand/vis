@@ -15,12 +15,19 @@ class HealthInfrasController extends AppController
 {
 
 
+    public function initialize()
+    {
+       parent::initialize();
+       $this->loadComponent('RequestHandler');
+       //$this->loadComponent('Security');
+   }
+
     public function isAuthorized($user)
         {
             //dump($user);
             $action = $this->request->getParam('action');
            
-            if (in_array($action, ['home','add', 'edit','delete','index','getvillage']) && in_array($user['role_id'],[5,13,14])) {
+            if (in_array($action, ['home','add', 'edit','delete','index','getvillage','ajaxFilterSubdivision','ajaxDelete']) && in_array($user['role_id'],[5,13,14])) {
                 return true;
             }
 
@@ -34,10 +41,14 @@ class HealthInfrasController extends AppController
      */
     public function index()
     {
-        $healthInfras = $this->paginate($this->HealthInfras->find('all')
-                        ->contain(['Villages']));
+        $this->loadModel('Subdistricts');
+        $subDivs=$this->Subdistricts->find('list'); 
+        $healthInfras = $this->HealthInfras->find('all')
+                      ->contain(['Villages'=>[
+                          'fields'=>['Villages.village_name']
+                      ]]);       
 
-        $this->set(compact('healthInfras'));
+        $this->set(compact('healthInfras','subDivs'));
     }
 
     /**
@@ -187,5 +198,69 @@ class HealthInfrasController extends AppController
         
        
         
+    }
+
+    public function ajaxFilterSubdivision()
+    {
+       
+        if ($this->request->is(['ajax', 'post'])) 
+        {
+           // $this->autoRender = false;
+            $this->loadModel('Subdistricts');
+            $this->loadModel('Villages');
+          
+          if($this->request->getData('subdistrict_code')){
+            $subdist_code = $this->request->getData('subdistrict_code');
+            $villages=$this->Villages->find()
+                 ->select(['village_code'])
+                 ->distinct()
+                 ->where(['sub_district_code'=> $subdist_code]);
+          }
+           
+          else{
+            $villages=$this->Villages->find()
+            ->select(['village_code'])
+            ->distinct();
+          }
+                      
+            $query=$this->HealthInfras
+                   ->find('all')               
+                   ->contain(['Villages'=>[
+                       'fields'=>['Villages.village_name']]
+                       ])->where(['HealthInfras.village_code IN'=>$villages]);
+           // debug($query);
+            $this->set('query',$query);
+            $this->set('_serialize', 'query');
+
+        }
+       
+       
+      
+        
+    }
+
+    public function ajaxDelete()
+    {
+       // $this->autoRender = false;
+       // $this->layout='ajax';
+        $mesg="Delete Fail";
+        
+       // $this->request->allowMethod(['post', 'delete']);
+        if ($this->request->is(['ajax', 'post'])) 
+        {
+
+            $healthInfra = $this->HealthInfras->get($this->request->getData('id'));
+            if ($this->HealthInfras->delete($healthInfra)) {
+               $mesg="Delete Success";
+            } 
+            else 
+            {
+               $mesg="Delete Fail";
+            }
+        }
+        $this->set('mesg',$mesg);
+        $this->set('_serialize', 'mesg');
+
+       
     }
 }

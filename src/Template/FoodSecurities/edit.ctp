@@ -25,10 +25,13 @@
         <?php
             //echo $this->Form->control('total_aay_members');
            // echo $this->Form->control('reference_year',['type'=>'select','label'=>'Ref.Yr:','options'=>['2011'=>'2011','2012'=>'2012','2013'=>'2013','2014'=>'2014','2015'=>'2015','2016'=>'2016','2017'=>'2017','2018'=>'2018'],'empty'=>'Select Yr.','required'=>true]);
-            echo $this->Form->control('total_aay_members',['label'=>'Total AAY Members:','required'=>true,'min'=>0]);
-            echo $this->Form->control('total_phh_members',['label'=>'Total PHH Members:','required'=>true,'min'=>0]);
+           echo $this->Form->control('total_aay_card',['label'=>'1.Total AAY Cards:','required'=>true,'min'=>0]);
+           echo $this->Form->control('total_aay_members',['label'=>'Total AAY Members:','required'=>true,'min'=>0]);
+           echo $this->Form->control('total_phh_card',['label'=>'3.Total PHH Cards:','required'=>true,'min'=>0]);
+           echo $this->Form->control('total_phh_members',['label'=>'Total PHH Members:','required'=>true,'min'=>0]);
             echo $this->Form->control('total_aadhaar_seeded_card',['label'=>'Total Aadhaar Seeded Card','required'=>true,'min'=>0]);
             echo $this->Form->control('total_fair_price_shop',['label'=>'Total Fair Price Shop','required'=>true,'min'=>0]);
+            echo $this->Form->control('fair_price_shop_name',['label'=>'7. Fair Price Shop Name','required'=>true]);
            // echo $this->Form->control('village_code');
         ?>
     </fieldset>

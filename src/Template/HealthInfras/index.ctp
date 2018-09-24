@@ -3,6 +3,10 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\HealthInfra[]|\Cake\Collection\CollectionInterface $healthInfras
  */
+$this->layout = 'index_layout';
+ $ajaxFilterUrl=$this->Url->build(['action' => 'ajaxFilterSubdivision']); 
+ $ajaxDeleteUrl=$this->Url->build(['action' => 'ajaxDelete']); 
+ $this->Html->script('DataTables/healthinfras.js',['block'=>'scriptBottom']);   
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
@@ -12,26 +16,38 @@
     </ul>
 </nav>
 <div class="healthInfras index large-9 medium-8 columns content">
-    <h3><?= __('Health Infras') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+   
+    <fieldset style="padding:0 !important"><legend><?= __('Health Infra Village Data') ?></legend></fieldset>
+
+   <?= $this->Form->create(null)?>
+    <?= $this->Form->control('subdivision',['label'=>'Filter by Subdivision:','type'=>'select','options'=>$subDivs,'empty'=>'All Villages','id'=>'subdivision','rel'=>$ajaxFilterUrl])?>
+   <?= $this->Form->hidden('deleteUrl',['value'=>$ajaxDeleteUrl]) ?>
+    <?= $this->Form->end()?>
+    <table  id="indexTable" class="display compact" style="width:100%">
         <thead>
             <tr>
-                 <th scope="col"><?= $this->Paginator->sort('village') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Ref.Yr.') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Name of CHC/PHC/PHSC') ?></th>
-               
-                <th scope="col"><?= $this->Paginator->sort('Doctors') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('ANM') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Staff_nurse') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('ASHA') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('ASHA Mobile') ?></th>
+                 <th rowspan="2"></th>
+                 <th rowspan="2">rowid</th>
+                 <th rowspan="2">village</th>
+                 <th rowspan="2">Ref.Yr.</th>
+                 <th rowspan="2">CHC/PHC/<br>PHSC Name</th>
+                 <th rowspan="2">Doctors</th>
+                 <th rowspan="2">ANM</th>
+                 <th rowspan="2">Staff<br>nurse</th>
+                 <th colspan="2">ASHA</th>
+                 <th rowspan="2">Actions</th>
                 
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+            </tr>
+            <tr>
+            <th>Workers(nos)</th>
+            <th>Mobile</th>           
             </tr>
         </thead>
         <tbody>
             <?php foreach ($healthInfras as $healthInfra): ?>
             <tr>
+            <td></td>
+            <td><?= $this->Number->format($healthInfra->health_infra_id) ?></td>
                  <td><?= h($healthInfra->village->village_name) ?></td>
                 <td><?= $this->Number->format($healthInfra->health_reference_year,['pattern'=>'####']) ?></td>
                 <td><?= h($healthInfra->name_of_health_centre) ?></td>
@@ -50,15 +66,19 @@
             </tr>
             <?php endforeach; ?>
         </tbody>
+        <tfoot>
+                <td></td>
+                <td>rowid</td>
+                <td>village</td>
+                <td>Ref.Yr.</td>
+                <td>CHC/PHC/<br>PHSCName</td>
+                <td>Doctors</td>
+                <td>ANM</td>
+                <td>Staff_nurse</td>
+                <td>Workers(nos)</td>
+                <td>Mobile</td>
+                <td>Actions</td>
+        </tfoot>
     </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
-    </div>
+    
 </div>

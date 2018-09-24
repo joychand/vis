@@ -3,6 +3,10 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\EducationInfra[]|\Cake\Collection\CollectionInterface $educationInfras
  */
+$this->layout = 'index_layout';
+$ajaxFilterUrl=$this->Url->build(['action' => 'ajaxFilterSubdivision']); 
+$ajaxDeleteUrl=$this->Url->build(['action' => 'ajaxDelete']); 
+$this->Html->script('DataTables/education.js',['block'=>'scriptBottom']);  
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
@@ -12,39 +16,54 @@
     </ul>
 </nav>
 <div class="educationInfras index large-9 medium-8 columns content">
-    <h3><?= __('Village Education Infras') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+<fieldset style="padding:0 !important"><legend><?= __('Education Village Data') ?></legend></fieldset>
+
+<?= $this->Form->create(null)?>
+ <?= $this->Form->control('subdivision',['label'=>'Filter by Subdivision:','type'=>'select','options'=>$subDivs,'empty'=>'All Villages','id'=>'subdivision','rel'=>$ajaxFilterUrl])?>
+<?= $this->Form->hidden('deleteUrl',['value'=>$ajaxDeleteUrl]) ?>
+ <?= $this->Form->end()?>
+    <table  id="indexTable" class="display compact" style="width:100%">
         <thead>
             <tr>
+                <th rowspan="2"></th>
+                <th rowspan="2">rowid</th>
+                <th rowspan="2">village</th>
+                <th rowspan="2">Ref.Yr.</th>
                 
-                <th scope="col"><?= $this->Paginator->sort('Ref.Yr.') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('village') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('govt_school') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('adc_school') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('private_school') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('primary_school') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('primary_student') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('teacher') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('JHS') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('JHS student') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('teacher') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Sec school') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Sec student') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('teacher') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('HrSec school') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('HrSec student') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Teacher') ?></th>
-               
-               
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th colspan="3">SchoolType</th>
+                <th colspan="3">Primary</th>
+                <th colspan="3">JHS</th>
+                <th colspan="3">Secondary</th>
+                <th colspan="3">Hr.Sec</th>
+                <th rowspan="2" >Actions</th>
+            </tr>
+            <tr>
+                <th>govt</th>
+                <th>adc</th>
+                <th>private</th>
+                <th>school</th>
+                <th>student</th>
+                <th>teacher</th>
+                <th>school</th>
+                <th>student</th>
+                <th>teacher</th>
+                <th>school</th>
+                <th>student</th>
+                <th>teacher</th>
+                <th>school</th>
+                <th>student</th>
+                <th>teacher</th>
+            
             </tr>
         </thead>
         <tbody>
             <?php foreach ($educationInfras as $educationInfra): ?>
             <tr>
-               
-                <td><?= $this->Number->format($educationInfra->education_reference_year,['pattern'=>'####']) ?></td>
+                <td></td>
+                <td><?= $this->Number->format($educationInfra->education_infra_id) ?></td>
                 <td><?= h($educationInfra->village->village_name) ?></td>
+                <td><?= $this->Number->format($educationInfra->education_reference_year,['pattern'=>'####']) ?></td>
+               
                 <td><?= $this->Number->format($educationInfra->total_govt_school) ?></td>
                 <td><?= $this->Number->format($educationInfra->total_adc_school) ?></td>
                 <td><?= $this->Number->format($educationInfra->total_private_school) ?></td>
@@ -64,21 +83,39 @@
                 
                 <td class="actions">
                   
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $educationInfra->education_infra_id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $educationInfra->education_infra_id]) ?>|
                     <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $educationInfra->education_infra_id], ['confirm' => __('Are you sure you want to delete # {0}?', $educationInfra->education_infra_id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
+        <tfoot>
+        <tr>
+                <td></td>
+                <td>rowid</td>
+                <td>village</td>
+                <td>Ref.Yr.</td>
+                
+                <td>govt</td>
+                <td>adc</td>
+                <td>private</td>
+                <td>school</td>
+                <td>student</td>
+                <td>teacher</td>
+                <td>school</td>
+                <td>student</td>
+                <td>teacher</td>
+                <td>school</td>
+                <td>student</td>
+                <td>teacher</td>
+                <td>school</td>
+                <td>student</td>
+                <td>teacher</td>
+                           
+               
+                <td scope="col" class="actions"><?= __('Actions') ?></td>
+        </tr>
+        </tfoot>
     </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
-    </div>
+    
 </div>

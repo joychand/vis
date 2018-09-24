@@ -212,39 +212,49 @@ class AnganwadisController extends AppController
 
     public function ajaxFilterSubdivision()
     {
-        $this->loadModel('Subdistricts');
-        $this->loadModel('Villages');
-      
-      if($this->request->getData('subdistrict_code')){
-        $subdist_code = $this->request->getData('subdistrict_code');
-        $villages=$this->Villages->find()
-             ->select(['village_code'])
-             ->distinct()
-             ->where(['sub_district_code'=> $subdist_code]);
-      }
        
-      else{
-        $villages=$this->Villages->find()
-        ->select(['village_code'])
-        ->distinct();
-      }
-                  
-        $query=$this->Anganwadis
-               ->find('all')               
-               ->contain(['Villages'=>[
-                   'fields'=>['Villages.village_name']]
-                   ])->where(['Anganwadis.village_code IN'=>$villages]);
-       // debug($query);
-        $this->set('query',$query);
-        $this->set('_serialize', 'query');
+        if ($this->request->is(['ajax', 'post'])) 
+        {
+           $this->autoRender = false;
+            $this->loadModel('Subdistricts');
+            $this->loadModel('Villages');
+          
+          if($this->request->getData('subdistrict_code')){
+            $subdist_code = $this->request->getData('subdistrict_code');
+            $villages=$this->Villages->find()
+                 ->select(['village_code'])
+                 ->distinct()
+                 ->where(['sub_district_code'=> $subdist_code]);
+          }
+           
+          else{
+            $villages=$this->Villages->find()
+            ->select(['village_code'])
+            ->distinct();
+          }
+                      
+            $query=$this->Anganwadis
+                   ->find('all')               
+                   ->contain(['Villages'=>[
+                       'fields'=>['Villages.village_name']]
+                       ])->where(['Anganwadis.village_code IN'=>$villages]);
+           // debug($query);
+            $this->set('query',$query);
+            $this->set('_serialize', 'query');
+
+        }
+       
+       
       
         
     }
 
     public function ajaxDelete()
     {
+       // $this->autoRender = false;
+       // $this->layout='ajax';
         $mesg="Delete Fail";
-
+        
        // $this->request->allowMethod(['post', 'delete']);
         if ($this->request->is(['ajax', 'post'])) 
         {

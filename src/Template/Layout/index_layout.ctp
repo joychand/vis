@@ -27,9 +27,20 @@ $cakeDescription = 'VIS Chandel District, Manipur';
 <head>
 <?php  $this->Html->script('jquery-3.3.1.min.js',['block'=>true]);?>
 <?php  $this->Html->script('foundation.min.js',['block'=>true]);?> 
-<?php $this->Html->script('dropdown.js', ['block'=>true]);?>
-<?php $this->Html->script('hidediv.js', ['block'=>true]);?>
-<?php $this->Html->script('js.cookie.js', ['block'=>true]);?>
+<?php
+
+  //$ajaxFilterUrl=$this->Url->build(['action' => 'ajaxFilterSubdivision']); 
+  //$ajaxDeleteUrl=$this->Url->build(['action' => 'ajaxDelete']); 
+  $this->Html->css('DataTables/datatables.min.css',['block'=>true]);
+  $this->Html->css('DataTables/buttons.dataTables.min.css',['block'=>true]);   
+  $this->Html->script('DataTables/DataTables.min.js',['block'=>'scriptBottom']);
+  $this->Html->script('DataTables/dataTables.buttons.min.js',['block'=>'scriptBottom']); 
+  $this->Html->script('DataTables/buttons.html5.min.js',['block'=>'scriptBottom']);
+ 
+  
+    
+   
+?>
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
@@ -39,7 +50,7 @@ $cakeDescription = 'VIS Chandel District, Manipur';
     <?= $this->Html->meta('icon') ?>
 
     <?= $this->Html->css('base.css') ?>
-    <!-- <?= $this->Html->css('foundation.min.css') ?> -->
+   
     <?= $this->Html->css('style.css') ?>
 
     <?= $this->fetch('meta') ?>

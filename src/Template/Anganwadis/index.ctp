@@ -3,16 +3,13 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Anganwadi[]|\Cake\Collection\CollectionInterface $anganwadis
  */
-  
-  $this->Html->css('DataTables/datatables.min.css',['block'=>true]); 
-  $this->Html->css('DataTables/dataTables.jqueryui.min.css',['block'=>true]); 
-  $this->Html->css('https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css',['block'=>true]) ; 
-   $this->Html->script('DataTables/DataTables.min.js',['block'=>'scriptBottom']);
-    
-     $this->Html->script('https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js',['block'=>'scriptBottom']);
-    $this->Html->script('https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js',['block'=>'scriptBottom']);
-    $this->Html->script('https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js',['block'=>'scriptBottom']);
-    $this->Html->script('DataTables/index-datatable.js',['block'=>'scriptBottom']);
+$this->layout = 'index_layout';
+ $ajaxFilterUrl=$this->Url->build(['action' => 'ajaxFilterSubdivision']); 
+ $ajaxDeleteUrl=$this->Url->build(['action' => 'ajaxDelete']); 
+
+  $this->Html->script('DataTables/anganwadi-index.js',['block'=>'scriptBottom']);   
+   
+   
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
@@ -26,7 +23,8 @@
     <fieldset style="padding:0 !important"><legend><?= __('Anganwadis Village Data') ?></legend></fieldset>
 
    <?= $this->Form->create(null)?>
-    <?= $this->Form->control('subdivision',['label'=>'Filter by Subdivision:','type'=>'select','options'=>$subDivs,'empty'=>'All Villages','id'=>'subdivision'])?>
+    <?= $this->Form->control('subdivision',['label'=>'Filter by Subdivision:','type'=>'select','options'=>$subDivs,'empty'=>'All Villages','id'=>'subdivision','rel'=>$ajaxFilterUrl])?>
+   <?= $this->Form->hidden('deleteUrl',['value'=>$ajaxDeleteUrl]) ?>
     <?= $this->Form->end()?>
     <table  id="indexTable" class="display compact" style="width:100%">
         <thead>

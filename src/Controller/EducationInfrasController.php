@@ -18,12 +18,19 @@ class EducationInfrasController extends AppController
      * isAuthorized method
      * 
      */
+    public function initialize()
+    {
+       parent::initialize();
+       $this->loadComponent('RequestHandler');
+       //$this->loadComponent('Security');
+   }
+
     public function isAuthorized($user)
     {
         $action = $this->request->getParam('action');
         // The add and tags actions are always allowed to logged in users.
         //till now role_id are hardcoded.. needs to be updated with general function
-        if (in_array($action, ['home','add', 'edit','delete','index']) && in_array($user['role_id'],[3,13,14])) {
+        if (in_array($action, ['home','add', 'edit','delete','index','ajaxFilterSubdivision','ajaxDelete']) && in_array($user['role_id'],[3,13,14])) {
             return true;
         }
     }
@@ -34,10 +41,16 @@ class EducationInfrasController extends AppController
      * @return \Cake\Http\Response|void
      */
     public function index()
-    {
-        $educationInfras = $this->paginate($this->EducationInfras->find('all')->contain(['Villages']));
 
-        $this->set(compact('educationInfras'));
+    {
+        $this->loadModel('Subdistricts');
+        $subDivs=$this->Subdistricts->find('list'); 
+        $educationInfras = $this->EducationInfras->find('all')
+                      ->contain(['Villages'=>[
+                          'fields'=>['Villages.village_name']
+                      ]]);
+
+         $this->set(compact('educationInfras','subDivs'));
     }
 
     /**
@@ -188,6 +201,73 @@ class EducationInfrasController extends AppController
         $session = $this->getRequest()->getSession();
 
         $session->write('homecontroller', $this->request->params['controller']);
+       
+    }
+
+    public function ajaxFilterSubdivision()
+    {
+       
+        if ($this->request->is(['ajax', 'post'])) 
+        {
+          
+            $this->loadModel('Subdistricts');
+            $this->loadModel('Villages');
+          
+          if($this->request->getData('subdistrict_code')){
+            $subdist_code = $this->request->getData('subdistrict_code');
+            $villages=$this->Villages->find()
+                 ->select(['village_code'])
+                 ->distinct()
+                 ->where(['sub_district_code'=> $subdist_code]);
+          }
+           
+          else{
+            $villages=$this->Villages->find()
+            ->select(['village_code'])
+            ->distinct();
+          }
+                      
+            $query=$this->EducationInfras
+                   ->find('all')               
+                   ->contain(['Villages'=>[
+                       'fields'=>['Villages.village_name']]
+                       ])->where(['EducationInfras.village_code IN'=>$villages]);
+           // debug($query);
+            $this->set('query',$query);
+            $this->set('_serialize', 'query');
+
+        }
+       
+       
+      
+        
+    }
+
+    public function ajaxDelete()
+    {
+       // $this->autoRender = false;
+       // $this->layout='ajax';
+        $mesg="Delete Fail";
+        
+       // $this->request->allowMethod(['post', 'delete']);
+        if ($this->request->is(['ajax', 'post'])) 
+        {
+          $id=$this->request->getData('id');
+            $educationInfra = $this->EducationInfras->get($id);
+            //dump ($educationInfra);
+           // exit();
+            if ($this->EducationInfras->delete($educationInfra))
+             { 
+               $mesg="Delete Success";
+             } 
+            else 
+             {
+               $mesg="Delete Fail";
+             }
+        }
+        $this->set('mesg',$mesg);
+        $this->set('_serialize', 'mesg');
+
        
     }
 }
