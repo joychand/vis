@@ -13,6 +13,14 @@ use Cake\ORM\TableRegistry;
  */
 class SecurityreportController extends AppController
 {
+
+    public function initialize()
+    {
+       parent::initialize();
+       $this->loadComponent('RequestHandler');
+       //$this->loadComponent('Security');
+    }
+
     public function isAuthorized($user)
     {
         //dump($user);
@@ -34,16 +42,29 @@ class SecurityreportController extends AppController
      */
     public function index()
     {
-       // $securityreport = $this->paginate($this->Securityreport);
+
+        $this->loadModel('Subdistricts');
         $this->populations=TableRegistry::get('populations');
         $session = $this->request->getSession();
         $agency_id= $session->read('agency');
-        $securityreports = $this->paginate($this->populations->find('all')
-        ->where(['counting_agency'=>$agency_id])
-        ->contain(['Villages']) );
+        $subDivs=$this->Subdistricts->find('list'); 
+        $securityreports = $this->populations->find('all')
+                     ->where(['counting_agency'=>$agency_id])
+                      ->contain(['Villages'=>[
+                          'fields'=>['Villages.village_name']
+                      ]]);
 
-        //$this->set(compact('sdoreports'));
-        $this->set(compact('securityreports'));
+        $this->set(compact('securityreports','subDivs'));
+    //    // $securityreport = $this->paginate($this->Securityreport);
+    //     $this->populations=TableRegistry::get('populations');
+    //     $session = $this->request->getSession();
+    //     $agency_id= $session->read('agency');
+    //     $securityreports = $this->paginate($this->populations->find('all')
+    //     ->where(['counting_agency'=>$agency_id])
+    //     ->contain(['Villages']) );
+
+    //     //$this->set(compact('sdoreports'));
+    //     $this->set(compact('securityreports'));
     }
 
     /**
@@ -208,6 +229,74 @@ class SecurityreportController extends AppController
         $session = $this->getRequest()->getSession();
         $session->write('agency',2);
         $session->write('homecontroller', $this->request->params['controller']);
+       
+    }
+
+    public function ajaxFilterSubdivision()
+    {
+       
+        if ($this->request->is(['ajax', 'post'])) 
+        {
+           //$this->autoRender = false;
+            $this->loadModel('Subdistricts');
+            $this->loadModel('Villages');
+            $this->populations=TableRegistry::get('populations');
+             $session = $this->request->getSession();
+             $agency_id= $session->read('agency');
+          
+          if($this->request->getData('subdistrict_code')){
+            $subdist_code = $this->request->getData('subdistrict_code');
+            $villages=$this->Villages->find()
+                 ->select(['village_code'])
+                 ->distinct()
+                 ->where(['sub_district_code'=> $subdist_code]);
+          }
+           
+          else{
+            $villages=$this->Villages->find()
+            ->select(['village_code'])
+            ->distinct();
+          }
+                      
+            $query=$this->populations
+                   ->find('all',['conditions'=>['counting_agency'=>$agency_id]])               
+                   ->contain(['Villages'=>[
+                       'fields'=>['Villages.village_name']]
+                       ])->where(['populations.village_code IN'=>$villages]);
+           // debug($query);
+            $this->set('query',$query);
+            $this->set('_serialize', 'query');
+
+        }
+       
+       
+      
+        
+    }
+
+    public function ajaxDelete()
+    {
+       // $this->autoRender = false;
+       // $this->layout='ajax';
+        $mesg="Delete Fail";
+        
+       // $this->request->allowMethod(['post', 'delete']);
+        if ($this->request->is(['ajax', 'post'])) 
+        {
+            $this->populations=TableRegistry::get('populations');
+            $nercormp =  $this->populations->get([$this->request->getData('ref'),$this->request->getData('village_code'),$this->request->getData('counting_agency')]);
+            if ($this->populations->delete($nercormp)) {
+               $mesg="Delete Success";
+            } 
+            else 
+            {
+               $mesg="Delete Fail";
+            }
+        }
+        $this->RequestHandler->renderAs($this, 'json');
+        $this->set('mesg',$mesg);
+        $this->set('_serialize', 'mesg');
+
        
     }
 }

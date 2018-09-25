@@ -14,13 +14,20 @@ use Cake\ORM\TableRegistry;
 class VillageElectoralsController extends AppController
 {
 
+    public function initialize()
+    {
+       parent::initialize();
+       $this->loadComponent('RequestHandler');
+       //$this->loadComponent('Security');
+   }
+
 
     public function isAuthorized($user)
         {
             //dump($user);
             $action = $this->request->getParam('action');
             // The add and tags actions are always allowed to logged in users.
-            if (in_array($action, ['home','add', 'edit','delete','index','getvillage']) && in_array($user['role_id'],[4,13,14])) {
+            if (in_array($action, ['home','add', 'edit','delete','index','getvillage','ajaxFilterSubdivision','ajaxDelete']) && in_array($user['role_id'],[4,13,14])) {
                 return true;
             }
 
@@ -32,7 +39,8 @@ class VillageElectoralsController extends AppController
      * @return \Cake\Http\Response|void
      */
 
-     public function home(){
+     public function home()
+     {
         $session = $this->getRequest()->getSession();
 
         $session->write('homecontroller', $this->request->params['controller']);
@@ -40,12 +48,26 @@ class VillageElectoralsController extends AppController
 
 
      }
-    public function index()
-    {
-        $villageElectorals = $this->paginate($this->VillageElectorals->find('all')->contain(['Villages']));
 
-        $this->set(compact('villageElectorals'));
+     /** index function */
+
+     public function index()
+    {
+        $this->loadModel('Subdistricts');
+        $subDivs=$this->Subdistricts->find('list'); 
+        $villageElectorals = $this->VillageElectorals->find('all')
+                      ->contain(['Villages'=>[
+                          'fields'=>['Villages.village_name']
+                      ]]);
+
+        $this->set(compact('villageElectorals','subDivs'));
     }
+    // public function index()
+    // {
+    //     $villageElectorals = $this->paginate($this->VillageElectorals->find('all')->contain(['Villages']));
+
+    //     $this->set(compact('villageElectorals'));
+    // }
 
     /**
      * View method
@@ -185,6 +207,70 @@ class VillageElectoralsController extends AppController
              echo json_encode($villages);
              exit();
         }
+    }
+
+    public function ajaxFilterSubdivision()
+    {
+       
+        if ($this->request->is(['ajax', 'post'])) 
+        {
+           //$this->autoRender = false;
+            $this->loadModel('Subdistricts');
+            $this->loadModel('Villages');
+          
+          if($this->request->getData('subdistrict_code')){
+            $subdist_code = $this->request->getData('subdistrict_code');
+            $villages=$this->Villages->find()
+                 ->select(['village_code'])
+                 ->distinct()
+                 ->where(['sub_district_code'=> $subdist_code]);
+          }
+           
+          else{
+            $villages=$this->Villages->find()
+            ->select(['village_code'])
+            ->distinct();
+          }
+                      
+            $query=$this->VillageElectorals
+                   ->find('all')               
+                   ->contain(['Villages'=>[
+                       'fields'=>['Villages.village_name']]
+                       ])->where(['VillageElectorals.village_code IN'=>$villages]);
+           // debug($query);
+            $this->set('query',$query);
+            $this->set('_serialize', 'query');
+
+        }
+       
+       
+      
+        
+    }
+
+    public function ajaxDelete()
+    {
+       // $this->autoRender = false;
+       // $this->layout='ajax';
+        $mesg="Delete Fail";
+        
+       // $this->request->allowMethod(['post', 'delete']);
+        if ($this->request->is(['ajax', 'post'])) 
+        {
+
+            $electorals = $this->VillageElectorals->get($this->request->getData('id'));
+            if ($this->VillageElectorals->delete($electorals)) {
+               $mesg="Delete Success";
+            } 
+            else 
+            {
+               $mesg="Delete Fail";
+            }
+        }
+        $this->set('mesg',$mesg);
+        $this->set('_serialize', 'mesg');
+
+       
     }
     
 }

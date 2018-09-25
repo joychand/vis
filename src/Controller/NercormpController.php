@@ -14,12 +14,19 @@ use Cake\ORM\TableRegistry;
 class NercormpController extends AppController
 {
 
+
+    public function initialize()
+    {
+       parent::initialize();
+       $this->loadComponent('RequestHandler');
+       //$this->loadComponent('Security');
+    }
     public function isAuthorized($user)
         {
             //dump($user);
             $action = $this->request->getParam('action');
             // The add and tags actions are always allowed to logged in users.
-            if (in_array($action, ['home','add', 'edit','delete','index','getvillage']) && in_array($user['role_id'],[6,13,14])) {
+            if (in_array($action, ['home','add', 'edit','delete','index','getvillage','ajaxFilterSubdivision','ajaxDelete']) && in_array($user['role_id'],[6,13,14])) {
                 return true;
             }
 
@@ -31,16 +38,34 @@ class NercormpController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
+
     public function index()
     {
+        $this->loadModel('Subdistricts');
         $this->populations=TableRegistry::get('populations');
         $session = $this->request->getSession();
         $agency_id= $session->read('agency');
-        $nercormps = $this->paginate($this->populations->find('all')
-        ->where(['counting_agency'=>$agency_id])
-        ->contain(['Villages']) );
-        $this->set(compact('nercormps'));
+        $subDivs=$this->Subdistricts->find('list'); 
+        $nercormps = $this->populations->find('all')
+                     ->where(['counting_agency'=>$agency_id])
+                      ->contain(['Villages'=>[
+                          'fields'=>['Villages.village_name']
+                      ]]);
+
+        $this->set(compact('nercormps','subDivs'));
     }
+
+
+    // public function index()
+    // {
+    //     $this->populations=TableRegistry::get('populations');
+    //     $session = $this->request->getSession();
+    //     $agency_id= $session->read('agency');
+    //     $nercormps = $this->paginate($this->populations->find('all')
+    //     ->where(['counting_agency'=>$agency_id])
+    //     ->contain(['Villages']) );
+    //     $this->set(compact('nercormps'));
+    // }
 
     /**
      * View method
@@ -200,6 +225,73 @@ class NercormpController extends AppController
              echo json_encode($villages);
              exit();
         }
+    }
+
+    public function ajaxFilterSubdivision()
+    {
+       
+        if ($this->request->is(['ajax', 'post'])) 
+        {
+           //$this->autoRender = false;
+            $this->loadModel('Subdistricts');
+            $this->loadModel('Villages');
+            $this->populations=TableRegistry::get('populations');
+             $session = $this->request->getSession();
+             $agency_id= $session->read('agency');
+          
+          if($this->request->getData('subdistrict_code')){
+            $subdist_code = $this->request->getData('subdistrict_code');
+            $villages=$this->Villages->find()
+                 ->select(['village_code'])
+                 ->distinct()
+                 ->where(['sub_district_code'=> $subdist_code]);
+          }
+           
+          else{
+            $villages=$this->Villages->find()
+            ->select(['village_code'])
+            ->distinct();
+          }
+                      
+            $query=$this->populations
+                   ->find('all',['conditions'=>['counting_agency'=>$agency_id]])               
+                   ->contain(['Villages'=>[
+                       'fields'=>['Villages.village_name']]
+                       ])->where(['populations.village_code IN'=>$villages]);
+           // debug($query);
+            $this->set('query',$query);
+            $this->set('_serialize', 'query');
+
+        }
+       
+       
+      
+        
+    }
+
+    public function ajaxDelete()
+    {
+       // $this->autoRender = false;
+       // $this->layout='ajax';
+        $mesg="Delete Fail";
+        
+       // $this->request->allowMethod(['post', 'delete']);
+        if ($this->request->is(['ajax', 'post'])) 
+        {
+            $this->populations=TableRegistry::get('populations');
+            $nercormp =  $this->populations->get([$this->request->getData('ref'),$this->request->getData('village_code'),$this->request->getData('counting_agency')]);
+            if ($this->populations->delete($nercormp)) {
+               $mesg="Delete Success";
+            } 
+            else 
+            {
+               $mesg="Delete Fail";
+            }
+        }
+        $this->set('mesg',$mesg);
+        $this->set('_serialize', 'mesg');
+
+       
     }
 
    
