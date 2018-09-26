@@ -24,7 +24,7 @@
         <legend><?= __('Edit Village Scheme') ?></legend>
         <h6> Village Name: <strong><?= $villageScheme->village->village_name ?></strong></h6>
         <?php
-          //  echo $this->Form->control('village_code');
+           echo $this->Form->control('scheme_code',['type'=>'select','label'=>'1. Scheme:','empty'=>'Select scheme','id'=>'scheme','options'=>$schemes,'required'=>true,'id'=>'schemes']);
           echo $this->Form->control('scheme_financial_year',[ 'type'=>'select','label'=>'Scheme Financial Year:','required'=>true,
                                                                'options'=>[
                                                                 '2010'=>'2010-2011',
@@ -36,11 +36,10 @@
                                                                 '2016'=>'2016-2017',
                                                                 '2017'=>'2017-2018',
                                                                 '2018'=>'2011-2019'] ]);
-          echo $this->Form->control('sanction_amount',['label'=>'Sanctioned Amount (Rs):','required'=>true]);
-          echo $this->Form->control('location_latitude',['required'=>true]);
-          echo $this->Form->control('location_longitude',['required'=>true]);
-          echo $this->Form->control('scheme_status',['type'=>'select','empty'=>'Select Status', 'options'=>['Ongoing'=>'Ongoing','Completed'=>'Completed'],'required'=>true]);
-          echo $this->Form->control('scheme_code',['type'=>'hidden']);
+         // echo $this->Form->control('sanction_amount',['label'=>'Sanctioned Amount (Rs):','required'=>true]);
+         
+          echo $this->Form->control('village_scheme_description',['label'=>'3. Scheme Description:','type'=>'textarea','Placeholder'=>'Enter the Scheme Description(50 words Max)....','required'=>true,'id'=>'village_scheme']);
+         // echo $this->Form->control('scheme_code',['type'=>'hidden']);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Update')) ?>

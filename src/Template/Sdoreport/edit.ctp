@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Anganwadi $anganwadi
  */
+$this->assign('title', 'GTV Report');
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
@@ -20,7 +21,7 @@
 <div class="anganwadis form large-9 medium-8 columns content">
     <?= $this->Form->create($sdoreport) ?>
     <fieldset>
-        <legend><?=  __('Edit Village SDO Report: ') ?>   </legend>
+        <legend><?=  __('Edit GTV Village Report: ') ?>   </legend>
         <h6>Village Name: <strong><?= $sdoreport->village->village_name?></strong> Ref. Yr. :<strong><?= $sdoreport->reference_year ?> </strong> </h6>
         <?php
            

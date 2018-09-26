@@ -1,6 +1,6 @@
 <?= $this->Html->css('bootstrap.min.css', ['block'=>true]) ?>
 <?= $this->Html->script('bootstrap.min.js', ['block'=>true]) ?>
-
+<?php $this->assign('title', 'GTV Report'); ?>
 
 
 <div  class=" columns content " style="margin: auto !important ;border: 3px !important; padding: 10px!important;">

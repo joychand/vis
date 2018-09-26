@@ -3,20 +3,20 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Populations $educationInfra
  */
-
+$this->assign('title', 'GTV Report');
 ?>
 
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Dept/Scheme Home'), ['action' => 'home']) ?></li>
-        <li><?= $this->Html->link(__('List SDO Report Village Data'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List GTV Report Village Data'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
 <div class="educationInfras form large-9 medium-8 columns content" >
     <?= $this->Form->create($sdoreport,['id'=>'formSdo','autocomplete'=>'off']) ?>
     <fieldset>
-        <legend><?= __('Add SDO Report Village Data') ?></legend>
+        <legend><?= __('Add GTV Report Village Data') ?></legend>
         <?php $targetUrl = $this->Url->build(['action' => 'getvillage']); ?>
          <?= $this->Form->control('subdistrict',['type'=>'select','label'=>'Sub-Division','id'=>'subdistrict','rel'=>$targetUrl,'options'=>$subdistricts,'empty'=>'Select SubDivision','required'=>true,'value'=>$selected]) ?>
         <?= $this->Form->control('village_code',['type'=>'select','label'=>'Village:','empty'=>'Select Village','id'=>'village','required'=>true,'options'=>$villages]) ?>

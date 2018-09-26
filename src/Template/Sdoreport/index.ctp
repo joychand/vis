@@ -7,18 +7,19 @@ $this->layout = 'index_layout';
  $ajaxFilterUrl=$this->Url->build(['action' => 'ajaxFilterSubdivision']); 
  $ajaxDeleteUrl=$this->Url->build(['action' => 'ajaxDelete']); 
 
-  $this->Html->script('DataTables/sdoreport.js',['block'=>'scriptBottom']);   
+  $this->Html->script('DataTables/sdoreport.js',['block'=>'scriptBottom']);
+  $this->assign('title', 'GTV Report');   
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Dept/Scheme Home'), ['action' => 'home']) ?></li>
-        <li><?= $this->Html->link(__('New Village SDOReport'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('New Village GTV Report'), ['action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="sdoreports index large-9 medium-8 columns content">
    
-    <fieldset style="padding:0 !important"><legend><?= __('Village SDO Report Data') ?></legend></fieldset><h3><?= __('') ?></h3>
+    <fieldset style="padding:0 !important"><legend><?= __('Village GTV Report Data') ?></legend></fieldset><h3><?= __('') ?></h3>
 <?= $this->Form->create(null)?>
     <?= $this->Form->control('subdivision',['label'=>'Filter by Subdivision:','type'=>'select','options'=>$subDivs,'empty'=>'All Villages','id'=>'subdivision','rel'=>$ajaxFilterUrl])?>
    <?= $this->Form->hidden('deleteUrl',['value'=>$ajaxDeleteUrl]) ?>
