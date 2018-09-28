@@ -20,21 +20,37 @@
     transition: all 0.2s ease;
   }
   
-  .dashboard-nav-card-icon {
+  /* .dashboard-nav-card-icon {
     font-size: 1.25rem;
-    left: 1rem;
+    left: 0.1rem;
     opacity: 0.5;
     position: absolute;
     top: 1rem;
     transition: all 0.2s ease;
     width: auto;
-  }
+  } */
   
-  .dashboard-nav-card-title {
+  .dashboard-nav-card-icon {
+    font-size: 1.25rem;
+    left: 0.1rem;
+    opacity: 0.5;
+    position: absolute;
+    top: 1rem;
+    transition: all 0.2s ease;
+    width: auto;
+   
+  }
+  /* .dashboard-nav-card-title {
     bottom: 0;
     position: absolute;
     right: 1rem;
     text-align: right;
+  } */
+  
+  .dashboard-nav-card-title {
+    top: 0;
+    position: absolute;
+    right: 1rem;
+    text-align: right;
+    font-weight:bold; 
   }
-  
-  

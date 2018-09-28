@@ -21,6 +21,7 @@
     
     <?= $this->Html->css('foundation-icons/foundation-icons.css')?>
     <?= $this->Html->script('jquery-3.3.1.min.js')?>
+    <?= $this->Html->css('foundation-icons/foundation-icons.css')?>
     <?= $this->Html->script('dropdown.js');?>
    
    
@@ -62,25 +63,27 @@
     
         <div class="large-3 medium-6 small-12  columns">
             <a class="dashboard-nav-card" href="#">
-                <i class="dashboard-nav-card-icon fa fa-users" aria-hidden="true"></i>
+                <i class="dashboard-nav-card-icon fi-torso large" aria-hidden="true"></i>
                 <h3 class="dashboard-nav-card-title">Visitors</h3>
             </a>
         </div>
         <div class="large-3 medium-6 small-12  columns">
             <a class="dashboard-nav-card" href="#">
-                <i class="dashboard-nav-card-icon fa fa-users" aria-hidden="true"></i>
+                <i class="dashboard-nav-card-icon fi-torso large" aria-hidden="true"></i>
                 <h3 class="dashboard-nav-card-title">Visitors</h3>
             </a>
         </div>
         <div class="large-3 medium-6 small-12  columns">
             <a class="dashboard-nav-card" href="#">
-                <i class="dashboard-nav-card-icon fa fa-users" aria-hidden="true"></i>
-                <h3 class="dashboard-nav-card-title">Visitors</h3>
+                <!-- <i class="dashboard-nav-card-icon fi-torso large" aria-hidden="true"></i> -->
+                <img  class="dashboard-nav-card-icon" src="img/baby-white.svg" style="width:150px;height:90px" alt="sdfd">
+                <h3 class="dashboard-nav-card-title">Anganwadi</h3>
+                
             </a>
         </div> 
         <div class="large-3 medium-6 small-12  columns">
             <a class="dashboard-nav-card" href="#">
-                <i class="dashboard-nav-card-icon fa fa-users" aria-hidden="true"></i>
+                <i class="dashboard-nav-card-icon fi-torso large" aria-hidden="true"></i>
                 <h3 class="dashboard-nav-card-title">Visitors</h3>
             </a>
         </div>           
