@@ -46,8 +46,8 @@
         <?php $targetUrl = $this->Url->build(['action' => 'getvillage']); ?>
         <div class="row">
        
-            <fieldset>    
-                <legend><?= __('Village Profile') ?></legend>        
+            <fieldset style="padding:0 !important">    
+                <legend><?= __('Village Profile') ?></legend>  </fieldset>        
        
         </div>
         <div class="row">
@@ -56,25 +56,28 @@
         <div class="row">
             <?= $this->Form->control('village_code',['type'=>'select','label'=>'Village:','empty'=>'Select Village','id'=>'village','required'=>true]) ?> 
         </div>
-     </fieldset>  
+     
          <?= $this->Form->button(__('Submit')) ?>
         <?= $this->Form->end() ?>
     </div>
+    <!-- <div class="row"> -->
     
-        <div class="large-3 medium-6 small-12  columns">
-            <a class="dashboard-nav-card" href="#">
-                <i class="dashboard-nav-card-icon fi-torso large" aria-hidden="true"></i>
-                <h3 class="dashboard-nav-card-title">Visitors</h3>
+     <div class="large-3 medium-6 small-12  columns">
+            <a class="dashboard-nav-card" href="#" style="background:navy !important; background-clip: content-box;">
+                <!-- <i class="dashboard-nav-card-icon fi-torso large" aria-hidden="true"></i> -->
+                <img  class="dashboard-nav-card-icon" src="img/pharmacy.svg" style="width:150px;height:90px" alt="sdfd">
+                <h3 class="dashboard-nav-card-title">HealthInfra</h3>
             </a>
         </div>
         <div class="large-3 medium-6 small-12  columns">
-            <a class="dashboard-nav-card" href="#">
-                <i class="dashboard-nav-card-icon fi-torso large" aria-hidden="true"></i>
-                <h3 class="dashboard-nav-card-title">Visitors</h3>
+            <a class="dashboard-nav-card" href="#" >
+                <!-- <i class="dashboard-nav-card-icon fi-torso large" aria-hidden="true"></i> -->
+                <img  class="dashboard-nav-card-icon" src="img/education.svg" style="width:150px;height:90px" alt="sdfd">
+                <h3 class="dashboard-nav-card-title">EducationInfra</h3>
             </a>
         </div>
         <div class="large-3 medium-6 small-12  columns">
-            <a class="dashboard-nav-card" href="#">
+            <a class="dashboard-nav-card" href="#"  style="background:purple !important;  background-clip: content-box;">
                 <!-- <i class="dashboard-nav-card-icon fi-torso large" aria-hidden="true"></i> -->
                 <img  class="dashboard-nav-card-icon" src="img/baby-white.svg" style="width:150px;height:90px" alt="sdfd">
                 <h3 class="dashboard-nav-card-title">Anganwadi</h3>
@@ -83,11 +86,56 @@
         </div> 
         <div class="large-3 medium-6 small-12  columns">
             <a class="dashboard-nav-card" href="#">
-                <i class="dashboard-nav-card-icon fi-torso large" aria-hidden="true"></i>
-                <h3 class="dashboard-nav-card-title">Visitors</h3>
+                <!-- <i class="dashboard-nav-card-icon fi-torso large" aria-hidden="true"></i> -->
+                <img  class="dashboard-nav-card-icon" src="img/population.svg" style="width:150px;height:90px" alt="sdfd">
+                <h3 class="dashboard-nav-card-title">Demography</h3>
+                <div class="dashboard-nav-card-content">
+                    <h6 class="dashboard-nav-card-kpi">Total Population: 664</h6>
+                    <h6 class="dashboard-nav-card-kpi">Total Household: 64</h6>
+                </div> 
             </a>
-        </div>           
-  
+        </div>         
+    <!-- </div> -->
+    
+         
+        <!-- <div class="row"> -->
+        <div class="large-3 medium-6 small-12  columns">
+            <a class="dashboard-nav-card" href="#" style="background:red !important;  background-clip: content-box;">
+                <!-- <i class="dashboard-nav-card-icon fi-torso large" aria-hidden="true"></i> -->
+                <img  class="dashboard-nav-card-icon" src="img/social-care.svg" style="width:150px;height:90px" alt="sdfd">
+                <h3 class="dashboard-nav-card-title">NSAP</h3>
+                <div class="dashboard-nav-card-content">
+                    <h6 class="dashboard-nav-card-kpi">Total Beneficiary: 64</h6>
+                   
+                </div>  
+                <!-- <h6 class="dashboard-nav-card-content">Total Beneficiary: 64</h6>
+                <h6 class="dashboard-nav-card-content2">dfgdf: 64</h6> -->
+            </a>
+        </div>
+        <div class="large-3 medium-6 small-12  columns">
+            <a class="dashboard-nav-card" href="#" style="background:green !important;  background-clip: content-box;">
+                <!-- <i class="dashboard-nav-card-icon fi-torso large" aria-hidden="true"></i> -->
+                <img  class="dashboard-nav-card-icon" src="img/nrega.svg" style="width:150px;height:90px" alt="sdfd">
+                <h3 class="dashboard-nav-card-title">NREGA</h3>
+            </a>
+        </div>
+        <div class="large-3 medium-6 small-12  columns">
+            <a class="dashboard-nav-card" href="#">
+                <!-- <i class="dashboard-nav-card-icon fi-torso large" aria-hidden="true"></i> -->
+                <img  class="dashboard-nav-card-icon" src="img/picture.svg" style="width:150px;height:90px" alt="sdfd">
+                <h3 class="dashboard-nav-card-title">Photo</h3>
+                
+            </a>
+        </div> 
+        <div class="large-3 medium-6 small-12  columns">
+            <a class="dashboard-nav-card" href="#"  style="background:violet !important;  background-clip: content-box;">
+                <!-- <i class="dashboard-nav-card-icon fi-torso large" aria-hidden="true"></i> -->
+                <img  class="dashboard-nav-card-icon" src="img/population.svg" style="width:150px;height:90px" alt="sdfd">
+                <h3 class="dashboard-nav-card-title">Demography</h3>
+            </a>
+        </div>         
+        <!-- </div> -->
+          
     
 </div>
 

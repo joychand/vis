@@ -1,21 +1,37 @@
 
-.dashboard-nav-card {
+/* .dashboard-nav-card {
     background: #1779ba;
+    background-clip: content-box;
     border-radius: 0;
     color: #fefefe;
     display: block;
     min-height: 200px;
-    padding: 2rem;
+    padding:0.8rem;
+    position: relative;
+    width: 100%;
+  } */
+  
+  .dashboard-nav-card {
+    background: #1779ba;
+    background-clip: content-box;
+    border-radius: 1.5rem;
+    color: #fefefe;
+    display: block;
+    min-height: 200px;
+    padding:0.8rem;
     position: relative;
     width: 100%;
   }
-  
+
   .dashboard-nav-card:hover .dashboard-nav-card-title,
-  .dashboard-nav-card:hover .dashboard-nav-card-icon {
+  .dashboard-nav-card:hover .dashboard-nav-card-icon,
+  .dashboard-nav-card:hover .dashboard-nav-card-kpi {
     color: #fefefe;
   }
   
-  .dashboard-nav-card:hover .dashboard-nav-card-icon {
+  .dashboard-nav-card:hover .dashboard-nav-card-icon,
+  .dashboard-nav-card:hover .dashboard-nav-card-title,
+  .dashboard-nav-card:hover .dashboard-nav-card-kpi {
     opacity: 1;
     transition: all 0.2s ease;
   }
@@ -32,10 +48,10 @@
   
   .dashboard-nav-card-icon {
     font-size: 1.25rem;
-    left: 0.1rem;
+    left: 0.8rem;
     opacity: 0.5;
     position: absolute;
-    top: 1rem;
+    top: 2rem;
     transition: all 0.2s ease;
     width: auto;
    
@@ -48,9 +64,34 @@
   } */
   
   .dashboard-nav-card-title {
-    top: 0;
+    top: 1.5rem;
     position: absolute;
-    right: 1rem;
+    right: 1.5rem;
     text-align: right;
     font-weight:bold; 
+    opacity: 0.5;
+    color:#fefefe;
+  }
+
+  .dashboard-nav-card-content {
+    bottom: 2.5rem;
+    position: absolute;
+    right: 1.5rem;
+    text-align: right;
+    font-weight:bold; 
+    color:rgb(199, 198, 195)
+  }
+  .dashboard-nav-card-content2 {
+    bottom: 1rem;
+    position: absolute;
+    right: 1.5rem;
+    text-align: right;
+    font-weight:bold; 
+    color:rgb(199, 198, 195)
+  }
+  .dashboard-nav-card-kpi{
+    text-align: right;
+    font-weight:bold; 
+    opacity: 0.5;
+    color: #fefefe !important;
   }
