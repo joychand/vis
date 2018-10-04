@@ -26,7 +26,8 @@ $this->layout = 'index_layout';
     <?= $this->Form->control('subdivision',['label'=>'Filter by Subdivision:','type'=>'select','options'=>$subDivs,'empty'=>'All Villages','id'=>'subdivision','rel'=>$ajaxFilterUrl])?>
    <?= $this->Form->hidden('deleteUrl',['value'=>$ajaxDeleteUrl]) ?>
     <?= $this->Form->end()?>
-    <table  id="indexTable" class="display compact" style="width:100%">
+    <!-- <div id="tablediv" style="display:none !important;"> -->
+    <table  id="indexTable" class="display compact" style="width:100%;">
         <thead>
 
             <tr>
@@ -95,6 +96,8 @@ $this->layout = 'index_layout';
             </tr>
         </foot>
     </table>
+    <!-- </div> -->
+    
    
     
 </div>

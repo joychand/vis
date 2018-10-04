@@ -25,13 +25,15 @@
 
   .dashboard-nav-card:hover .dashboard-nav-card-title,
   .dashboard-nav-card:hover .dashboard-nav-card-icon,
-  .dashboard-nav-card:hover .dashboard-nav-card-kpi {
+  .dashboard-nav-card:hover .dashboard-nav-card-kpi,
+  .dashboard-nav-card:hover .dashboard-nav-card-more {
     color: #fefefe;
   }
   
   .dashboard-nav-card:hover .dashboard-nav-card-icon,
   .dashboard-nav-card:hover .dashboard-nav-card-title,
-  .dashboard-nav-card:hover .dashboard-nav-card-kpi {
+  .dashboard-nav-card:hover .dashboard-nav-card-kpi,
+  .dashboard-nav-card:hover .dashboard-nav-card-more {
     opacity: 1;
     transition: all 0.2s ease;
   }
@@ -51,7 +53,7 @@
     left: 0.8rem;
     opacity: 0.5;
     position: absolute;
-    top: 2rem;
+    top: 3rem;
     transition: all 0.2s ease;
     width: auto;
    
@@ -74,12 +76,12 @@
   }
 
   .dashboard-nav-card-content {
-    bottom: 1rem;
+    bottom: 3rem;
     position: absolute;
     right: 1.5rem;
     text-align: right;
     font-weight:bold; 
-    color:rgb(199, 198, 195)
+    color: #fefefe !important;
   }
   .dashboard-nav-card-content2 {
     bottom: 1.5rem;
@@ -97,3 +99,11 @@
     max-height: 30px;
     margin-bottom:20px;
   }
+
+  .dashboard-nav-card-more {
+    bottom: 1rem;
+    position: absolute;
+    right: 0.3rem;
+    opacity: 0.5;
+    text-align: right;
+  } 

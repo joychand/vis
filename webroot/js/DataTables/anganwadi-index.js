@@ -2,7 +2,9 @@
 $(document).ready(function(){
     var csrfToken=$('input[name^="_csrfToken"]').val();
 var t =$('#indexTable').DataTable( {
-
+    // "initComplete": function(settings, json) {
+    //     $('table#indexTable').show();
+    //     },
     paging: true,
    // scrollY: 400,
     bScrollCollapse: false,
@@ -80,7 +82,8 @@ var t =$('#indexTable').DataTable( {
   
    
 } );
-
+//$('#indexTable').show();
+//setTimeout(function () { $("#indexTable").show() }, 50);
 t.on( 'order.dt search.dt', function () {
     t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
         cell.innerHTML = i+1;
