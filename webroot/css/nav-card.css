@@ -95,8 +95,9 @@
     text-align: right;
     font-weight:bold; 
     opacity: 0.5;
-    color: #fefefe !important;
-    max-height: 30px;
+    color:#fefefe !important;
+    /* max-height: 30px; */
+    line-height: normal;
     margin-bottom:20px;
   }
 

@@ -39,7 +39,7 @@ $cakeDescription = 'VIS Chandel District, Manipur';
     <?= $this->Html->meta('icon') ?>
 
     <?= $this->Html->css('base.css') ?>
-    <!-- <?= $this->Html->css('foundation.min.css') ?> -->
+   
     <?= $this->Html->css('style.css') ?>
 
     <?= $this->fetch('meta') ?>

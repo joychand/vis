@@ -32,13 +32,14 @@ $cakeDescription = 'VIS Chandel District, Manipur';
    
     <?= $this->Html->css('style.css') ?>
     <?= $this->Html->css('home.css') ?> 
+    <!-- <?= $this->Html->css('foundation.min.css') ?> -->
     <?= $this->Html->css('nav-card') ?> 
     
     <?= $this->Html->css('foundation-icons/foundation-icons.css')?>
   
     <?= $this->Html->css('foundation-icons/foundation-icons.css')?>
-    <?= $this->Html->script('dropdown.js');?>
-    <?= $this->Html->script('hideDash.js');?> 
+    <!-- <?= $this->Html->script('dropdown.js');?> -->
+    <!-- <?= $this->Html->script('hideDash.js');?>  -->
     <?= $this->Html->script('dashSelect.js');?> 
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -92,11 +93,11 @@ $cakeDescription = 'VIS Chandel District, Manipur';
 </div>
 
 
- <!-- <script>
+ <script>
     $(document).foundation();
 
   </script>
-  -->
+ 
    
     
 </body>
