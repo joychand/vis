@@ -9,6 +9,7 @@
     <div class="large-6 medium-8 small-9 small-centered medium-centered large-centered columns">
         <?= $this->Form->create() ?>
         <?php $targetUrl = $this->Url->build(['action' => 'getvillage']); ?>
+        <?php $profileUrl = $this->Url->build(['action' => 'ajaxGetVillageProfile']); ?>
         <!-- <div class="row"> -->
         <fieldset class = "fieldset" style="border: 1px solid #cacaca;  padding: 1.25rem;  margin: 1.125rem 0;">
             <!-- <fieldset style="padding:0 !important">     -->
@@ -31,7 +32,7 @@
                 <label for="right-label" class="right inline">Village:</label>
                 </div>
                 <div class="medium-8 columns">
-                <?= $this->Form->control('village_code',['type'=>'select','label'=>false,'empty'=>'Select Village','id'=>'village','required'=>true]) ?> 
+                <?= $this->Form->control('village_code',['type'=>'select','label'=>false,'empty'=>'Select Village','id'=>'village','required'=>true, 'rel'=>$profileUrl]) ?> 
                 </div>
             </div>
             </div>
@@ -58,8 +59,8 @@
                 <img  class="dashboard-nav-card-icon" src="img/population.svg" style="width:130px;height:60px" alt="sdfd">
                 <h3 class="dashboard-nav-card-title">Demography</h3>
                 <div class="dashboard-nav-card-content">
-                    <h6 class="dashboard-nav-card-kpi">Total Population: 664</h6>
-                     <h6 class="dashboard-nav-card-kpi">Total Household: 64</h6>
+                    <h6 class="dashboard-nav-card-kpi" >Total Population: <span id ="gtv_population"></span> </h6>
+                     <h6 class="dashboard-nav-card-kpi" >Total Household:<span id ="gtv_household"></span> </h6>
                 </div> 
                 <img  class="dashboard-nav-card-more" src="img/more.svg" style="width:80px;height:30px" alt="sdfd">
             </a>
@@ -119,8 +120,9 @@
                 <h3 class="dashboard-nav-card-title">Health Infra</h3>
                 <div class="dashboard-nav-card-content">
                     <!-- <h6 class="dashboard-nav-card-kpi">Total Doctors: 2</h6> -->
-                    <p class="dashboard-nav-card-kpi">CHC/PHC/PHSC:  <span class="dashboard-nav-card-kpi" style="font-size:1rem !important">DH<span></p>
-                    <p class="dashboard-nav-card-kpi">ASHA(Mobile):   <span class="dashboard-nav-card-kpi" style="font-size:1rem !important">9436020337<span></p>
+                    <!-- <p class="dashboard-nav-card-kpi">CHC/PHC/PHSC:  <span class="dashboard-nav-card-kpi" style="font-size:1rem !important"><?= isset($vill_health->name_of_health_centre) ? $vill_health->name_of_health_centre :'-No Data-' ?><span></p> -->
+                    <h6 class="dashboard-nav-card-kpi">CHC/PHC/PHSC:  <span class="dashboard-nav-card-kpi" id = "vill_health_centre" style="font-size:1rem !important"><span></h6>
+                    <h6 class="dashboard-nav-card-kpi">ASHA(Mobile):   <span class="dashboard-nav-card-kpi" id = "asha_mobile" style="font-size:1rem !important"><?= isset($vill_health->asha_mobile) ? $vill_health->asha_mobile:'-No Data-' ?><span></h6>
                 </div> 
                 
                 <img  class="dashboard-nav-card-more" src="img/more.svg" style="width:80px;height:30px" alt="sdfd">
@@ -146,13 +148,13 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td data-label="Ref.Yr."></td>
-                                <td data-label="CHC/PHC/PHSC"></td>
-                                <td data-label="Doctors"></td>
-                                <td data-label="ANM"></td>
-                                <td data-label="Staff Nurse"></td>
-                                <td data-label="ASHA"></td>
-                                <td data-label="Contact(ASHA)"></td>
+                                <td data-label="Ref.Yr."><?=isset($vill_health->health_reference_year) ? $vill_health->health_reference_year:'-No Data-' ?></td>
+                                <td data-label="CHC/PHC/PHSC"><?=isset($vill_health->name_of_health_centre) ? $vill_health->name_of_health_centre:'-No Data-' ?></td>
+                                <td data-label="Doctors"><?=isset($vill_health->no_of_doctors) ? $vill_health->no_of_doctors:'-No Data-' ?></td>
+                                <td data-label="ANM"><?=isset($vill_health->no_of_anm) ? $vill_health->no_of_anm:'-No Data-' ?></td>
+                                <td data-label="Staff Nurse"><?=isset($vill_health->no_of_staff_nurse) ? $vill_health->no_of_staff_nurse:'-No Data-' ?></td>
+                                <td data-label="ASHA"><?=isset($vill_health->no_of_asha) ? $vill_health->no_of_asha:'-No Data-' ?></td>
+                                <td data-label="Contact(ASHA)"><?=isset($vill_health->asha_mobile) ? $vill_health->asha_mobile:'-No Data-' ?></td>
                             </tr>
 
                         </tbody>
@@ -172,8 +174,8 @@
                 <img  class="dashboard-nav-card-icon" src="img/education.svg" style="width:130px;height:60px" alt="sdfd">
                 <h3 class="dashboard-nav-card-title">Education Infra</h3>
                 <div class="dashboard-nav-card-content">
-                    <h6 class="dashboard-nav-card-kpi">Total School: 2</h6>
-                    <h6 class="dashboard-nav-card-kpi">Total Student: 64</h6>
+                    <h6 class="dashboard-nav-card-kpi" >Total School:<span id="school"><span></h6>
+                    <h6 class="dashboard-nav-card-kpi" >Total Student: <span id="student"></span></h6>
                 </div> 
                 <img  class="dashboard-nav-card-more" src="img/more.svg" style="width:80px;height:30px" alt="sdfd">
             </a>
@@ -234,8 +236,8 @@
                 <img  class="dashboard-nav-card-icon" src="img/baby-white.svg" style="width:130px;height:60px" alt="sdfd">
                 <h3 class="dashboard-nav-card-title">Anganwadi</h3>
                 <div class="dashboard-nav-card-content">
-                    <h6 class="dashboard-nav-card-kpi">Total worker: 4</h6>
-                    <h6 class="dashboard-nav-card-kpi">Total children: 12</h6>
+                    <h6 class="dashboard-nav-card-kpi">Total worker: <span id="ang_worker"></span></h6>
+                    <h6 class="dashboard-nav-card-kpi">Total children: <span id ="ang_children"></span></h6>
                 </div> 
                 <img  class="dashboard-nav-card-more" src="img/more.svg" style="width:80px;height:30px" alt="sdfd">
             </a>
@@ -286,7 +288,7 @@
                 <img  class="dashboard-nav-card-icon" src="img/social-care.svg" style="width:130px;height:60px" alt="sdfd">
                 <h3 class="dashboard-nav-card-title">NSAP</h3>
                 <div class="dashboard-nav-card-content">
-                    <h6 class="dashboard-nav-card-kpi">Total Beneficiary: 64</h6>
+                    <h6 class="dashboard-nav-card-kpi">Total Beneficiaries: <span id="nsap_benef"></span></h6>
                    
                 </div>  
                 <img  class="dashboard-nav-card-more" src="img/more.svg" style="width:80px;height:30px" alt="sdfd">
@@ -331,7 +333,7 @@
                 <img  class="dashboard-nav-card-icon" src="img/nrega.svg" style="width:130px;height:60px" alt="sdfd">
                 <h3 class="dashboard-nav-card-title">NREGA</h3>
                 <div class="dashboard-nav-card-content">
-                    <h6 class="dashboard-nav-card-kpi">Total JobCard: 45</h6>
+                    <h6 class="dashboard-nav-card-kpi">Total JobCard: <span id="jobcard"></span></h6>
                     
                 </div> 
                 <img  class="dashboard-nav-card-more" src="img/more.svg" style="width:80px;height:30px" alt="sdfd">
@@ -368,13 +370,15 @@
                 <img  class="dashboard-nav-card-more" src="img/more.svg" style="width:80px;height:30px" alt="sdfd"> 
             </a>
         </div> 
+
+        <!-- ****************************CAFPD******************************* -->
         <div class="large-4 medium-6 small-12  columns end">
             <a class="dashboard-nav-card" href="#"  style="background:darkred !important; background-clip:content-box!important; " data-open="cafpd">
                
                 <img  class="dashboard-nav-card-icon" src="img/cafpd.svg" style="width:130px;height:60px" alt="sdfd">
                 <h3 class="dashboard-nav-card-title">CAF&amp;PD</h3>
                 <div class="dashboard-nav-card-content">
-                    <h6 class="dashboard-nav-card-kpi">Total RationCard: 40</h6>
+                    <h6 class="dashboard-nav-card-kpi">Total RationCard: <span id="rationcard"></span></h6>
                    
                 </div> 
                 <img  class="dashboard-nav-card-more" src="img/more.svg" style="width:80px;height:30px" alt="sdfd">
@@ -415,9 +419,54 @@
                          <span aria-hidden="true">&times;</span>
                 </button>
             </div><!-- end of modal -->
-        </div>         
-        <!-- </div> -->
-        </div>     
+        </div> 
+        
+        <div class="large-4 medium-6 small-12  columns">
+            <a class="dashboard-nav-card" href="#" style="background:darkslategrey !important;   background-clip:content-box!important;" data-open="election">
+            <!-- <i class="dashboard-nav-card-icon fi-torso large" aria-hidden="true"></i> -->
+                <img  class="dashboard-nav-card-icon" src="img/voting.svg" style="width:130px;height:60px" alt="sdfd">
+                <h3 class="dashboard-nav-card-title">Election</h3>
+                <div class="dashboard-nav-card-content">
+                    <h6 class="dashboard-nav-card-kpi" >Total Voters: <span id ="voters"></span> </h6>
+                     <h6 class="dashboard-nav-card-kpi" >Total Household:<span id ="election_household"></span> </h6>
+                </div> 
+                <img  class="dashboard-nav-card-more" src="img/more.svg" style="width:80px;height:30px" alt="sdfd">
+            </a>
+            <div id="election" class="large reveal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
+                <h2 id="modalTitle">Election</h2>
+                <div class="row">
+                    <span style="color:red">Election:</span>
+                    <table class="responsive-card-table unstriped">
+                        <thead>
+                            <tr>
+                            
+                            <th>Ref.Yr.</th>
+                            <th>Total Voters</th>
+                            <th>Total Household</th>
+                            
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            
+                            <td data-label="Ref.Yr."><?= isset($village_gtv->reference_year) ? $village_gtv->reference_year:'-No Data-' ?></td>
+                            <td data-label="Voters"><?= isset($village_gtv->total_household) ? $village_gtv->total_household:'0' ?></td>
+                            <td data-label="Household"><?= isset($village_gtv->total_population) ? $village_gtv->total_household:'0' ?></td>
+                            
+                            </tr>
+                           
+                            
+                        </tbody>
+                    </table>
+
+                </div> <!-- end of row div -->
+                <button class="close-button button tiny button alert" data-close aria-label="Close modal" type="button">
+                         <span aria-hidden="true">&times;</span>
+                </button>
+            </div>          
+        
+    </div>     
     
 </div>
 

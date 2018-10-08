@@ -144,7 +144,7 @@ class EducationInfrasController extends AppController
         $educationInfras = $this->EducationInfras->get($id, [
             'contain' => ['Villages']
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
+        if ($this->request->is(['patch','post','put'])) {
             $educationInfras = $this->EducationInfras->patchEntity($educationInfras, $this->request->getData());
             if ($this->EducationInfras->save($educationInfras)) {
                 $this->Flash->success(__('The education infra has been saved.'));
