@@ -6,7 +6,7 @@ use Cake\Core\Plugin;
 
 $this->layout = false;
  $loginUrl = $this->Url->build(['controller'=>'users','action' => 'login']); 
- $reportUrl = $this->Url->build(['controller'=>'Villageprofile','action'=>'index']);
+ $reportUrl = $this->Url->build(['controller'=>'Villageprofile','action'=>'home']);
 
 $cakeDescription = 'VIS: Chandel Village Information System';
 ?>

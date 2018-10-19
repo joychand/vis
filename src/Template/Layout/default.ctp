@@ -55,7 +55,9 @@ $cakeDescription = 'VIS Chandel District, Manipur';
         </ul>
         <div class="top-bar-section">
             <ul class="right">
-            <li><?php  $user=$this->request->getSession()->read('Auth.User'); 
+            <li style="color:white;"><?php  $user=$this->request->getSession()->read('Auth.User'); 
+             echo "Welcome, ".$user['user_name']." !";?> </li>
+            <li><?php
                        //dump($user);
                      if ( $user['role_id']==13)
                      {

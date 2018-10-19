@@ -25,7 +25,21 @@ class VillageprofileController extends AppController
        $this->loadComponent('RequestHandler');
        //$this->loadComponent('Security');
    }
-    public function index()
+   
+
+   public function isAuthorized($user)
+   {
+       //dump($user);
+       $action = $this->request->getParam('action');
+       // The add and tags actions are always allowed to logged in users.
+       if (in_array($action, ['home','getvillage','ajaxGetVillageProfile']) && in_array($user['role_id'],[13,15,16])) {
+           return true;
+       }
+
+       
+   }
+
+    public function home()
     {
         $session = $this->request->session();
         if ($this->request->is('post')) {
@@ -37,7 +51,19 @@ class VillageprofileController extends AppController
         $this->loadModel('Subdistricts');
         $this->loadModel('Villages');
        
-        $subdivision= $this->Subdistricts->find('list');       
+        $user_name=$this->Auth->User('user_name');
+        switch($user_name)
+        {
+            case 'sdo.chakpikarong': $subdivision= $this->Subdistricts->find('list')->where(['subdistrict_code'=>'1895']);
+                                     break;  
+            case 'sdo.chandel': $subdivision= $this->Subdistricts->find('list')->where(['subdistrict_code'=>'1894']);;
+                                     break; 
+            case 'sdo.khengjoy': $subdivision= $this->Subdistricts->find('list')->where(['subdistrict_code'=>'6496']);;
+                                     break;
+            case 'dc.chandel': $subdivision= $this->Subdistricts->find('list');
+                                     break;    
+        }
+        //$subdivision= $this->Subdistricts->find('list');       
         $this->set(compact('subdivision'));
     }
 

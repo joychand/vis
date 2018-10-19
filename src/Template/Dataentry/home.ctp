@@ -3,8 +3,16 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
+        <?php
+         $user=$this->request->getSession()->read('Auth.User');
+         if ( $user['role_id']==15)
+        {?>
+        <li><?= $this->Html->link(__('Reports'), ['controller'=>'Villageprofile','action' => 'home']) ?></li>
+        <?php }
+        else {?>
+        
         <li><?= $this->Html->link(__('New User'), ['controller'=>'Users','action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('Manage User'), ['controller'=>'Users','action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Manage User'), ['controller'=>'Users','action' => 'index']) ?></li><?php }?>
     </ul>
 </nav>
 <div  class=" large-9 medium-8 " style="margin: auto !important ;border: 3px !important; padding: 10px!important;">

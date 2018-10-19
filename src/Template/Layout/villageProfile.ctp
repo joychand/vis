@@ -62,11 +62,19 @@ $cakeDescription = 'VIS Chandel District, Manipur';
         </ul>
         <div class="top-bar-section">
             <ul class="right">
-            <li><?php  $user=$this->request->getSession()->read('Auth.User'); 
-                       //dump($user);
+            <li style="color:white;"><?php  $user=$this->request->getSession()->read('Auth.User'); 
+             echo "Welcome, ".$user['user_name']." !";?> </li>
+            <li> 
+                      <?php
                      if ( $user['role_id']==13)
                      {
                          echo $this->Html->link('Admin Home', array('controller' => 'Dataentry', 'action' => 'home'));
+                         
+                         
+                         }?></li>
+                <li> <?php if ( $user['role_id']==15)
+                     {
+                         echo $this->Html->link('DataEntry', array('controller' => 'Dataentry', 'action' => 'home'));
                          
                          
                          }?></li>

@@ -82,7 +82,8 @@ public function isAuthorized($user)
                // debug($user->role_id);
                 $this->Auth->setUser($user);
                 $role_redirect=$this->Auth->User('role_id');
-              //  dump($role_redirect);
+                //$user_name=$this->Auth->User('user_name');
+              // dump($user_name);
                 switch($role_redirect)
                 {
                     case 1: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Anganwadis','action'=>'home']));
@@ -112,7 +113,11 @@ public function isAuthorized($user)
                     case 13: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Dataentry','action'=>'home']));
                              break;
                     case 14: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Manager','action'=>'home']));
-                             break;           
+                             break;
+                    case 15: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Villageprofile','action'=>'home']));
+                             break; 
+                    case 16: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Villageprofile','action'=>'home']));
+                             break;       
 
 
                 }
