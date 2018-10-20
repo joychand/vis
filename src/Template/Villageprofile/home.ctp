@@ -67,7 +67,7 @@
             <div id="demography" class="large reveal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
                 <h2 id="modalTitle">Demography</h2>
                 <div class="row">
-                    <span style="color:red">Demography:</span>
+                    <h6 style="color:#116d76">Village Name:<span class="village_name" style="color:#116d76"></span></h6>
                     <table class="responsive-card-table unstriped">
                         <thead>
                             <tr>
@@ -132,7 +132,7 @@
                 <!-- <a class="close-reveal-modal" style="top: 1.5rem !important;position: absolute !important;right: 1.5rem; !important;font-weight:bold !important;"aria-label="Close" data-close>&#215;</a> -->
 
                 <div class="row">
-                    <span style="color:blue">Health Infras:</span>
+                <h6 style="color:#116d76">Village Name:<span class="village_name" style="color:#116d76"></span></h6>
                     <table class="responsive-card-table unstriped">
                         <thead>
                             <tr>
@@ -182,7 +182,7 @@
             <div id="education" class="large reveal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
                 <h2 id="modalTitle">Education Infra</h2>
                 <div class="row">
-        
+                <h6 style="color:#116d76">Village Name:<span class="village_name" style="color:#116d76"></span></h6>
                     <table class="responsive-card-table unstriped">
                         <thead>
                             <tr>
@@ -244,7 +244,7 @@
             <div id="anganwadi" class="large reveal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
                 <h2 id="modalTitle">Anganwadis</h2>
                 <div class="row">
-                    <span style="color:green">Anganwadis:</span>
+                <h6 style="color:#116d76">Village Name:<span class="village_name" style="color:#116d76"></span></h6>
                     <table class="responsive-card-table unstriped">
                         <thead>
                             <tr>
@@ -296,7 +296,7 @@
             <div id="nsap" class="large reveal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
                 <h2 id="modalTitle">NSAP</h2>
                 <div class="row">
-                    <span style="color:purple">NSAP:</span>
+                <h6 style="color:#116d76">Village Name:<span class="village_name" style="color:#116d76"></span></h6>
                     <table class="responsive-card-table unstriped">
                         <thead>
                             <tr>
@@ -310,10 +310,10 @@
                         </thead>
                         <tbody>
                             <tr>
-                            <td data-label="Ref.Yr."><?= isset($vill_nsap->reference_year) ? $vill_nsap->reference_year : '-No Data-' ?></td>
-                            <td data-label="Widows Beneficiary(nos)"><?= isset($vill_nsap->total_widows_beneficiary) ? $vill_nsap->total_widows_beneficiary:'0' ?></td>
-                            <td data-label="Differently Abled Benefeciary(nos)"><?= isset($vill_nsap->total_handicap_beneficiary) ? $vill_nsap->total_handicap_beneficiary:'0' ?></td>
-                            <td data-label="IGNOAPS Beneficiary (nos)"><?= isset($vill_nsap->total_ignoaps_beneficiary) ? $vill_nsap->total_ignoaps_beneficiary:'0' ?></td>
+                            <td id="nsap_refyr" data-label="Ref.Yr."></td>
+                            <td id="nsap_widows" data-label="Widows Beneficiary(nos)"></td>
+                            <td id="nsap_difabled" data-label="Differently Abled Benefeciary(nos)"></td>
+                            <td id="nsap_ignoaps" data-label="IGNOAPS Beneficiary (nos)"></td>
                             
                             </tr>
                             
@@ -341,7 +341,7 @@
             <div id="nrega" class="medium reveal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
                 <h2 id="modalTitle">NREGA</h2>
                 <div class="row">
-                    <span style="color:red">NREGA:</span>
+                <h6 style="color:#116d76">Village Name:<span class="village_name" style="color:#116d76"></span></h6>
                     <table class="responsive-card-table unstriped">
                         <thead>
                             <tr>
@@ -351,8 +351,8 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td data-label="Ref.Yr."></td>
-                                <td data-label="Total Job Card "></td>           
+                                <td id="nrega_refyr"data-label="Ref.Yr."></td>
+                                <td id="nrega_job"data-label="Total Job Card "></td>           
                             </tr>                        
                         </tbody>
                     </table>
@@ -386,7 +386,7 @@
             <div id="cafpd" class="large reveal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
                 <h2 id="modalTitle">CAF&amp;PD</h2>
                 <div class="row">
-                    <span style="color:purple">CAF&amp;PD:</span>
+                <h6 style="color:#116d76">Village Name:<span class="village_name" style="color:#116d76"></span></h6>
                     <table class="responsive-card-table unstriped">
                         <thead>
                             <tr>
@@ -402,12 +402,12 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td data-label="Ref.Yr."><?= isset($vill_cafpd->reference_year) ? $vill_cafpd->reference_year:'-No Data-'?></td>
-                                <td data-label="AAY Card(nos)"><?= isset($vill_cafpd->total_aay_card) ? $vill_cafpd->total_aay_card:'0'?></td>
-                                <td data-label="AAY Members(nos)"><?= isset($vill_cafpd->total_aay_members) ? $vill_cafpd->total_aay_members:'0' ?></td>
-                                <td data-label="PHH Card (nos)"><?= isset($vill_cafpd->total_phh_card) ? $vill_cafpd->total_phh_card:'0' ?></td>
-                                <td data-label="PHH Members (nos)"><?= isset($vill_cafpd->total_phh_members) ? $vill_cafpd->total_phh_members:'0' ?></td>
-                                <td data-label="Fair Price Shop Name"><?= isset($vill_cafpd->fair_price_shop_name) ? $vill_cafpd->fair_price_shop_name:'0' ?></td>
+                                <td id="cafd_refyr"data-label="Ref.Yr."><?= isset($vill_cafpd->reference_year) ? $vill_cafpd->reference_year:'-No Data-'?></td>
+                                <td id="cafd_aay"data-label="AAY Card(nos)"><?= isset($vill_cafpd->total_aay_card) ? $vill_cafpd->total_aay_card:'0'?></td>
+                                <td id="cafd_amember"data-label="AAY Members(nos)"><?= isset($vill_cafpd->total_aay_members) ? $vill_cafpd->total_aay_members:'0' ?></td>
+                                <td id="cafd_phh"data-label="PHH Card (nos)"><?= isset($vill_cafpd->total_phh_card) ? $vill_cafpd->total_phh_card:'0' ?></td>
+                                <td id="cafd_pmember"data-label="PHH Members (nos)"><?= isset($vill_cafpd->total_phh_members) ? $vill_cafpd->total_phh_members:'0' ?></td>
+                                <td id="cafd_shop"data-label="Fair Price Shop Name"><?= isset($vill_cafpd->fair_price_shop_name) ? $vill_cafpd->fair_price_shop_name:'0' ?></td>
                             
                             </tr>
                             
@@ -435,7 +435,7 @@
             <div id="election" class="large reveal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
                 <h2 id="modalTitle">Election</h2>
                 <div class="row">
-                    <span style="color:red">Election:</span>
+                <h6 style="color:#116d76">Village Name:<span class="village_name" style="color:#116d76"></span></h6>
                     <table class="responsive-card-table unstriped">
                         <thead>
                             <tr>
@@ -450,9 +450,9 @@
                         <tbody>
                             <tr>
                             
-                            <td data-label="Ref.Yr."><?= isset($village_gtv->reference_year) ? $village_gtv->reference_year:'-No Data-' ?></td>
-                            <td data-label="Voters"><?= isset($village_gtv->total_household) ? $village_gtv->total_household:'0' ?></td>
-                            <td data-label="Household"><?= isset($village_gtv->total_population) ? $village_gtv->total_household:'0' ?></td>
+                            <td id="election_RefYr"data-label="Ref.Yr."></td>
+                            <td id="election_voter"data-label="Voters"></td>
+                            <td id="election_household"data-label="Household"></td>
                             
                             </tr>
                            

@@ -192,7 +192,7 @@ $(document).ready(function()
                         $("#jhs_teach").html((response.vill_edn!=undefined || response.vill_edn!=null) ? response.vill_edn.total_jhs_teacher : '0' );
                         $("#sec_student").html((response.vill_edn!=undefined || response.vill_edn!=null) ? response.vill_edn.total_secondary_student : '0' );
                         $("#sec_teach").html((response.vill_edn!=undefined || response.vill_edn!=null) ? response.vill_edn.total_secondary_teacher : '0' );  
-                          //***********Education ***********/
+                          //***********Anganwadis ***********/
                           $("#ang_refyr").html((response.vill_anganwadi!=undefined || response.vill_anganwadi!=null) ? response.vill_anganwadi.anganwadi_reference_year : '0' );
                           $("#ang_centre").html((response.vill_anganwadi!=undefined || response.vill_anganwadi!=null) ? response.vill_anganwadi.total_anganwadi_centre : '0' );
                           $("#ang_childre").html((response.vill_anganwadi!=undefined || response.vill_anganwadi!=null) ? response.vill_anganwadi.total_enrolled_children : '0' );  
@@ -201,7 +201,28 @@ $(document).ready(function()
                           $("#1st").html((response.vill_anganwadi!=undefined || response.vill_anganwadi!=null) ? response.vill_anganwadi.first_qtr_pregnant : '0' );  
                           $("#2nd").html((response.vill_anganwadi!=undefined || response.vill_anganwadi!=null) ? response.vill_anganwadi.second_qtr_pregnant : '0' ); 
                           $("#3rd").html((response.vill_anganwadi!=undefined || response.vill_anganwadi!=null) ? response.vill_anganwadi.third_qtr_pregnant : '0' );
-                         
+                          //***********NSAP ***********/
+                          $("#nsap_refyr").html((response.vill_nsap!=undefined || response.vill_nsap!=null) ? response.vill_nsap.reference_year : '0' );
+                          $("#nsap_widows").html((response.vill_nsap!=undefined || response.vill_nsap!=null) ? response.vill_nsap.total_widows_beneficiary : '0' );
+                          $("#nsap_difabled").html((response.vill_nsap!=undefined || response.vill_nsap!=null) ? response.vill_nsap.total_handicap_beneficiary : '0' );  
+                          $("#nsap_ignoaps").html((response.vill_nsap!=undefined || response.vill_nsap!=null) ? response.vill_nsap.total_ignoaps_beneficiary : '0' );
+                          
+                           //***********NREGA ***********/
+                           $("#nrega_refyr").html((response.vill_nrega!=undefined || response.vill_nrega!=null) ? response.vill_nrega.nrega_reference_year : '0' );
+                           $("#nrega_job").html((response.vill_nrega!=undefined || response.vill_nrega!=null) ? response.vill_nrega.total_job_card : '0' );
+                           
+                           //***********cafpd ***********/
+                            $("#cafd_refyr").html((response.vill_cafpd!=undefined || response.vill_cafpd!=null) ? response.vill_cafpd.reference_year : '0' );
+                            $("#cafd_aay").html((response.vill_cafpd!=undefined || response.vill_cafpd!=null) ? response.vill_cafpd.total_aay_card : '0' );
+                            $("#cafd_amember").html((response.vill_cafpd!=undefined || response.vill_cafpd!=null) ? response.vill_cafpd.total_aay_members : '0' );
+                            $("#cafd_phh").html((response.vill_cafpd!=undefined || response.vill_cafpd!=null) ? response.vill_cafpd.total_phh_card : '0' );
+                            $("#cafd_pmember").html((response.vill_cafpd!=undefined || response.vill_cafpd!=null) ? response.vill_cafpd.total_phh_members : '0' );
+                            $("#cafd_shop").html((response.vill_cafpd!=undefined || response.vill_cafpd!=null) ? response.vill_cafpd.fair_price_shop_name : '0' );
+                            //********Election */
+                            $("#election_RefYr").html((response.vill_electoral!=undefined || response.vill_electoral!=null) ? response.vill_electoral.reference_year : '0' );
+                            $("#election_voter").html((response.vill_electoral!=undefined || response.vill_electoral!=null) ? response.vill_electoral.electoral_total_voter : '0' );
+                            $("#election_household").html((response.vill_electoral!=undefined || response.vill_electoral!=null) ? response.vill_electoral.electoral_total_household : '0' );
+                            $(".village_name").html(response.village.village_name);
                     $('#villageprofile').show(); 
                    // $(".village").val($(this).val()); 
                 },
