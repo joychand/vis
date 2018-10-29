@@ -30,7 +30,7 @@ class EducationInfrasController extends AppController
         $action = $this->request->getParam('action');
         // The add and tags actions are always allowed to logged in users.
         //till now role_id are hardcoded.. needs to be updated with general function
-        if (in_array($action, ['home','add', 'edit','delete','index','ajaxFilterSubdivision','ajaxDelete']) && in_array($user['role_id'],[3,13,14])) {
+        if (in_array($action, ['home','add', 'edit','delete','index','ajaxFilterSubdivision','ajaxDelete']) && in_array($user['role_id'],[3,13,14,15])) {
             return true;
         }
     }

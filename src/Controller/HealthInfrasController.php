@@ -27,7 +27,7 @@ class HealthInfrasController extends AppController
             //dump($user);
             $action = $this->request->getParam('action');
            
-            if (in_array($action, ['home','add', 'edit','delete','index','getvillage','ajaxFilterSubdivision','ajaxDelete']) && in_array($user['role_id'],[5,13,14])) {
+            if (in_array($action, ['home','add', 'edit','delete','index','getvillage','ajaxFilterSubdivision','ajaxDelete']) && in_array($user['role_id'],[5,13,14,15])) {
                 return true;
             }
 

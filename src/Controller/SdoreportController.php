@@ -26,7 +26,7 @@ class SdoreportController extends AppController
             //dump($user);
             $action = $this->request->getParam('action');
             // The add and tags actions are always allowed to logged in users.
-            if (in_array($action, ['home','add', 'edit','delete','index','getvillage','ajaxFilterSubdivision','ajaxDelete']) && in_array($user['role_id'],[9,13,14])) {
+            if (in_array($action, ['home','add', 'edit','delete','index','getvillage','ajaxFilterSubdivision','ajaxDelete']) && in_array($user['role_id'],[9,13,14,15])) {
                 return true;
             }
 

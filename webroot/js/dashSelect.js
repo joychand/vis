@@ -152,7 +152,7 @@ $(document).ready(function()
                     $("#gtv_population").html((response.village_gtv!=undefined || response.village_gtv!=null) ? response.village_gtv.total_population : '0' );
                     $("#gtv_household").html((response.village_gtv!=undefined || response.village_gtv!=null) ? response.village_gtv.total_household : '0'); 
                     $("#school").html((response.vill_edn!=undefined || response.vill_edn!=null) ? response.vill_edn.total_govt_school + response.vill_edn.total_adc_school + response.vill_edn.total_adc_school : '0');
-                    $("#student").html((response.vill_edn!=undefined || response.vill_edn!=null) ? response.vill_edn.total_primary_student + response.vill_edn.total_primary_student + response.vill_edn.total_jhs_student + response.vill_edn.total_secondary_student + response.vill_edn.total_hrsec_student : '0');           
+                    $("#student").html((response.vill_edn!=undefined || response.vill_edn!=null) ? (response.vill_edn.total_primary_student  + response.vill_edn.total_jhs_student + response.vill_edn.total_secondary_student ) : '0');           
                     $("#ang_worker").html((response.vill_anganwadi!=undefined || response.vill_anganwadi!=null) ? response.vill_anganwadi.total_anganwadi_worker : '0' );
                     $("#ang_children").html((response.vill_anganwadi!=undefined || response.vill_anganwadi!=null) ? response.vill_anganwadi.total_enrolled_children : '0' );
                     $("#nsap_benef").html((response.vill_nsap!=undefined || response.vill_nsap!=null) ? response.vill_nsap.total_widows_beneficiary + response.vill_nsap.total_handicap_beneficiary + response.vill_nsap.total_ignoaps_beneficiary : '0' );
@@ -170,9 +170,9 @@ $(document).ready(function()
                      $("#secu_hh").html((response.village_sec!=undefined || response.village_sec!=null) ? response.village_sec.total_household : '0' );
                      $("#secu_pop").html((response.village_sec!=undefined || response.village_sec!=null) ? response.village_sec.total_population : '0' );  
                       //***********NERCORMP ***********/
-                      $("#nerc_refyr").html((response.village_sec!=undefined || response.village_sec!=null) ? response.village_sec.reference_year : '0' );
-                      $("#nerc_hh").html((response.village_sec!=undefined || response.village_sec!=null) ? response.village_sec.total_household : '0' );
-                      $("#nerc_pop").html((response.village_sec!=undefined || response.village_sec!=null) ? response.village_sec.total_population : '0' );  
+                      $("#nerc_refyr").html((response.village_nercormp!=undefined || response.village_nercormp!=null) ? response.village_nercormp.reference_year : '0' );
+                      $("#nerc_hh").html((response.village_nercormp!=undefined || response.village_nercormp!=null) ? response.village_nercormp.total_household : '0' );
+                      $("#nerc_pop").html((response.village_nercormp!=undefined || response.village_nercormp!=null) ? response.village_nercormp.total_population : '0' );  
                        //***********Health ***********/
                        $("#health_refyr").html((response.vill_health!=undefined || response.vill_health!=null) ? response.vill_health.health_reference_year : '0' );
                        $("#health_centre").html((response.vill_health!=undefined || response.vill_health!=null) ? response.vill_health.name_of_health_centre : '0' );

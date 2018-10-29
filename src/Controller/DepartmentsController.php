@@ -23,7 +23,7 @@ class DepartmentsController extends AppController
      {
          $actions = $this->request->getParam('action');
         // dump($user['role_id']);
-         if(in_array($actions,['index','add','delete','edit']) && in_array($user['role_id'],[14]))
+         if(in_array($actions,['index','add','delete','edit']) && in_array($user['role_id'],[13,14,15]))
          {
              return true;
          }

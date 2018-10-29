@@ -59,15 +59,16 @@ $cakeDescription = 'VIS Chandel District, Manipur';
              echo "Welcome, ".$user['user_name']." !";?> </li>
             <li><?php
                        //dump($user);
-                     if ( $user['role_id']==13)
+                     if ( in_array($user['role_id'],[13,15]))
                      {
                          echo $this->Html->link('Admin Home', array('controller' => 'Dataentry', 'action' => 'home'));
                          
                          
                          }?></li>
-                <li><?php if ($this->Session->read('Auth')) {echo $this->Html->link('Logout', array('controller' => 'users', 'action' => 'logout')); }?></li>
                 <li><?php if ($this->Session->read('Auth')) {
                     echo $this->Html->link('Change Password', array('controller' => 'users', 'action' => 'changepassword', $user['user_id'])); }?></li>
+                <li><?php if ($this->Session->read('Auth')) {echo $this->Html->link('Logout', array('controller' => 'users', 'action' => 'logout')); }?></li>
+               
                
                
             </ul>
