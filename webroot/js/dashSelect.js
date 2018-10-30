@@ -221,7 +221,7 @@ $(document).ready(function()
                             //********Election */
                             $("#election_RefYr").html((response.vill_electoral!=undefined || response.vill_electoral!=null) ? response.vill_electoral.reference_year : '0' );
                             $("#election_voter").html((response.vill_electoral!=undefined || response.vill_electoral!=null) ? response.vill_electoral.electoral_total_voter : '0' );
-                            $("#election_household").html((response.vill_electoral!=undefined || response.vill_electoral!=null) ? response.vill_electoral.electoral_total_household : '0' );
+                            $("#household_election").html((response.vill_electoral!=undefined || response.vill_electoral!=null) ? response.vill_electoral.electoral_total_household : '-no Record-' );
                             $(".village_name").html(response.village.village_name);
                     $('#villageprofile').show(); 
                    // $(".village").val($(this).val()); 

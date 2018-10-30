@@ -452,7 +452,7 @@
                             
                             <td id="election_RefYr"data-label="Ref.Yr."></td>
                             <td id="election_voter"data-label="Voters"></td>
-                            <td id="election_household"data-label="Household"></td>
+                            <td id="household_election"data-label="Household"></td>
                             
                             </tr>
                            
