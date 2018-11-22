@@ -127,8 +127,9 @@ $(document).ready(function()
 
    //********** get village profile ***************//
     $('#village').change(function(){
-       
-       
+        var delay=3000;
+        $('#villageprofile').hide();
+        $('.loaderimage').show();
         if($(this).val() ) 
         {
             var village_code=$(this).val();
@@ -147,6 +148,8 @@ $(document).ready(function()
                    
                     },
                 success:function(response){
+                   
+                  // setTimeout(function () {
                     $("#vill_health_centre").html((response.vill_health!=undefined || response.vill_health!=null) ? response.vill_health.name_of_health_centre : '0' ); 
                     $("#asha_mobile").html((response.vill_health!=undefined || response.vill_health!=null) ? response.vill_health.asha_mobile : '0' );
                     $("#gtv_population").html((response.village_gtv!=undefined || response.village_gtv!=null) ? response.village_gtv.total_population : '0' );
@@ -223,10 +226,14 @@ $(document).ready(function()
                             $("#election_voter").html((response.vill_electoral!=undefined || response.vill_electoral!=null) ? response.vill_electoral.electoral_total_voter : '0' );
                             $("#household_election").html((response.vill_electoral!=undefined || response.vill_electoral!=null) ? response.vill_electoral.electoral_total_household : '-no Record-' );
                             $(".village_name").html(response.village.village_name);
+                  // },delay);
+                   
+                     $('.loaderimage').hide();
                     $('#villageprofile').show(); 
                    // $(".village").val($(this).val()); 
                 },
                 error: function(e){
+                    $('.loaderimage').hide();
                     alert("An error occured:" + e.responseText.message);
                     console.log(e);
                 }

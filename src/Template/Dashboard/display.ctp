@@ -4,7 +4,7 @@ use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Core\Plugin;
 
-$this->layout = false;
+// $this->layout = false;
  $loginUrl = $this->Url->build(['controller'=>'users','action' => 'login']); 
  $reportUrl = $this->Url->build(['controller'=>'Villageprofile','action'=>'home']);
 
@@ -37,7 +37,7 @@ $cakeDescription = 'VIS: Chandel Village Information System';
 </head>
 <body >
 <div class="container" style="padding:10px; padding-bottom:80px; ">
-<header class="row " style:"width:100% !important">
+<!-- <header class="row " style:"width:100% !important">
     <div class="small-2 medium-2 columns" style="padding:10px !important;"><?= $this->Html->image('Logo_kanglasha.png') ?></div>
        <div class="small-10 medium-10 columns" style="text-align:right">
         <h1 style=" font-weight:300;font-size:1.1em;padding-bottom:0;">Village Information System (VIS)  </h1>
@@ -47,8 +47,8 @@ $cakeDescription = 'VIS: Chandel Village Information System';
 
   
     
-</header>
-<div class="row">
+</header> -->
+<!-- <div class="row">
   <div class=" small-centered small-offset-2 columns ">
       
           <ul class=" stack-for-small button-group even-3 round">
@@ -60,7 +60,7 @@ $cakeDescription = 'VIS: Chandel Village Information System';
         
        
   </div>
-</div>
+</div> -->
 
 
 

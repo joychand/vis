@@ -23,7 +23,7 @@ $cakeDescription = 'VIS Chandel District, Manipur';
 // $this->Html->scriptEnd();
 ?>
 <!DOCTYPE html>
-<html>
+<html style="overflow-y: scroll;">
 <head>
 <?php  $this->Html->script('jquery-3.3.1.min.js',['block'=>true]);?>
 <?php  $this->Html->script('foundation.min.js',['block'=>true]);?> 
@@ -41,7 +41,7 @@ $cakeDescription = 'VIS Chandel District, Manipur';
     <?= $this->Html->css('base.css') ?>
    
     <?= $this->Html->css('style.css') ?>
-
+    <?= $this->Html->css('foundation-icons/foundation-icons.css')?>
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
@@ -61,13 +61,25 @@ $cakeDescription = 'VIS Chandel District, Manipur';
                        //dump($user);
                      if ( in_array($user['role_id'],[13,15]))
                      {
-                         echo $this->Html->link('Admin Home', array('controller' => 'Dataentry', 'action' => 'home'));
+                         echo $this->Html->link($this->Html->tag('i', '', array('class' => 'fi-home large')).'Home', array('controller' => 'Dataentry', 'action' => 'home'),array('escape'=>false));?>
+                        
+                         
+                        <?php }?></li>
+                    <li> <?php if ( $user['role_id']==16)
+                     {
+                         echo $this->Html->link($this->Html->tag('i', '', array('class' => 'fi-laptop large')).'DEStatus', array('controller' => 'Dashboard', 'action' => 'display'),array('escape'=>false));
+                         
+                         
+                         }?></li>
+                    <li> <?php if ( $user['role_id']==16)
+                     {
+                         echo $this->Html->link($this->Html->tag('i','',array('class'=>'fi-graph-trend large')).'VillageProfile', array('controller' => 'Villageprofile', 'action' => 'home'),array('escape'=>false));
                          
                          
                          }?></li>
                 <li><?php if ($this->Session->read('Auth')) {
-                    echo $this->Html->link('Change Password', array('controller' => 'users', 'action' => 'changepassword', $user['user_id'])); }?></li>
-                <li><?php if ($this->Session->read('Auth')) {echo $this->Html->link('Logout', array('controller' => 'users', 'action' => 'logout')); }?></li>
+                    echo $this->Html->link($this->Html->tag('i','',array('class'=>'fi-wrench large')).'Change Password', array('controller' => 'users', 'action' => 'changepassword', $user['user_id']),array('escape'=>false)); }?></li>
+                <li><?php if ($this->Session->read('Auth')) {echo $this->Html->link($this->Html->tag('i','',array('class'=>'fi-arrow-left large')).'Logout', array('controller' => 'users', 'action' => 'logout'), array('escape'=>false)); }?></li>
                
                
                

@@ -7,7 +7,7 @@
          $user=$this->request->getSession()->read('Auth.User');
          if ( $user['role_id']==15)
         {?>
-        <li><?= $this->Html->link(__('Reports'), ['controller'=>'Villageprofile','action' => 'home']) ?></li>
+        <li><?= $this->Html->link($this->Html->tag('i','',array('class'=>'fi-graph-trend large')).__('Village Profile'), ['controller'=>'Villageprofile','action' => 'home'],['escape'=>false]) ?></li>
         <?php }
         else {?>
         

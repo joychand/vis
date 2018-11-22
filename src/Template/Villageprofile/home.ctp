@@ -50,7 +50,10 @@
         <?= $this->Form->end() ?> 
     </div>
     <!-- <div class="row"> -->
-    <div class="container  small-centered medium-centered large-centered"  id="villageprofile"style=" display:none !important;">
+    <div class="container  small-centered medium-centered large-centered" style="text-align:center" >
+    <img   src="/img/ajax-loader.gif" width="20px" height="20px" alt="sdfd"  class="loaderimage" style=" display:none !important; background:blue;">
+    </div>
+    <div class="container  small-centered medium-centered large-centered"  id="villageprofile" style=" display:none !important;">
      
     <!-- ********************************************* DEMOGRAPHY********************************* -->
     <div class="large-4 medium-6 small-12  columns">
