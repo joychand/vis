@@ -19,7 +19,7 @@
 <div class="users form large-9 medium-8 columns content">
     <?= $this->Form->create($user) ?>
     <fieldset>
-        <legend><?= __('Add User') ?></legend>
+        <legend><?= __('Change Password') ?></legend>
         <?php
            // echo $this->Form->control('user_creation_date', ['empty' => true]);
            //echo $this->Form->control('user_id');

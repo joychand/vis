@@ -63,7 +63,7 @@ $cakeDescription = 'VIS: Chandel Village Information System';
 </div> -->
 
 
-
+<div class="row"><legend style="text-align:center">Date Entry Status</legend></div>
 <div class="row fullWidth" >
     <div class="large-3 medium-4 columns">
         <div class="card-info primary">

@@ -41,7 +41,9 @@ class VillageprofileController extends AppController
 
     public function home()
     {
-        $session = $this->request->session();
+        $session = $this->getRequest()->getSession();
+
+        $session->write('homecontroller', $this->request->params['controller']);
         if ($this->request->is('post')) {
             //debug($this->request->getData('subdistrict_code'));
             $session->write('subdivision',$this->request->getData('subdistrict_code'));

@@ -11,8 +11,8 @@
         <?php }
         else {?>
         
-        <li><?= $this->Html->link(__('New User'), ['controller'=>'Users','action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('Manage User'), ['controller'=>'Users','action' => 'index']) ?></li><?php }?>
+        <li><?= $this->Html->link($this->Html->tag('i','',array('class'=>'fi-torso large')).__('New User'), ['controller'=>'Users','action' => 'add'],['escape'=>false]) ?></li>
+        <li><?= $this->Html->link($this->Html->tag('i','',['class'=>'fi-torsos-all']).__('Manage User'), ['controller'=>'Users','action' => 'index'],['escape'=>false]) ?></li><?php }?>
     </ul>
 </nav>
 <div  class=" large-9 medium-8 " style="margin: auto !important ;border: 3px !important; padding: 10px!important;">

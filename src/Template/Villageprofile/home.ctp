@@ -5,7 +5,9 @@
 
 
 <div class="container" style="padding:10px; padding-bottom:80px; ">
-    
+   <div class="row">
+  
+   <div class="small-12 small-centered columns" > <legend style="text-align:center"><?= __('Village Profile') ?></legend></div></div> 
     <div class="large-6 medium-8 small-9 small-centered medium-centered large-centered columns">
         <?= $this->Form->create() ?>
         <?php $targetUrl = $this->Url->build(['action' => 'getvillage']); ?>
@@ -62,8 +64,9 @@
                 <img  class="dashboard-nav-card-icon" src="/img/population.svg" style="width:130px;height:60px" alt="sdfd">
                 <h3 class="dashboard-nav-card-title">Demography</h3>
                 <div class="dashboard-nav-card-content">
-                    <h6 class="dashboard-nav-card-kpi" >Total Population: <span id ="gtv_population"></span> </h6>
-                     <h6 class="dashboard-nav-card-kpi" >Total Household:<span id ="gtv_household"></span> </h6>
+                    <h6 class="dashboard-nav-card-kpi" >Total Population: <span class ="nerc_population"></span> </h6>
+                     <h6 class="dashboard-nav-card-kpi" >Total Household:<span class="nerc_household"></span> </h6>
+                     <h12 class="dashboard-nav-card-kpi" style="font-size:smaller !important" >(NERCORMP) </h12>
                 </div> 
                 <img  class="dashboard-nav-card-more" src="/img/more.svg" style="width:80px;height:30px" alt="sdfd">
             </a>
@@ -239,6 +242,8 @@
                 <img  class="dashboard-nav-card-icon" src="/img/baby-white.svg" style="width:130px;height:60px" alt="sdfd">
                 <h3 class="dashboard-nav-card-title">Anganwadi</h3>
                 <div class="dashboard-nav-card-content">
+                    <h6 class="dashboard-nav-card-kpi" style="font-size:.9rem" > Population: <span class="nerc_population"></span></h6>
+                    <h6 class="dashboard-nav-card-kpi" style="font-size:.9rem" > Household: <span class ="nerc_household"></span></h6>
                     <h6 class="dashboard-nav-card-kpi">Total worker: <span id="ang_worker"></span></h6>
                     <h6 class="dashboard-nav-card-kpi">Total children: <span id ="ang_children"></span></h6>
                 </div> 
@@ -291,6 +296,8 @@
                 <img  class="dashboard-nav-card-icon" src="/img/social-care.svg" style="width:130px;height:60px" alt="sdfd">
                 <h3 class="dashboard-nav-card-title">NSAP</h3>
                 <div class="dashboard-nav-card-content">
+                <h6 class="dashboard-nav-card-kpi" style="font-size:.9rem" > Population: <span class="nerc_population"></span></h6>
+                    <h6 class="dashboard-nav-card-kpi" style="font-size:.9rem" > Household: <span class ="nerc_household"></span></h6>
                     <h6 class="dashboard-nav-card-kpi">Total Beneficiaries: <span id="nsap_benef"></span></h6>
                    
                 </div>  
@@ -336,6 +343,8 @@
                 <img  class="dashboard-nav-card-icon" src="/img/nrega.svg" style="width:130px;height:60px" alt="sdfd">
                 <h3 class="dashboard-nav-card-title">NREGA</h3>
                 <div class="dashboard-nav-card-content">
+                <h6 class="dashboard-nav-card-kpi" style="font-size:.9rem" > Population: <span class="nerc_population"></span></h6>
+                    <h6 class="dashboard-nav-card-kpi" style="font-size:.9rem" > Household: <span class ="nerc_household"></span></h6>
                     <h6 class="dashboard-nav-card-kpi">Total JobCard: <span id="jobcard"></span></h6>
                     
                 </div> 
@@ -381,6 +390,8 @@
                 <img  class="dashboard-nav-card-icon" src="/img/cafpd.svg" style="width:130px;height:60px" alt="sdfd">
                 <h3 class="dashboard-nav-card-title">CAF&amp;PD</h3>
                 <div class="dashboard-nav-card-content">
+                <h6 class="dashboard-nav-card-kpi" style="font-size:.9rem" > Population: <span class="nerc_population"></span></h6>
+                    <h6 class="dashboard-nav-card-kpi" style="font-size:.9rem" > Household: <span class ="nerc_household"></span></h6>
                     <h6 class="dashboard-nav-card-kpi">Total RationCard: <span id="rationcard"></span></h6>
                    
                 </div> 
