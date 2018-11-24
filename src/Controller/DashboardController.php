@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Dashboard Controller
@@ -18,7 +19,7 @@ class DashboardController extends AppController
         //dump($user);
         $action = $this->request->getParam('action');
         // The add and tags actions are always allowed to logged in users.
-        if (in_array($action, ['display','getvillage','ajaxDelete','ajaxFilterSubdivision']) && in_array($user['role_id'],[1,13,14,15])) {
+        if (in_array($action, ['display','getEmptyVillage']) && in_array($user['role_id'],[13,15,16])) {
             return true;
         }
 
@@ -68,14 +69,7 @@ class DashboardController extends AppController
     {
         $this->loadModel('HealthInfras');
         $this->loadModel('Villages');
-        // $query=$this->Villages->find()
-               
-        //        ->contain('Subdistricts')
-        //        ->select(['village_code','village_name','Subdistricts.subdistrict_name'])
-        //        ->notMatching('HealthInfras',function($q) 
-        //        {
-        //            return $q;
-        //        });
+        
          $query=$this->Villages->find()
                
                ->contain('Subdistricts')
@@ -114,6 +108,104 @@ class DashboardController extends AppController
          //$data=$query->select('village_code','village')      
           // sql($query); 
            debug($query->toList());       
+    }
+
+    public function getEmptyVillage($modelToLoad)
+    {
+        $this->loadModel('Villages');
+        $this->loadModel('Subdistricts');
+        $subDivs=$this->Subdistricts->find('list'); 
+       if (in_array($modelToLoad,['gtv','security','nercormp','census']))
+        {
+        switch($modelToLoad){
+            
+                case 'nercormp':   $query=$this->Villages->find()               
+                                     ->contain('Subdistricts')
+                                     ->select(['village_code','village_name','Subdistricts.subdistrict_name'])
+                                     ->distinct('Villages.village_code')
+                                     ->notMatching('populations',function($q) 
+                                     {
+                                        return $q->where(['populations.counting_agency'=>1]);
+                                      });
+                                      
+                            break;  
+                case 'security':   $query=$this->Villages->find()               
+                            ->contain('Subdistricts')
+                            ->select(['village_code','village_name','Subdistricts.subdistrict_name'])
+                            ->distinct('Villages.village_code')
+                            ->notMatching('populations',function($q) 
+                            {
+                               return $q->where(['populations.counting_agency'=>2]);
+                             });
+                             
+                            break; 
+                case 'gtv':   $query=$this->Villages->find()               
+                            ->contain('Subdistricts')
+                            ->select(['village_code','village_name','Subdistricts.subdistrict_name'])
+                            ->distinct('Villages.village_code')
+                            ->notMatching('populations',function($q) 
+                            {
+                               return $q->where(['populations.counting_agency'=>3]);
+                             });
+                             
+                            break; 
+                case 'census':   $query=$this->Villages->find()               
+                            ->contain('Subdistricts')
+                            ->select(['village_code','village_name','Subdistricts.subdistrict_name'])
+                            ->distinct('Villages.village_code')
+                            ->notMatching('populations',function($q) 
+                            {
+                               return $q->where(['populations.counting_agency'=>4]);
+                             });
+                             
+                            break; 
+            }
+
+        }
+        
+      else{
+        $query=$this->Villages->find()
+               
+        ->contain('Subdistricts')
+        ->select(['village_code','village_name','Subdistricts.subdistrict_name'])
+        ->distinct('Villages.village_code')
+        ->notMatching($modelToLoad,function($q) 
+        {
+            return $q;
+        });  
+      }
+        switch($modelToLoad){
+
+            case 'Anganwadis'   : $sectorName='ANGANWADI';
+                                  break;
+            case 'EducationInfras' : $sectorName='EDUCATION INFRA';
+                                     break;
+            case 'HealthInfras'   : $sectorName='HEALTH INFRA';
+                                     break;
+            case 'FoodSecurities' : $sectorName='CAF&PD';
+                                        break;   
+            case 'Nregas'   : $sectorName='NREGA';
+                                        break;
+            case 'VillageNsaps' : $sectorName='NSAP';
+                                           break;
+            case 'VillageElectorals'   : $sectorName='ELECTION';
+                                           break;
+            case 'VillageSchemes' : $sectorName='VILLAGE SCHEME';
+                                              break; 
+            case 'nercormp'   : $sectorName='NERCORMP';
+                                              break;
+            case 'gtv' : $sectorName='GTV';
+                                                 break;
+            case 'VillagePhotos'   : $sectorName='VILLAGE PHOTO';
+                                                 break;
+            case 'security' : $sectorName='SECURITY REPORT';
+                                                    break; 
+            case 'census' : $sectorName='CENSUS';
+                                                    break;                                                                                            
+        }
+       
+       $this->set(compact('query','subDivs','sectorName'));  
+           
     }
 }
     

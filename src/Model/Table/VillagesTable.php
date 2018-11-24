@@ -42,6 +42,30 @@ class VillagesTable extends Table
         $this->hasOne('HealthInfras')
              ->setForeignKey('village_code')
              ->setDependent(true); 
+        $this->hasOne('Anganwadis')
+             ->setForeignKey('village_code')
+             ->setDependent(true);
+        $this->hasOne('EducationInfras')
+             ->setForeignKey('village_code')
+             ->setDependent(true);
+        $this->hasOne('FoodSecurities')
+             ->setForeignKey('village_code')
+             ->setDependent(true);
+        $this->hasOne('Nregas')
+             ->setForeignKey('village_code')
+             ->setDependent(true); 
+        $this->hasOne('VillageNsaps')
+             ->setForeignKey('village_code')
+             ->setDependent(true);
+        $this->hasOne('VillageElectorals')
+             ->setForeignKey('village_code')
+             ->setDependent(true); 
+        $this->hasOne('VillageSchemes')
+             ->setForeignKey('village_code')
+             ->setDependent(true); 
+        $this->hasOne('VillagePhotos')
+             ->setForeignKey('village_code')
+             ->setDependent(true);         
         $this->hasOne('Populations')
              ->setForeignKey('village_code')
              ->setDependent(true);      

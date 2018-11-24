@@ -112,6 +112,10 @@ class VillageprofileController extends AppController
         $village_nercormp = $this->Populations->find('all')->where(['Populations.reference_year'=> $nercormp_subquery
                         ->select(['latest_ref'=>$nercormp_subquery->func()->max('Populations.reference_year')]),'Populations.village_code'=>$village_code, 'Populations.counting_agency'=>1])
                         ->first();
+        $census_subquery= $this->Populations->find()->where(['Populations.village_code'=>$village_code, 'Populations.counting_agency'=>4]);       
+        $village_census = $this->Populations->find('all')->where(['Populations.reference_year'=> $census_subquery
+                                        ->select(['latest_ref'=>$census_subquery->func()->max('Populations.reference_year')]),'Populations.village_code'=>$village_code, 'Populations.counting_agency'=>1])
+                                        ->first();               
         //*** end demography queries **//        
 
         $health_subquery=$this->HealthInfras->find()->where(['HealthInfras.village_code'=>$village_code]);
@@ -137,7 +141,7 @@ class VillageprofileController extends AppController
                                           ->select(['latest_ref'=>$edn_subquery->func()->max('education_reference_year')]),'EducationInfras.village_code'=>$village_code])
                                           ->first();  
         $this->set(compact('vill_health','village','subdivision','village_gtv','village_sec','village_nercormp',
-                'vill_anganwadi','vill_nsap','vill_cafpd','vill_edn'));
+                'vill_anganwadi','vill_nsap','vill_cafpd','vill_edn','village_census'));
     }
 
     public function getvillage()

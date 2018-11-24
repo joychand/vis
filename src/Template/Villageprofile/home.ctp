@@ -108,6 +108,14 @@
                             <td id="nerc_pop" data-label="Population"></td>
                             
                             </tr>
+
+                            <tr>
+                            <td  data-label="Agency">Census</td>
+                            <td id="nerc_refyr" data-label="Ref.Yr."></td>
+                            <td id="nerc_hh" data-label="Household"></td>
+                            <td id="nerc_pop" data-label="Population"></td>
+                            
+                            </tr>
                             
                         </tbody>
                     </table>
