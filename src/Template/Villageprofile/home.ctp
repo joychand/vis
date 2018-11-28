@@ -253,7 +253,7 @@
                     <h6 class="dashboard-nav-card-kpi" style="font-size:.9rem" > Population: <span class="nerc_population"></span></h6>
                     <h6 class="dashboard-nav-card-kpi" style="font-size:.9rem" > Household: <span class ="nerc_household"></span></h6>
                     <h6 class="dashboard-nav-card-kpi">Total worker: <span id="ang_worker"></span></h6>
-                    <h6 class="dashboard-nav-card-kpi">Total children: <span id ="ang_children"></span></h6>
+                    <h6 class="dashboard-nav-card-kpi">Enrolled children: <span id ="ang_children"></span></h6>
                 </div> 
                 <img  class="dashboard-nav-card-more" src="/img/more.svg" style="width:80px;height:30px" alt="sdfd">
             </a>
@@ -383,12 +383,31 @@
             </div> <!-- ****** end of modal div********-->
         </div><!-- ************** end of NREGA DASH ***************************** -->
         <div class="large-4 medium-6 small-12  columns  ">
-            <a class="dashboard-nav-card" href="#"style="background:darkcyan !important;   background-clip:content-box!important;">
+            <a class="dashboard-nav-card" href="#"style="background:darkcyan !important;   background-clip:content-box!important;" data-open="Fotos">
                 <!-- <i class="dashboard-nav-card-icon fi-torso large" aria-hidden="true"></i> -->
                 <img  class="dashboard-nav-card-icon" src="/img/picture.svg" style="width:130px;height:60px" alt="sdfd">
                 <h3 class="dashboard-nav-card-title">Photo</h3>
                 <img  class="dashboard-nav-card-more" src="/img/more.svg" style="width:80px;height:30px" alt="sdfd"> 
             </a>
+            <div id="Fotos" class="large reveal" data-reveal role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+    	
+		        <ul  class = "orbit-container" >
+    		         <li class="is-active orbit-slide">
+    			        <img src="/img/VillagePhotos/photo/270896-5b867fa3c7c9d.jpg" alt="slide 1" />
+    		         </li>
+    		         <li class="orbit-slide">
+    			        <img src="/img/VillagePhotos/photo/270937-5b865818ebbde.jpg" alt="slide 2" />
+    		         </li>
+    		         <li class="orbit-slide">
+    			        <img src="/img/VillagePhotos/photo/270990-5b87c680ba394.jpg" alt="slide 3" />
+    		        </li>
+		        </ul>			
+			
+		        <button class="close-button button tiny button alert" data-close aria-label="Close modal" type="button">
+                         <span aria-hidden="true">&times;</span>
+                </button>
+        
+            </div> 
         </div> 
 
         <!-- ****************************CAFPD******************************* -->

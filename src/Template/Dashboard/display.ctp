@@ -4,7 +4,7 @@ use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Core\Plugin;
 
-// $this->layout = false;
+// $this->layout = 'default';
  $loginUrl = $this->Url->build(['controller'=>'users','action' => 'login']); 
  $reportUrl = $this->Url->build(['controller'=>'Villageprofile','action'=>'home']);
  $get_empty_anganwadis=$this->Url->build(['action'=>'get_empty_village','Anganwadis']);
@@ -23,62 +23,15 @@ use Cake\Core\Plugin;
 
 $cakeDescription = 'VIS: Chandel Village Information System';
 ?>
-<!DOCTYPE html>
-<html >
-<head>
-    <?= $this->Html->charset() ?>
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <?= $cakeDescription ?>
-    </title>
+<?= $this->Html->script('count.js',['block'=>'scriptBottom'])?>
 
-    <?= $this->Html->meta('icon') ?>
-    <?= $this->Html->css('base.css') ?>
-   
-    <?= $this->Html->css('style.css') ?>
-    <?= $this->Html->css('home.css') ?> 
-    
-    <?= $this->Html->css('foundation-icons/foundation-icons.css')?>
-    <?= $this->Html->script('jquery-3.3.1.min.js')?>
-   
-    <?= $this->Html->script('count.js')?>
-
-     <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet"> 
-    
-                        
-</head>
-<body >
 <div class="container small-centered medium-centered large-centered" style="padding:10px; padding-bottom:80px; ">
-<!-- <header class="row " style:"width:100% !important">
-    <div class="small-2 medium-2 columns" style="padding:10px !important;"><?= $this->Html->image('Logo_kanglasha.png') ?></div>
-       <div class="small-10 medium-10 columns" style="text-align:right">
-        <h1 style=" font-weight:300;font-size:1.1em;padding-bottom:0;">Village Information System (VIS)  </h1>
-        <h1 style="font-size:.9em;padding-top:0;">Chandel District, Manipur  </h1>
-       </div> 
-       
 
-  
-    
-</header> -->
-<!-- <div class="row">
-  <div class=" small-centered small-offset-2 columns ">
-      
-          <ul class=" stack-for-small button-group even-3 round">
-            <li><a class="button primary" href="<?=$loginUrl?>" target="_blank" >LogIn <i class="fi-torso large" style="font-size: .9rem;"></i></a></li>
-            
-           
-            <li><a class=" button warning" href="#">Help</a></li>
-          </ul>    
-        
-       
-  </div>
-</div> -->
 
 
 <div class="row"><legend style="text-align:center">Date Entry Status</legend></div>
-<!-- <div class="row fullWidth" > -->
-    <div class="large-3 medium-4 columns">
+ <div class="row fullWidth" > 
+    <div class="large-3  columns">
         <div class="card-info primary">
           <div class="card-info-label">
             <div class="card-info-label-text">
@@ -93,11 +46,11 @@ $cakeDescription = 'VIS: Chandel Village Information System';
               <p class="dash-entered">Data Entered Village:<span class="count dash-span"> <?= $anganwadi_village_entered?></span></p>
               
               <a href="<?=$get_empty_anganwadis?>" ><p class="dash-remain">Remaining Village: <span class="count dash-span"><?= $total_village - $anganwadi_village_entered ?> </span></p></a>
-              <!-- <a class="button primary" href="<?=$loginUrl?>" target="_blank" >LogIn <i class="fi-torso large" style="font-size: .9rem;"></i></a></li> -->
+             
             </div>
         </div>    
     </div>
-    <div class="large-3 medium-4 columns">
+    <div class="large-3  columns">
         <div class="card-info primary">
           <div class="card-info-label">
             <div class="card-info-label-text">
@@ -114,7 +67,7 @@ $cakeDescription = 'VIS: Chandel Village Information System';
         </div> 
     </div>
 
-    <div class="large-3 medium-4 columns">
+    <div class="large-3  columns">
         <div class="card-info primary">
           <div class="card-info-label">
             <div class="card-info-label-text">
@@ -131,7 +84,7 @@ $cakeDescription = 'VIS: Chandel Village Information System';
         </div> 
     </div>
 
-    <div class="large-3 medium-4 columns">
+    <div class="large-3  columns">
         <div class="card-info primary">
           <div class="card-info-label">
             <div class="card-info-label-text">
@@ -147,10 +100,10 @@ $cakeDescription = 'VIS: Chandel Village Information System';
           </div>
         </div> 
     </div>
-<!-- </div> -->
+ </div>
 
-<!-- <div class="row fullWidth"> -->
-<div class="large-3 medium-4 columns">
+ <div class="row fullWidth"> 
+<div class="large-3  columns">
     <div class="card-info primary">
       <div class="card-info-label">
         <div class="card-info-label-text">
@@ -167,7 +120,7 @@ $cakeDescription = 'VIS: Chandel Village Information System';
     </div> 
 </div> 
 
-<div class="large-3 medium-4 columns">
+<div class="large-3  columns">
     <div class="card-info primary">
       <div class="card-info-label">
         <div class="card-info-label-text">
@@ -183,7 +136,7 @@ $cakeDescription = 'VIS: Chandel Village Information System';
       </div>
     </div> 
 </div>  
-<div class="large-3 medium-4 columns">
+<div class="large-3  columns">
     <div class="card-info primary">
       <div class="card-info-label">
         <div class="card-info-label-text">
@@ -199,7 +152,7 @@ $cakeDescription = 'VIS: Chandel Village Information System';
       </div>
     </div> 
 </div>
-        <div class="large-3 medium-4 columns">
+        <div class="large-3  columns">
             <div class="card-info primary">
               <div class="card-info-label">
                 <div class="card-info-label-text">
@@ -218,10 +171,10 @@ $cakeDescription = 'VIS: Chandel Village Information System';
   
 
 
-<!-- </div> -->
+ </div> 
 
-<!-- <div class="row fullWidth"> -->
-        <div class="large-3 medium-4 columns">
+ <div class="row fullWidth"> 
+        <div class="large-3  columns">
             <div class="card-info primary">
               <div class="card-info-label">
                 <div class="card-info-label-text">
@@ -238,7 +191,7 @@ $cakeDescription = 'VIS: Chandel Village Information System';
             </div> 
         </div> 
         
-        <div class="large-3 medium-4 columns">
+        <div class="large-3  columns">
             <div class="card-info primary">
               <div class="card-info-label">
                 <div class="card-info-label-text">
@@ -255,7 +208,7 @@ $cakeDescription = 'VIS: Chandel Village Information System';
             </div> 
         </div>  
 
-        <div class="large-3 medium-4 columns">
+        <div class="large-3  columns">
             <div class="card-info primary">
               <div class="card-info-label">
                 <div class="card-info-label-text">
@@ -271,7 +224,7 @@ $cakeDescription = 'VIS: Chandel Village Information System';
               </div>
             </div> 
         </div>  
-        <div class="large-3 medium-4 columns">
+        <div class="large-3  columns">
             <div class="card-info primary">
               <div class="card-info-label">
                 <div class="card-info-label-text">
@@ -279,7 +232,7 @@ $cakeDescription = 'VIS: Chandel Village Information System';
                 </div>
               </div>
               <div class="card-info-content">
-                <h3 class="lead dash-title" style=" color:purple"> Census</h3>
+                <h3 class="lead dash-title" style=" color:purple"> Census<span style="font-size:.5em !important">(Demography)</span></h3>
                 <hr class="dash-hr"> 
                 <p  class="dash-target">Target Village: <span class="count dash-span"><?= $total_village?></span></p>
                 <p class="dash-entered">Data Entered Village:<span class="count dash-span"> <?= $village_photos_entered?></span></p>
@@ -287,8 +240,9 @@ $cakeDescription = 'VIS: Chandel Village Information System';
               </div>
             </div> 
         </div>
-
-        <div class="large-3 medium-4 columns large-offset-4 end">
+  </div>
+        <div class="row fullWidth" >
+        <div class=" large-3  columns end">
             <div class="card-info primary">
               <div class="card-info-label">
                 <div class="card-info-label-text">
@@ -304,29 +258,6 @@ $cakeDescription = 'VIS: Chandel Village Information System';
               </div>
             </div> 
         </div>   
-
-<!-- </div>  end of row div -->
+        </div>
         
-       
-</div>
 
-<div style=" width:100%;position:fixed;left:0;bottom: 0;background-color: #116d76;color: white;font-style: italic; font-size: 5px !important;">
-        <p style="float:left;margin-left:5px;font-size: 13px !important;"> Designed and Developed by NIC Manipur &copy; Copyright 2018 NIC Manipur</p>
-        <p style="float:right;margin-right:5px;font-size: 13px !important;">Village Information System of Chandel District, Manipur</p>
-      
-</div>
-     
-
-
-
-
-
- <script>
- 
-  </script>
- 
-
-    
-
-</body>
-</html>

@@ -14,13 +14,7 @@
  */
 
 $cakeDescription = 'VIS Chandel District, Manipur';
-// $this->Html->scriptStart(['block' => true]);
-// echo "function preventBack(){window.history.forward();}";
-// echo 'setTimeout("preventBack()", 0);';
-// echo " window.onunload=function(){null};";
-   
-   
-// $this->Html->scriptEnd();
+
 ?>
 <!DOCTYPE html>
 <html style="overflow-y: scroll;">
