@@ -28,7 +28,7 @@ class FoodSecuritiesController extends AppController
         //dump($user);
         $action = $this->request->getParam('action');
         // The add and tags actions are always allowed to logged in users.
-        if (in_array($action, ['add', 'edit','delete','home','index','ajaxFilterSubdivision','ajaxDelete']) &&  in_array($user['role_id'],[2,13,14,15]) ) {
+        if (in_array($action, ['add', 'edit','delete','home','index','ajaxFilterSubdivision','ajaxDelete','getvillage']) &&  in_array($user['role_id'],[2,13,14,15]) ) {
             return true;
         }
         
@@ -81,6 +81,9 @@ class FoodSecuritiesController extends AppController
         $session = $this->request->session();
         
         $cat =$this->getRequest()->getSession()->read('category');
+        $current_year = date('Y');
+        $range = range($current_year, $current_year-10);
+        $years = array_combine($range, $range);
       
         $foodSecurity = $this->FoodSecurities->newEntity();
         if ($this->request->is('post')) {
@@ -127,7 +130,7 @@ class FoodSecuritiesController extends AppController
         }
         $this->set(compact('foodSecurity','selected','selected_ref_yr','villages'));
         $this->set(compact('subdistricts'));
-        $this->set(compact('cat'));
+        $this->set(compact('cat','years'));
     }
 
     /**

@@ -87,6 +87,9 @@ class AnganwadisController extends AppController
 
         $session = $this->request->session();
         $anganwadi = $this->Anganwadis->newEntity();
+        $current_year = date('Y');
+        $range = range($current_year, $current_year-10);
+        $years = array_combine($range, $range);
         if ($this->request->is('post')) {
             $session->write('selected',$this->request->getData('subdistrict'));
             $session->write('selected_ref_yr',$this->request->getData('anganwadi_reference_year')); 
@@ -132,7 +135,7 @@ class AnganwadisController extends AppController
         }
       
        $this->set(compact('subdistricts'));
-        $this->set(compact('anganwadi','selected','selected_ref_yr','villages'));
+        $this->set(compact('anganwadi','selected','selected_ref_yr','villages','years'));
     }
 
     /**

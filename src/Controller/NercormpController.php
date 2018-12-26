@@ -93,10 +93,9 @@ class NercormpController extends AppController
     {   
         $session = $this->request->session();
         $this->populations=TableRegistry::get('populations');
-       
-      
-      
-        
+        $current_year = date('Y');
+        $range = range($current_year, $current_year-10);
+        $years = array_combine($range, $range);     
        
         $nercormp = $this->populations->newEntity();
         if ($this->request->is('post')) {
@@ -144,7 +143,7 @@ class NercormpController extends AppController
            // dump($selected);
         }
         $this->set(compact('nercormp','selected','selected_ref_yr','villages'));
-        $this->set(compact('subdistricts'));
+        $this->set(compact('subdistricts','years'));
         
     }
 

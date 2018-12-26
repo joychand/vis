@@ -1,10 +1,24 @@
 <?php
     $this->layout = 'villageProfile';
     $cakeDescription = 'VIS:Village Information System, Chandel';
+     echo $this->Html->css( ['slick.css','slick-theme'],['block'=>true]);
+     echo $this->Html->script('slick.js',['block'=>'beforeBody'])
 ?>
 
 
+
 <div class="container" style="padding:10px; padding-bottom:80px; ">
+<!-- <div class="row">
+<div  id = "slick-demo" data-slick>
+                 <div><h3>1</h3></div>
+                <div><h3>2</h3></div>
+                <div><h3>3</h3></div>
+                <div><h3>4</h3></div>
+                <div><h3>5</h3></div>
+                <div><h3>6</h3></div>
+            </div>
+</div> -->
+
    <div class="row">
   
    <div class="small-12 small-centered columns" > <legend style="text-align:center"><?= __('Village Profile') ?></legend></div></div> 
@@ -17,36 +31,36 @@
             <!-- <fieldset style="padding:0 !important">     -->
                 <legend><?= __('Select Village') ?></legend>        
                 <form>
-        <div class="row hide-for-small-only">
-            <div class="medium-6 columns">
-                <div class="row">
-                    <div class="medium-4 columns">
+        <!-- <div class="row hide-for-small-only"> -->
+            <div class=" small-12 large-6 columns" style="padding:0 !important">
+                <!-- <div class="row"> -->
+                    <div class=" small-12 large-3 columns">
                         <label for="right-label" class="right inline">Subdivision:</label>
                     </div>
-                    <div class="medium-8 columns">                   
+                    <div class=" small-12 large-9 columns">                   
                          <?= $this->Form->control('subdistrict_code',['type'=>'select','label'=>false,'options'=>$subdivision,'empty'=>'Select SubDivision','id'=>'subdistrict','rel'=>$targetUrl,'required'=>true]) ?>
                     </div>
-                </div>
+                <!-- </div> -->
             </div>
-            <div class="medium-6 columns">
-            <div class="row">
-                <div class="medium-4 columns">
+            <div class=" small-12 large-6 columns" style="padding:0 !important">
+            <!-- <div class="row"> -->
+                <div class=" small-12 large-3 columns">
                 <label for="right-label" class="right inline">Village:</label>
                 </div>
-                <div class="medium-8 columns">
+                <div class="small-12 large-9 columns">
                 <?= $this->Form->control('village_code',['type'=>'select','label'=>false,'empty'=>'Select Village','id'=>'village','required'=>true, 'rel'=>$profileUrl]) ?> 
                 </div>
+            <!-- </div> -->
             </div>
-            </div>
-        </div>
+        <!-- </div> -->
 
         <!-- </div> -->
-        <div class="row show-for-small-only">
-            <?= $this->Form->control('subdistrict_code',[ 'class'=>'subdivision','type'=>'select','label'=>'Subdivision:','options'=>$subdivision,'empty'=>'Select SubDivision','rel'=>$targetUrl,'required'=>true]) ?>
+        <!-- <div class="row show-for-small-only">
+            <?= $this->Form->control('subdistrict_code',[ 'class'=>'subdistrict','type'=>'select','label'=>'Subdivision:','options'=>$subdivision,'empty'=>'Select SubDivision','rel'=>$targetUrl,'required'=>true]) ?>
         </div>
         <div class="row show-for-small-only">
             <?= $this->Form->control('village_code',['class'=>'village','type'=>'select','label'=>'Village:','empty'=>'Select Village','required'=>true]) ?> 
-        </div>
+        </div> -->
      </fieldset> 
          <!-- <?= $this->Form->button(__('Submit')) ?> -->
         <?= $this->Form->end() ?> 
@@ -299,7 +313,7 @@
          
       <!-- *****************************NSAP********************************* -->
         <div class="large-4 medium-6 small-12  columns">
-            <a class="dashboard-nav-card" href="#" style="background:red !important;background-clip:content-box!important;" data-open="nsap">
+            <a class="dashboard-nav-card" href="#" style="background:MEDIUMVIOLETRED !important;background-clip:content-box!important;" data-open="nsap">
                 <!-- <i class="dashboard-nav-card-icon fi-torso large" aria-hidden="true"></i> -->
                 <img  class="dashboard-nav-card-icon" src="/img/social-care.svg" style="width:130px;height:60px" alt="sdfd">
                 <h3 class="dashboard-nav-card-title">NSAP</h3>
@@ -389,9 +403,36 @@
                 <h3 class="dashboard-nav-card-title">Photo</h3>
                 <img  class="dashboard-nav-card-more" src="/img/more.svg" style="width:80px;height:30px" alt="sdfd"> 
             </a>
-            <div id="Fotos" class="large reveal" data-reveal role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
-    	
-		        <ul  class = "orbit-container" >
+            <div id="Fotos" class="medium reveal" data-reveal role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+            <div  id = "slick-demo" data-slick>
+                 <div><img src="/img/VillagePhotos/photo/270896-5b867fa3c7c9d.jpg" alt="slide 1" /></div>
+                <div><img src="/img/VillagePhotos/photo/270937-5b865818ebbde.jpg" alt="slide 2" /></div>
+                <div><img src="/img/VillagePhotos/photo/270937-5b86581906c78.jpg" alt="slide 3" /></div>
+                
+            </div>
+                <!-- <ul class="example-orbit" data-orbit>
+                    <li>
+                    <img src="/img/VillagePhotos/photo/270896-5b867fa3c7c9d.jpg" alt="slide 1" />
+                    <div class="orbit-caption">
+                        Caption One.
+                    </div>
+                    </li>
+                    <li class="active">
+                        <img src="/img/VillagePhotos/photo/270937-5b865818ebbde.jpg" alt="slide 2" />
+                    <div class="orbit-caption">
+                        Caption Two.
+                    </div>
+                    </li>
+                    <li>
+                        <img src="/img/VillagePhotos/photo/270937-5b86581906c78.jpg" alt="slide 3" />
+                        <div class="orbit-caption">
+                         Caption Three.
+                        </div>
+                    </li>
+                </ul> -->
+
+
+		        <!-- <ul  class = "orbit-container" >
     		         <li class="is-active orbit-slide">
     			        <img src="/img/VillagePhotos/photo/270896-5b867fa3c7c9d.jpg" alt="slide 1" />
     		         </li>
@@ -399,9 +440,9 @@
     			        <img src="/img/VillagePhotos/photo/270937-5b865818ebbde.jpg" alt="slide 2" />
     		         </li>
     		         <li class="orbit-slide">
-    			        <img src="/img/VillagePhotos/photo/270990-5b87c680ba394.jpg" alt="slide 3" />
+    			        <img src="/img/VillagePhotos/photo/270937-5b86581906c78.jpg" alt="slide 3" />
     		        </li>
-		        </ul>			
+		        </ul>			 -->
 			
 		        <button class="close-button button tiny button alert" data-close aria-label="Close modal" type="button">
                          <span aria-hidden="true">&times;</span>

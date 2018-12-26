@@ -1,13 +1,26 @@
 $(document).ready(function()
 {
-    $('#villageprofile').hide(); 
+   $('#slick-demo').slick({
+    autoplay: true,
+    autoplaySpeed: 4000,
+    arrows: false,
+    centerMode: true,
+    dots: true,
+    fade: true,
+    speed: 1000,
+    swipeToSlide: true
+   });
+    $(".reveal").on("opened", function() {
+        $("#slick-demo").slick("setPosition");
+    }); 
+    $('#villageprofile').hide();    
     $('#subdistrict').change(function(){
         var targeturl=$(this).attr('rel');
         var csrfToken=$('input[name^="_csrfToken"]').val();
         if( $(this).val())
         {
                 var subdistrict_code=$(this).val();
-                $(".subdivision").val($(this).val());
+               // $(".subdivision").val($(this).val());
                 
                 $.ajax({
                     type:'post',
@@ -64,66 +77,66 @@ $(document).ready(function()
     });
 
 
-    $('.subdivision').change(function(){
-        var targeturl=$(this).attr('rel');
-        var csrfToken=$('input[name^="_csrfToken"]').val();
-        if( $(this).val())
-        {
-                var subdistrict_code=$(this).val();
-                //alert(subdistrict_code);
-                $.ajax({
-                    type:'post',
-                    url: targeturl,
-                    async:true,
-                    data: {"subdistrict_code":subdistrict_code},
-                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                    beforeSend: function(xhr){
-                        xhr.setRequestHeader('X-CSRF-Token', csrfToken);
-                        console.log($('input[name^="_csrfToken"]').val());
+    // $('.subdivision').change(function(){
+    //     var targeturl=$(this).attr('rel');
+    //     var csrfToken=$('input[name^="_csrfToken"]').val();
+    //     if( $(this).val())
+    //     {
+    //             var subdistrict_code=$(this).val();
+    //             //alert(subdistrict_code);
+    //             $.ajax({
+    //                 type:'post',
+    //                 url: targeturl,
+    //                 async:true,
+    //                 data: {"subdistrict_code":subdistrict_code},
+    //                 contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+    //                 beforeSend: function(xhr){
+    //                     xhr.setRequestHeader('X-CSRF-Token', csrfToken);
+    //                     console.log($('input[name^="_csrfToken"]').val());
                        
-                        },
-                    success:function(response){
-                        var sortedVillage=[];             
-                        $(".village").empty();
-                         $.each(response, function(key, value) {                                                                  
-                            $('<option>').val(key).text(value).appendTo($(".village"));
-                        });
+    //                     },
+    //                 success:function(response){
+    //                     var sortedVillage=[];             
+    //                     $(".village").empty();
+    //                      $.each(response, function(key, value) {                                                                  
+    //                         $('<option>').val(key).text(value).appendTo($(".village"));
+    //                     });
 
                         
-                        sortedVillage=$(".village option");
-                        sortedVillage.sort(function(a,b) 
-                        {
-                            if (a.text.toLowerCase() > b.text.toLowerCase()) return 1;
-                            if (a.text.toLowerCase() < b.text.toLowerCase()) return -1;
-                               return 0
-                         })
-                         $('.village')
-                            .find('option')
-                            .remove()
-                            .end();
+    //                     sortedVillage=$(".village option");
+    //                     sortedVillage.sort(function(a,b) 
+    //                     {
+    //                         if (a.text.toLowerCase() > b.text.toLowerCase()) return 1;
+    //                         if (a.text.toLowerCase() < b.text.toLowerCase()) return -1;
+    //                            return 0
+    //                      })
+    //                      $('.village')
+    //                         .find('option')
+    //                         .remove()
+    //                         .end();
                         
-                         $('<option>').val('').text('Select a Village').appendTo($(".village"));
-                         $(".village").append( sortedVillage );
-                         $(".village").val('');
+    //                      $('<option>').val('').text('Select a Village').appendTo($(".village"));
+    //                      $(".village").append( sortedVillage );
+    //                      $(".village").val('');
                                                   
-                        },
+    //                     },
                             
                     
                     
-                    error: function(e){
-                        alert("An error occured:" + e.responseText.message);
-                        console.log(e);
-                    }
-                });
-        }
+    //                 error: function(e){
+    //                     alert("An error occured:" + e.responseText.message);
+    //                     console.log(e);
+    //                 }
+    //             });
+    //     }
 
-        else {
-            $(".village").empty();
-            $('<option>').val('').text('Select a Village').appendTo($(".village"));
-        }
+    //     else {
+    //         $(".village").empty();
+    //         $('<option>').val('').text('Select a Village').appendTo($(".village"));
+    //     }
        
 
-    });
+    // });
 
    //********** get village profile ***************//
     $('#village').change(function(){
@@ -244,7 +257,7 @@ $(document).ready(function()
         } 
         else{
             $('#villageprofile').hide(); 
-            $(".village").val('');
+            $("#village").val('');
         }
             
         
@@ -254,22 +267,22 @@ $(document).ready(function()
         $('#villageprofile').hide(); 
     });
 
-    $('.village').change(function(){
+    // $('.village').change(function(){
        
        
-        if($(this).val() ) {
+    //     if($(this).val() ) {
 
-            $('#villageprofile').show(); 
-        } 
-        else{
-            $('#villageprofile').hide(); 
-        }
+    //         $('#villageprofile').show(); 
+    //     } 
+    //     else{
+    //         $('#villageprofile').hide(); 
+    //     }
             
         
-    });
+    // });
 
-    $('.subdivision').change(function(){
-        $('#villageprofile').hide(); 
-    });
+    // $('.subdivision').change(function(){
+    //     $('#villageprofile').hide(); 
+    // });
 
 });

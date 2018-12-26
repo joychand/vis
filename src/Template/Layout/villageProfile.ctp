@@ -100,12 +100,13 @@ $cakeDescription = 'VIS Chandel District, Manipur';
     </div>
    
     
-<div style=" width:100%;position:fixed;left:0;bottom: 0;background-color: #116d76;color: white;font-style: italic; font-size: 5px !important;">
-        <p style="float:left;margin-left:5px;font-size: 13px !important;"> Designed and Developed by NIC Manipur &copy; Copyright 2018 NIC Manipur</p>
-        <p style="float:right;margin-right:5px;font-size: 13px !important;">Village Information System of Chandel District, Manipur</p>
-        <!-- <div style="clear: both;"></div> -->
+    <div style=" width:100%;position:fixed;left:0;bottom: 0;background-color: #116d76;color: white;font-style: italic; font-size: 5px !important;">
+        <p class=" show-for-large-up"  style="float:left;margin-left:5px;font-size: 13px !important;"> Designed and Developed by NIC Manipur &copy; Copyright 2018 NIC Manipur</p>
+        <p  class="show-for-large-up" style="float:right;margin-right:5px;font-size: 13px !important;">Village Information System of Chandel District, Manipur</p>
+        <p class="show-for-small-up hide-for-large-up"  style="  line-height:70%;text-align:center;font-size: 10px !important;"> Designed and Developed by NIC Manipur &copy; Copyright 2018 NIC Manipur</p>
+        <p  class="show-for-small-up  hide-for-large-up" style="line-height:10%; text-align:center;font-size: 10px !important;">Village Information System of Chandel District, Manipur</p>
+        
 </div>
-
 
  <script>
     $(document).foundation();
@@ -113,7 +114,7 @@ $cakeDescription = 'VIS Chandel District, Manipur';
   </script>
  
    
-    
+ <?= $this->fetch('beforeBody') ?>  
 </body>
 <?= $this->fetch('scriptBottom') ?>
 </html>

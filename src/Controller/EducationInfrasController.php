@@ -30,7 +30,7 @@ class EducationInfrasController extends AppController
         $action = $this->request->getParam('action');
         // The add and tags actions are always allowed to logged in users.
         //till now role_id are hardcoded.. needs to be updated with general function
-        if (in_array($action, ['home','add', 'edit','delete','index','ajaxFilterSubdivision','ajaxDelete']) && in_array($user['role_id'],[3,13,14,15])) {
+        if (in_array($action, ['home','add', 'edit','delete','index','ajaxFilterSubdivision','ajaxDelete','getvillage']) && in_array($user['role_id'],[3,13,14,15])) {
             return true;
         }
     }
@@ -79,6 +79,9 @@ class EducationInfrasController extends AppController
     {
         $session = $this->request->session();
         $educationInfras = $this->EducationInfras->newEntity();
+        $current_year = date('Y');
+        $range = range($current_year, $current_year-10);
+        $years = array_combine($range, $range);
         if ($this->request->is('post')) {
             if ($this->request->is('post')) {
                 $session->write('selected',$this->request->getData('subdistrict'));
@@ -129,7 +132,7 @@ class EducationInfrasController extends AppController
        // dump($selected);
     }
     $this->set(compact('educationInfras','selected','selected_ref_yr','villages'));
-    $this->set(compact('subdistricts'));
+    $this->set(compact('subdistricts','years'));
 }
 
     /**

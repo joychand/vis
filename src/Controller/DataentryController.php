@@ -19,7 +19,7 @@ class DataentryController extends AppController
     public function isAuthorized($user){
         $action = $this->request->getParam('action');
             // The add and tags actions are always allowed to logged in users.
-            if (in_array($action, ['home']) &&  in_array($user['role_id'],[13,15])) 
+            if (in_array($action, ['home','getVillage','getEmptyVillage','ajaxGetvillage','ajaxFilterSubdivision','ajaxGetVillageProfile']) &&  in_array($user['role_id'],[13,15])) 
             {
                 return true;
             }
