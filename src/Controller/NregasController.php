@@ -81,7 +81,9 @@ class NregasController extends AppController
 
     {
         $session = $this->request->session();
-       
+        $current_year = date('Y');
+        $range = range($current_year, $current_year-10);
+        $years = array_combine($range, $range);  
       
         
         $nrega = $this->Nregas->newEntity();
@@ -128,7 +130,7 @@ class NregasController extends AppController
            // dump($selected);
         }
         $this->set(compact('nrega','selected','selected_ref_yr','villages'));
-        $this->set(compact('subdistricts'));
+        $this->set(compact('subdistricts','years'));
     }
 
     /**

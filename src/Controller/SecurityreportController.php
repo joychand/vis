@@ -97,7 +97,9 @@ class SecurityreportController extends AppController
       
        
         $securityreport  = $this->populations->newEntity();
-       
+        $current_year = date('Y');
+        $range = range($current_year, $current_year-10);
+        $years = array_combine($range, $range);
         
         
         if ($this->request->is('post')) {
@@ -150,7 +152,7 @@ class SecurityreportController extends AppController
             $selected_ref_yr=$session->consume('selected_ref_yr');
            // dump($selected);
         }
-        $this->set(compact('securityreport'));
+        $this->set(compact('securityreport','years'));
         $this->set(compact('subdistricts'));
         $this->set(compact('selected','selected_ref_yr','villages'));
     }

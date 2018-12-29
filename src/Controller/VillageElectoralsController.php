@@ -96,6 +96,9 @@ class VillageElectoralsController extends AppController
         
         
         $villageElectoral = $this->VillageElectorals->newEntity();
+        $current_year = date('Y');
+        $range = range($current_year, $current_year-10);
+        $years = array_combine($range, $range);
         if ($this->request->is('post')) {
             $session->write('selected',$this->request->getData('subdistrict'));
             $session->write('selected_ref_yr',$this->request->getData('reference_year')); 
@@ -119,7 +122,7 @@ class VillageElectoralsController extends AppController
         }
         $this->subdistricts = TableRegistry::get('Subdistricts');
         $subdistricts=$this->subdistricts->find('list');
-        $this->set(compact('subdistricts'));
+        $this->set(compact('subdistricts','years'));
         if(!$session->check('selected') && $session->check('selected_ref_yr') )
         {
             $selected=null;

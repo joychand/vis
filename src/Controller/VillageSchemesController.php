@@ -78,7 +78,14 @@ class VillageSchemesController extends AppController
     {
         $session = $this->request->session();
         $this->subdistricts = TableRegistry::get('Subdistricts');
-       
+        $current_fn_year = date('Y');
+        $min_fn_year = $current_fn_year - 10;
+        for($i = $min_fn_year; $i <= $current_fn_year; $i++){
+            $fn_yr_array[$i] = strval($i).'-'.strval($i+1);
+        }
+       // $range = range($current_year, $current_year-10);
+
+        //$fn_years = array_combine($range, $range +'-'+$range+1);
         
                   
         $villageScheme = $this->VillageSchemes->newEntity();
@@ -118,7 +125,7 @@ class VillageSchemesController extends AppController
           'valueField'=>'scheme_name'
         ]);
         $this->set(compact('villageScheme'));
-        $this->set(compact('subdistricts'));
+        $this->set(compact('subdistricts','fn_yr_array'));
         $this->set(compact('schemes','selected','villages'));
     }
 

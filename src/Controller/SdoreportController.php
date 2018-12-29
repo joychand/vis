@@ -92,7 +92,12 @@ class SdoreportController extends AppController
         $this->populations=TableRegistry::get('populations');
        
         $this->agencies=TableRegistry::get('agencies');
+        $current_year = date('Y');
+        $range = range($current_year, $current_year-10);
+        $years = array_combine($range, $range);  
       
+        
+       // $nrega = $this->Nregas->newEntity();
        
         $sdoreport = $this->populations->newEntity();
         
@@ -144,7 +149,7 @@ class SdoreportController extends AppController
             $selected_ref_yr=$session->consume('selected_ref_yr');
            // dump($selected);
         }
-        $this->set(compact('subdistricts'));
+        $this->set(compact('subdistricts','years'));
         $this->set(compact('sdoreport','selected','selected_ref_yr','villages'));
         
     }

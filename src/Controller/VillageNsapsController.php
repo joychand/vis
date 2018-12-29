@@ -80,6 +80,9 @@ class VillageNsapsController extends AppController
     public function add()
     {
         $session = $this->request->session();
+        $current_year = date('Y');
+        $range = range($current_year, $current_year-10);
+        $years = array_combine($range, $range);
         $villageNsap = $this->VillageNsaps->newEntity();
 
         if ($this->request->is('post')) {
@@ -106,7 +109,7 @@ class VillageNsapsController extends AppController
         $this->subdistricts = TableRegistry::get('Subdistricts');
         
         $subdistricts=$this->subdistricts->find('list');
-        $this->set(compact('subdistricts'));
+        $this->set(compact('subdistricts','years'));
         if(!$session->check('selected') && $session->check('selected_ref_yr') ) //check if not postback
         {
             $selected=null;

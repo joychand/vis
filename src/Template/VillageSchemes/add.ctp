@@ -27,15 +27,7 @@
             echo $this->Form->control('scheme_code',['type'=>'select','label'=>'1. Scheme:','empty'=>'Select scheme','id'=>'scheme','options'=>$schemes,'required'=>true,'id'=>'schemes']);
             //echo $this->Form->control('village_code');
             echo $this->Form->control('village_scheme_start_fin_yr',['type'=>'select',
-            'options'=>['2010'=>'2010-2011',
-                        '2011'=>'2011-2012',
-                        '2012'=>'2012-2013',
-                        '2013'=>'2013-2014',
-                        '2014'=>'2014-2015',
-                        '2015'=>'2015-2016',
-                        '2016'=>'2016-2017',
-                        '2017'=>'2017-2018',
-                        '2018'=>'2018-2019'], 'empty'=>'select Fin Yr','label'=>'2. Scheme Start Financial Year:','required'=>true]);
+            'options'=>$fn_yr_array, 'empty'=>'select Fin Yr','label'=>'2. Scheme Start Financial Year:','required'=>true]);
             // echo $this->Form->control('sanction_amount',['label'=>'3. Sanctioned Amount (Rs in Lakhs):','required'=>true]);
             // echo $this->Form->control('location_latitude',['required'=>true,'label'=>'4. Latitude:']);
             // echo $this->Form->control('location_longitude',['required'=>true,'label'=>'5. Longitude:']);
