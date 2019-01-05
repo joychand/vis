@@ -1,5 +1,7 @@
+$(document).foundation();
 $(document).ready(function()
 {
+    
     $('#subdistrict').change(function(){
         var targeturl=$(this).attr('rel');
         var csrfToken=$('input[name^="_csrfToken"]').val();

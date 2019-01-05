@@ -63,7 +63,7 @@ $cakeDescription = 'VIS Chandel District, Manipur';
         <div class="top-bar-section">
             <ul class="right">
             <li style="color:white;"><?php  $user=$this->request->getSession()->read('Auth.User'); 
-             echo "Welcome, ".$user['user_name']." !";?> </li>
+             echo $user['user_name']." !";?> </li>
             <li> 
                       <?php
                      if ( $user['role_id']==13)
@@ -74,13 +74,13 @@ $cakeDescription = 'VIS Chandel District, Manipur';
                          }?></li>
                 <li> <?php if ( $user['role_id']==15)
                      {
-                         echo $this->Html->link($this->Html->tag('i', '', array('class' => 'fi-laptop large')).'DataEntry', array('controller' => 'Dataentry', 'action' => 'home'),array('escape'=>false));
+                         echo $this->Html->link($this->Html->tag('i', '', array('class' => 'fi-laptop large')).'Data Entry', array('controller' => 'Dataentry', 'action' => 'home'),array('escape'=>false));
                          
                          
                          }?></li>
                   <li> <?php if ( $user['role_id']==16)
                      {
-                         echo $this->Html->link($this->Html->tag('i', '', array('class' => 'fi-laptop large')).'DEStatus', array('controller' => 'Dashboard', 'action' => 'display'),array('escape'=>false));
+                         echo $this->Html->link($this->Html->tag('i', '', array('class' => 'fi-laptop large')).'DE Status', array('controller' => 'Dashboard', 'action' => 'display'),array('escape'=>false));
                          
                          
                          }?></li>

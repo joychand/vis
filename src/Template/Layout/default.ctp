@@ -41,16 +41,18 @@ $cakeDescription = 'VIS Chandel District, Manipur';
     <?= $this->fetch('script') ?>
 </head>
 <body>
-    <nav class="top-bar expanded" data-topbar role="navigation">
+    <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: [small]; scrolltop: false; mobile_show_parent_link: true;">
         <ul class="title-area large-3 medium-4 columns">
             <li class="name">
                 <h1><a href=""><?= $this->fetch('title') ?></a></h1>
             </li>
+            <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a>
+        </li>
         </ul>
-        <div class="top-bar-section">
+        <section class="top-bar-section">
             <ul class="right">
             <li style="color:white;"><?php  $user=$this->request->getSession()->read('Auth.User'); 
-             echo "Welcome, ".$user['user_name']." !";?> </li>
+             echo $user['user_name']." !";?> </li>
             <li><?php
                        //dump($user);
                      if ( in_array($user['role_id'],[13,15]))
@@ -61,13 +63,13 @@ $cakeDescription = 'VIS Chandel District, Manipur';
                         <?php }?></li>
                     <li> <?php if ( $user['role_id']==16)
                      {
-                         echo $this->Html->link($this->Html->tag('i', '', array('class' => 'fi-laptop large')).'DEStatus', array('controller' => 'Dashboard', 'action' => 'display'),array('escape'=>false));
+                         echo $this->Html->link($this->Html->tag('i', '', array('class' => 'fi-laptop large')).'DE Status', array('controller' => 'Dashboard', 'action' => 'display'),array('escape'=>false));
                          
                          
                          }?></li>
                     <li> <?php if ( $user['role_id']==16)
                      {
-                         echo $this->Html->link($this->Html->tag('i','',array('class'=>'fi-graph-trend large')).'VillageProfile', array('controller' => 'Villageprofile', 'action' => 'home'),array('escape'=>false));
+                         echo $this->Html->link($this->Html->tag('i','',array('class'=>'fi-graph-trend large')).'Village Profile', array('controller' => 'Villageprofile', 'action' => 'home'),array('escape'=>false));
                          
                          
                          }?></li>
@@ -78,7 +80,7 @@ $cakeDescription = 'VIS Chandel District, Manipur';
                
                
             </ul>
-        </div>
+        </section>
     </nav>
     <?= $this->Flash->render() ?>
     
