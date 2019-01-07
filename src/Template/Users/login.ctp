@@ -56,7 +56,8 @@ $cakeDescription = 'VIS:  Village Information System';
     </div>
 </header> -->
 <?= $this->Flash->render() ?>
-    <div class=" large-5 medium-4 " style="margin: auto !important ;border: 3px !important; padding: 10px!important;">
+<div class="row">
+    <div class=" large-6 medium-6 " style="margin: auto !important ;border: 1px !important; padding: 5px!important;">
         <h3 align="center">Login</h3>
         <?= $this->Form->create( ) ?>
         <?= $this->Form->control('user_name',['required'=>true,'autocomplete' => 'off']) ?>
@@ -65,10 +66,15 @@ $cakeDescription = 'VIS:  Village Information System';
         <?= $this->Form->button('Login') ?>
         <?= $this->Form->end() ?>
     </div>
-    
-
+</div>
+   
+<div class="row" style="margin-bottom:30px ! important">
+    <div class=" large-6 medium-6 " style="margin: auto !important ;border: 3px !important; padding: 10px!important;">
+        <a href="/img/visChandel-1.0.apk"><p style="text-align:center">Download VIS Chandel Mobile App <img src="/img/android.png" alt="android" width="40px" height="60px"></p></a>
+    </div>
 </div>
 <div style=" width:100%;position:fixed;left:0;bottom: 0;background-color: #116d76;color: white;font-style: italic; font-size: 5px !important;">
+  <!-- <div style="position: absolute; bottom: 0; height:50px; margin-top;2px; "> -->
         <p class=" show-for-large-up"  style="float:left;margin-left:5px;font-size: 13px !important;"> Designed and Developed by NIC Manipur &copy; Copyright 2018 NIC Manipur</p>
         <p  class="show-for-large-up" style="float:right;margin-right:5px;font-size: 13px !important;">Village Information System of Chandel District, Manipur</p>
         <p class="show-for-small-up hide-for-large-up"  style="  line-height:70%;text-align:center;font-size: 10px !important;"> Designed and Developed by NIC Manipur &copy; Copyright 2018 NIC Manipur</p>

@@ -59,11 +59,13 @@ $cakeDescription = 'VIS Chandel District, Manipur';
     <?= $this->fetch('script') ?>
 </head>
 <body>
-    <nav class="top-bar expanded" data-topbar role="navigation">
+    <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: [small]; scrolltop: false; mobile_show_parent_link: true;">
         <ul class="title-area large-3 medium-4 columns">
             <li class="name">
                 <h1><a href=""><?= $this->fetch('title') ?></a></h1>
             </li>
+            <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a>
+        </li>
         </ul>
         <div class="top-bar-section">
             <ul class="right">

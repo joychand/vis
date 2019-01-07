@@ -36,6 +36,8 @@ $cakeDescription = 'CVIS';
         <?= $cakeDescription ?>:
         <?= $this->fetch('title') ?>
     </title>
+    <?php  $this->Html->script('jquery-3.3.1.min.js',['block'=>true]);?>
+    <?php  $this->Html->script('foundation.min.js',['block'=>true]);?> 
     <?= $this->Html->meta('icon') ?>
 
     <?= $this->Html->css('base.css') ?>
@@ -46,11 +48,13 @@ $cakeDescription = 'CVIS';
     <?= $this->fetch('script') ?>
 </head>
 <body>
-    <nav class="top-bar expanded" data-topbar role="navigation">
+    <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: [small]; scrolltop: false; mobile_show_parent_link: true;">
         <ul class="title-area large-3 medium-4 columns">
             <li class="name">
                 <h1><a href=""><?= $this->fetch('title') ?></a></h1>
             </li>
+            <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a>
+        </li>
         </ul>
         <div class="top-bar-section">
             <ul class="right">
@@ -85,7 +89,10 @@ $cakeDescription = 'CVIS';
 </div>
 
 
+<script>
+    $(document).foundation();
 
+  </script>
 
     
    

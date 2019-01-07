@@ -73,7 +73,8 @@
      
     <!-- ********************************************* DEMOGRAPHY********************************* -->
     <div class="large-4 medium-6 small-12  columns">
-            <a class="dashboard-nav-card" href="#" style="background:chocolate !important;   background-clip:content-box!important;" data-open="demography">
+            <!-- <a class="dashboard-nav-card" href="#" style="background:chocolate !important;   background-clip:content-box!important;" data-open="demography"> -->
+            <a class="dashboard-nav-card" href="#" style="background:chocolate !important;   background-clip:content-box!important;" data-reveal-id="demography">
             <!-- <i class="dashboard-nav-card-icon fi-torso large" aria-hidden="true"></i> -->
                 <img  class="dashboard-nav-card-icon" src="/img/population.svg" style="width:130px;height:60px" alt="sdfd">
                 <h3 class="dashboard-nav-card-title">Demography</h3>
@@ -84,7 +85,7 @@
                 </div> 
                 <img  class="dashboard-nav-card-more" src="/img/more.svg" style="width:80px;height:30px" alt="sdfd">
             </a>
-            <div id="demography" class="large reveal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
+            <div id="demography" class=" medium reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
                 <h2 id="modalTitle">Demography</h2>
                 <div class="row">
                     <h6 style="color:#116d76">Village Name:<span class="village_name" style="color:#116d76"></span></h6>
@@ -135,14 +136,15 @@
                     </table>
 
                 </div> <!-- end of row div -->
-                <button class="close-button button tiny button alert" data-close aria-label="Close modal" type="button">
+                <!-- <a class="close-reveal-modal" aria-label="Close">&#215;</a> -->
+                <button class="close-button button tiny button alert close-reveal-modal" data-close aria-label="Close" type="button">
                          <span aria-hidden="true">&times;</span>
                 </button>
             </div> <!-- end of demography modal div -->
         </div>  <!--********** end of DEMOGRAPHY  ******* -->    
     <!-- ****************************HEALTH INFRA DASH-BOARD CARD********************** -->
     <div class="large-4 medium-6 small-12  columns">
-            <a class="dashboard-nav-card" href="#" style="background:navy !important;  background-clip:content-box!important;"  data-open="health">
+            <a class="dashboard-nav-card" href="#" style="background:navy !important;  background-clip:content-box!important;" data-reveal-id="health" >
                 <!-- <i class="dashboard-nav-card-icon fi-torso large" aria-hidden="true"></i> -->
                 <img  class="dashboard-nav-card-icon" src="/img/pharmacy.svg" style="width:130px;height:60px" alt="sdfd">
                 <h3 class="dashboard-nav-card-title">Health Infra</h3>
@@ -155,7 +157,7 @@
                 
                 <img  class="dashboard-nav-card-more" src="/img/more.svg" style="width:80px;height:30px" alt="sdfd">
             </a>
-            <div id="health" class="  large reveal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
+            <div id="health" class="  medium reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
                 <h2 id="modalTitle">Health Infra</h2>
                 <!-- <a class="close-reveal-modal" style="top: 1.5rem !important;position: absolute !important;right: 1.5rem; !important;font-weight:bold !important;"aria-label="Close" data-close>&#215;</a> -->
 
@@ -189,7 +191,7 @@
                     </table>
 
                 </div>
-                <button class="close-button button tiny button alert" data-close aria-label="Close modal" type="button">
+                <button class="close-button button tiny button alert close-reveal-modal" data-close aria-label="Close modal" type="button">
                          <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -197,7 +199,7 @@
 
  <!-- ****************************EDUCATION INFRA DASH-BOARD CARD********************** -->
         <div class="large-4 medium-6 small-12  columns">
-            <a class="dashboard-nav-card" href="#"  data-open="education">
+            <a class="dashboard-nav-card" href="#"  data-reveal-id="education">
                 <!-- <i class="dashboard-nav-card-icon fi-torso large" aria-hidden="true"></i> -->
                 <img  class="dashboard-nav-card-icon" src="/img/education.svg" style="width:130px;height:60px" alt="sdfd">
                 <h3 class="dashboard-nav-card-title">Education Infra</h3>
@@ -207,7 +209,7 @@
                 </div> 
                 <img  class="dashboard-nav-card-more" src="/img/more.svg" style="width:80px;height:30px" alt="sdfd">
             </a>
-            <div id="education" class="large reveal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
+            <div id="education" class="medium reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
                 <h2 id="modalTitle">Education Infra</h2>
                 <div class="row">
                 <h6 style="color:#116d76">Village Name:<span class="village_name" style="color:#116d76"></span></h6>
@@ -251,7 +253,7 @@
                     </table>
 
                 </div>
-                    <button class="close-button button tiny button alert" data-close aria-label="Close modal" type="button">
+                    <button class="close-button button tiny button alert close-reveal-modal" data-close aria-label="Close modal" type="button">
                          <span aria-hidden="true">&times;</span>
                     </button>
             </div>
@@ -259,7 +261,7 @@
 
 <!-- ****************************ANGANWADIS DASH-BOARD CARD*************************************************** -->
         <div class="large-4 medium-6 small-12  columns">
-            <a class="dashboard-nav-card" href="#"  style="background:purple !important;   background-clip:content-box!important;" data-open="anganwadi">
+            <a class="dashboard-nav-card" href="#"  style="background:purple !important;   background-clip:content-box!important;" data-reveal-id="anganwadi">
                 <!-- <i class="dashboard-nav-card-icon fi-torso large" aria-hidden="true"></i> -->
                 <img  class="dashboard-nav-card-icon" src="/img/baby-white.svg" style="width:130px;height:60px" alt="sdfd">
                 <h3 class="dashboard-nav-card-title">Anganwadi</h3>
@@ -271,7 +273,7 @@
                 </div> 
                 <img  class="dashboard-nav-card-more" src="/img/more.svg" style="width:80px;height:30px" alt="sdfd">
             </a>
-            <div id="anganwadi" class="large reveal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
+            <div id="anganwadi" class="large reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
                 <h2 id="modalTitle">Anganwadis</h2>
                 <div class="row">
                 <h6 style="color:#116d76">Village Name:<span class="village_name" style="color:#116d76"></span></h6>
@@ -305,7 +307,7 @@
                     </table>
 
                 </div>
-                <button class="close-button button tiny button alert" data-close aria-label="Close modal" type="button">
+                <button class="close-button button tiny button alert close-reveal-modal" data-close aria-label="Close modal" type="button">
                          <span aria-hidden="true">&times;</span>
                  </button>
             </div>
@@ -313,7 +315,7 @@
          
       <!-- *****************************NSAP********************************* -->
         <div class="large-4 medium-6 small-12  columns">
-            <a class="dashboard-nav-card" href="#" style="background:MEDIUMVIOLETRED !important;background-clip:content-box!important;" data-open="nsap">
+            <a class="dashboard-nav-card" href="#" style="background:MEDIUMVIOLETRED !important;background-clip:content-box!important;" data-reveal-id="nsap">
                 <!-- <i class="dashboard-nav-card-icon fi-torso large" aria-hidden="true"></i> -->
                 <img  class="dashboard-nav-card-icon" src="/img/social-care.svg" style="width:130px;height:60px" alt="sdfd">
                 <h3 class="dashboard-nav-card-title">NSAP</h3>
@@ -325,7 +327,7 @@
                 </div>  
                 <img  class="dashboard-nav-card-more" src="/img/more.svg" style="width:80px;height:30px" alt="sdfd">
             </a>
-            <div id="nsap" class="large reveal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
+            <div id="nsap" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
                 <h2 id="modalTitle">NSAP</h2>
                 <div class="row">
                 <h6 style="color:#116d76">Village Name:<span class="village_name" style="color:#116d76"></span></h6>
@@ -353,14 +355,14 @@
                     </table>
 
                 </div><!--  ****END of NSAP table  div -->
-                <button class="close-button button tiny button alert" data-close aria-label="Close modal" type="button">
+                <button class="close-button button tiny button alert close-reveal-modal" data-close aria-label="Close modal" type="button">
                          <span aria-hidden="true">&times;</span>
                 </button>
             </div><!--  ****END of NSAP modal  div -->
         </div><!--  **********END of NSAP DASH********** -->
 <!-- ***************************************NREGA DASH BOARD ************************************************ -->
         <div class="large-4 medium-6 small-12  columns">
-            <a class="dashboard-nav-card" href="#" style="background:green !important; background-clip:content-box!important;" data-open="nrega">
+            <a class="dashboard-nav-card" href="#" style="background:green !important; background-clip:content-box!important;" data-reveal-id="nrega">
                 <!-- <i class="dashboard-nav-card-icon fi-torso large" aria-hidden="true"></i> -->
                 <img  class="dashboard-nav-card-icon" src="/img/nrega.svg" style="width:130px;height:60px" alt="sdfd">
                 <h3 class="dashboard-nav-card-title">NREGA</h3>
@@ -372,7 +374,7 @@
                 </div> 
                 <img  class="dashboard-nav-card-more" src="/img/more.svg" style="width:80px;height:30px" alt="sdfd">
             </a>
-            <div id="nrega" class="medium reveal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
+            <div id="nrega" class="medium reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
                 <h2 id="modalTitle">NREGA</h2>
                 <div class="row">
                 <h6 style="color:#116d76">Village Name:<span class="village_name" style="color:#116d76"></span></h6>
@@ -391,19 +393,19 @@
                         </tbody>
                     </table>
                 </div>
-                <button class="close-button button tiny button alert" data-close aria-label="Close modal" type="button">
+                <button class="close-button button tiny button alert close-reveal-modal" data-close aria-label="Close modal" type="button">
                          <span aria-hidden="true">&times;</span>
                 </button>
             </div> <!-- ****** end of modal div********-->
         </div><!-- ************** end of NREGA DASH ***************************** -->
         <div class="large-4 medium-6 small-12  columns  ">
-            <a class="dashboard-nav-card" href="#"style="background:darkcyan !important;   background-clip:content-box!important;" data-open="Fotos">
+            <a class="dashboard-nav-card" href="#"style="background:darkcyan !important;   background-clip:content-box!important;" data-reveal-id="Fotos">
                 <!-- <i class="dashboard-nav-card-icon fi-torso large" aria-hidden="true"></i> -->
                 <img  class="dashboard-nav-card-icon" src="/img/picture.svg" style="width:130px;height:60px" alt="sdfd">
                 <h3 class="dashboard-nav-card-title">Photo</h3>
                 <img  class="dashboard-nav-card-more" src="/img/more.svg" style="width:80px;height:30px" alt="sdfd"> 
             </a>
-            <div id="Fotos" class="medium reveal" data-reveal role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+            <div id="Fotos" class="small reveal-modal" data-reveal role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
             <div  id = "slick-demo" data-slick>
                  <div><img src="/img/VillagePhotos/photo/270896-5b867fa3c7c9d.jpg" alt="slide 1" /></div>
                 <div><img src="/img/VillagePhotos/photo/270937-5b865818ebbde.jpg" alt="slide 2" /></div>
@@ -444,7 +446,7 @@
     		        </li>
 		        </ul>			 -->
 			
-		        <button class="close-button button tiny button alert" data-close aria-label="Close modal" type="button">
+		        <button class="close-button button tiny button alert close-reveal-modal" data-close aria-label="Close modal" type="button">
                          <span aria-hidden="true">&times;</span>
                 </button>
         
@@ -453,7 +455,7 @@
 
         <!-- ****************************CAFPD******************************* -->
         <div class="large-4 medium-6 small-12  columns end">
-            <a class="dashboard-nav-card" href="#"  style="background:darkred !important; background-clip:content-box!important; " data-open="cafpd">
+            <a class="dashboard-nav-card" href="#"  style="background:darkred !important; background-clip:content-box!important; " data-reveal-id="cafpd">
                
                 <img  class="dashboard-nav-card-icon" src="/img/cafpd.svg" style="width:130px;height:60px" alt="sdfd">
                 <h3 class="dashboard-nav-card-title">CAF&amp;PD</h3>
@@ -465,7 +467,7 @@
                 </div> 
                 <img  class="dashboard-nav-card-more" src="/img/more.svg" style="width:80px;height:30px" alt="sdfd">
             </a>
-            <div id="cafpd" class="large reveal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
+            <div id="cafpd" class="large reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
                 <h2 id="modalTitle">CAF&amp;PD</h2>
                 <div class="row">
                 <h6 style="color:#116d76">Village Name:<span class="village_name" style="color:#116d76"></span></h6>
@@ -497,14 +499,14 @@
                     </table>
 
                 </div><!-- end of table -->
-                <button class="close-button button tiny button alert" data-close aria-label="Close modal" type="button">
+                <button class="close-button button tiny button alert close-reveal-modal" data-close aria-label="Close modal" type="button">
                          <span aria-hidden="true">&times;</span>
                 </button>
             </div><!-- end of modal -->
         </div> 
         
         <div class="large-4 medium-6 small-12  columns">
-            <a class="dashboard-nav-card" href="#" style="background:darkslategrey !important;   background-clip:content-box!important;" data-open="election">
+            <a class="dashboard-nav-card" href="#" style="background:darkslategrey !important;   background-clip:content-box!important;" data-reveal-id="election">
             <!-- <i class="dashboard-nav-card-icon fi-torso large" aria-hidden="true"></i> -->
                 <img  class="dashboard-nav-card-icon" src="/img/voting.svg" style="width:130px;height:60px" alt="sdfd">
                 <h3 class="dashboard-nav-card-title">Election</h3>
@@ -514,7 +516,7 @@
                 </div> 
                 <img  class="dashboard-nav-card-more" src="/img/more.svg" style="width:80px;height:30px" alt="sdfd">
             </a>
-            <div id="election" class="large reveal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
+            <div id="election" class="medium reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
                 <h2 id="modalTitle">Election</h2>
                 <div class="row">
                 <h6 style="color:#116d76">Village Name:<span class="village_name" style="color:#116d76"></span></h6>
@@ -543,7 +545,7 @@
                     </table>
 
                 </div> <!-- end of row div -->
-                <button class="close-button button tiny button alert" data-close aria-label="Close modal" type="button">
+                <button class="close-button button tiny button alert close-reveal-modal" data-close aria-label="Close modal" type="button">
                          <span aria-hidden="true">&times;</span>
                 </button>
             </div>          
