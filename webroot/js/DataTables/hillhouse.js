@@ -224,7 +224,7 @@ $('#subdivision').on('change', function(){
         if(confirm("Are you sure you want to Delete record id = " + rowid + "this data?"))
         {
             $.ajax({
-                url:"nercormp/ajaxDelete.json",
+                url:"hillhouse/ajaxDelete.json",
                // url:deleteUrl,
                 type:"post",
                 data:{"ref":refYr,"village_code":villcode,"counting_agency":cAgency},

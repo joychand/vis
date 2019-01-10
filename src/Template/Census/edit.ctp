@@ -7,21 +7,21 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Dept/Scheme Home'), ['action' => 'home']) ?></li>
+       
         <li><?= $this->Form->postLink(
                 __('Delete'),
-                ['action' => 'delete', $Hillhouse->reference_year,$Hillhouse->village_code,$Hillhouse->counting_agency],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $Hillhouse->reference_year,$Hillhouse->village_code,$Hillhouse->counting_agency)]
+                ['action' => 'delete', $census->reference_year,$census->village_code,$census->counting_agency],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $census->reference_year,$census->village_code,$census->counting_agency)]
             )
         ?></li>
-        <li><?= $this->Html->link(__('List HillHouse Data'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Village Census Data'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
 <div class="anganwadis form large-9 medium-8 columns content">
-    <?= $this->Form->create($Hillhouse) ?>
+    <?= $this->Form->create($census) ?>
     <fieldset>
-        <legend><?=  __('Edit Village Hill House DATA: ') ?>   </legend>
-        <h6>Village Name: <strong><?= $Hillhouse->village->village_name ?></strong> Ref. Yr. :<strong><?= $Hillhouse->reference_year ?> </strong> </h6>
+        <legend><?=  __('Edit Census  DATA: ') ?>   </legend>
+        <h6>Village Name: <strong><?= $census->village->village_name ?></strong> Ref. Yr. :<strong><?= $census->reference_year ?> </strong> </h6>
         <?php
            // echo $this->Form->control('reference_year');
             echo $this->Form->control('village_code');

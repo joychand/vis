@@ -56,17 +56,7 @@ class NercormpController extends AppController
     }
 
 
-    // public function index()
-    // {
-    //     $this->populations=TableRegistry::get('populations');
-    //     $session = $this->request->getSession();
-    //     $agency_id= $session->read('agency');
-    //     $nercormps = $this->paginate($this->populations->find('all')
-    //     ->where(['counting_agency'=>$agency_id])
-    //     ->contain(['Villages']) );
-    //     $this->set(compact('nercormps'));
-    // }
-
+    
     /**
      * View method
      *
@@ -184,9 +174,9 @@ class NercormpController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $this->populations=TableRegistry::get('populations');
-        debug($village_code);
+       // debug($village_code);
         $nercormp = $this->populations->get([$reference_year,$village_code,$counting_agency]);
-        debug($nercormp);
+        //debug($nercormp);
         if ($this->populations->delete($nercormp)) {
             $this->Flash->success(__('The nercormp has been deleted.'));
         } else {

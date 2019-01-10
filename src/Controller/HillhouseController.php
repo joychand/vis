@@ -12,6 +12,15 @@ use Cake\ORM\TableRegistry;
  */
 class HillhouseController extends AppController
 {
+    public function initialize()
+    {
+       parent::initialize();
+       $this->loadComponent('RequestHandler');
+       //$this->loadComponent('Security');
+    }
+
+
+
     public function isAuthorized($user)
     {
         //dump($user);
@@ -35,26 +44,21 @@ class HillhouseController extends AppController
      */
     public function index()
     {
-        $hillhouse = $this->paginate($this->Hillhouse);
+        $this->loadModel('Subdistricts');
+        $this->populations=TableRegistry::get('populations');
+        $session = $this->request->getSession();
+        $agency_id= $session->read('agency');
+        $subDivs=$this->Subdistricts->find('list'); 
+        $hillhouses = $this->populations->find('all')
+                     ->where(['counting_agency'=>$agency_id])
+                      ->contain(['Villages'=>[
+                          'fields'=>['Villages.village_name']
+                      ]]);
 
-        $this->set(compact('hillhouse'));
+        $this->set(compact('hillhouses','subDivs'));
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Hillhouse id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $hillhouse = $this->Hillhouse->get($id, [
-            'contain' => []
-        ]);
-
-        $this->set('hillhouse', $hillhouse);
-    }
+  
 
     /**
      * Add method
@@ -126,21 +130,22 @@ class HillhouseController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null)
+    public function edit($reference_year = null,$village_code = null,$counting_agency = null)
     {
-        $hillhouse = $this->Hillhouse->get($id, [
-            'contain' => []
+        $this->populations=TableRegistry::get('populations');
+        $Hillhouse = $this->populations->get([$reference_year,$village_code,$counting_agency], [
+            'contain' => ['Villages']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $hillhouse = $this->Hillhouse->patchEntity($hillhouse, $this->request->getData());
-            if ($this->Hillhouse->save($hillhouse)) {
-                $this->Flash->success(__('The hillhouse has been saved.'));
+            $Hillhouse = $this->populations->patchEntity($Hillhouse, $this->request->getData());
+            if ($this->populations->save($hillhouse)) {
+                $this->Flash->success(__('The Hillhouse Data has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The hillhouse could not be saved. Please, try again.'));
+            $this->Flash->error(__('The Hillhouse could not be saved. Please, try again.'));
         }
-        $this->set(compact('hillhouse'));
+        $this->set(compact('Hillhouse'));
     }
 
     /**
@@ -150,14 +155,15 @@ class HillhouseController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete($reference_year = null,$village_code = null,$counting_agency = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $hillhouse = $this->Hillhouse->get($id);
-        if ($this->Hillhouse->delete($hillhouse)) {
-            $this->Flash->success(__('The hillhouse has been deleted.'));
+        $this->populations=TableRegistry::get('populations');
+        $hillhouse = $this->populations->get([$reference_year,$village_code,$counting_agency]);
+        if ($this->populations->delete($hillhouse)) {
+            $this->Flash->success(__('The Hillhouse data has been deleted.'));
         } else {
-            $this->Flash->error(__('The hillhouse could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The Hillhouse could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);
@@ -182,5 +188,68 @@ class HillhouseController extends AppController
              echo json_encode($villages);
              exit();
         }
+    }
+
+    public function ajaxFilterSubdivision()
+    {
+       
+        if ($this->request->is(['ajax', 'post'])) 
+        {
+           //$this->autoRender = false;
+            $this->loadModel('Subdistricts');
+            $this->loadModel('Villages');
+            $this->populations=TableRegistry::get('populations');
+             $session = $this->request->getSession();
+             $agency_id= $session->read('agency');
+          
+          if($this->request->getData('subdistrict_code')){
+            $subdist_code = $this->request->getData('subdistrict_code');
+            $villages=$this->Villages->find()
+                 ->select(['village_code'])
+                 ->distinct()
+                 ->where(['sub_district_code'=> $subdist_code]);
+          }
+           
+          else{
+            $villages=$this->Villages->find()
+            ->select(['village_code'])
+            ->distinct();
+          }
+                      
+            $query=$this->populations
+                   ->find('all',['conditions'=>['counting_agency'=>$agency_id]])               
+                   ->contain(['Villages'=>[
+                       'fields'=>['Villages.village_name']]
+                       ])->where(['populations.village_code IN'=>$villages]);
+           // debug($query);
+            $this->set('query',$query);
+            $this->set('_serialize', 'query');
+
+        }
+    }
+
+    public function ajaxDelete()
+    {
+       // $this->autoRender = false;
+       // $this->layout='ajax';
+        $mesg="Delete Fail";
+        
+       // $this->request->allowMethod(['post', 'delete']);
+        if ($this->request->is(['ajax', 'post'])) 
+        {
+            $this->populations=TableRegistry::get('populations');
+            $nercormp =  $this->populations->get([$this->request->getData('ref'),$this->request->getData('village_code'),$this->request->getData('counting_agency')]);
+            if ($this->populations->delete($nercormp)) {
+               $mesg="Delete Success";
+            } 
+            else 
+            {
+               $mesg="Delete Fail";
+            }
+        }
+        $this->set('mesg',$mesg);
+        $this->set('_serialize', 'mesg');
+
+       
     }
 }

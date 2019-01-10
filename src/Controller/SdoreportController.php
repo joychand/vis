@@ -264,7 +264,7 @@ class SdoreportController extends AppController
                        ])->where(['populations.village_code IN'=>$villages]);
            // debug($query);
             $this->set('query',$query);
-            $this->set('_serialize', 'query');
+            $this->set('_serialize','query');
 
         }
        

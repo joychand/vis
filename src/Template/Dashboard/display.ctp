@@ -19,6 +19,7 @@ use Cake\Core\Plugin;
  $get_empty_security=$this->Url->build(['action'=>'get_empty_village','security']);
  $get_empty_gtv=$this->Url->build(['action'=>'get_empty_village','gtv']);
  $get_empty_census=$this->Url->build(['action'=>'get_empty_village','census']);
+ $get_empty_hillhouse=$this->Url->build(['action'=>'get_empty_village','hillhouse']);
  $get_empty_photo=$this->Url->build(['action'=>'get_empty_village','VillagePhotos']);
 
 $cakeDescription = 'VIS: Chandel Village Information System';
@@ -235,13 +236,29 @@ $cakeDescription = 'VIS: Chandel Village Information System';
                 <h3 class="lead dash-title" style=" color:purple"> Census<span style="font-size:.5em !important">(Demography)</span></h3>
                 <hr class="dash-hr"> 
                 <p  class="dash-target">Target Village: <span class="count dash-span"><?= $total_village?></span></p>
-                <p class="dash-entered">Data Entered Village:<span class="count dash-span"> <?= $village_photos_entered?></span></p>
-                <a href="<?=$get_empty_census?>"><p class="dash-remain">Remaining Village: <span class="count dash-span"><?= $total_village - $village_photos_entered ?></span></p></a>
+                <p class="dash-entered">Data Entered Village:<span class="count dash-span"> <?= $census_entered?></span></p>
+                <a href="<?=$get_empty_census?>"><p class="dash-remain">Remaining Village: <span class="count dash-span"><?= $total_village - $census_entered ?></span></p></a>
               </div>
             </div> 
         </div>
   </div>
         <div class="row fullWidth" >
+        <div class=" large-3  columns">
+            <div class="card-info primary">
+              <div class="card-info-label">
+                <div class="card-info-label-text">
+                
+                </div>
+              </div>
+              <div class="card-info-content">
+                <h3 class="lead dash-title" style=" color:green"> HillHouse<span style="font-size:.5em !important">(Demography)</span></h3>
+                <hr class="dash-hr"> 
+                <p  class="dash-target">Target Village: <span class="count dash-span"><?= $total_village?></span></p>
+                <p class="dash-entered">Data Entered Village:<span class="count dash-span"> <?= $hht_entered?></span></p>
+                <a href="<?=$get_empty_hillhouse?>"><p class="dash-remain">Remaining Village: <span class="count dash-span"><?= $total_village - $hht_entered ?></span></p></a>
+              </div>
+            </div> 
+        </div> 
         <div class=" large-3  columns end">
             <div class="card-info primary">
               <div class="card-info-label">
@@ -256,8 +273,8 @@ $cakeDescription = 'VIS: Chandel Village Information System';
                 <p class="dash-entered">Data Entered Village:<span class="count dash-span"> <?= $village_photos_entered?></span></p>
                 <a href="<?=$get_empty_photo?>"><p class="dash-remain">Remaining Village: <span class="count dash-span"><?= $total_village - $village_photos_entered ?></span></p></a>
               </div>
-            </div> 
-        </div>   
+            </div>   
         </div>
         
-
+       
+        </div>

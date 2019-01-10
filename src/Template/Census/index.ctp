@@ -7,18 +7,18 @@ $this->layout = 'index_layout';
  $ajaxFilterUrl=$this->Url->build(['action' => 'ajaxFilterSubdivision']); 
  $ajaxDeleteUrl=$this->Url->build(['action' => 'ajaxDelete']); 
 
-  $this->Html->script('DataTables/hillhouse.js',['block'=>'scriptBottom']);   
+  $this->Html->script('DataTables/census.js',['block'=>'scriptBottom']);   
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
        
-        <li><?= $this->Html->link(__('New Hill House Data'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('New Village Census Data'), ['action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="sdoreports index large-9 medium-8 columns content">
     
-    <fieldset style="padding:0 !important"><legend><?= __('Village hillhouse Data') ?></legend></fieldset><h3><?= __('') ?></h3>
+    <fieldset style="padding:0 !important"><legend><?= __('Village Census Data') ?></legend></fieldset><h3><?= __('') ?></h3>
 <?= $this->Form->create(null)?>
     <?= $this->Form->control('subdivision',['label'=>'Filter by Subdivision:','type'=>'select','options'=>$subDivs,'empty'=>'All Villages','id'=>'subdivision','rel'=>$ajaxFilterUrl])?>
    <?= $this->Form->hidden('deleteUrl',['value'=>$ajaxDeleteUrl]) ?>
@@ -38,21 +38,21 @@ $this->layout = 'index_layout';
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($hillhouses as $hillhouse): ?>
+            <?php foreach ($censuses as $census): ?>
             <tr>
                 <td></td>
-                <td><?= h($hillhouse->village_code) ?></td>
-                <td><?= h($hillhouse->village->village_name) ?></td>
+                <td><?= h($census->village_code) ?></td>
+                <td><?= h($census->village->village_name) ?></td>
                             
-                <td><?= $this->Number->format($hillhouse->reference_year,['pattern'=>'####']) ?></td>
-                <td><?= $this->Number->format($hillhouse->counting_agency) ?></td>              
-                <td><?= $this->Number->format($hillhouse->total_population) ?></td>
-                <td><?= $this->Number->format($hillhouse->total_household) ?></td>
+                <td><?= $this->Number->format($census->reference_year,['pattern'=>'####']) ?></td>
+                <td><?= $this->Number->format($census->counting_agency) ?></td>              
+                <td><?= $this->Number->format($census->total_population) ?></td>
+                <td><?= $this->Number->format($census->total_household) ?></td>
                 
                 <td class="actions">
                    
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $hillhouse->reference_year,$hillhouse->village_code,$hillhouse->counting_agency]) ?> |
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $hillhouse->reference_year,$hillhouse->village_code,$hillhouse->counting_agency], ['confirm' => __('Are you sure you want to delete  the village # {1}?', $hillhouse->reference_year,$hillhouse->village_code,$hillhouse->counting_agency)]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $census->reference_year,$census->village_code,$census->counting_agency]) ?> |
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $census->reference_year,$census->village_code,$census->counting_agency], ['confirm' => __('Are you sure you want to delete  the village # {1}?', $census->reference_year,$census->village_code,$census->counting_agency)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

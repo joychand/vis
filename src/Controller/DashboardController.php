@@ -56,11 +56,11 @@ class DashboardController extends AppController
         $nercormp_entered=$this->Populations->find()->select('village_code')->where(['counting_agency'=>1])->distinct()->count('village_code');
         $security_entered=$this->Populations->find()->select('village_code')->where(['counting_agency'=>2])->distinct()->count('village_code');
         $sdo_entered=$this->Populations->find()->select('village_code')->where(['counting_agency'=>3])->distinct()->count('village_code');
-       
-       
+        $census_entered=$this->Populations->find()->select('village_code')->where(['counting_agency'=>4])->distinct()->count('village_code');
+        $hht_entered=$this->Populations->find()->select('village_code')->where(['counting_agency'=>5])->distinct()->count('village_code');
         $this->set(compact('total_village','health_village_entered','anganwadi_village_entered','education_village_entered',
                             'cafpd_village_entered','nrega_village_entered','nsap_village_entered','village_scheme_entered',
-                            'nercormp_entered','security_entered','sdo_entered','election_entered_village','village_photos_entered'));
+                            'nercormp_entered','security_entered','sdo_entered','election_entered_village','village_photos_entered','census_entered','hht_entered'));
 
        
     }
@@ -115,7 +115,7 @@ class DashboardController extends AppController
         $this->loadModel('Villages');
         $this->loadModel('Subdistricts');
         $subDivs=$this->Subdistricts->find('list'); 
-       if (in_array($modelToLoad,['gtv','security','nercormp','census']))
+       if (in_array($modelToLoad,['gtv','security','nercormp','census','hillhouse']))
         {
         switch($modelToLoad){
             
@@ -156,6 +156,16 @@ class DashboardController extends AppController
                             ->notMatching('populations',function($q) 
                             {
                                return $q->where(['populations.counting_agency'=>4]);
+                             });
+                             
+                            break; 
+                case 'hillhouse':   $query=$this->Villages->find()               
+                            ->contain('Subdistricts')
+                            ->select(['village_code','village_name','Subdistricts.subdistrict_name'])
+                            ->distinct('Villages.village_code')
+                            ->notMatching('populations',function($q) 
+                            {
+                               return $q->where(['populations.counting_agency'=>5]);
                              });
                              
                             break; 
@@ -201,7 +211,9 @@ class DashboardController extends AppController
             case 'security' : $sectorName='SECURITY REPORT';
                                                     break; 
             case 'census' : $sectorName='CENSUS';
-                                                    break;                                                                                            
+                                                    break;  
+            case 'hillhouse' : $sectorName='HILL HOUSE TAX';
+                                                    break;                                                                                           
         }
        
        $this->set(compact('query','subDivs','sectorName'));  

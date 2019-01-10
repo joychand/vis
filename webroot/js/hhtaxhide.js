@@ -2,7 +2,7 @@ $(document).ready(function()
 {
     $('#formHh').hide(); 
     $('#village').change(function(){
-        $('#securityForm').find(':input').each(function () {
+        $('.dataForm').find(':input').each(function () {
             switch (this.type) {
                 case 'button':
                 case 'text':

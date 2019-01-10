@@ -31,10 +31,12 @@
             echo $this->Form->control('total_population',['label'=>'2. Total Population','required'=>true,'min'=>0]);
            
            // echo $this->Form->control('village_code');
-        ?></fieldset>
-        </div>
-        
+        ?>
+        </fieldset> </div>
     </fieldset>
+   
+        
+    
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
 </div>
