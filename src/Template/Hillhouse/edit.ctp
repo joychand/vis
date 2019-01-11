@@ -7,7 +7,7 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Dept/Scheme Home'), ['action' => 'home']) ?></li>
+        
         <li><?= $this->Form->postLink(
                 __('Delete'),
                 ['action' => 'delete', $Hillhouse->reference_year,$Hillhouse->village_code,$Hillhouse->counting_agency],

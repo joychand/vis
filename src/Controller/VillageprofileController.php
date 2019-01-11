@@ -207,17 +207,27 @@ class VillageprofileController extends AppController
             $village_nercormp = $this->Populations->find('all')->where(['Populations.reference_year'=> $nercormp_subquery
                             ->select(['latest_ref'=>$nercormp_subquery->func()->max('Populations.reference_year')]),'Populations.village_code'=>$village_code, 'Populations.counting_agency'=>1])
                             ->first();
+             $census_subquery= $this->Populations->find()->where(['Populations.village_code'=>$village_code, 'Populations.counting_agency'=>4]);       
+             $village_census = $this->Populations->find('all')->where(['Populations.reference_year'=> $census_subquery
+                                ->select(['latest_ref'=>$census_subquery->func()->max('Populations.reference_year')]),'Populations.village_code'=>$village_code, 'Populations.counting_agency'=>4])
+                                ->first();
+             $hillhouse_subquery= $this->Populations->find()->where(['Populations.village_code'=>$village_code, 'Populations.counting_agency'=>5]);       
+             $village_hillhouse = $this->Populations->find('all')->where(['Populations.reference_year'=> $hillhouse_subquery
+                                 ->select(['latest_ref'=>$hillhouse_subquery->func()->max('Populations.reference_year')]),'Populations.village_code'=>$village_code, 'Populations.counting_agency'=>5])
+                                 ->first();
             //*** end demography queries **//        
-    
+            //*** Health Infra queries */
             $health_subquery=$this->HealthInfras->find()->where(['HealthInfras.village_code'=>$village_code]);
             $vill_health=$this->HealthInfras->find('all')->where(['HealthInfras.health_reference_year'=> $health_subquery
                         ->select(['latest_ref'=>$health_subquery->func()->max('HealthInfras.health_reference_year')]),'HealthInfras.village_code'=>$village_code])
                         ->first();
-           
+            /*****end of Health queries *******/
+            /**  Anganwadis queries** */
              $ang_subquery=$this->Anganwadis->find()->where(['Anganwadis.village_code'=>$village_code]);
              $vill_anganwadi=$this->Anganwadis->find('all')->where(['anganwadi_reference_year'=> $ang_subquery
                             ->select(['latest_ref'=>$ang_subquery->func()->max('anganwadi_reference_year')]),'Anganwadis.village_code'=>$village_code])
                             ->first();
+            /**** NSAP queries******/
             $nsap_subquery=$this->VillageNsaps->find()->where(['VillageNsaps.village_code'=>$village_code]);
             $vill_nsap=$this->VillageNsaps->find('all')->where(['reference_year'=> $nsap_subquery
                                            ->select(['latest_ref'=>$nsap_subquery->func()->max('reference_year')]),'VillageNsaps.village_code'=>$village_code])
@@ -238,11 +248,12 @@ class VillageprofileController extends AppController
              $election_subquery=$this->VillageElectorals->find()->where(['VillageElectorals.village_code'=>$village_code]);
              $vill_electoral=$this->VillageElectorals->find('all')->where(['reference_year'=> $election_subquery
                                                             ->select(['latest_ref'=>$election_subquery->func()->max('reference_year')]),'VillageElectorals.village_code'=>$village_code])
-                                                             ->first();                                                                                                        
-            $this->set(compact('vill_health','village','subdivision','village_gtv','village_sec','village_nercormp',
-                    'vill_anganwadi','vill_nsap','vill_cafpd','vill_edn','vill_nrega','vill_electoral'));
-         $this->set( '_serialize',['vill_health','village','subdivision','village_gtv','village_sec','village_nercormp',
-                    'vill_anganwadi','vill_nsap','vill_cafpd','vill_edn','vill_nrega','vill_electoral']);
+                                                             ->first();  
+            $village_photos=$this->VillagePhotos->find()->where(['VillagePhotos.village_code'=>$village_code]);                                                                                                      
+            $this->set(compact('vill_health','village','subdivision','village_gtv','village_sec','village_nercormp','village_census','village_hillhouse',
+                    'vill_anganwadi','vill_nsap','vill_cafpd','vill_edn','vill_nrega','vill_electoral','village_photos'));
+         $this->set( '_serialize',['vill_health','village','subdivision','village_gtv','village_sec','village_nercormp','village_census','village_hillhouse',
+                    'vill_anganwadi','vill_nsap','vill_cafpd','vill_edn','vill_nrega','vill_electoral','village_photos']);
         }
       
     // $this->set('hello',$vill_health);

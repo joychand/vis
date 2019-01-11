@@ -93,45 +93,51 @@
                         <thead>
                             <tr>
                             
-                            <th>Agency</th>
-                            <th>Ref. Yr.</th>
-                            <th>Total Household</th>
-                            <th>Total Population</th>
+                                <th>Agency</th>
+                                <th>Ref. Yr.</th>
+                                <th>Total Household</th>
+                                <th>Total Population</th>
                             
 
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                            <td data-label="Agency">GTV</td>
-                            <td id="gtv_refyr" data-label="Ref.Yr."></td>
-                            <td id="gtv_hh" data-label="Household"></td>
-                            <td id="gtv_pop"data-label="Population"></td>
+                                <td data-label="Agency">GTV</td>
+                                <td id="gtv_refyr" data-label="Ref.Yr."></td>
+                                <td id="gtv_hh" data-label="Household"></td>
+                                <td id="gtv_pop"data-label="Population"></td>
                             
                             </tr>
                             <tr>
-                            <td data-label="Agency">Security Report</td>
-                            <td id="secu_refyr" data-label="Ref.Yr."></td>
-                            <td id="secu_hh" data-label="Household"></td>
-                            <td id="secu_pop" data-label="Population"></td>
+                                <td data-label="Agency">Security Report</td>
+                                <td id="secu_refyr" data-label="Ref.Yr."></td>
+                                <td id="secu_hh" data-label="Household"></td>
+                                <td id="secu_pop" data-label="Population"></td>
                             
                             </tr>
                             <tr>
-                            <td  data-label="Agency">NERCORMP</td>
-                            <td id="nerc_refyr" data-label="Ref.Yr."></td>
-                            <td id="nerc_hh" data-label="Household"></td>
-                            <td id="nerc_pop" data-label="Population"></td>
+                                <td  data-label="Agency">NERCORMP</td>
+                                <td id="nerc_refyr" data-label="Ref.Yr."></td>
+                                <td id="nerc_hh" data-label="Household"></td>
+                                <td id="nerc_pop" data-label="Population"></td>
                             
                             </tr>
 
                             <tr>
-                            <td  data-label="Agency">Census</td>
-                            <td id="nerc_refyr" data-label="Ref.Yr."></td>
-                            <td id="nerc_hh" data-label="Household"></td>
-                            <td id="nerc_pop" data-label="Population"></td>
+                                <td  data-label="Agency">Census</td>
+                                <td id="cen_refyr" data-label="Ref.Yr."></td>
+                                <td id="cen_hh" data-label="Household"></td>
+                                <td id="cen_pop" data-label="Population"></td>
+                                
+                            </tr>
+                            <tr>
+                                <td  data-label="Agency">Hill House Tax</td>
+                                <td id="hht_refyr" data-label="Ref.Yr."></td>
+                                <td id="hht_hh" data-label="Household"></td>
+                                <td id="hht_pop" data-label="Population"></td>
                             
                             </tr>
-                            
                         </tbody>
                     </table>
 
@@ -407,9 +413,9 @@
             </a>
             <div id="Fotos" class="small reveal-modal" data-reveal role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
             <div  id = "slick-demo" data-slick>
-                 <div><img src="/img/VillagePhotos/photo/270896-5b867fa3c7c9d.jpg" alt="slide 1" /></div>
-                <div><img src="/img/VillagePhotos/photo/270937-5b865818ebbde.jpg" alt="slide 2" /></div>
-                <div><img src="/img/VillagePhotos/photo/270937-5b86581906c78.jpg" alt="slide 3" /></div>
+                 <div><img class ="photo" id="photo1" src="/img/VillagePhotos/photo/noimage.jpg" alt="slide 1" /></div>
+                <div><img  class ="photo" id='photo2'src="/img/VillagePhotos/photo/noimage.jpg" alt="slide 2" /></div>
+                <div><img  class ="photo" id='photo3' src="/img/VillagePhotos/photo/noimage.jpg" alt="slide 3" /></div>
                 
             </div>
                 <!-- <ul class="example-orbit" data-orbit>

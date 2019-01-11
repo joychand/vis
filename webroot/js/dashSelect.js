@@ -188,7 +188,16 @@ $(document).ready(function()
                       //***********NERCORMP ***********/
                       $("#nerc_refyr").html((response.village_nercormp!=undefined || response.village_nercormp!=null) ? response.village_nercormp.reference_year : '-no-record-' );
                       $("#nerc_hh").html((response.village_nercormp!=undefined || response.village_nercormp!=null) ? response.village_nercormp.total_household : '-no-record-' );
-                      $("#nerc_pop").html((response.village_nercormp!=undefined || response.village_nercormp!=null) ? response.village_nercormp.total_population : '-no-record-' );  
+                      $("#nerc_pop").html((response.village_nercormp!=undefined || response.village_nercormp!=null) ? response.village_nercormp.total_population : '-no-record-' ); 
+                      //**********CENSUS****  ***/ 
+                      $("#cen_refyr").html((response.village_census!=undefined || response.village_census!=null) ? response.village_census.reference_year : '-no-record-' );
+                      $("#cen_hh").html((response.village_census!=undefined || response.village_census!=null) ? response.village_census.total_household : '-no-record-' );
+                      $("#cen_pop").html((response.village_census!=undefined || response.village_census!=null) ? response.village_census.total_population : '-no-record-' ); 
+                       //**********HILLHOUSE TAX****  ***/ 
+                       $("#hht_refyr").html((response.village_hillhouse!=undefined || response.village_hillhouse!=null) ? response.village_hillhouse.reference_year : '-no-record-' );
+                       $("#hht_hh").html((response.village_hillhouse!=undefined || response.village_hillhouse!=null) ? response.village_hillhouse.total_household : '-no-record-' );
+                       $("#hht_pop").html((response.village_hillhouse!=undefined || response.village_hillhouse!=null) ? response.village_hillhouse.total_population : '-no-record-' ); 
+
                        //***********Health ***********/
                        $("#health_refyr").html((response.vill_health!=undefined || response.vill_health!=null) ? response.vill_health.health_reference_year : '-no-record-' );
                        $("#health_centre").html((response.vill_health!=undefined || response.vill_health!=null) ? response.vill_health.name_of_health_centre : '-no-record-' );
@@ -240,7 +249,46 @@ $(document).ready(function()
                             $("#household_election").html((response.vill_electoral!=undefined || response.vill_electoral!=null) ? response.vill_electoral.electoral_total_household : '-no Record-' );
                             $(".village_name").html(response.village.village_name);
                   // },delay);
-                   
+                            //*****Village-photos */
+                            if(response.village_photos!=undefined && response.village_photos!=null && response.village_photos.length>0)
+                            {
+                                $('.photo').each(function(){
+                                    //Change the src of each img
+                                    if(response.village_photos[0])
+                                        {
+                                            $('#photo1').attr('src', '/img/VillagePhotos/photo/'+response.village_photos[0].photo) 
+                                        }
+                                    else
+                                        {
+                                            $('#photo1').attr('src', '/img/VillagePhotos/photo/noimage.jpg');  
+                                        }
+                                   // $('#photo1').attr('src', '/img/VillagePhotos/photo/'+response.village_photos[0].photo);
+                                    if(response.village_photos[1])
+                                        {
+                                            $('#photo2').attr('src', '/img/VillagePhotos/photo/'+response.village_photos[1].photo);  
+                                        }
+                                    else
+                                        {
+                                            $('#photo2').attr('src', '/img/VillagePhotos/photo/noimage.jpg');  
+                                        }
+                                        if(response.village_photos[2])
+                                        {
+                                            $('#photo3').attr('src', '/img/VillagePhotos/photo/'+response.village_photos[2].photo);  
+                                        }
+                                    else
+                                        {
+                                            $('#photo3').attr('src', '/img/VillagePhotos/photo/noimage.jpg');  
+                                        }
+                              });
+                            }
+                            else 
+                            {
+                                $('.photo').each(function(){
+                                    //Change the src of each img
+                                    $(this).attr('src', '/img/VillagePhotos/photo/noimage.jpg');
+                              });
+                            }
+                           // $("#election_RefYr").html((response.village_photos!=undefined || response.village_photos!=null) ? response.vill_electoral.reference_year : '-no-record-' );
                      $('.loaderimage').hide();
                     $('#villageprofile').show(); 
                    // $(".village").val($(this).val()); 
