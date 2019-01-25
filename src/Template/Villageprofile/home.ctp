@@ -1,5 +1,6 @@
 <?php
     $this->layout = 'villageProfile';
+     $this->assign('title', 'Village Profile');?>
     $cakeDescription = 'VIS:Village Information System, Chandel';
      echo $this->Html->css( ['slick.css','slick-theme'],['block'=>true]);
      echo $this->Html->script('slick.js',['block'=>'beforeBody'])

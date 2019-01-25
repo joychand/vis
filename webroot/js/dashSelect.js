@@ -260,7 +260,7 @@ $(document).ready(function()
                                         }
                                     else
                                         {
-                                            $('#photo1').attr('src', '/img/VillagePhotos/photo/noimage.jpg');  
+                                            $('#photo1').attr('src', '/img/VillagePhotos/photo/photo1.jpg');  
                                         }
                                    // $('#photo1').attr('src', '/img/VillagePhotos/photo/'+response.village_photos[0].photo);
                                     if(response.village_photos[1])
@@ -269,7 +269,7 @@ $(document).ready(function()
                                         }
                                     else
                                         {
-                                            $('#photo2').attr('src', '/img/VillagePhotos/photo/noimage.jpg');  
+                                            $('#photo2').attr('src', '/img/VillagePhotos/photo/photo2.jpg');  
                                         }
                                         if(response.village_photos[2])
                                         {
@@ -277,7 +277,7 @@ $(document).ready(function()
                                         }
                                     else
                                         {
-                                            $('#photo3').attr('src', '/img/VillagePhotos/photo/noimage.jpg');  
+                                            $('#photo3').attr('src', '/img/VillagePhotos/photo/photo3.jpg');  
                                         }
                               });
                             }
