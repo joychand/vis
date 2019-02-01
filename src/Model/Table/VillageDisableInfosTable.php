@@ -34,6 +34,10 @@ class VillageDisableInfosTable extends Table
         $this->setTable('village_disable_infos');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
+        $this->belongsTo('Villages',[
+            'className'=>'Villages'
+        ])
+        ->setForeignKey('village_code');
     }
 
     /**
@@ -69,5 +73,12 @@ class VillageDisableInfosTable extends Table
             ->allowEmpty('others');
 
         return $validator;
+    }
+
+    public function checkRecord($reference_year=null,$village_code=null)
+    {
+        $recordexist=$this->exists(['reference_year'=>$reference_year,'village_code'=>$village_code]);
+        //debug($recordexist);
+        return $recordexist;
     }
 }

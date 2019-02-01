@@ -110,6 +110,18 @@ class DataentryController extends AppController
                            $session = $this->getRequest()->getSession();
                            $session->write('agency',5);
                            return $this->redirect(['controller'=>'Hillhouse','action' => 'add']);
+                           break; 
+                case 13: 
+                          
+                           return $this->redirect(['controller'=>'ConnectivityInfras','action' => 'add']);
+                           break; 
+                case 14: 
+                          
+                           return $this->redirect(['controller'=>'PowerInfras','action' => 'add']);
+                           break; 
+                case 15: 
+                          
+                           return $this->redirect(['controller'=>'VillageDisableInfos','action' => 'add']);
                            break;                                   
               }
               

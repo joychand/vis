@@ -48,21 +48,21 @@ class ConnectivityInfrasController extends AppController
         $this->set(compact('connectivityInfras','subDivs'));
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Connectivity Infra id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $connectivityInfra = $this->ConnectivityInfras->get($id, [
-            'contain' => []
-        ]);
+    // /**
+    //  * View method
+    //  *
+    //  * @param string|null $id Connectivity Infra id.
+    //  * @return \Cake\Http\Response|void
+    //  * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+    //  */
+    // public function view($id = null)
+    // {
+    //     $connectivityInfra = $this->ConnectivityInfras->get($id, [
+    //         'contain' => []
+    //     ]);
 
-        $this->set('connectivityInfra', $connectivityInfra);
-    }
+    //     $this->set('connectivityInfra', $connectivityInfra);
+    // }
 
     /**
      * Add method

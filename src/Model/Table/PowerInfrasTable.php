@@ -34,6 +34,10 @@ class PowerInfrasTable extends Table
         $this->setTable('power_infras');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
+        $this->belongsTo('Villages',[
+            'className'=>'Villages'
+        ])
+        ->setForeignKey('village_code');
     }
 
     /**
@@ -65,5 +69,10 @@ class PowerInfrasTable extends Table
             ->allowEmpty('reference_year');
 
         return $validator;
+    }
+    public function checkRecord($reference_year=null,$village_code=null){
+        $recordexist=$this->exists(['reference_year'=>$reference_year,'village_code'=>$village_code]);
+        //debug($recordexist);
+        return $recordexist;
     }
 }

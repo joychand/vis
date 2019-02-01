@@ -19,12 +19,13 @@
 <div class="powerInfras form large-9 medium-8 columns content">
     <?= $this->Form->create($powerInfra) ?>
     <fieldset>
-        <legend><?= __('Edit Power Infra') ?></legend>
+        <legend><?= __('Edit Village Power Infra') ?></legend>
+        <h6>Village Name:<strong><?= $powerInfra->village->village_name?></strong> Ref. Yr. : <strong><?= $powerInfra->reference_year?></strong> </h6>
         <?php
-            echo $this->Form->control('village_code');
-            echo $this->Form->control('household_no');
-            echo $this->Form->control('electrified_household_no');
-            echo $this->Form->control('reference_year');
+           // echo $this->Form->control('village_code');
+            echo $this->Form->control('household_no',['label'=>'1.Total Household','required'=>'true']);
+            echo $this->Form->control('electrified_household_no',['label'=>'2.Electrified Household','required'=>'true']);
+           // echo $this->Form->control('reference_year');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

@@ -185,6 +185,9 @@ class VillageprofileController extends AppController
             $this->loadModel('Populations');
             $this->loadModel('VillageElectorals');
             $this->loadModel('VillagePhotos');
+            $this->loadModel('VillageDisableInfos');
+            $this->loadModel('PowerInfras');
+            $this->loadModel('ConnectivityInfras');
             // $subdivision_code=$session->read('subdivision');
             // $village_code=$session->read('village');
             $subdivision_code='1894';
@@ -245,15 +248,31 @@ class VillageprofileController extends AppController
             $vill_nrega=$this->Nregas->find('all')->where(['nrega_reference_year'=> $nrega_subquery
                                                                                 ->select(['latest_ref'=>$nrega_subquery->func()->max('nrega_reference_year')]),'Nregas.village_code'=>$village_code])
                                                                                 ->first();
-             $election_subquery=$this->VillageElectorals->find()->where(['VillageElectorals.village_code'=>$village_code]);
-             $vill_electoral=$this->VillageElectorals->find('all')->where(['reference_year'=> $election_subquery
+            $election_subquery=$this->VillageElectorals->find()->where(['VillageElectorals.village_code'=>$village_code]);
+            $vill_electoral=$this->VillageElectorals->find('all')->where(['reference_year'=> $election_subquery
                                                             ->select(['latest_ref'=>$election_subquery->func()->max('reference_year')]),'VillageElectorals.village_code'=>$village_code])
-                                                             ->first();  
+              
+                                                            ->first();
+            /** Power Infras Query */
+             $power_subquery=$this->PowerInfras->find()->where(['PowerInfras.village_code'=>$village_code]);
+             $vill_power=$this->PowerInfras->find('all')->where(['reference_year'=> $power_subquery
+                                   ->select(['latest_ref'=>$power_subquery->func()->max('reference_year')]),'PowerInfras.village_code'=>$village_code])
+                                   ->first();
+            /** Connectivity Infras Query */
+            $connectivity_subquery=$this->ConnectivityInfras->find()->where(['ConnectivityInfras.village_code'=>$village_code]);
+            $vill_connectivity=$this->ConnectivityInfras->find('all')->where(['reference_year'=> $connectivity_subquery
+                                  ->select(['latest_ref'=>$connectivity_subquery->func()->max('reference_year')]),'ConnectivityInfras.village_code'=>$village_code])
+                                  ->first(); 
+            /** VillageDisableInfos Query */
+            $disable_subquery=$this->VillageDisableInfos->find()->where(['VillageDisableInfos.village_code'=>$village_code]);
+            $vill_disable=$this->VillageDisableInfos->find('all')->where(['reference_year'=> $disable_subquery
+                                  ->select(['latest_ref'=>$disable_subquery->func()->max('reference_year')]),'VillageDisableInfos.village_code'=>$village_code])
+                                  ->first(); 
             $village_photos=$this->VillagePhotos->find()->where(['VillagePhotos.village_code'=>$village_code]);                                                                                                      
             $this->set(compact('vill_health','village','subdivision','village_gtv','village_sec','village_nercormp','village_census','village_hillhouse',
-                    'vill_anganwadi','vill_nsap','vill_cafpd','vill_edn','vill_nrega','vill_electoral','village_photos'));
-         $this->set( '_serialize',['vill_health','village','subdivision','village_gtv','village_sec','village_nercormp','village_census','village_hillhouse',
-                    'vill_anganwadi','vill_nsap','vill_cafpd','vill_edn','vill_nrega','vill_electoral','village_photos']);
+                    'vill_anganwadi','vill_nsap','vill_cafpd','vill_edn','vill_nrega','vill_electoral','village_photos','vill_power','vill_connectivity','vill_disable'));
+            $this->set( '_serialize',['vill_health','village','subdivision','village_gtv','village_sec','village_nercormp','village_census','village_hillhouse',
+                    'vill_anganwadi','vill_nsap','vill_cafpd','vill_edn','vill_nrega','vill_electoral','village_photos','vill_power','vill_connectivity','vill_disable']);
         }
       
     // $this->set('hello',$vill_health);

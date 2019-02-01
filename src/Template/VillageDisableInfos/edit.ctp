@@ -20,14 +20,15 @@
     <?= $this->Form->create($villageDisableInfo) ?>
     <fieldset>
         <legend><?= __('Edit Village Disable Info') ?></legend>
+        <h6>Village Name:<strong><?= $villageDisableInfo->village->village_name?></strong> Ref. Yr. : <strong><?= $villageDisableInfo->reference_year?></strong> </h6>
         <?php
-            echo $this->Form->control('village_code');
-            echo $this->Form->control('reference_year');
-            echo $this->Form->control('blind');
-            echo $this->Form->control('deaf');
-            echo $this->Form->control('others');
+           // echo $this->Form->control('village_code');
+           // echo $this->Form->control('reference_year');
+            echo $this->Form->control('blind',['label'=>'1. People with Blind Disability (Nos)','required'=>true]);
+            echo $this->Form->control('deaf',['label'=>'1. People with Blind Disability (Nos)','required'=>true]);
+            echo $this->Form->control('others',['label'=>'1. People with Blind Disability (Nos)','required'=>true]);
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Update')) ?>
     <?= $this->Form->end() ?>
 </div>
