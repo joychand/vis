@@ -176,7 +176,11 @@ $(document).ready(function()
                     $("#rationcard").html((response.vill_cafpd!=undefined || response.vill_cafpd!=null) ? response.vill_cafpd.total_aay_card + response.vill_cafpd.total_phh_card: '-no-record-' ); 
                     $("#voters").html((response.vill_electoral!=undefined || response.vill_electoral!=null) ? response.vill_electoral.electoral_total_voter : '-no-record-' );
                     $("#election_household").html((response.vill_electoral!=undefined || response.vill_electoral!=null) ? response.vill_electoral.electoral_total_household : '-no-record-' ); 
-                   //*********modal start***************//
+                    $("#electrified").html((response.vill_power!=undefined || response.vill_power!=null) ? response.vill_power.electrified_household_no : '-no-record-' );  
+                    $("#road_kpi").html((response.vill_connectivity!=undefined || response.vill_connectivity!=null) ? response.vill_connectivity.approached_road_status : '-no-record-');  
+                    $("#distance_kpi").html((response.vill_connectivity!=undefined || response.vill_connectivity!=null) ? response.vill_connectivity.distance_from_appr_road : '-no Record-'); 
+                    $("#disable_kpi").html((response.vill_disable!=undefined || response.vill_disable!=null) ? response.vill_disable.blind + response.vill_disable.deaf + response.vill_disable.others  : '-no Record-');   
+                    //*********modal start***************//
                    //***********gtv *****************/
                     $("#gtv_refyr").html((response.village_gtv!=undefined || response.village_gtv!=null) ? response.village_gtv.reference_year : '-no-record-' );
                     $("#gtv_hh").html((response.village_gtv!=undefined || response.village_gtv!=null) ? response.village_gtv.total_household : '-no-record-' );
@@ -247,7 +251,7 @@ $(document).ready(function()
                             $("#election_RefYr").html((response.vill_electoral!=undefined || response.vill_electoral!=null) ? response.vill_electoral.reference_year : '-no-record-' );
                             $("#election_voter").html((response.vill_electoral!=undefined || response.vill_electoral!=null) ? response.vill_electoral.electoral_total_voter : '-no-record-' );
                             $("#household_election").html((response.vill_electoral!=undefined || response.vill_electoral!=null) ? response.vill_electoral.electoral_total_household : '-no Record-' );
-                            $(".village_name").html(response.village.village_name);
+                           
                   // },delay);
                             //*****Village-photos */
                             if(response.village_photos!=undefined && response.village_photos!=null && response.village_photos.length>0)
@@ -289,7 +293,22 @@ $(document).ready(function()
                               });
                             }
                            // $("#election_RefYr").html((response.village_photos!=undefined || response.village_photos!=null) ? response.vill_electoral.reference_year : '-no-record-' );
-                     $('.loaderimage').hide();
+                    
+                            /** Power infra */
+                            $("#power_refyr").html((response.vill_power!=undefined || response.vill_power!=null) ? response.vill_power.reference_year : '-no-record-' );
+                            $("#power_household").html((response.vill_power!=undefined || response.vill_power!=null) ? response.vill_power.household_no : '-no-record-' );
+                            $("#power_house").html((response.vill_power!=undefined || response.vill_power!=null) ? response.vill_power.electrified_household_no : '-no Record-' );
+                            /**** Connectivity Infra */
+                            $("#connect_refyr").html((response.vill_connectivity!=undefined || response.vill_connectivity!=null) ? response.vill_connectivity.reference_year : '-no-record-' );
+                            $("#connect_road").html((response.vill_connectivity!=undefined || response.vill_connectivity!=null) ? response.vill_connectivity.approached_road_status : '-no-record-' );
+                            $("#connect_distance").html((response.vill_connectivity!=undefined || response.vill_connectivity!=null) ? response.vill_connectivity.distance_from_appr_road : '-no Record-' );
+                            /** Village Disable Info */
+                            $("#disable_refyr").html((response.vill_disable!=undefined || response.vill_disable!=null) ? response.vill_disable.reference_year : '-no-record-' );
+                            $("#disable_blind").html((response.vill_disable!=undefined || response.vill_disable!=null) ? response.vill_disable.blind : '-no-record-' );
+                            $("#disable_deaf").html((response.vill_disable!=undefined || response.vill_disable!=null) ? response.vill_disable.deaf : '-no Record-' );
+                            $("#disable_others").html((response.vill_disable!=undefined || response.vill_disable!=null) ? response.vill_disable.others : '-no Record-' );
+                    $(".village_name").html(response.village.village_name);
+                    $('.loaderimage').hide();
                     $('#villageprofile').show(); 
                    // $(".village").val($(this).val()); 
                 },

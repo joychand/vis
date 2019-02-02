@@ -484,12 +484,12 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td id="cafd_refyr"data-label="Ref.Yr."><?= isset($vill_cafpd->reference_year) ? $vill_cafpd->reference_year:'-No Data-'?></td>
-                                    <td id="cafd_aay"data-label="AAY Card(nos)"><?= isset($vill_cafpd->total_aay_card) ? $vill_cafpd->total_aay_card:'0'?></td>
-                                    <td id="cafd_amember"data-label="AAY Members(nos)"><?= isset($vill_cafpd->total_aay_members) ? $vill_cafpd->total_aay_members:'0' ?></td>
-                                    <td id="cafd_phh"data-label="PHH Card (nos)"><?= isset($vill_cafpd->total_phh_card) ? $vill_cafpd->total_phh_card:'0' ?></td>
-                                    <td id="cafd_pmember"data-label="PHH Members (nos)"><?= isset($vill_cafpd->total_phh_members) ? $vill_cafpd->total_phh_members:'0' ?></td>
-                                    <td id="cafd_shop"data-label="Fair Price Shop Name"><?= isset($vill_cafpd->fair_price_shop_name) ? $vill_cafpd->fair_price_shop_name:'0' ?></td>
+                                    <td id="cafd_refyr"data-label="Ref.Yr."></td>
+                                    <td id="cafd_aay"data-label="AAY Card(nos)"></td>
+                                    <td id="cafd_amember"data-label="AAY Members(nos)"></td>
+                                    <td id="cafd_phh"data-label="PHH Card (nos)"></td>
+                                    <td id="cafd_pmember"data-label="PHH Members (nos)"></td>
+                                    <td id="cafd_shop"data-label="Fair Price Shop Name"></td>
                                 
                                 </tr>
                                 
@@ -567,20 +567,20 @@
     </div> 
 
     <div class="large-4 medium-6 small-12  columns end">
-                <a class="dashboard-nav-card" href="#"  style="background:ROYALBLUE !important; background-clip:content-box!important; " data-reveal-id="cafpd">
+                <a class="dashboard-nav-card" href="#"  style="background:ROYALBLUE !important; background-clip:content-box!important; " data-reveal-id="power">
                 
-                    <img  class="dashboard-nav-card-icon" src="/img/cafpd.svg" style="width:130px;height:60px" alt="sdfd">
+                    <img  class="dashboard-nav-card-icon" src="/img/electricity.svg" style="width:130px;height:60px" alt="sdfd">
                     <h3 class="dashboard-nav-card-title">Power Infra</h3>
                     <div class="dashboard-nav-card-content">
                     <h6 class="dashboard-nav-card-kpi" style="font-size:.9rem" > Population: <span class="nerc_population"></span></h6>
                         <h6 class="dashboard-nav-card-kpi" style="font-size:.9rem" > Household: <span class ="nerc_household"></span></h6>
-                        <h6 class="dashboard-nav-card-kpi">Electrified Household: <span id="rationcard"></span></h6>
+                        <h6 class="dashboard-nav-card-kpi">Electrified Household: <span id="electrified"></span></h6>
                     
                     </div> 
                     <img  class="dashboard-nav-card-more" src="/img/more.svg" style="width:80px;height:30px" alt="sdfd">
                 </a>
-                <div id="cafpd" class="large reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
-                    <h2 id="modalTitle">CAF&amp;PD</h2>
+                <div id="power" class="large reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
+                    <h2 id="modalTitle">Power Infra</h2>
                     <div class="row">
                     <h6 style="color:#116d76">Village Name:<span class="village_name" style="color:#116d76"></span></h6>
                         <table class="responsive-card-table unstriped">
@@ -596,9 +596,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td id="cafd_refyr"data-label="Ref.Yr."><?= isset($vill_cafpd->reference_year) ? $vill_cafpd->reference_year:'-No Data-'?></td>
-                                    <td id="cafd_aay"data-label="AAY Card(nos)"><?= isset($vill_cafpd->total_aay_card) ? $vill_cafpd->total_aay_card:'0'?></td>
-                                    <td id="cafd_amember"data-label="AAY Members(nos)"><?= isset($vill_cafpd->total_aay_members) ? $vill_cafpd->total_aay_members:'0' ?></td>
+                                    <td id="power_refyr"data-label="Ref.Yr."></td>
+                                    <td id="power_household"data-label="Household"></td>
+                                    <td id="power_house"data-label="Electrified"></td>
                                    
                                 
                                 </tr>
@@ -614,43 +614,40 @@
             </div> 
 
             <div class="large-4 medium-6 small-12  columns end">
-                <a class="dashboard-nav-card" href="#"  style="background:tomato !important; background-clip:content-box!important; " data-reveal-id="cafpd">
+                <a class="dashboard-nav-card" href="#"  style="background:tomato !important; background-clip:content-box!important; " data-reveal-id="conectivity">
                 
-                    <img  class="dashboard-nav-card-icon" src="/img/cafpd.svg" style="width:130px;height:60px" alt="sdfd">
+                    <img  class="dashboard-nav-card-icon" src="/img/connectivity.svg" style="width:130px;height:60px" alt="sdfd">
                     <h3 class="dashboard-nav-card-title">Connectivity Infra</h3>
                     <div class="dashboard-nav-card-content">
-                    <h6 class="dashboard-nav-card-kpi" style="font-size:.9rem" > Population: <span class="nerc_population"></span></h6>
-                        <h6 class="dashboard-nav-card-kpi" style="font-size:.9rem" > Household: <span class ="nerc_household"></span></h6>
-                        <h6 class="dashboard-nav-card-kpi">Distance from Appr Road: <span id="rationcard"></span></h6>
+                    <!-- <h6 class="dashboard-nav-card-kpi" style="font-size:.9rem" > Population: <span class="nerc_population"></span></h6>
+                        <h6 class="dashboard-nav-card-kpi" style="font-size:.9rem" > Household: <span class ="nerc_household"></span></h6> -->
+                        <h6 class="dashboard-nav-card-kpi"> Approached Road: <span id="road_kpi"></span></h6>
+                        <h6 class="dashboard-nav-card-kpi">Distance from Appr Road: <span id="distance_kpi"></span></h6>
                     
                     </div> 
                     <img  class="dashboard-nav-card-more" src="/img/more.svg" style="width:80px;height:30px" alt="sdfd">
                 </a>
-                <div id="cafpd" class="large reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
-                    <h2 id="modalTitle">CAF&amp;PD</h2>
+                <div id="conectivity" class="large reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
+                    <h2 id="modalTitle">Village Connectivity</h2>
                     <div class="row">
                     <h6 style="color:#116d76">Village Name:<span class="village_name" style="color:#116d76"></span></h6>
                         <table class="responsive-card-table unstriped">
                             <thead>
                                 <tr>
                                     <th>Ref. Yr.:</th>
-                                    <th>AAY Card(nos)</th>
-                                    <th>AAY Members(nos)</th>
-                                    <th>PHH Card (nos)</th>
-                                    <th>PHH Members (nos)</th>
-                                    <th>Fair Price Shop name</th>
+                                    <th>Approached Road Status</th>
+                                    <th>Distance from Appr Road(km)</th>
+                                  
                                 
 
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td id="cafd_refyr"data-label="Ref.Yr."><?= isset($vill_cafpd->reference_year) ? $vill_cafpd->reference_year:'-No Data-'?></td>
-                                    <td id="cafd_aay"data-label="AAY Card(nos)"><?= isset($vill_cafpd->total_aay_card) ? $vill_cafpd->total_aay_card:'0'?></td>
-                                    <td id="cafd_amember"data-label="AAY Members(nos)"><?= isset($vill_cafpd->total_aay_members) ? $vill_cafpd->total_aay_members:'0' ?></td>
-                                    <td id="cafd_phh"data-label="PHH Card (nos)"><?= isset($vill_cafpd->total_phh_card) ? $vill_cafpd->total_phh_card:'0' ?></td>
-                                    <td id="cafd_pmember"data-label="PHH Members (nos)"><?= isset($vill_cafpd->total_phh_members) ? $vill_cafpd->total_phh_members:'0' ?></td>
-                                    <td id="cafd_shop"data-label="Fair Price Shop Name"><?= isset($vill_cafpd->fair_price_shop_name) ? $vill_cafpd->fair_price_shop_name:'0' ?></td>
+                                    <td id="connect_refyr"data-label="Ref.Yr."></td>
+                                    <td id="connect_road"data-label="Appr Road"></td>
+                                    <td id="connect_distance"data-label="Appr Road(km)"></td>
+                                    
                                 
                                 </tr>
                                 
@@ -665,43 +662,41 @@
             </div> 
 
             <div class="large-4 medium-6 small-12  columns end">
-                <a class="dashboard-nav-card" href="#"  style="background:SIENNA !important; background-clip:content-box!important; " data-reveal-id="cafpd">
+                <a class="dashboard-nav-card" href="#"  style="background:DARKGOLDENROD !important; background-clip:content-box!important; " data-reveal-id="disable">
                 
-                    <img  class="dashboard-nav-card-icon" src="/img/cafpd.svg" style="width:130px;height:60px" alt="sdfd">
+                    <img  class="dashboard-nav-card-icon" src="/img/disable.svg" style="width:130px;height:60px" alt="sdfd">
                     <h3 class="dashboard-nav-card-title">Village Disability Info</h3>
                     <div class="dashboard-nav-card-content">
                     <h6 class="dashboard-nav-card-kpi" style="font-size:.9rem" > Population: <span class="nerc_population"></span></h6>
                         <h6 class="dashboard-nav-card-kpi" style="font-size:.9rem" > Household: <span class ="nerc_household"></span></h6>
-                        <h6 class="dashboard-nav-card-kpi">Total RationCard: <span id="rationcard"></span></h6>
+                        <h6 class="dashboard-nav-card-kpi">Total Diff Abled: <span id="disable_kpi"></span></h6>
                     
                     </div> 
                     <img  class="dashboard-nav-card-more" src="/img/more.svg" style="width:80px;height:30px" alt="sdfd">
                 </a>
-                <div id="cafpd" class="large reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
-                    <h2 id="modalTitle">CAF&amp;PD</h2>
+                <div id="disable" class="large reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" >
+                    <h2 id="modalTitle">Diff Abled Info</h2>
                     <div class="row">
                     <h6 style="color:#116d76">Village Name:<span class="village_name" style="color:#116d76"></span></h6>
                         <table class="responsive-card-table unstriped">
                             <thead>
                                 <tr>
                                     <th>Ref. Yr.:</th>
-                                    <th>AAY Card(nos)</th>
-                                    <th>AAY Members(nos)</th>
-                                    <th>PHH Card (nos)</th>
-                                    <th>PHH Members (nos)</th>
-                                    <th>Fair Price Shop name</th>
+                                    <th>Blind</th>
+                                    <th>Deaf</th>
+                                    <th>Others</th>
+                                   
                                 
 
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td id="cafd_refyr"data-label="Ref.Yr."><?= isset($vill_cafpd->reference_year) ? $vill_cafpd->reference_year:'-No Data-'?></td>
-                                    <td id="cafd_aay"data-label="AAY Card(nos)"><?= isset($vill_cafpd->total_aay_card) ? $vill_cafpd->total_aay_card:'0'?></td>
-                                    <td id="cafd_amember"data-label="AAY Members(nos)"><?= isset($vill_cafpd->total_aay_members) ? $vill_cafpd->total_aay_members:'0' ?></td>
-                                    <td id="cafd_phh"data-label="PHH Card (nos)"><?= isset($vill_cafpd->total_phh_card) ? $vill_cafpd->total_phh_card:'0' ?></td>
-                                    <td id="cafd_pmember"data-label="PHH Members (nos)"><?= isset($vill_cafpd->total_phh_members) ? $vill_cafpd->total_phh_members:'0' ?></td>
-                                    <td id="cafd_shop"data-label="Fair Price Shop Name"><?= isset($vill_cafpd->fair_price_shop_name) ? $vill_cafpd->fair_price_shop_name:'0' ?></td>
+                                    <td id="disable_refyr"data-label="Ref.Yr."></td>
+                                    <td id="disable_blind"data-label="Blind"></td>
+                                    <td id="disable_deaf"data-label="Deaf"></td>
+                                    <td id="disable_others"data-label="Others"></td>
+                                    
                                 
                                 </tr>
                                 
