@@ -3,7 +3,8 @@
 #<IfModule mod_headers.c>
 #    RequestHeader unset Proxy
 #</IfModule>
-
+# Disable server signature
+ #ServerSignature Off
 <IfModule mod_rewrite.c>
     RewriteEngine on
     RewriteRule    ^(\.well-known/.*)$ $1 [L]

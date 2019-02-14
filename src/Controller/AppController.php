@@ -46,10 +46,10 @@ class AppController extends Controller
         //     'enableBeforeRedirect' => false,
         // ]);
         $this->loadComponent('Flash');
-		//If (!$this->request->is('ajax')) {
-   // $this->loadComponent('Security');
-   // $this->loadComponent('Csrf');
-//}
+		
+        // $this->loadComponent('Security');
+        //$this->loadComponent('Csrf');
+
 
         /*
          * Enable the following component for recommended CakePHP security settings.
@@ -81,6 +81,7 @@ class AppController extends Controller
        // $this->Auth->allow(['getVillage','getEmptyVillage','ajaxGetvillage','ajaxFilterSubdivision','ajaxGetVillageProfile']);
        //$this->Auth->allow();
     }
+   
         
     }
-//}
+

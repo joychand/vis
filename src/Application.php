@@ -21,6 +21,7 @@ use Cake\Http\BaseApplication;
 use Cake\Http\Middleware\CsrfProtectionMiddleware;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
+use Cake\Http\Middleware\SecurityHeadersMiddleware;
 
 /**
  * Application setup class.
@@ -65,6 +66,14 @@ class Application extends BaseApplication
      */
     public function middleware($middlewareQueue)
     {
+        
+        $securityHeaders = new SecurityHeadersMiddleware();
+        $securityHeaders
+           
+            ->setXFrameOptions('deny')
+            ->setXssProtection()
+           
+            ->noSniff();
         $middlewareQueue
             // Catch any exceptions in the lower layers,
             // and make an error page/response
@@ -78,11 +87,13 @@ class Application extends BaseApplication
             // pass null as cacheConfig, example: `new RoutingMiddleware($this)`
             // you might want to disable this cache in case your routing is extremely simple
             ->add(new RoutingMiddleware($this, '_cake_routes_'))
-
-            // Add csrf middleware.
-            ->add(new CsrfProtectionMiddleware([
-                'httpOnly' => true
-            ]));
+            
+           // Add csrf middleware.
+           ->add(new CsrfProtectionMiddleware([
+               'httpOnly' => true
+           ]))
+            //added by N.Joychand on 06/02/2019
+            ->prepend($securityHeaders);
 
         return $middlewareQueue;
     }

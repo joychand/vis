@@ -104,22 +104,7 @@ class VillagePhotosTable extends Table
             ->integer('id')
             ->allowEmpty('id', 'create');
 
-        $validator
-            
-            ->maxLength('photo', 255)
-            ->allowEmpty('photo')
-            ->add('photo',[
-                'mimeType' => [
-                    'rule' => array('mimeType', array('image/gif', 'image/png', 'image/jpg', 'image/jpeg')),
-                    'message' => 'Please only upload images (gif, png, jpg).',
-                    'last' => TRUE,
-                ],
-                'fileSize' => [
-                    'rule' => array('fileSize', '<=', '1MB'),
-                    'message' => 'Image/Photo must be less than 1MB.',
-                    'last' => TRUE,
-                ],
-            ]);
+       
 
         $validator
             ->scalar('photo_dir')
@@ -140,6 +125,39 @@ class VillagePhotosTable extends Table
             ->scalar('village_code')
             ->maxLength('village_code', 20)
             ->allowEmpty('village_code');
+
+        
+        $validator
+            
+            ->maxLength('photo', 255)
+            ->allowEmpty('photo')
+            ->add('photo',[
+                'mimeType' => [
+                    'rule' => array('mimeType', array('image/gif', 'image/png', 'image/jpg', 'image/jpeg')),
+                    'message' => 'Please only upload images (gif, png, jpg).',
+                    'last' => TRUE,
+                ],
+                'fileSize' => [
+                    'rule' => array('fileSize', '<=', '1MB'),
+                    'message' => 'Image/Photo must be less than 1MB.',
+                    'last' => TRUE,
+                ],
+                
+                // 'isUnderPhpSizeLimit'=> [
+                //         'rule' => 'isUnderPhpSizeLimit',
+                //         'message' => 'This file is too large',
+                //         'provider' => 'upload'
+                // ]  
+                
+            
+            ]);
+            // $validator->setProvider('upload', \Josegonzalez\Upload\Validation\DefaultValidation::class);
+            // $validator->add('photo', 'fileUnderPhpSizeLimit', [
+            //     'rule' => 'isUnderPhpSizeLimit',
+            //     'message' => 'This file is too large',
+            //     'provider' => 'upload',
+            //     'last' => TRUE,
+            // ]);
 
         return $validator;
     }

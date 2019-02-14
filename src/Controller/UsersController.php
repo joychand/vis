@@ -33,9 +33,15 @@ public function isAuthorized($user)
 {
     $action = $this->request->getParam('action');
     
-    if (in_array($action, ['add', 'edit','delete','index'])) {
+    if (in_array($action, ['add', 'edit','delete','index']) && in_array($user['role_id'],[13])) {
         return true;
     }
+
+    if (in_array($action, ['changepassword']))
+    {
+        return true;
+    }
+
 
   
 }

@@ -669,7 +669,7 @@
                     <div class="dashboard-nav-card-content">
                     <h6 class="dashboard-nav-card-kpi" style="font-size:.9rem" > Population: <span class="nerc_population"></span></h6>
                         <h6 class="dashboard-nav-card-kpi" style="font-size:.9rem" > Household: <span class ="nerc_household"></span></h6>
-                        <h6 class="dashboard-nav-card-kpi">Total Diff Abled: <span id="disable_kpi"></span></h6>
+                        <h6 class="dashboard-nav-card-kpi">Total Diff Abled: <span id="disable_kpi`"></span></h6>
                     
                     </div> 
                     <img  class="dashboard-nav-card-more" src="/img/more.svg" style="width:80px;height:30px" alt="sdfd">

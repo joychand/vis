@@ -25,8 +25,10 @@
         <legend>Village Info form </legend>
         
         <?php
-           echo $this->Form->control('Villages.VillageInfos.distance_from_ib',['label'=>'Distance from Intl. Border (in km)','required'=>true]);
-      
+           echo $this->Form->control('Villages.VillageInfos.distance_from_ib',['label'=>'Distance from Intl. Border (in km)']);
+           if ($this->Form->isFieldError('Villages.VillageInfos.distance_from_ib')) {
+            echo $this->Form->error('Villages.VillageInfos.distance_from_ib');}
+           echo $this->Form->error('Villages.VillageInfos.distance_from_ib');
            echo $this->Form->control('villagePhoto.0.photo',['type'=>'file','accept'=>'image/jpeg', 'required'=>true,'label'=>'Village Photo 1 (size<=1mb, type:jpeg/png):']);
           echo $this->Form->error('villagePhoto.0.photo');
            echo $this->Form->control('villagePhoto.1.photo',['type'=>'file','label'=>'Village Photo 2 (size<=1mb, type:jpeg/png)']);

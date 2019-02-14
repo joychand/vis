@@ -32,8 +32,8 @@
       
        
        <?php
-            echo $this->Form->control('total_anganwadi_centre',['label'=>'1.Total Anganwadi Centre:','required'=>true,'min'=>0]);
-            echo $this->Form->control('total_enrolled_children',['label'=>'2.Total Enrolled Children:','required'=>true,'min'=>0]);?>
+            echo $this->Form->control('total_anganwadi_centre',['label'=>'1.Total Anganwadi Centre:','min'=>0]);
+            echo $this->Form->control('total_enrolled_children',['label'=>'2.Total Enrolled Children:','min'=>0]);?>
               
 
            <?php echo $this->Form->control('total_anganwadi_worker',['label'=>'3.Total Anganwadi Workers:','required'=>true,'min'=>0]);

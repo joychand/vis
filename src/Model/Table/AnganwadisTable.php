@@ -58,7 +58,7 @@ class AnganwadisTable extends Table
 
         $validator
             ->integer('total_anganwadi_centre')
-            ->allowEmpty('total_anganwadi_centre');
+            ->notEmpty('total_anganwadi_centre','plz provide anganwadi centre nos');
         $validator
             ->integer('first_qtr_pregnant')
             ->allowEmpty('first_qtr_pregnant');
@@ -74,7 +74,7 @@ class AnganwadisTable extends Table
 
         $validator
             ->integer('total_enrolled_children')
-            ->allowEmpty('total_enrolled_children');
+            ->notEmpty('total_enrolled_children','Plz provide enrolled children');
         
         $validator
             ->scalar('anganwadi_worker_name')

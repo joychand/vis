@@ -59,7 +59,7 @@ class VillageInfosTable extends Table
 
         $validator
             ->decimal('distance_from_ib')
-            ->allowEmpty('distance_from_ib');
+            ->notEmpty('distance_from_ib','Distance to be entered');
 
         $validator
             ->scalar('village_code')
