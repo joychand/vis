@@ -32,7 +32,8 @@ class User extends Entity
         'password' => true,
         'user_email' => true,
         'user_mobile' => true,
-        'role_id'=>true
+        'role_id'=>true,
+        'user_id'=>true
     ];
 
    protected function _setPassword($value)

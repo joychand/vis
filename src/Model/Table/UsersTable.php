@@ -92,6 +92,19 @@ class UsersTable extends Table
             ->maxLength('user_mobile', 10)
             ->allowEmpty('user_mobile');
 
+        $validator
+            ->requirePresence('currentPassword')
+            ->notEmpty('currentPassword', 'Please enter your current password')
+            
+            
+            ->add('currentPassword','custom',[
+              'rule' => function($value,$context){
+                $query = $this->find()->where(['user_id'=>$context['data']['user_id']])->first();
+                $data = $query->toArray();
+                return(new DefaultPasswordHasher)->check($value,$data['password']);
+              },
+              'message' => 'Current password is invalid'
+            ]);
         return $validator;
     }
 

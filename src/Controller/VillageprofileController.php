@@ -63,7 +63,9 @@ class VillageprofileController extends AppController
             case 'sdo.khengjoy': $subdivision= $this->Subdistricts->find('list')->where(['subdistrict_code'=>'6496']);;
                                      break;
             case 'dc.chandel': $subdivision= $this->Subdistricts->find('list');
-                                     break;    
+                                     break;   
+             case 'admin': $subdivision= $this->Subdistricts->find('list');
+                                     break;     
         }
         //$subdivision= $this->Subdistricts->find('list');       
         $this->set(compact('subdivision'));

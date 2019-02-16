@@ -23,7 +23,7 @@
         <?php
            // echo $this->Form->control('user_creation_date', ['empty' => true]);
            //echo $this->Form->control('user_id');
-           // echo $this->Form->control('user_name',['label'=>'UserName','required'=>true]);
+           echo $this->Form->control('currentPassword',['type'=>'password','required'=>true,'label'=>'Current Password:','value'=>'']);
             echo $this->Form->control('password',['type'=>'password','required'=>true,'label'=>'New Password:','value'=>'']);
             echo $this->Form->control('confirm_passwd',['type'=>'password','required'=>true,'label'=>'Confirm Password:','value'=>'']);
            // echo $this->Form->control('user_email',['label'=>'email','required'=>true]);

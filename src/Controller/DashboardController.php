@@ -19,7 +19,7 @@ class DashboardController extends AppController
         //dump($user);
         $action = $this->request->getParam('action');
         // The add and tags actions are always allowed to logged in users.
-        if (in_array($action, ['display','getEmptyVillage']) && in_array($user['role_id'],[13,15,16])) {
+        if (in_array($action, ['home','getEmptyVillage']) && in_array($user['role_id'],[16])) {
             return true;
         }
 
@@ -30,8 +30,11 @@ class DashboardController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
-    public function display()
+    public function home()
     {
+        $session = $this->getRequest()->getSession();
+        $session->write('homecontroller', $this->request->params['controller']);
+
         $this->loadModel('HealthInfras');
         $this->loadModel('Anganwadis');
         $this->loadModel('Villages');

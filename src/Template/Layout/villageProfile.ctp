@@ -82,7 +82,7 @@ $cakeDescription = 'VIS Chandel District, Manipur';
                          }?></li>
                   <li> <?php if ( $user['role_id']==16)
                      {
-                         echo $this->Html->link($this->Html->tag('i', '', array('class' => 'fi-laptop large')).'DE Status', array('controller' => 'Dashboard', 'action' => 'display'),array('escape'=>false));
+                         echo $this->Html->link($this->Html->tag('i', '', array('class' => 'fi-laptop large')).'DE Status', array('controller' => 'Dashboard', 'action' => 'home'),array('escape'=>false));
                          
                          
                          }?></li>

@@ -25,7 +25,7 @@ class UsersController extends AppController
     parent::initialize();
    // $this->disableCache();
     // Add the 'add' action to the allowed actions list.
-    $this->Auth->allow(['logout','changepassword']);
+    $this->Auth->allow(['logout']);
 
 
 }
@@ -122,7 +122,7 @@ public function isAuthorized($user)
                              break;
                     case 15: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Villageprofile','action'=>'home']));
                              break; 
-                    case 16: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Dashboard','action'=>'display']));
+                    case 16: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Dashboard','action'=>'home']));
                              break;       
 
 
@@ -234,10 +234,11 @@ public function isAuthorized($user)
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user))
              {
-
-                $this->Flash->success(__('The password has bee successfully changed Plz login again with new password'));
-
-                return $this->redirect(['action' => 'logout']);
+                $redirectUrl = $this->Auth->logout();
+               // $this->Session->setFlash('Password has been changed.');
+                $this->Flash->success(__('The password has been successfully changed Plz login again with new password'));
+               return $this->redirect($redirectUrl);
+                //return $this->redirect(['action' => 'logout']);
             }
             $this->Flash->error(__('The password could not be changed. Please, try again.'));
         }
