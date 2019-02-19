@@ -3,6 +3,10 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Cache\Cache;
+use Cake\Routing\RouteBuilder;
+use Cake\Routing\Router;
+use Cake\Routing\Route\DashedRoute;
+
 
 /**
  * Users Controller
@@ -219,6 +223,7 @@ public function isAuthorized($user)
             $this->Flash->success(__('The user has been deleted.'));
         } else {
             $this->Flash->error(__('The user could not be deleted. Please, try again.'));
+            //$this->redirect( Router::url( $this->referer(), true ) );
         }
 
         return $this->redirect(['action' => 'index']);
@@ -226,23 +231,41 @@ public function isAuthorized($user)
 
     public function changepassword($id=null)
     {
-        $user = $this->Users->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put']))
+        $this->request->allowMethod(['get']);
+        //$isUserAuthorized=false;
+       // dump($this->Auth->user('user_id'));
+        $isUserAuthorized=$this->Users->checkAuthorized(  $this->Auth->user('user_id'),$id); //checking change password for only login id
+        if(!$isUserAuthorized)
         {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user))
-             {
-                $redirectUrl = $this->Auth->logout();
-               // $this->Session->setFlash('Password has been changed.');
-                $this->Flash->success(__('The password has been successfully changed Plz login again with new password'));
-               return $this->redirect($redirectUrl);
-                //return $this->redirect(['action' => 'logout']);
+           $this->Flash->error(__('Your are not authorized to access the resources'));
+           //$this->redirect( Router::url( $this->referer(), true ) );
+           return $this->redirect($this->referer());
+        }
+        else
+        {
+
+            $user = $this->Users->get($id, [
+                'contain' => []
+            ]);
+            if ($this->request->is(['patch', 'post', 'put']))
+            {
+                $user = $this->Users->patchEntity($user, $this->request->getData());
+                if ($this->Users->save($user))
+                 {
+                    $redirectUrl = $this->Auth->logout();
+                   // $this->Session->setFlash('Password has been changed.');
+                    $this->Flash->success(__('The password has been successfully changed Plz login again with new password'));
+                   return $this->redirect($redirectUrl);
+                    //return $this->redirect(['action' => 'logout']);
+                }
+                $this->Flash->error(__('The password could not be changed. Please, try again.'));
             }
-            $this->Flash->error(__('The password could not be changed. Please, try again.'));
+           
+
         }
         $this->set(compact('user'));
+
+       
 
     }
 }

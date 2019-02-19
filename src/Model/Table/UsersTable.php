@@ -109,18 +109,31 @@ class UsersTable extends Table
     }
 
 
-public function findAuth(\Cake\ORM\Query $query, array $options)
-    {
-        $query
-            ->select([ 'user_name', 'password','role_id','user_id']);
+    public function findAuth(\Cake\ORM\Query $query, array $options)
+        {
+            $query
+                ->select([ 'user_name', 'password','role_id','user_id']);
+                
+
+            return $query;
+        }
+
+    public function userExist($user_name=null)
+        {
+            $recordexist=$this->exists(['user_name'=>$user_name]);
+            return $recordexist;
+        }
+
+    public function checkAuthorized($user_id, $id)
+        {
+            if ($user_id==$id)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
             
-
-        return $query;
-    }
-
-public function userExist($user_name=null)
-{
-    $recordexist=$this->exists(['user_name'=>$user_name]);
-    return $recordexist;
-}
+        }
 }
