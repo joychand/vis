@@ -19,6 +19,7 @@ $this->layout = false;
 
 $cakeDescription = 'VIS:  Village Information System';
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,12 +28,14 @@ $cakeDescription = 'VIS:  Village Information System';
     <title>
         <?= $cakeDescription ?>
     </title>
-
+    <?php  $this->Html->script('jquery-3.3.1.min.js',['block'=>true]);?>
     <?= $this->Html->meta('icon') ?>
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('style.css') ?>
     <?= $this->Html->css('home.css') ?>
+    <?= $this->Html->css(captcha_layout_stylesheet_url(), ['inline' => false]) ?>
     <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet">
+    <?= $this->fetch('script') ?>
     
                         
 </head>
@@ -48,20 +51,30 @@ $cakeDescription = 'VIS:  Village Information System';
   
     
 </header>
-<!-- <header class="row">
-    <div class="header-image"><?= $this->Html->image('Logo_kanglasha.png') ?></div>
-    <div class="header-title">
-        <h1>Village Information System (VIS) of Chandel District, Manipur</h1>
 
-    </div>
-</header> -->
+
 <?= $this->Flash->render() ?>
 <div class="row">
     <div class=" large-6 medium-6 " style="margin: auto !important ;border: 1px !important; padding: 5px!important;">
         <h3 align="center">Login</h3>
         <?= $this->Form->create( ) ?>
         <?= $this->Form->control('user_name',['required'=>true,'autocomplete' => 'off']) ?>
-        <?= $this->Form->control('password',['type'=>'password','required'=>true]) ?>
+        <?= $this->Form->control('password',['type'=>'password','required'=>true,'autocomplete' => 'off']) ?>
+       <?php if($this->Session->check('fail.count'))
+       {
+           if ($this->Session->read('fail.count')>1)
+           {
+                echo $this->Captcha->create('securitycode', [
+                    'type'=>'image', // 'recaptcha' or 'math'
+                    //'sitekey'=>'xxxxxxxxxxxxxxxxxxxxxx-xx', //set if it is recaptcha
+                    'theme'=>'default',
+                    'width'=>'150',
+                    'height'=> '50'
+                ]);
+           }
+       } ?> 
+        
+             
         
         <?= $this->Form->button('Login') ?>
         <?= $this->Form->end() ?>
@@ -81,7 +94,20 @@ $cakeDescription = 'VIS:  Village Information System';
         <p  class="show-for-small-up  hide-for-large-up" style="line-height:10%; text-align:center;font-size: 10px !important;">Village Information System of Chandel District, Manipur</p>
         
 </div>
+
 </body>
+<script>
+	jQuery('.creload').on('click', function() {
+		var mySrc = $(this).prev().attr('src');
+		var glue = '?';
+		if(mySrc.indexOf('?')!=-1) {
+			glue = '&';
+		}
+		$(this).prev().attr('src', mySrc + glue + new Date().getTime());
+		return false;
+	});
+</script>
+
 </html>
 
 

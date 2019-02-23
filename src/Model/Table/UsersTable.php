@@ -37,6 +37,12 @@ class UsersTable extends Table
         $this->setPrimaryKey('user_id');
         $this->belongsTo('users_roles')
         ->setForeignKey('role_id');
+
+        //captcha behaviour
+        $this->addBehavior('Captcha.Captcha', [
+            'field' => 'securitycode',
+            //'secret'=>'' //set secret if it is google recaptcha
+        ]);
         //$this->Auth->allow(['logout', 'add']);
     }
    

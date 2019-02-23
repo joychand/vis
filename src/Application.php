@@ -36,6 +36,10 @@ class Application extends BaseApplication
      */
     public function bootstrap()
     {
+        $this->addPlugin('CakeCaptcha');
+
+        $this->addPlugin('Captcha', ['bootstrap' => true, 'routes' => true]);
+
         // Call parent to load bootstrap from files.
         parent::bootstrap();
 
@@ -70,7 +74,7 @@ class Application extends BaseApplication
         $securityHeaders = new SecurityHeadersMiddleware();
         $securityHeaders
            
-            ->setXFrameOptions('deny')
+            //->setXFrameOptions('deny')
             ->setXssProtection()
            
             ->noSniff();

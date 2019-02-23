@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6f4e3e1f6a98b0f9e1838d37a141f3c5",
+    "content-hash": "ce5f3cb74787b3d6fc1358580dd957c9",
     "packages": [
         {
             "name": "aura/intl",
@@ -290,6 +290,98 @@
             "time": "2017-12-24T21:09:29+00:00"
         },
         {
+            "name": "captcha-com/cakephp-captcha",
+            "version": "4.2.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/captcha-com/cakephp-captcha.git",
+                "reference": "ae8fe220611c8fc96fbdf5f1e44565fa559397da"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/captcha-com/cakephp-captcha/zipball/ae8fe220611c8fc96fbdf5f1e44565fa559397da",
+                "reference": "ae8fe220611c8fc96fbdf5f1e44565fa559397da",
+                "shasum": ""
+            },
+            "require": {
+                "captcha-com/captcha": "4.*",
+                "php": ">=5.4.0"
+            },
+            "type": "cakephp-plugin",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "CakeCaptcha\\": "src/"
+                },
+                "files": [
+                    "src/Support/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "CakePHP Captcha Plugin Support",
+                    "email": "botdetect.support@captcha.com",
+                    "homepage": "https://captcha.com/doc/php/cakephp-captcha-quickstart.html"
+                }
+            ],
+            "description": "CakePHP Captcha Plugin -- BotDetect 4 PHP Captcha generator integration for the CakePHP framework.",
+            "homepage": "https://captcha.com/doc/php/cakephp-captcha-quickstart.html",
+            "keywords": [
+                "botdetect",
+                "cakephp captcha",
+                "cakephp captcha plugin",
+                "captcha",
+                "captcha generator",
+                "captcha plugin"
+            ],
+            "time": "2018-12-03T09:58:44+00:00"
+        },
+        {
+            "name": "captcha-com/captcha",
+            "version": "4.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://git.captcha.com/botdetect-php-captcha-library.git",
+                "reference": "66b498a5230f67d6025ee86271ae156209f26bcc"
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "suggest": {
+                "captcha-com/cakephp-captcha": "BotDetect 4 PHP Captcha generator integration for the CakePHP framework.",
+                "captcha-com/laravel-captcha": "BotDetect 4 PHP Captcha generator integration for the Laravel framework.",
+                "captcha-com/symfony-captcha-bundle": "BotDetect 4 PHP Captcha generator integration for the Symfony framework."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "BotDetect Captcha",
+                    "email": "botdetect.support@captcha.com",
+                    "homepage": "https://captcha.com/php-captcha.html"
+                }
+            ],
+            "description": "BotDetect 4 PHP Captcha Generator -- Free composer package.",
+            "homepage": "https://captcha.com/php-captcha.html",
+            "keywords": [
+                "captcha"
+            ],
+            "time": "2018-09-20T14:39:49+00:00"
+        },
+        {
             "name": "imagine/imagine",
             "version": "v0.7.1",
             "source": {
@@ -346,6 +438,51 @@
                 "image processing"
             ],
             "time": "2017-05-16T10:31:22+00:00"
+        },
+        {
+            "name": "inimist/cakephp-captcha",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/inimist/cakephp3-captcha.git",
+                "reference": "01fca91b5ea40e5516948324251d9b53ae7833d0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/inimist/cakephp3-captcha/zipball/01fca91b5ea40e5516948324251d9b53ae7833d0",
+                "reference": "01fca91b5ea40e5516948324251d9b53ae7833d0",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^3.5.0",
+                "php": ">=5.6"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Captcha\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Arvind Kumar",
+                    "email": "arvind@inimisttech.com"
+                }
+            ],
+            "description": "CakePHP Captcha Plugin, Image, Match and Google Recaptcha Support",
+            "homepage": "https://github.com/inimist/cakephp3-captcha",
+            "keywords": [
+                "cakephp",
+                "captcha",
+                "plugin",
+                "recaptcha",
+                "security"
+            ],
+            "time": "2019-01-07T05:54:29+00:00"
         },
         {
             "name": "josegonzalez/cakephp-upload",
@@ -818,6 +955,47 @@
                 "phinx"
             ],
             "time": "2018-07-12T11:55:13+00:00"
+        },
+        {
+            "name": "siezi/cakephp-simple-captcha",
+            "version": "0.4.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Schlaefer/cakephp-simple-captcha.git",
+                "reference": "282afbbcab4e2afdd256e50f7a656b7e3219e990"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Schlaefer/cakephp-simple-captcha/zipball/282afbbcab4e2afdd256e50f7a656b7e3219e990",
+                "reference": "282afbbcab4e2afdd256e50f7a656b7e3219e990",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "cakephp/cakephp": "^3.6.0",
+                "phpunit/phpunit": "~6"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Siezi\\SimpleCaptcha\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Simple Captcha Plugin for CakePHP",
+            "homepage": "https://github.com/Schlaefer/cakephp-simple-captcha",
+            "keywords": [
+                "cake3",
+                "cakephp",
+                "captcha",
+                "plugin"
+            ],
+            "time": "2018-04-17T14:36:07+00:00"
         },
         {
             "name": "symfony/config",
@@ -2829,6 +3007,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "inimist/cakephp-captcha": 20,
         "psy/psysh": 0
     },
     "prefer-stable": true,

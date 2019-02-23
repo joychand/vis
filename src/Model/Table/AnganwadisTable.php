@@ -97,4 +97,9 @@ class AnganwadisTable extends Table
         //debug($recordexist);
         return $recordexist;
     }
+
+     public function logFail()
+     {
+         
+     }
 }

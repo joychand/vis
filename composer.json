@@ -9,10 +9,13 @@
         "cakephp/cakephp": "3.6.*",
         "cakephp/migrations": "^2.0.0",
         "cakephp/plugin-installer": "^1.0",
+        "captcha-com/cakephp-captcha": "4.*",
         "imagine/imagine": "^0.7.1",
+        "inimist/cakephp-captcha": "dev-master",
         "josegonzalez/cakephp-upload": "^4.0",
         "josegonzalez/dotenv": "3.*",
-        "mobiledetect/mobiledetectlib": "2.*"
+        "mobiledetect/mobiledetectlib": "2.*",
+        "siezi/cakephp-simple-captcha": "^0.4.3"
     },
     "require-dev": {
         "cakephp/bake": "^1.1",

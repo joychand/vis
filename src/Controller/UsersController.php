@@ -17,6 +17,9 @@ use Cake\Routing\Route\DashedRoute;
  */
 class UsersController extends AppController
 {
+    // public $helpers = [
+    //     'Siezi/SimpleCaptcha.SimpleCaptcha',
+    // ];
 
     /**
      * Index method
@@ -27,9 +30,14 @@ class UsersController extends AppController
     public function initialize()
 {
     parent::initialize();
+    $this->loadComponent('Captcha.Captcha');
+    // $this->loadComponent('CakeCaptcha.Captcha', [
+    //     'captchaConfig' => 'LoginCaptcha'
+    //   ]);
    // $this->disableCache();
     // Add the 'add' action to the allowed actions list.
     $this->Auth->allow(['logout']);
+
 
 
 }
@@ -76,67 +84,98 @@ public function isAuthorized($user)
     public function login()
     
     {
+        $session = $this->getRequest()->getSession();
         Cache::disable();
-
+        if( !$session->check('fail.count'))
+        {
+            $session->write('fail.count',1);
+        }
         if($this->Auth->user()){
             $this->Flash->error(__('You are already logged in!'));
             //dump($this->getRequest()->getSession()->read('homecontroller'));
             return $this->redirect(['controller'=>$this->getRequest()->getSession()->read('homecontroller'), 'action' => 'home']);
         }
-       // Cache::disable();
+        
         if ($this->request->is('post')) 
         {
+            $this->loadModel('UserAudits');
             $user = $this->Auth->identify();
-           
-            if ($user) {
-               // debug($user->role_id);
-                $this->Auth->setUser($user);
-                $role_redirect=$this->Auth->User('role_id');
-                //$user_name=$this->Auth->User('user_name');
-              // dump($user_name);
-                switch($role_redirect)
+            
+            if($session->read('fail.count')> 1)
+            {
+                if ($this->request->data['securitycode']!=$this->Captcha->getCode('securitycode'))
                 {
-                    case 1: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Anganwadis','action'=>'home']));
-                            break;
-                    case 2: return $this->redirect($this->Auth->redirectUrl(['controller'=>'FoodSecurities','action'=>'home']));
-                            break;
-                    case 3: return $this->redirect($this->Auth->redirectUrl(['controller'=>'EducationInfras','action'=>'home']));
-                            break;
-                    case 4: return $this->redirect($this->Auth->redirectUrl(['controller'=>'VillageElectorals','action'=>'home']));
-                            break;
-                    case 5: return $this->redirect($this->Auth->redirectUrl(['controller'=>'HealthInfras','action'=>'home']));
-                            break;
-                    case 6: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Nercormp','action'=>'home']));
-                            break;
-                    case 7: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Nregas','action'=>'home']));
-                            break;
-                    case 8: return $this->redirect($this->Auth->redirectUrl(['controller'=>'VillageNsaps','action'=>'home']));
-                            break;
-                    case 9: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Sdoreport','action'=>'home']));
-                            break;
-                    case 10: return $this->redirect($this->Auth->redirectUrl(['controller'=>'VillageSchemes','action'=>'home']));
-                            break;
-                    case 11: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Securityreport','action'=>'home']));
-                            break; 
-                    case 12: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Villageinfos','action'=>'home']));
-                             break;
-                    case 13: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Dataentry','action'=>'home']));
-                             break;
-                    case 14: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Manager','action'=>'home']));
-                             break;
-                    case 15: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Villageprofile','action'=>'home']));
-                             break; 
-                    case 16: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Dashboard','action'=>'home']));
-                             break;       
-
-
+                    $this->Flash->error(__('Captcha Mismatch'));
+                    return $this->redirect(['action' => 'login']);
                 }
-               
-                $this->Flash->success('You are now login to Chandel VIS.');
-                return $this->redirect($this->Auth->redirectUrl(['controller'=>'Dataentry','action'=>'data']));
             }
-            $this->Flash->error('Your username or password is incorrect.');
-        }
+                	
+               
+                    if ($user) 
+                        {
+                           
+                          // $this->UserAudits->logSuccess($clientip,$clientbrowser);
+                            $this->Auth->setUser($user);
+                            $session->delete('fail.count');
+                            $role_redirect=$this->Auth->User('role_id');
+                            
+                            switch($role_redirect)
+                            {
+                                case 1: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Anganwadis','action'=>'home']));
+                                        break;
+                                case 2: return $this->redirect($this->Auth->redirectUrl(['controller'=>'FoodSecurities','action'=>'home']));
+                                        break;
+                                case 3: return $this->redirect($this->Auth->redirectUrl(['controller'=>'EducationInfras','action'=>'home']));
+                                        break;
+                                case 4: return $this->redirect($this->Auth->redirectUrl(['controller'=>'VillageElectorals','action'=>'home']));
+                                        break;
+                                case 5: return $this->redirect($this->Auth->redirectUrl(['controller'=>'HealthInfras','action'=>'home']));
+                                        break;
+                                case 6: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Nercormp','action'=>'home']));
+                                        break;
+                                case 7: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Nregas','action'=>'home']));
+                                        break;
+                                case 8: return $this->redirect($this->Auth->redirectUrl(['controller'=>'VillageNsaps','action'=>'home']));
+                                        break;
+                                case 9: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Sdoreport','action'=>'home']));
+                                        break;
+                                case 10: return $this->redirect($this->Auth->redirectUrl(['controller'=>'VillageSchemes','action'=>'home']));
+                                        break;
+                                case 11: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Securityreport','action'=>'home']));
+                                        break; 
+                                case 12: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Villageinfos','action'=>'home']));
+                                        break;
+                                case 13: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Dataentry','action'=>'home']));
+                                        break;
+                                case 14: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Manager','action'=>'home']));
+                                        break;
+                                case 15: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Villageprofile','action'=>'home']));
+                                        break; 
+                                case 16: return $this->redirect($this->Auth->redirectUrl(['controller'=>'Dashboard','action'=>'home']));
+                                        break;       
+
+
+                            }
+                        
+                            $this->Flash->success('You are now login to Chandel VIS.');
+                            return $this->redirect($this->Auth->redirectUrl(['controller'=>'Dataentry','action'=>'data']));
+                        } //end if($user)
+                       
+                        $session->write('fail.count',$session->read('fail.count') + 1);
+                        if($this->Users->userExist($this->request->getData('user_name')) )
+                        {
+                            $user_id=$this->Users->find()->select('user_id')->where(['user_name'=>$this->request->getData('user_name')]);
+                            //dump ($user_id);
+                            $this->UserAudits->logFail(39,$this->request->ClientIp(),$this->request->env('HTTP_USER_AGENT'));
+                        }
+                        $this->Flash->error('Your username or password is incorrect.');
+                        return $this->redirect(['action' => 'login']);
+        }// if ($this->request->is('post'))
+           
+          
+            
+            
+        
     }
 
     public function logout()
@@ -232,6 +271,7 @@ public function isAuthorized($user)
     public function changepassword($id=null)
     {
         $this->request->allowMethod(['get']);
+
         //$isUserAuthorized=false;
        // dump($this->Auth->user('user_id'));
         $isUserAuthorized=$this->Users->checkAuthorized(  $this->Auth->user('user_id'),$id); //checking change password for only login id

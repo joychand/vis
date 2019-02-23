@@ -24,6 +24,7 @@ class ComposerStaticInitf323690a519834f4ca711eef89d957cb
         'b1fc73705e1bec51cd2b20a32cf1c60a' => __DIR__ . '/..' . '/cakephp/cakephp/src/Utility/bootstrap.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
+        '31c52906bef21ac4e921163ce1106498' => __DIR__ . '/..' . '/captcha-com/cakephp-captcha/src/Support/helpers.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
     );
 
@@ -56,6 +57,7 @@ class ComposerStaticInitf323690a519834f4ca711eef89d957cb
             'Symfony\\Component\\Filesystem\\' => 29,
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Component\\Config\\' => 25,
+            'Siezi\\SimpleCaptcha\\' => 20,
             'Seld\\PharUtils\\' => 15,
             'Seld\\JsonLint\\' => 14,
             'Seld\\CliPrompt\\' => 15,
@@ -95,11 +97,13 @@ class ComposerStaticInitf323690a519834f4ca711eef89d957cb
             'Composer\\Semver\\' => 16,
             'Composer\\CaBundle\\' => 18,
             'Composer\\' => 9,
+            'Captcha\\' => 8,
             'Cake\\Test\\' => 10,
             'Cake\\Composer\\' => 14,
             'Cake\\Chronos\\' => 13,
             'Cake\\' => 5,
             'CakePHP\\' => 8,
+            'CakeCaptcha\\' => 12,
         ),
         'B' => 
         array (
@@ -170,6 +174,10 @@ class ComposerStaticInitf323690a519834f4ca711eef89d957cb
         'Symfony\\Component\\Config\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/config',
+        ),
+        'Siezi\\SimpleCaptcha\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/siezi/cakephp-simple-captcha/src',
         ),
         'Seld\\PharUtils\\' => 
         array (
@@ -255,6 +263,10 @@ class ComposerStaticInitf323690a519834f4ca711eef89d957cb
         array (
             0 => __DIR__ . '/..' . '/composer/composer/src/Composer',
         ),
+        'Captcha\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/inimist/cakephp-captcha/src',
+        ),
         'Cake\\Test\\' => 
         array (
             0 => __DIR__ . '/..' . '/cakephp/cakephp/tests',
@@ -274,6 +286,10 @@ class ComposerStaticInitf323690a519834f4ca711eef89d957cb
         'CakePHP\\' => 
         array (
             0 => __DIR__ . '/..' . '/cakephp/cakephp-codesniffer/CakePHP',
+        ),
+        'CakeCaptcha\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/captcha-com/cakephp-captcha/src',
         ),
         'Bake\\' => 
         array (

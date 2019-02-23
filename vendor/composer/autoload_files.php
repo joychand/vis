@@ -23,5 +23,6 @@ return array(
     'b1fc73705e1bec51cd2b20a32cf1c60a' => $vendorDir . '/cakephp/cakephp/src/Utility/bootstrap.php',
     '25072dd6e2470089de65ae7bf11d3109' => $vendorDir . '/symfony/polyfill-php72/bootstrap.php',
     '667aeda72477189d0494fecd327c3641' => $vendorDir . '/symfony/var-dumper/Resources/functions/dump.php',
+    '31c52906bef21ac4e921163ce1106498' => $vendorDir . '/captcha-com/cakephp-captcha/src/Support/helpers.php',
     '801c31d8ed748cfa537fa45402288c95' => $vendorDir . '/psy/psysh/src/functions.php',
 );
