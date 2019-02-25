@@ -142,4 +142,16 @@ class UsersTable extends Table
             }
             
         }
+
+        public function getUserByName($user_name=null)
+        {
+            $user=$this->find()->select('user_id')->where(['user_name'=>$user_name])->first();
+            if($user)
+            {
+                return $user->user_id;
+
+            }
+            else 
+              return 0;
+        }
 }

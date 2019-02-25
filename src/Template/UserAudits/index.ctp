@@ -18,32 +18,37 @@
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('user_name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('last_login') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('From_ip') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('From_browser') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('last_fail_login') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('fail_browser') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('success_browser') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('fail_ip') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('success_ip') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('From_ip') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('From_browser') ?></th>
+                
+               
+                
+             
             </tr>
         </thead>
         <tbody>
             <?php foreach ($userAudits as $userAudit): ?>
             <tr>
                 <td><?= $this->Number->format($userAudit->id) ?></td>
-                <td><?= $userAudit->has('user') ? $this->Html->link($userAudit->user->user_id, ['controller' => 'Users', 'action' => 'view', $userAudit->user->user_id]) : '' ?></td>
+                <td><?= $userAudit->has('user') ? $userAudit->user->user_name : '' ?></td>
                 <td><?= h($userAudit->last_login) ?></td>
-                <td><?= h($userAudit->last_fail_login) ?></td>
-                <td><?= h($userAudit->fail_browser) ?></td>
-                <td><?= h($userAudit->success_browser) ?></td>
-                <td><?= h($userAudit->fail_ip) ?></td>
                 <td><?= h($userAudit->success_ip) ?></td>
-                <td class="actions">
+                <td><?= h($userAudit->success_browser) ?></td>
+                <td><?= h($userAudit->last_fail_login) ?></td>
+                <td><?= h($userAudit->fail_ip) ?></td>               
+                <td><?= h($userAudit->fail_browser) ?></td>
+                
+               
+                <!-- <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $userAudit->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $userAudit->id]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $userAudit->id], ['confirm' => __('Are you sure you want to delete # {0}?', $userAudit->id)]) ?>
-                </td>
+                </td> -->
             </tr>
             <?php endforeach; ?>
         </tbody>

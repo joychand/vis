@@ -5,6 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\I18n\Time;
 
 /**
  * UserAudits Model
@@ -102,7 +103,7 @@ class UserAuditsTable extends Table
     {
 
         //$userAudit=$this->exists(['user_id'=>$user_id]);
-        $userAudit=$this->find()->where(['user_id'=>$user_id]);
+        $userAudit=$this->find()->where(['user_id'=>$user_id])->first();
         //dump($userAudit);
         if(!$userAudit)
         {
@@ -110,17 +111,44 @@ class UserAuditsTable extends Table
             $userAudit->user_id=$user_id;
             $userAudit->fail_ip=$client_ip;
             $userAudit->fail_browser=$client_browser;
+            $userAudit->last_fail_login=Time::now();
             $this->save($userAudit);
         }
         else
         {
-            $userAudit = $this->patchEntity($nercormp, $this->request->getData());
+           // dump($userAudit);
+           $userAudit  = $this->get($userAudit->id);
+           // $userAudit = $this->patchEntity($user, $userAudit);
             $userAudit->fail_ip=$client_ip;
             $userAudit->fail_browser=$client_browser;
-           
+            $userAudit->last_fail_login=Time::now();
             $this->save($userAudit);
         }
         
+    }
+
+    public function logSuccess($user_id=null,$client_ip,$client_browser)
+
+    {
+        $userAudit=$this->find()->where(['user_id'=>$user_id])->first();
+        if(!$userAudit)
+        {
+            $userAudit=$this->newEntity();
+            $userAudit->user_id=$user_id;
+            $userAudit->last_login=Time::now();
+            $userAudit->success_browser=$client_browser;
+            $userAudit->success_ip=$client_ip;
+            $this->save($userAudit);
+        }
+        else
+        {
+            $userAudit  = $this->get($userAudit->id);
+            $userAudit->last_login=Time::now();
+            $userAudit->success_browser=$client_browser;
+            $userAudit->success_ip=$client_ip;
+            $this->save($userAudit);
+
+        }
     }
 
     

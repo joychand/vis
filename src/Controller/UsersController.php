@@ -114,7 +114,7 @@ public function isAuthorized($user)
                     if ($user) 
                         {
                            
-                          // $this->UserAudits->logSuccess($clientip,$clientbrowser);
+                            $this->UserAudits->logSuccess($this->Users->getUserByName($this->request->getData('user_name')),$this->request->ClientIp(),$this->request->env('HTTP_USER_AGENT'));
                             $this->Auth->setUser($user);
                             $session->delete('fail.count');
                             $role_redirect=$this->Auth->User('role_id');
@@ -164,9 +164,9 @@ public function isAuthorized($user)
                         $session->write('fail.count',$session->read('fail.count') + 1);
                         if($this->Users->userExist($this->request->getData('user_name')) )
                         {
-                            $user_id=$this->Users->find()->select('user_id')->where(['user_name'=>$this->request->getData('user_name')]);
+                            $user=$this->Users->find()->select('user_id')->where(['user_name'=>$this->request->getData('user_name')])->first();
                             //dump ($user_id);
-                            $this->UserAudits->logFail(39,$this->request->ClientIp(),$this->request->env('HTTP_USER_AGENT'));
+                            $this->UserAudits->logFail($user->user_id,$this->request->ClientIp(),$this->request->env('HTTP_USER_AGENT'));
                         }
                         $this->Flash->error('Your username or password is incorrect.');
                         return $this->redirect(['action' => 'login']);

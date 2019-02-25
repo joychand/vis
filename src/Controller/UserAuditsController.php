@@ -13,6 +13,20 @@ use App\Controller\AppController;
 class UserAuditsController extends AppController
 {
 
+    public function isAuthorized($user)
+{
+    $action = $this->request->getParam('action');
+    
+    if (in_array($action, ['index']) ) {
+        return true;
+    }
+
+    
+
+
+  
+}
+
     /**
      * Index method
      *
@@ -23,8 +37,8 @@ class UserAuditsController extends AppController
         $this->paginate = [
             'contain' => ['Users']
         ];
-        $userAudits = $this->paginate($this->UserAudits);
-
+        $userAudits = $this->paginate($this->UserAudits->find()->where(['UserAudits.user_id'=>$this->Auth->User('user_id')]));
+       //$userAudits = $this->paginate($this->UserAudits);
         $this->set(compact('userAudits'));
     }
 
