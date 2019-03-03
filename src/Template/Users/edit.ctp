@@ -22,11 +22,12 @@
         <legend><?= __('Edit User') ?></legend>
         <?php
            // echo $this->Form->control('user_creation_date', ['empty' => true]);
-            echo $this->Form->control('user_name');
-            echo $this->Form->control('password',['type'=>'password','required'=>true]);
-            echo $this->Form->control('confirm_passwd',['type'=>'password','required'=>true,'label'=>'Confirm Password']);
+            echo $this->Form->control('user_name',['label'=>'UserName']);
+           // echo $this->Form->control('password',['type'=>'password','required'=>true]);
+           // echo $this->Form->control('confirm_passwd',['type'=>'password','required'=>true,'label'=>'Confirm Password']);
             echo $this->Form->control('user_email');
             echo $this->Form->control('user_mobile');
+            echo $this->Form->control('role_id',['type'=>'select','label'=>'User roles','empty'=>'-Assigned Roles-','id'=>'roles','options'=>$user_roles,'required'=>true]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

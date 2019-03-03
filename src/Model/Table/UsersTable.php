@@ -35,8 +35,8 @@ class UsersTable extends Table
         $this->setTable('users');
         $this->setDisplayField('user_id');
         $this->setPrimaryKey('user_id');
-        $this->belongsTo('users_roles')
-        ->setForeignKey('role_id');
+        $this->hasOne('UsersRoles');
+        //->setForeignKey('role_id');
 
         //captcha behaviour
         $this->addBehavior('Captcha.Captcha', [
@@ -66,7 +66,13 @@ class UsersTable extends Table
         $validator
             ->scalar('user_name')
             ->maxLength('user_name', 50)
-            ->allowEmpty('user_name');
+            ->notEmpty('user_name','User_Name cannot be blank');
+            // ->add('user_name','custom',[
+            //     'rule'=>function($value, $context){
+            //         return (bool)preg_match('/^(?=.*[a-z])(?=.*[._]).{3,}$/',$value);
+            //     },
+            //     'message'=>'User name should be atleast 3 characters of a-z only and my contain . and _ characters'
+            // ])
 
         $validator
             ->scalar('password')
@@ -78,7 +84,14 @@ class UsersTable extends Table
                 'rule'=>['compareWith','confirm_passwd'],
                  'message'=>'Password and Confirm Password do not match'
                  ]
-            ]);    
+            ])
+            ->add('password',['custom'=>[ 
+                'rule' => function ($value, $context) {
+                    return (bool)preg_match('/^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$/', $value); //Return true if password is strengh is valid * had to typcast as preg_match only returns 0|1     
+                },
+                'last'=>'true',
+                'message' => 'Password Must be of length 8 or more with atleast one UpperCase and one lowercase and one character [!#$@$].']
+            ]) ;    
         $validator
             ->notEmpty('confirm_passwd','Confirm Password cannot be blank')
             ->add('confirm_passwd',[

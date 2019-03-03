@@ -37,8 +37,8 @@
                 <td><?= $this->Number->format($userAudit->id) ?></td>
                 <td><?= $userAudit->has('user') ? $userAudit->user->user_name : '' ?></td>
                 <td><?= h($userAudit->last_login) ?></td>
-                <td><?= h($userAudit->success_ip) ?></td>
-                <td><?= h($userAudit->success_browser) ?></td>
+                <td><?= h($userAudit->last_success_ip) ?></td>
+                <td><?= h($userAudit->last_success_browser) ?></td>
                 <td><?= h($userAudit->last_fail_login) ?></td>
                 <td><?= h($userAudit->fail_ip) ?></td>               
                 <td><?= h($userAudit->fail_browser) ?></td>

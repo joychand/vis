@@ -83,7 +83,8 @@ $cakeDescription = 'VIS Chandel District, Manipur';
         </section>
     </nav>
     <?= $this->Flash->render() ?>
-    
+    <?php  $cell = $this->cell('LoginHistories',[$this->request->session()->read('Auth.User.user_id')]); ?>
+    <?= $cell ?>
     <div class="container clearfix" style="padding:10px; padding-bottom:60px!important; ">
     
         <?= $this->fetch('content') ?>

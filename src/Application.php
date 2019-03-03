@@ -94,7 +94,8 @@ class Application extends BaseApplication
             
            // Add csrf middleware.
            ->add(new CsrfProtectionMiddleware([
-               'httpOnly' => true
+               'httpOnly' => true,
+               'expiry'=>strtotime("+30 minutes"),
            ]))
             //added by N.Joychand on 06/02/2019
             ->prepend($securityHeaders);

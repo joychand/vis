@@ -31,12 +31,15 @@ class UserAudit extends Entity
      */
     protected $_accessible = [
         'user_id' => true,
+        'login' => true,
         'last_login' => true,
         'last_fail_login' => true,
         'fail_browser' => true,
         'success_browser' => true,
+        'last_success_browser' => true,
         'fail_ip' => true,
         'success_ip' => true,
+        'last_success_ip' => true,
         'user' => true
     ];
 }

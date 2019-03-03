@@ -55,6 +55,9 @@ class UserAuditsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
+            ->dateTime('login')
+            ->allowEmpty('login');    
+        $validator
             ->dateTime('last_login')
             ->allowEmpty('last_login');
 
@@ -71,7 +74,11 @@ class UserAuditsTable extends Table
             ->scalar('success_browser')
             ->maxLength('success_browser', 300)
             ->allowEmpty('success_browser');
-
+        
+            $validator
+            ->scalar('last_success_browser')
+            ->maxLength('last_success_browser', 300)
+            ->allowEmpty('last_success_browser');
         $validator
             ->scalar('fail_ip')
             ->maxLength('fail_ip', 50)
@@ -81,6 +88,11 @@ class UserAuditsTable extends Table
             ->scalar('success_ip')
             ->maxLength('success_ip', 50)
             ->allowEmpty('success_ip');
+        $validator
+            ->scalar('last_success_ip')
+            ->maxLength('last_success_ip', 50)
+            ->allowEmpty('last_success_ip');
+
 
         return $validator;
     }
@@ -135,18 +147,35 @@ class UserAuditsTable extends Table
         {
             $userAudit=$this->newEntity();
             $userAudit->user_id=$user_id;
-            $userAudit->last_login=Time::now();
+            $userAudit->login=Time::now();
             $userAudit->success_browser=$client_browser;
             $userAudit->success_ip=$client_ip;
             $this->save($userAudit);
         }
         else
         {
+             
             $userAudit  = $this->get($userAudit->id);
-            $userAudit->last_login=Time::now();
-            $userAudit->success_browser=$client_browser;
-            $userAudit->success_ip=$client_ip;
-            $this->save($userAudit);
+            if($userAudit->login)
+            {
+                //update last login.....
+                $userAudit->last_login=$userAudit->login;
+                $userAudit->last_success_browser=$userAudit->success_browser;
+                $userAudit->last_success_ip=$userAudit->success_ip;
+                //update current login
+                $userAudit->login=Time::now();
+                $userAudit->success_browser=$client_browser;
+                $userAudit->success_ip=$client_ip;
+                $this->save($userAudit);
+            }
+            else
+            {
+                $userAudit->login=Time::now();
+                $userAudit->success_browser=$client_browser;
+                $userAudit->success_ip=$client_ip;
+                $this->save($userAudit);
+            }
+           
 
         }
     }

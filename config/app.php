@@ -381,5 +381,6 @@ return [
      */
     'Session' => [
         'defaults' => 'php',
+        `cookie` => 'VIS',
     ],
 ];

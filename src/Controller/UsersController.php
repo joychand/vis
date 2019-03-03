@@ -31,6 +31,7 @@ class UsersController extends AppController
 {
     parent::initialize();
     $this->loadComponent('Captcha.Captcha');
+    $this->loadComponent('Security');
     // $this->loadComponent('CakeCaptcha.Captcha', [
     //     'captchaConfig' => 'LoginCaptcha'
     //   ]);
@@ -209,12 +210,12 @@ public function isAuthorized($user)
             {
                 $user = $this->Users->patchEntity($user, $this->request->getData());
                 if ($this->Users->save($user)) {
-                    $this->Flash->success(__('The user has been saved.'));
+                    $this->Flash->success(__('The user has been created.'));
     
                     return $this->redirect(['action' => 'index']);
                 }
 
-                $this->Flash->error(__('The user could not be saved. Please, try again.'));
+                $this->Flash->error(__(' Error Occured .. The user could not be saved. Please, try again.'));
             }
            
            
@@ -235,6 +236,10 @@ public function isAuthorized($user)
         $user = $this->Users->get($id, [
             'contain' => []
         ]);
+        $user_roles= $this->Users->UsersRoles->find('list',[
+            'keyField'=>'users_role_id',
+          'valueField'=>'user_role_name'
+        ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
@@ -244,7 +249,7 @@ public function isAuthorized($user)
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
-        $this->set(compact('user'));
+        $this->set(compact('user','user_roles'));
     }
 
     /**

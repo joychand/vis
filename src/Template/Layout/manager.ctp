@@ -76,7 +76,8 @@ $cakeDescription = 'CVIS';
     </nav>
     <?= $this->Flash->render() ?>
     <div  style="padding:10px; padding-bottom:60px; overflow: hidden;">
-    
+    <?php  $cell = $this->cell('LoginHistories',[$this->request->session()->read('Auth.User.user_id')]); ?>
+    <?= $cell ?>
         <?= $this->fetch('content') ?>
     </div>
     

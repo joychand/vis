@@ -29,10 +29,14 @@ class AnganwadisController extends AppController
    }
     public function beforeFilter(Event $event)
     {
-       if( $this->request->is('ajax')){
-            $this->getEventManager()->off($this->Csrf);
-        }
-
+    //    if( $this->request->is('ajax')){
+    //         $this->getEventManager()->off($this->Csrf);
+    //     }
+        //$this->Security->setConfig('unlockedActions', ['getvillage']);
+        // if ( $this->action == 'getvillage') {
+        //     //$this->Security->validatePost = false;
+        //     $this->Security->setConfig('unlockedFields', ['subdistrict']);
+        // }
         
     }
     
@@ -184,7 +188,7 @@ class AnganwadisController extends AppController
 
     public function getvillage()
     {
-        
+        $this->request->allowMethod(['post']);
         $this->villages=TableRegistry::get('Villages');
         
         if ($this->request->is(['ajax', 'post'])) 
