@@ -27,7 +27,7 @@
            // echo $this->Form->control('confirm_passwd',['type'=>'password','required'=>true,'label'=>'Confirm Password']);
             echo $this->Form->control('user_email');
             echo $this->Form->control('user_mobile');
-            echo $this->Form->control('role_id',['type'=>'select','label'=>'User roles','empty'=>'-Assigned Roles-','id'=>'roles','options'=>$user_roles,'required'=>true]);
+            echo $this->Form->control('role_id',['type'=>'select','label'=>'User roles:','empty'=>'-Assigned Roles-','id'=>'roles','options'=>$user_roles,'required'=>true]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

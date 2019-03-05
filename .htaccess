@@ -7,6 +7,8 @@
  #ServerSignature Off
 <IfModule mod_rewrite.c>
     RewriteEngine on
+    RewriteCond %{HTTP_HOST} !^localhost:8765$
+    RewriteRule ^(.*)$ http://localhost:8765/ [R=301,L]
     RewriteRule    ^(\.well-known/.*)$ $1 [L]
     RewriteRule    ^$    webroot/    [L]
     RewriteRule    (.*) webroot/$1    [L]

@@ -167,6 +167,9 @@ public function isAuthorized($user)
                         {
                             $user=$this->Users->find()->select('user_id')->where(['user_name'=>$this->request->getData('user_name')])->first();
                             //dump ($user_id);
+                           // $browser=$this->request->env('HTTP_USER_AGENT');
+                           // $browser=get_browser(null, true);
+                           // debug($browser);
                             $this->UserAudits->logFail($user->user_id,$this->request->ClientIp(),$this->request->env('HTTP_USER_AGENT'));
                         }
                         $this->Flash->error('Your username or password is incorrect.');
@@ -195,7 +198,8 @@ public function isAuthorized($user)
      */
     public function add()
     {
-        $roles=$this->Users->users_roles->find('list',
+        $this->request->allowMethod(['put','post','get']);
+        $roles=$this->Users->UsersRoles->find('list',
         ['keyField'=>'users_role_id',
         'valueField'=>'user_role_name']);
         $user = $this->Users->newEntity();
@@ -233,6 +237,7 @@ public function isAuthorized($user)
      */
     public function edit($id = null)
     {
+        $this->request->allowMethod(['put','post','get']);
         $user = $this->Users->get($id, [
             'contain' => []
         ]);
@@ -273,27 +278,30 @@ public function isAuthorized($user)
         return $this->redirect(['action' => 'index']);
     }
 
-    public function changepassword($id=null)
+    public function changepassword()
     {
-        $this->request->allowMethod(['get']);
+        $this->request->allowMethod(['put','post','get']);
+       // $this->request->allowMethod(['get','post']);
 
         //$isUserAuthorized=false;
        // dump($this->Auth->user('user_id'));
-        $isUserAuthorized=$this->Users->checkAuthorized(  $this->Auth->user('user_id'),$id); //checking change password for only login id
-        if(!$isUserAuthorized)
-        {
-           $this->Flash->error(__('Your are not authorized to access the resources'));
-           //$this->redirect( Router::url( $this->referer(), true ) );
-           return $this->redirect($this->referer());
-        }
-        else
-        {
+        // $isUserAuthorized=$this->Users->checkAuthorized(  $this->Auth->user('user_id'),$id); //checking change password for only login id
+        // if(!$isUserAuthorized)
+        // {
+        //    $this->Flash->error(__('Your are not authorized to access the resources'));
+        //    //$this->redirect( Router::url( $this->referer(), true ) );
+        //    return $this->redirect($this->referer());
+        // }
+        // else
+        // {
 
-            $user = $this->Users->get($id, [
+            $user = $this->Users->get($this->Auth->user('user_id'), [
                 'contain' => []
             ]);
-            if ($this->request->is(['patch', 'post', 'put']))
+            //debug($this->request);
+            if ($this->request->is(['put']))
             {
+                //dump ($user);
                 $user = $this->Users->patchEntity($user, $this->request->getData());
                 if ($this->Users->save($user))
                  {
@@ -307,7 +315,7 @@ public function isAuthorized($user)
             }
            
 
-        }
+      //  }
         $this->set(compact('user'));
 
        

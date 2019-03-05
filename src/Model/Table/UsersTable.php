@@ -66,13 +66,13 @@ class UsersTable extends Table
         $validator
             ->scalar('user_name')
             ->maxLength('user_name', 50)
-            ->notEmpty('user_name','User_Name cannot be blank');
-            // ->add('user_name','custom',[
-            //     'rule'=>function($value, $context){
-            //         return (bool)preg_match('/^(?=.*[a-z])(?=.*[._]).{3,}$/',$value);
-            //     },
-            //     'message'=>'User name should be atleast 3 characters of a-z only and my contain . and _ characters'
-            // ])
+            ->notEmpty('user_name','User_Name cannot be blank')
+            ->add('user_name','custom',[
+                'rule'=>function($value, $context){
+                    return (bool)preg_match('/^(?=.*[a-z])([a-z._]).{3,20}$/',$value);
+                },
+                'message'=>'User name should be atleast 3 characters of a-z (lowerCase) only and may contain . and _ characters'
+            ]);
 
         $validator
             ->scalar('password')
@@ -90,7 +90,7 @@ class UsersTable extends Table
                     return (bool)preg_match('/^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$/', $value); //Return true if password is strengh is valid * had to typcast as preg_match only returns 0|1     
                 },
                 'last'=>'true',
-                'message' => 'Password Must be of length 8 or more with atleast one UpperCase and one lowercase and one character [!#$@$].']
+                'message' => 'Password Must be of length 8 or more with atleast one UpperCase and one lowercase and one digit [0-9] and one character [!#$@$].']
             ]) ;    
         $validator
             ->notEmpty('confirm_passwd','Confirm Password cannot be blank')
@@ -112,8 +112,12 @@ class UsersTable extends Table
             ->allowEmpty('user_mobile');
 
         $validator
-            ->requirePresence('currentPassword')
-            ->notEmpty('currentPassword', 'Please enter your current password')
+        // ->add('currentPassword','requirePresence',[
+        //     'rule'=>'requirePresence',
+        //      'on'=>'update'
+        // ])
+           // ->requirePresence('currentPassword',['on'=>'update'])
+            ->notEmpty('currentPassword', 'Please enter your current password',['on'=>'update'])
             
             
             ->add('currentPassword','custom',[
@@ -122,7 +126,8 @@ class UsersTable extends Table
                 $data = $query->toArray();
                 return(new DefaultPasswordHasher)->check($value,$data['password']);
               },
-              'message' => 'Current password is invalid'
+              'message' => 'Current password is invalid',
+                 'on'=>'update'
             ]);
         return $validator;
     }
