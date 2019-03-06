@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+use Cake\Event\Event;
 
 /**
  * VillagePhotos Controller
@@ -14,6 +15,23 @@ use Cake\ORM\TableRegistry;
 class VillagePhotosController extends AppController
 {
 
+    public function initialize()
+    {
+       parent::initialize();
+       $this->loadComponent('RequestHandler');
+       $this->loadComponent('Security');
+    }
+
+    public function beforeFilter(Event $event)
+    {
+     parent::beforeFilter($event);
+  
+  
+          /** To disable form change detection for ajax method */
+          $this->Security->setConfig('unlockedActions', ['getvillage','ajaxDelete','ajaxFilterSubdivision']);
+       
+        
+    }
     public function isAuthorized($user)
     {
         //dump($user);
@@ -33,7 +51,9 @@ class VillagePhotosController extends AppController
      */
     public function index()
     {
+        $this->request->allowMethod(['get','post']);
         $query=$this->VillagePhotos->find('all')->contain(['Villages'=>['Subdistricts']])->order(['Villages.village_name'=>'ASC']);
+        //debug ($query);
         $villagePhotos = $this->paginate( $query);
 
         $this->set(compact('villagePhotos'));
@@ -48,6 +68,7 @@ class VillagePhotosController extends AppController
      */
     public function view($id = null)
     {
+        $this->request->allowMethod(['get','post']);
         $villagePhoto = $this->VillagePhotos->get($id, [
             'contain' => []
         ]);
@@ -63,6 +84,7 @@ class VillagePhotosController extends AppController
     
         public function add()
     {
+        $this->request->allowMethod(['get','post']);
 
         $this->subdistricts = TableRegistry::get('Subdistricts');
        
@@ -134,6 +156,7 @@ class VillagePhotosController extends AppController
      */
     public function edit($id = null)
     {
+        $this->request->allowMethod(['get','post','put']);
         $villagePhoto = $this->VillagePhotos->get($id, [
             'contain' => []
         ]);
@@ -171,7 +194,7 @@ class VillagePhotosController extends AppController
 
     public function getvillage()
     {
-        
+        $this->request->allowMethod(['post']);
         $this->villages=TableRegistry::get('Villages');
         
         if ($this->request->is(['ajax', 'post'])) 

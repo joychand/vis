@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+use Cake\Event\Event;
 
 
 /**
@@ -23,9 +24,19 @@ class VillageprofileController extends AppController
     {
        parent::initialize();
        $this->loadComponent('RequestHandler');
-       //$this->loadComponent('Security');
+       $this->loadComponent('Security');
    }
-   
+
+   public function beforeFilter(Event $event)
+   {
+    parent::beforeFilter($event);
+ 
+ 
+         /** To disable form change detection for ajax method */
+         $this->Security->setConfig('unlockedActions', ['getvillage','ajaxDelete','ajaxGetVillageProfile']);
+      
+       
+   }
 
    public function isAuthorized($user)
    {
@@ -41,6 +52,8 @@ class VillageprofileController extends AppController
 
     public function home()
     {
+        $this->request->allowMethod(['get','post']);
+
         $session = $this->getRequest()->getSession();
 
         $session->write('homecontroller', $this->request->params['controller']);
@@ -80,6 +93,8 @@ class VillageprofileController extends AppController
      */
     public function view($id = null)
     {
+        $this->request->allowMethod(['get','post']);
+
         $session = $this->request->session();
         $this->loadModel('Subdistricts');
         $this->loadModel('Villages');
@@ -148,7 +163,8 @@ class VillageprofileController extends AppController
 
     public function getvillage()
     {
-        
+        $this->request->allowMethod(['post']);
+
         $this->villages=TableRegistry::get('Villages');
         
         if ($this->request->is(['ajax', 'post'])) 
@@ -170,6 +186,8 @@ class VillageprofileController extends AppController
 
     public function ajaxGetVillageProfile()
     {
+        $this->request->allowMethod(['get','post']);
+
         // $this->autoRender = false;
         //$session = $this->request->session();
         if ($this->request->is(['ajax','post'])){

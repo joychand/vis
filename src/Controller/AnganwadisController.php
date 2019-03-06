@@ -25,14 +25,16 @@ class AnganwadisController extends AppController
     {
        parent::initialize();
        $this->loadComponent('RequestHandler');
-       //$this->loadComponent('Security');
+       $this->loadComponent('Security');
    }
     public function beforeFilter(Event $event)
     {
+        parent::beforeFilter($event);
+
     //    if( $this->request->is('ajax')){
     //         $this->getEventManager()->off($this->Csrf);
     //     }
-        //$this->Security->setConfig('unlockedActions', ['getvillage']);
+        $this->Security->setConfig('unlockedActions', ['getvillage','ajaxDelete','ajaxFilterSubdivision']);
         // if ( $this->action == 'getvillage') {
         //     //$this->Security->validatePost = false;
         //     $this->Security->setConfig('unlockedFields', ['subdistrict']);
@@ -55,6 +57,7 @@ class AnganwadisController extends AppController
 
     public function index()
     {
+        $this->request->allowMethod(['get','post']);
         $this->loadModel('Subdistricts');
         $subDivs=$this->Subdistricts->find('list'); 
         $anganwadis = $this->Anganwadis->find('all')
@@ -88,7 +91,7 @@ class AnganwadisController extends AppController
      */
     public function add()
     {
-
+        $this->request->allowMethod(['get','post']);
         $session = $this->request->session();
         $anganwadi = $this->Anganwadis->newEntity();
         $current_year = date('Y');
@@ -151,6 +154,7 @@ class AnganwadisController extends AppController
      */
     public function edit($id = null)
     {
+        $this->request->allowMethod(['get','post','put']);
         $anganwadi = $this->Anganwadis->get($id, [
             'contain' => ['Villages']
         ]);
@@ -210,6 +214,7 @@ class AnganwadisController extends AppController
 
     public function home()
     {
+        $this->request->allowMethod(['get']);
         $session = $this->getRequest()->getSession();
 
         $session->write('homecontroller', $this->request->params['controller']);
@@ -219,7 +224,7 @@ class AnganwadisController extends AppController
 
     public function ajaxFilterSubdivision()
     {
-       
+        $this->request->allowMethod(['post']);
         if ($this->request->is(['ajax', 'post'])) 
         {
           // $this->autoRender = false;
@@ -260,6 +265,7 @@ class AnganwadisController extends AppController
     {
        // $this->autoRender = false;
        // $this->layout='ajax';
+       $this->request->allowMethod(['delete','post']);
         $mesg="Delete Fail";
         
        // $this->request->allowMethod(['post', 'delete']);

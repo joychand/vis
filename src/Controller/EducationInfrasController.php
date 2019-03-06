@@ -3,6 +3,9 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+//use App\Controller\AppController;
+use Cake\Event\Event;
+
 
 /**
  * EducationInfras Controller
@@ -22,9 +25,22 @@ class EducationInfrasController extends AppController
     {
        parent::initialize();
        $this->loadComponent('RequestHandler');
-       //$this->loadComponent('Security');
+       $this->loadComponent('Security');
    }
-
+   public function beforeFilter(Event $event)
+   {
+    parent::beforeFilter($event);
+   //    if( $this->request->is('ajax')){
+   //         $this->getEventManager()->off($this->Csrf);
+   //     }
+         /** To disable form change detection for ajax method */
+         $this->Security->setConfig('unlockedActions', ['getvillage','ajaxDelete','ajaxFilterSubdivision']);
+       // if ( $this->action == 'getvillage') {
+       //     //$this->Security->validatePost = false;
+       //     $this->Security->setConfig('unlockedFields', ['subdistrict']);
+       // }
+       
+   }
     public function isAuthorized($user)
     {
         $action = $this->request->getParam('action');
@@ -43,6 +59,7 @@ class EducationInfrasController extends AppController
     public function index()
 
     {
+        $this->request->allowMethod(['get','post']);
         $this->loadModel('Subdistricts');
         $subDivs=$this->Subdistricts->find('list'); 
         $educationInfras = $this->EducationInfras->find('all')
@@ -77,6 +94,7 @@ class EducationInfrasController extends AppController
     public function add()
 
     {
+        $this->request->allowMethod(['get','post']);
         $session = $this->request->session();
         $educationInfras = $this->EducationInfras->newEntity();
         $current_year = date('Y');
@@ -144,6 +162,7 @@ class EducationInfrasController extends AppController
      */
     public function edit($id = null)
     {
+        $this->request->allowMethod(['get','post','put']);
         $educationInfras = $this->EducationInfras->get($id, [
             'contain' => ['Villages']
         ]);
@@ -181,7 +200,7 @@ class EducationInfrasController extends AppController
 
     public function getvillage()
     {
-        
+        $this->request->allowMethod(['post']);
         $this->villages=TableRegistry::get('Villages');
         
         if ($this->request->is(['ajax', 'post'])) 
@@ -201,6 +220,7 @@ class EducationInfrasController extends AppController
     }
     public function home()
     {
+        $this->request->allowMethod(['get','post']);
         $session = $this->getRequest()->getSession();
 
         $session->write('homecontroller', $this->request->params['controller']);
@@ -209,7 +229,7 @@ class EducationInfrasController extends AppController
 
     public function ajaxFilterSubdivision()
     {
-       
+        $this->request->allowMethod(['post']);
         if ($this->request->is(['ajax', 'post'])) 
         {
           
@@ -248,6 +268,7 @@ class EducationInfrasController extends AppController
 
     public function ajaxDelete()
     {
+        $this->request->allowMethod(['delete','post']);
        // $this->autoRender = false;
        // $this->layout='ajax';
         $mesg="Delete Fail";

@@ -153,7 +153,7 @@ $('#subdivision').on('change', function(){
                                                          var villcode=row.village_code;
                                                          var agency=row.counting_agency;
                                                
-                                                            return '<a href="nercormp/edit/'+ ref+'/'+villcode+'/'+agency +'">Edit</a>|<a class="delete" id="'+ ref+'-'+villcode+'-'+agency +'"  href="#">Delete</a>';
+                                                            return '<a href="census/edit/'+ ref+'/'+villcode+'/'+agency +'">Edit</a>|<a class="delete" id="'+ ref+'-'+villcode+'-'+agency +'"  href="#">Delete</a>';
                                                              }
                                                  
                                             

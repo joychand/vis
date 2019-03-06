@@ -3,6 +3,8 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+use Cake\Event\Event;
+
 
 /**
  * Nregas Controller
@@ -17,9 +19,18 @@ class NregasController extends AppController
     {
        parent::initialize();
        $this->loadComponent('RequestHandler');
-       //$this->loadComponent('Security');
+       $this->loadComponent('Security');
    }
-
+   public function beforeFilter(Event $event)
+   {
+    parent::beforeFilter($event);
+ 
+ 
+         /** To disable form change detection for ajax method */
+         $this->Security->setConfig('unlockedActions', ['getvillage','ajaxDelete','ajaxFilterSubdivision']);
+      
+       
+   }
 
 
     public function isAuthorized($user)
@@ -41,6 +52,8 @@ class NregasController extends AppController
      */
     public function index()
     {
+        $this->request->allowMethod(['get','post']);
+
         $this->loadModel('Subdistricts');
         $subDivs=$this->Subdistricts->find('list'); 
         $nregas = $this->Nregas->find('all')
@@ -80,6 +93,8 @@ class NregasController extends AppController
     public function add()
 
     {
+        $this->request->allowMethod(['get','post']);
+
         $session = $this->request->session();
         $current_year = date('Y');
         $range = range($current_year, $current_year-10);
@@ -142,6 +157,8 @@ class NregasController extends AppController
      */
     public function edit($id = null)
     {
+        $this->request->allowMethod(['get','post','put']);
+
         $nrega = $this->Nregas->get($id, [
             'contain' => ['Villages']
         ]);
@@ -178,6 +195,7 @@ class NregasController extends AppController
     }
     public function home()
     {
+        $this->request->allowMethod(['get','post']);
 
         $session = $this->getRequest()->getSession();
 
@@ -187,7 +205,8 @@ class NregasController extends AppController
    }
    public function getvillage()
     {
-        
+        $this->request->allowMethod(['post']);
+
         $this->villages=TableRegistry::get('Villages');
         
         if ($this->request->is(['ajax', 'post'])) 
@@ -208,7 +227,8 @@ class NregasController extends AppController
 
     public function ajaxFilterSubdivision()
     {
-       
+        $this->request->allowMethod(['post']);
+
         if ($this->request->is(['ajax', 'post'])) 
         {
            // $this->autoRender = false;
@@ -247,6 +267,8 @@ class NregasController extends AppController
 
     public function ajaxDelete()
     {
+        $this->request->allowMethod(['delete','post']);
+
        // $this->autoRender = false;
        // $this->layout='ajax';
         $mesg="Delete Fail";

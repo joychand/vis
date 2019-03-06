@@ -20,7 +20,7 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
+                <!-- <th scope="col"><?= $this->Paginator->sort('id') ?></th> -->
                 <th scope="col"><?= $this->Paginator->sort('user_name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('last_login') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('From_ip') ?></th>
@@ -37,7 +37,7 @@
         <tbody>
             <?php foreach ($userAudits as $userAudit): ?>
             <tr>
-                <td><?= $this->Number->format($userAudit->id) ?></td>
+                <!-- <td><?= $this->Number->format($userAudit->id) ?></td> -->
                 <td><?= $userAudit->has('user') ? $userAudit->user->user_name : '' ?></td>
                 <td><?= h($userAudit->last_login) ?></td>
                 <td><?= h($userAudit->last_success_ip) ?></td>

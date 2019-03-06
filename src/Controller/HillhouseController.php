@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+use Cake\Event\Event;
 
 /**
  * Hillhouse Controller
@@ -16,9 +17,19 @@ class HillhouseController extends AppController
     {
        parent::initialize();
        $this->loadComponent('RequestHandler');
-       //$this->loadComponent('Security');
+       $this->loadComponent('Security');
     }
 
+    public function beforeFilter(Event $event)
+    {
+     parent::beforeFilter($event);
+  
+  
+          /** To disable form change detection for ajax method */
+          $this->Security->setConfig('unlockedActions', ['getvillage','ajaxDelete','ajaxFilterSubdivision']);
+       
+        
+    }
 
 
     public function isAuthorized($user)
@@ -44,6 +55,7 @@ class HillhouseController extends AppController
      */
     public function index()
     {
+        $this->request->allowMethod(['get','post']);
         $this->loadModel('Subdistricts');
         $this->populations=TableRegistry::get('populations');
         $session = $this->request->getSession();
@@ -132,13 +144,14 @@ class HillhouseController extends AppController
      */
     public function edit($reference_year = null,$village_code = null,$counting_agency = null)
     {
+        $this->request->allowMethod(['get','post','put']);
         $this->populations=TableRegistry::get('populations');
         $Hillhouse = $this->populations->get([$reference_year,$village_code,$counting_agency], [
             'contain' => ['Villages']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $Hillhouse = $this->populations->patchEntity($Hillhouse, $this->request->getData());
-            if ($this->populations->save($hillhouse)) {
+            if ($this->populations->save($Hillhouse)) {
                 $this->Flash->success(__('The Hillhouse Data has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -171,7 +184,7 @@ class HillhouseController extends AppController
 
     public function getvillage()
     {
-        
+        $this->request->allowMethod(['post']);
         $this->villages=TableRegistry::get('Villages');
         
         if ($this->request->is(['ajax', 'post'])) 
@@ -192,7 +205,7 @@ class HillhouseController extends AppController
 
     public function ajaxFilterSubdivision()
     {
-       
+        $this->request->allowMethod(['post']);
         if ($this->request->is(['ajax', 'post'])) 
         {
            //$this->autoRender = false;
@@ -230,6 +243,7 @@ class HillhouseController extends AppController
 
     public function ajaxDelete()
     {
+        $this->request->allowMethod(['delete','post']);
        // $this->autoRender = false;
        // $this->layout='ajax';
         $mesg="Delete Fail";

@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+use Cake\Event\Event;
 
 /**
  * PowerInfras Controller
@@ -18,9 +19,19 @@ class PowerInfrasController extends AppController
     {
        parent::initialize();
        $this->loadComponent('RequestHandler');
-       //$this->loadComponent('Security');
+       $this->loadComponent('Security');
    }
 
+   public function beforeFilter(Event $event)
+   {
+    parent::beforeFilter($event);
+ 
+ 
+         /** To disable form change detection for ajax method */
+         $this->Security->setConfig('unlockedActions', ['getvillage','ajaxDelete','ajaxFilterSubdivision']);
+      
+       
+   }
 
     public function isAuthorized($user)
     {
@@ -43,6 +54,8 @@ class PowerInfrasController extends AppController
     public function index()
 
     {
+        $this->request->allowMethod(['get','post']);
+
         $this->loadModel('Subdistricts');
         $subDivs=$this->Subdistricts->find('list'); 
         $powerInfras = $this->PowerInfras->find('all')->contain(['Villages'=>['fields'=>['Villages.village_name'] ]]);
@@ -74,6 +87,8 @@ class PowerInfrasController extends AppController
     public function add()
 
     {
+        $this->request->allowMethod(['get','post']);
+
         $session = $this->request->session();
        
         $current_year = date('Y');
@@ -141,6 +156,8 @@ class PowerInfrasController extends AppController
      */
     public function edit($id = null)
     {
+        $this->request->allowMethod(['get','post','put']);
+
         $powerInfra = $this->PowerInfras->get($id, [
             'contain' => ['Villages']
         ]);
@@ -178,7 +195,8 @@ class PowerInfrasController extends AppController
 
     public function getvillage()
     {
-        
+        $this->request->allowMethod(['post']);
+
         $this->villages=TableRegistry::get('Villages');
         
         if ($this->request->is(['ajax', 'post'])) 
@@ -200,7 +218,8 @@ class PowerInfrasController extends AppController
 
     public function ajaxFilterSubdivision()
     {
-       
+        $this->request->allowMethod(['post']);
+
         if ($this->request->is(['ajax', 'post'])) 
         {
           // $this->autoRender = false;
@@ -239,6 +258,8 @@ class PowerInfrasController extends AppController
 
     public function ajaxDelete()
     {
+        $this->request->allowMethod(['delete','post']);
+
        // $this->autoRender = false;
        // $this->layout='ajax';
         $mesg="Delete Fail";

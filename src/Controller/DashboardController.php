@@ -34,6 +34,7 @@ class DashboardController extends AppController
      */
     public function home()
     {
+        $this->request->allowMethod(['get','post']);
         $session = $this->getRequest()->getSession();
         $session->write('homecontroller', $this->request->params['controller']);
 
@@ -72,6 +73,7 @@ class DashboardController extends AppController
 
     public function villageEntered()
     {
+        $this->request->allowMethod(['get','post']);
         $this->loadModel('HealthInfras');
         $this->loadModel('Villages');
         
@@ -91,6 +93,7 @@ class DashboardController extends AppController
 
     public function villageRemaining()
     {
+        $this->request->allowMethod(['get','post']);
         $this->loadModel('HealthInfras');
         $this->loadModel('Villages');
         // $query=$this->Villages->find()
@@ -117,6 +120,7 @@ class DashboardController extends AppController
 
     public function getEmptyVillage($modelToLoad)
     {
+        $this->request->allowMethod(['get','post']);
         $this->loadModel('Villages');
         $this->loadModel('Subdistricts');
         $subDivs=$this->Subdistricts->find('list'); 

@@ -3,6 +3,8 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+use Cake\Event\Event;
+
 
 /**
  * HealthInfras Controller
@@ -19,9 +21,20 @@ class HealthInfrasController extends AppController
     {
        parent::initialize();
        $this->loadComponent('RequestHandler');
-       //$this->loadComponent('Security');
+       $this->loadComponent('Security');
+
    }
 
+   public function beforeFilter(Event $event)
+   {
+    parent::beforeFilter($event);
+    
+ 
+         /** To disable form change detection for ajax method */
+         $this->Security->setConfig('unlockedActions', ['getvillage','ajaxDelete','ajaxFilterSubdivision']);
+      
+       
+   }
     public function isAuthorized($user)
         {
             //dump($user);
@@ -41,6 +54,7 @@ class HealthInfrasController extends AppController
      */
     public function index()
     {
+        $this->request->allowMethod(['get','post']);
         $this->loadModel('Subdistricts');
         $subDivs=$this->Subdistricts->find('list'); 
         $healthInfras = $this->HealthInfras->find('all')
@@ -74,7 +88,7 @@ class HealthInfrasController extends AppController
      */
     public function add()
     {
-       
+        $this->request->allowMethod(['get','post']);
         $session = $this->request->session();
         $healthInfra = $this->HealthInfras->newEntity();
         $current_year = date('Y');
@@ -138,6 +152,7 @@ class HealthInfrasController extends AppController
      */
     public function edit($id = null)
     {
+        $this->request->allowMethod(['get','post','put']);
         $healthInfra = $this->HealthInfras->get($id, [
             'contain' => ['Villages']
         ]);
@@ -174,7 +189,7 @@ class HealthInfrasController extends AppController
     }
     public function getvillage()
     {
-        
+        $this->request->allowMethod(['post']);
         $this->villages=TableRegistry::get('Villages');
         
         if ($this->request->is(['ajax', 'post'])) 
@@ -195,6 +210,7 @@ class HealthInfrasController extends AppController
 
     public function home()
     {
+        $this->request->allowMethod(['get','post']);
         $session = $this->getRequest()->getSession();
 
         $session->write('homecontroller', $this->request->params['controller']);
@@ -205,7 +221,7 @@ class HealthInfrasController extends AppController
 
     public function ajaxFilterSubdivision()
     {
-       
+        $this->request->allowMethod(['post']);
         if ($this->request->is(['ajax', 'post'])) 
         {
            // $this->autoRender = false;
@@ -244,6 +260,7 @@ class HealthInfrasController extends AppController
 
     public function ajaxDelete()
     {
+        $this->request->allowMethod(['delete','post']);
        // $this->autoRender = false;
        // $this->layout='ajax';
         $mesg="Delete Fail";

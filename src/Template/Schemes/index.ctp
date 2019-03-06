@@ -32,7 +32,7 @@
                 <td><?= $this->Number->precision($scheme->sanction_amount,2) ?></td>
                 <td><?= h($scheme->scheme_status) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $scheme->scheme_code]) ?>
+                    <!-- <?= $this->Html->link(__('View'), ['action' => 'view', $scheme->scheme_code]) ?> -->
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $scheme->scheme_code]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $scheme->scheme_code], ['confirm' => __('Are you sure you want to delete # {0}?', $scheme->scheme_code)]) ?>
                 </td>

@@ -68,7 +68,7 @@ $cakeDescription = 'CVIS';
                          }?></li>
                 <li><?php if ($this->Session->read('Auth')) {echo $this->Html->link('Logout', array('controller' => 'users', 'action' => 'logout')); }?></li>
                 <li><?php if ($this->Session->read('Auth')) {
-                    echo $this->Html->link('Change Password', array('controller' => 'users', 'action' => 'changepassword', $user['user_id'])); }?></li>
+                    echo $this->Html->link($this->Html->tag('i','',array('class'=>'fi-wrench large')).'Change Password', array('controller' => 'users', 'action' => 'changepassword'),array('escape'=>false)); }?></li>
                
                
             </ul>

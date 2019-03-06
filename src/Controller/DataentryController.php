@@ -61,6 +61,7 @@ class DataentryController extends AppController
     }
 
     public function home(){
+        $this->request->allowMethod(['get','post']);
         $session = $this->getRequest()->getSession();
         $session->write('homecontroller', $this->request->params['controller']);
         if ($this->request->is('post')) {
@@ -137,6 +138,7 @@ class DataentryController extends AppController
      */
     public function add()
     {
+        $this->request->allowMethod(['get','post']);
         $dataentry = $this->Dataentry->newEntity();
         if ($this->request->is('post')) {
             $dataentry = $this->Dataentry->patchEntity($dataentry, $this->request->getData());

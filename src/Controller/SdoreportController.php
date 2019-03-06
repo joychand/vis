@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\View\Helper\BreadcrumbsHelper;
 use Cake\ORM\TableRegistry;
+use Cake\Event\Event;
 
 /**
  * Sdoreport Controller
@@ -17,9 +18,18 @@ class SdoreportController extends AppController
     {
        parent::initialize();
        $this->loadComponent('RequestHandler');
-       //$this->loadComponent('Security');
+       $this->loadComponent('Security');
     }
-
+    public function beforeFilter(Event $event)
+    {
+     parent::beforeFilter($event);
+  
+  
+          /** To disable form change detection for ajax method */
+          $this->Security->setConfig('unlockedActions', ['getvillage','ajaxDelete','ajaxFilterSubdivision']);
+       
+        
+    }
 
     public function isAuthorized($user)
         {
@@ -42,6 +52,8 @@ class SdoreportController extends AppController
     public function index()
 
     {
+        $this->request->allowMethod(['get','post']);
+
         $this->loadModel('Subdistricts');
         $this->populations=TableRegistry::get('populations');
         $session = $this->request->getSession();
@@ -88,6 +100,8 @@ class SdoreportController extends AppController
      */
     public function add()
     {
+        $this->request->allowMethod(['get','post']);
+
         $session = $this->request->session();
         $this->populations=TableRegistry::get('populations');
        
@@ -163,6 +177,8 @@ class SdoreportController extends AppController
      */
     public function edit($reference_year = null,$village_code = null,$counting_agency = null)
     {
+        $this->request->allowMethod(['get','post','put']);
+
         $this->populations=TableRegistry::get('populations');
         $sdoreport = $this->populations->get([$reference_year,$village_code,$counting_agency], [
             'contain' => ['Villages']
@@ -201,6 +217,8 @@ class SdoreportController extends AppController
         return $this->redirect(['action' => 'index']);
     }
     public function home (){
+        $this->request->allowMethod(['get','post']);
+
         $session = $this->getRequest()->getSession();
         $session->write('agency',3);
         
@@ -212,7 +230,8 @@ class SdoreportController extends AppController
 
     public function getvillage()
     {
-        
+        $this->request->allowMethod(['post']);
+
         $this->villages=TableRegistry::get('Villages');
         
         if ($this->request->is(['ajax', 'post'])) 
@@ -233,7 +252,8 @@ class SdoreportController extends AppController
 
     public function ajaxFilterSubdivision()
     {
-       
+        $this->request->allowMethod(['post']);
+
         if ($this->request->is(['ajax', 'post'])) 
         {
            //$this->autoRender = false;
@@ -275,6 +295,8 @@ class SdoreportController extends AppController
 
     public function ajaxDelete()
     {
+        $this->request->allowMethod(['delete','post']);
+
        // $this->autoRender = false;
        // $this->layout='ajax';
         $mesg="Delete Fail";

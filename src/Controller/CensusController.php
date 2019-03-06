@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+use Cake\Event\Event;
 
 /**
  * Census Controller
@@ -18,9 +19,19 @@ class CensusController extends AppController
     {
        parent::initialize();
        $this->loadComponent('RequestHandler');
-       //$this->loadComponent('Security');
+       $this->loadComponent('Security');
     }
-
+    
+    public function beforeFilter(Event $event)
+    {
+     parent::beforeFilter($event);
+  
+  
+          /** To disable form change detection for ajax method */
+          $this->Security->setConfig('unlockedActions', ['getvillage','ajaxDelete','ajaxFilterSubdivision']);
+       
+        
+    }
     public function isAuthorized($user)
     {
         //dump($user);
@@ -40,6 +51,7 @@ class CensusController extends AppController
      */
     public function index()
     {
+        $this->request->allowMethod(['get','post']);
         $this->loadModel('Subdistricts');
         $this->populations=TableRegistry::get('populations');
         $session = $this->request->getSession();
@@ -77,6 +89,7 @@ class CensusController extends AppController
      */
     public function add()
     {
+        $this->request->allowMethod(['get','post']);
         $session = $this->request->session();
         $this->populations=TableRegistry::get('populations');
         $current_year = date('Y');
@@ -147,6 +160,7 @@ class CensusController extends AppController
      */
     public function edit($reference_year = null,$village_code = null,$counting_agency = null)
     {
+        $this->request->allowMethod(['get','post','put']);
         $this->populations=TableRegistry::get('populations');
         $census = $this->populations->get([$reference_year,$village_code,$counting_agency], [
             'contain' => ['Villages']
@@ -170,11 +184,13 @@ class CensusController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete($reference_year = null,$village_code = null,$counting_agency = null)
     {
+       // $this->request->allowMethod(['delete','post']);
         $this->request->allowMethod(['post', 'delete']);
-        $census = $this->Census->get($id);
-        if ($this->Census->delete($census)) {
+        $this->populations=TableRegistry::get('populations');
+        $census = $this->populations->get([$reference_year,$village_code,$counting_agency]);
+        if ($this->populations->delete($census)) {
             $this->Flash->success(__('The census has been deleted.'));
         } else {
             $this->Flash->error(__('The census could not be deleted. Please, try again.'));
@@ -185,7 +201,7 @@ class CensusController extends AppController
 
     public function getvillage()
     {
-        
+        $this->request->allowMethod(['post']);
         $this->villages=TableRegistry::get('Villages');
         
         if ($this->request->is(['ajax', 'post'])) 
@@ -206,7 +222,7 @@ class CensusController extends AppController
 
     public function ajaxFilterSubdivision()
     {
-       
+        $this->request->allowMethod(['post']);
         if ($this->request->is(['ajax', 'post'])) 
         {
            //$this->autoRender = false;
@@ -244,6 +260,7 @@ class CensusController extends AppController
 
     public function ajaxDelete()
     {
+        $this->request->allowMethod(['delete','post']);
        // $this->autoRender = false;
        // $this->layout='ajax';
         $mesg="Delete Fail";
@@ -252,8 +269,8 @@ class CensusController extends AppController
         if ($this->request->is(['ajax', 'post'])) 
         {
             $this->populations=TableRegistry::get('populations');
-            $nercormp =  $this->populations->get([$this->request->getData('ref'),$this->request->getData('village_code'),$this->request->getData('counting_agency')]);
-            if ($this->populations->delete($nercormp)) {
+            $census =  $this->populations->get([$this->request->getData('ref'),$this->request->getData('village_code'),$this->request->getData('counting_agency')]);
+            if ($this->populations->delete($census)) {
                $mesg="Delete Success";
             } 
             else 

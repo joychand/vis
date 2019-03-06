@@ -6,4 +6,4 @@
      } 
    else 
      {
-         echo 'Login 1st Time';} ?></small></p><p style="text-align:right; margin:0 !important"><?= $this->Html->link(__('view>>'), [ 'controller'=>'UserAudits','action' => 'index']) ?></p></div>
+         echo 'Login 1st Time';} ?></small></p><p style="text-align:right; margin:0 !important"><?= $this->Html->link(__('View>>'), [ 'controller'=>'UserAudits','action' => 'index']) ?></p></div>

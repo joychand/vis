@@ -3,6 +3,8 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+use Cake\Event\Event;
+
 
 /**
  * VillageSchemes Controller
@@ -18,6 +20,19 @@ class VillageSchemesController extends AppController
     {
         parent::initialize();
         $this->loadComponent('RequestHandler');
+        $this->loadComponent('Security');
+
+    }
+
+    public function beforeFilter(Event $event)
+    {
+     parent::beforeFilter($event);
+  
+  
+          /** To disable form change detection for ajax method */
+          $this->Security->setConfig('unlockedActions', ['getvillage','ajaxDelete','ajaxFilterSubdivision']);
+       
+        
     }
     public function isAuthorized($user)
     {
@@ -38,6 +53,7 @@ class VillageSchemesController extends AppController
      */
     public function index()
     {
+        $this->request->allowMethod(['get','post']);
         $this->loadModel('Subdistricts');
         $subDivs=$this->Subdistricts->find('list'); 
         $villageSchemes = $this->VillageSchemes->find('all')
@@ -76,6 +92,7 @@ class VillageSchemesController extends AppController
     public function add()
 
     {
+        $this->request->allowMethod(['get','post']);
         $session = $this->request->session();
         $this->subdistricts = TableRegistry::get('Subdistricts');
         $current_fn_year = date('Y');
@@ -138,6 +155,7 @@ class VillageSchemesController extends AppController
      */
     public function edit($id = null)
     {
+        $this->request->allowMethod(['get','post','put']);
         $villageScheme = $this->VillageSchemes->get($id, [
             'contain' => ['Villages']
         ]);
@@ -180,7 +198,7 @@ class VillageSchemesController extends AppController
 
     public function getvillage()
     {
-        
+        $this->request->allowMethod(['post']);
         $this->villages=TableRegistry::get('Villages');
         
         if ($this->request->is(['ajax', 'post'])) 
@@ -200,6 +218,7 @@ class VillageSchemesController extends AppController
     }
 
     public function home (){
+        $this->request->allowMethod(['get','post']);
         $session = $this->getRequest()->getSession();
 
         $session->write('homecontroller', $this->request->params['controller']);
@@ -208,7 +227,7 @@ class VillageSchemesController extends AppController
 
     public function ajaxFilterSubdivision()
     {
-       
+        $this->request->allowMethod(['post']);
         if ($this->request->is(['ajax', 'post'])) 
         {
            // $this->autoRender = false;
@@ -248,6 +267,7 @@ class VillageSchemesController extends AppController
 
     public function ajaxDelete()
     {
+        $this->request->allowMethod(['delete','post']);
        // $this->autoRender = false;
        // $this->layout='ajax';
         $mesg="Delete Fail";

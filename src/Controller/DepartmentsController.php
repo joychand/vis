@@ -66,6 +66,7 @@ class DepartmentsController extends AppController
      */
     public function add()
     {
+        $this->request->allowMethod(['get','post']);
         $this->paginate = [ 'page' => 1, 'limit' => 9, 'maxLimit' => 10 ];
         $departments = $this->paginate($this->Departments);
 

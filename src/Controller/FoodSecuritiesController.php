@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+use Cake\Event\Event;
 
 /**
  * FoodSecurities Controller
@@ -19,7 +20,17 @@ class FoodSecuritiesController extends AppController
     {
         parent::initialize();
         $this->loadComponent('RequestHandler');
-        //$this->set('title','CAF&PD');
+        $this->loadComponent('Security');
+    }
+
+    public function beforeFilter(Event $event)
+    {
+     parent::beforeFilter($event);
+    
+          /** To disable form change detection for ajax method */
+          $this->Security->setConfig('unlockedActions', ['getvillage','ajaxDelete','ajaxFilterSubdivision']);
+        
+        
     }
 
   /** Authorization method */
@@ -42,6 +53,8 @@ class FoodSecuritiesController extends AppController
      */
     public function index()
     {
+        $this->request->allowMethod(['get','post']);
+
         $this->loadModel('Subdistricts');
         $subDivs=$this->Subdistricts->find('list'); 
         $foodSecurities = $this->FoodSecurities->find('all')
@@ -78,6 +91,8 @@ class FoodSecuritiesController extends AppController
     public function add()
 
     {   
+        $this->request->allowMethod(['get','post']);
+
         $session = $this->request->session();
         
         $cat =$this->getRequest()->getSession()->read('category');
@@ -142,6 +157,8 @@ class FoodSecuritiesController extends AppController
      */
     public function edit($id = null)
     {
+        $this->request->allowMethod(['get','post','put']);
+
         $foodSecurity = $this->FoodSecurities->get($id, [
             'contain' => ['Villages']
         ]);
@@ -179,6 +196,8 @@ class FoodSecuritiesController extends AppController
     
     public function home()
     {
+        $this->request->allowMethod(['get','post']);
+
         $session = $this->getRequest()->getSession();
 
         $session->write('homecontroller', $this->request->params['controller']);
@@ -186,7 +205,8 @@ class FoodSecuritiesController extends AppController
     }
     public function getvillage()
     {
-        
+        $this->request->allowMethod(['post']);
+
         $this->villages=TableRegistry::get('Villages');
         
         if ($this->request->is(['ajax', 'post'])) 
@@ -207,7 +227,8 @@ class FoodSecuritiesController extends AppController
 
     public function ajaxFilterSubdivision()
     {
-       
+        $this->request->allowMethod(['post']);
+
         if ($this->request->is(['ajax', 'post'])) 
         {
            // $this->autoRender = false;
@@ -246,6 +267,8 @@ class FoodSecuritiesController extends AppController
 
     public function ajaxDelete()
     {
+        $this->request->allowMethod(['post']);
+
        // $this->autoRender = false;
        // $this->layout='ajax';
         $mesg="Delete Fail";
