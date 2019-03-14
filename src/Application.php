@@ -74,7 +74,7 @@ class Application extends BaseApplication
         $securityHeaders = new SecurityHeadersMiddleware();
         $securityHeaders
            
-            ->setXFrameOptions('deny')
+            //->setXFrameOptions('deny')
             ->setXssProtection()
            
             ->noSniff();

@@ -40,6 +40,7 @@ class UserAudit extends Entity
         'fail_ip' => true,
         'success_ip' => true,
         'last_success_ip' => true,
-        'user' => true
+        'user' => true,
+        'fail_login_attempt'=>true
     ];
 }

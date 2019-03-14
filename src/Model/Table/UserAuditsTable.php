@@ -92,7 +92,9 @@ class UserAuditsTable extends Table
             ->scalar('last_success_ip')
             ->maxLength('last_success_ip', 50)
             ->allowEmpty('last_success_ip');
-
+        $validator
+            ->integer('fail_login_attempt')
+            ->allowEmpty('fail_login_attempt');    
 
         return $validator;
     }
@@ -124,6 +126,7 @@ class UserAuditsTable extends Table
             $userAudit->fail_ip=$client_ip;
             $userAudit->fail_browser=$client_browser;
             $userAudit->last_fail_login=Time::now();
+            $userAudit->fail_login_attempt=1;
             $this->save($userAudit);
         }
         else
@@ -134,6 +137,7 @@ class UserAuditsTable extends Table
             $userAudit->fail_ip=$client_ip;
             $userAudit->fail_browser=$client_browser;
             $userAudit->last_fail_login=Time::now();
+            $userAudit->fail_login_attempt=$userAudit->fail_login_attempt + 1;
             $this->save($userAudit);
         }
         
@@ -150,6 +154,7 @@ class UserAuditsTable extends Table
             $userAudit->login=Time::now();
             $userAudit->success_browser=$client_browser;
             $userAudit->success_ip=$client_ip;
+            $userAudit->fail_login_attempt=0;
             $this->save($userAudit);
         }
         else
@@ -166,6 +171,7 @@ class UserAuditsTable extends Table
                 $userAudit->login=Time::now();
                 $userAudit->success_browser=$client_browser;
                 $userAudit->success_ip=$client_ip;
+                $userAudit->fail_login_attempt=0;
                 $this->save($userAudit);
             }
             else
@@ -173,12 +179,40 @@ class UserAuditsTable extends Table
                 $userAudit->login=Time::now();
                 $userAudit->success_browser=$client_browser;
                 $userAudit->success_ip=$client_ip;
+                $userAudit->fail_login_attempt=0;
                 $this->save($userAudit);
             }
            
 
         }
     }
+    public function checkUserLocked($user_id)
+    {
+        $user  = $this->find()->where( ['user_id'=>$user_id])->first();
+        //dump($user);
+        if(!$user)
+        {
+            return false;
+        }
+        else
+        {
+           // $user=$this->get($user->id);
+           // debug($user);
+            if($user->fail_login_attempt > 2 &&  $user->last_fail_login->wasWithinLast('24 hours')) 
+            {
+                if($user->last_fail_login->wasWithinLast('30 minutes'))
+                return true;
+                else
+                return false;
+            }
+            
+            else 
+            {
+                return false;
+            }
+              
+        }
 
+    }
     
 }

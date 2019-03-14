@@ -54,7 +54,7 @@ class AnganwadisTable extends Table
 
         $validator
             ->integer('anganwadi_reference_year')
-            ->allowEmpty('anganwadi_reference_year');
+            ->notEmpty('anganwadi_reference_year', 'plz select reference year');
 
         $validator
             ->integer('total_anganwadi_centre')
